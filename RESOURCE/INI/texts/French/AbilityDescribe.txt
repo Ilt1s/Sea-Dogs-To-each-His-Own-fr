@@ -35,96 +35,114 @@ perkSwordplayProfessional
 Grus	{Additional weight}
 perkGrus
 {
-This ability allows to carry additional 30 pounds.
+Cette capacité permet de transporter 30 livres supplémentaires.
 }
 
 Rush	{The Ometochtli tincture}
 perkRush
 {
-Intoxicating tincture, contributing to the instantaneous manifestation of tremendous strength and endurance, a significant increase in dexterity and quickness of reaction, insensitivity to pain and increased aggression.
-For 12 seconds, character's attacks become much more powerful, and incoming damage is reduced.
+Teinture enivrante, contribuant à la manifestation instantanée d’une force et d’une endurance énormes, d’une augmentation significative de la dextérité et de la rapidité de réaction, de l’insensibilité à la douleur et de l’agressivité accrue.
+Pendant 12 secondes, les attaques du personnage deviennent beaucoup plus puissantes et les dégâts entrants sont réduits.
 ~
-This ability has a 1 minute cooldown.
+Cette capacité a un temps de recharge de 1 minute.
 }
 
 Tireless	{Tireless}
 perkTireless
 {
-You get your second wind in combat, which helps you to reduce fighting fatigue. (+15% energy recovery).
+Vous obtenez votre deuxième vent au combat, ce qui vous aide à réduire la fatigue de combat. (+15% de récupération d’énergie).
 }
 
 HardHitter {Hard hitter}
 perkHardHitter
 {
-A successful heavy blow deals double damage.
+Un coup dur réussi inflige deux fois plus de dégâts.
 ~
-Target losses energy if gets hit by:
-- heavy blows and thrusts (Rapiers and swords),
-- heavy blows and slashes (Sabres and cutlasses).
+Cible perd de l’énergie si elle est touchée par:
+- Coups lourds et poussées (Rapiers et épées),
+- Coups lourds et coups de et barre obliques (Sabres et cutlasses).
 }
 
 BladeDancer	{Blade dance}
 perkBladeDancer
 {
-You have finally learned to perform the group attack correctly. (+30% Group attack damage bonus).
+Vous avez finalement appris à effectuer l’attaque de groupe correctement. (+30% bonus de dégâts d’attaque de groupe).
 }
 
 Sliding	{Irresistible strike}
 perkSliding
 {
-Your attacks have an additional 20% chance to strike through the enemy defense.
+Vos attaques ont 20% de chances supplémentaires de frapper à travers la défense ennemie.
 }
 
 Gunman {Musketeer}
 perkGunman
 {
-The character uses handguns more effectively: reload is faster for 10% and accurcy is 10% better. 
-Now the character and those officers who directly say about it are able to use arquebuses, muskets, mortars and other large one-barrel firearms.
+Le personnage utilise les armes de poing plus efficacement: recharger est plus rapide pour 10% et l’accurcy est 10% mieux.
+Maintenant, le personnage et les officiers qui disent directement à ce sujet sont en mesure d’utiliser des arquebus, mousquets, mortiers et autres grandes armes à feu à un canon.
 }
 
 GunProfessional {Sniper}
 perkGunProfessional
 {
-The character gets professional skills: 25% faster reloading of personal firearms. 25% better accuracy.
-Multibarreled and repeating firearms can now be used.
+Le personnage obtient des compétences professionnelles: 25% plus rapide rechargement des armes à feu personnelles. 25% de meilleure précision.
+Les armes à feu multibarriers et répétées peuvent maintenant être utilisées.
 }
 
 IronWill	{Iron will}
 perkIronWill
 {
-The probability of mutiny on the ship caused by wages delay and famine is reduced.
+La probabilité de mutinerie sur le navire causée par le retard des salaires et la famine est réduite.
 }
 
 SharedExperience	{Experience exchange}
 perkSharedExperience
 {
-The hero can exchange items with the officers during boarding.
-The experience gained in the hero's skills goes to passengers, officers and companions twice as much and becomes 10%, 50% and 33%, respectively.
+Le héros peut échanger des objets avec les officiers pendant l’embarquement.
+L’expérience acquise dans les compétences du héros va aux passagers, officiers et compagnons deux fois plus et devient 10%, 50% et 33%, respectivement.
 }
 
 Medic	{Excellent health}
 perkMedic
 {
-This ability allows to restore health faster, if no serious wounds were taken during the day. Reduces the decrease of health if the character is wounded. Works while sailing, but slower.
+Cette capacité permet de rétablir la santé plus rapidement, si aucune blessure grave n’a été prise au cours de la journée. Réduit la diminution de la santé si le personnage est blessé. Fonctionne tout en naviguant, mais plus lentement.
 }
 
 HPPlus	{Growing life}
 perkHPPlus
 {
-This ability increases the maximum life of the hero by one additional point per rank.
+Cette capacité augmente la durée de vie maximale du héros d’un point supplémentaire par rang.
 }
 
 EnergyPlus	{Growing energy}
 perkEnergyPlus
 {
-This ability increases the maximum energy of the hero by one additional point per rank.
+Cette capacité augmente l’énergie maximale du héros d’un point supplémentaire par rang.
 }
 
 ByWorker	{By-worker}
 perkByWorker
 {
-This character can occopy two officer positions at once.
+Ce personnage peut occopy deux positions d’officier à la fois.
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ByWorker2	{Universalist}
 perkByWorker2
