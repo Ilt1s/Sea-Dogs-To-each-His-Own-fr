@@ -5,31 +5,31 @@
 BasicDefense	{Basic defense skill}
 perkBasicDefense
 {
-Incoming damage to the character is reduced by 10%.
+Le degat que recoit le personnage est reduit de 10%.
 }
 
 AdvancedDefense	{Advanced defense skill}
 perkAdvancedDefense
 {
-Incoming damage to the character is reduced by 20%.
+Le degat que recoit le personnage est reduit de 20%.
 }
 
 CriticalHit	{Critical hit}
 perkCriticalHit
 {
-Character receives 5% chance to land a critical hit on the opponent.
+5% de chance en plus de faire un coup critique.
 }
 
 Ciras	{Cuirass}
 perkCiras
 {
-This skill allows to use cuirasses.
+Cette compétence permet d’utiliser cuirasses.
 }
 
 SwordplayProfessional	{Professional fencer}
 perkSwordplayProfessional
 {
-15% chance to land a critical hit. Incoming damage to the character is reduced by 30%.
+15% de chance en plus de faire un coup critique. Le degat que recoit le personnage est reduit de 30%.
 }
 
 Grus	{Additional weight}
