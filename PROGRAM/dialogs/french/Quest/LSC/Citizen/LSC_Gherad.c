@@ -1,5 +1,5 @@
 // Гхерад Смиитс - матрос
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -18,14 +18,14 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
 			}
 			if (npchar.quest.meeting == "0")
 			{
-				dialog.text = "Good day, buddy, ha-ha! What are you doing here?";
+				dialog.text = "Good day, ha-ha! What are you doing here?";
 				link.l1 = TimeGreeting()+". Do I know you?";
 				link.l1.go = "meeting";
 				npchar.quest.meeting = "1";
@@ -33,11 +33,11 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -51,7 +51,7 @@ void ProcessDialogEvent()
 		
 		case "meeting_1":
 			dialog.text = "You look more like a ship owner or a paymaster... You are a well educated man no doubt. Glad to meet you. How did you get here?";
-			link.l1 = "I have decided to explore an unknown area. Buccaneers from Cuba told me that there was something in this area and I decided to check it out...";
+			link.l1 = "I have decided to explore an unknown area. Buccaneer from Cuba has told me that there is something here and I decided to check it out...";
 			link.l1.go = "meeting_2";
 		break;
 		
@@ -62,10 +62,10 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting_3":
-			dialog.text = "I see. Well, you stuck here for a while. Visit Sancho to get some rum, it's a good deed...";
+			dialog.text = "I see. Well, you are stuck here for a long time. Visit Sancho to get some rum, it's good...";
 			link.l1 = "I will. See you!";
 			link.l1.go = "exit";
-			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 			link.l2.go = "rumours_LSC";
 			link.l3 = "I want to ask you a few questions about the island.";
 			link.l3.go = "int_quests"; //информационный блок
@@ -92,7 +92,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(npchar, "quest.answer_4"))
 			{
-				link.l4 = "How has the Island formed, have any ideas about it?";
+				link.l4 = "And how did the Island formed, got any ideas about it?";
 				link.l4.go = "ansewer_4";
 			}
 			link.l10 = "No questions. Pardon...";
@@ -100,21 +100,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_1":
-			dialog.text = "I got here with that puffed up cock named Abbot. I was serving on his ship. You know what? People like him should never lay a foot on the ship's deck because they bring bad luck. The devil must have made him sail with us.\nWe only had to sail from Jamaica to Belize, easy as pie. But the ill fate chased us: our boatswain fell overboard, a navigator made a mistake, bloody Spanish and a storm in the end. And here we are.";
+			dialog.text = "I got here with that puffed up cock named Abbot. I was serving on his ship. You know what? People like him never should lay a foot on the ship's deck. I wish he didn't decide to sail with us.\nWe only had to sail from Jamaica to Belize, easy as pie. But the ill fate chased us: our boatswain fell overboard, a navigator made a mistake, bloody Spanish and a storm in the end. And here we are.";
 			link.l1 = "Interesting...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_1 = "true";
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "I wish I knew, pal. I used to but I don't now. Life is fine here, plenty of rum and wine, good food, not a lot, but anyway better than that shit I ate on ships\nGood guys live on the Island too. There are people either to drink with or to talk with. I like it here. So I am not even sure... No, I suppose not, I don't want to leave. I used to be angry and hungry, look at my belly now, ha-ha!";
+			dialog.text = "Damn if I know, pal. I used to but I don't now. Life is fine here, plenty of rum and wine, the food could be better, but the crap they served us was even worse\nGood folk on the Island too. There are people either to drink with or to talk with. I like it here. So I am not even sure... No, I suppose not, I don't want to leave. I used to be angry and hungry, look at my belly now, ha-ha!";
 			link.l1 = "Great! I am glad for you.";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "No, they don't. Just don't argue with them and don't visit their territories without permission. They really don't like it. Narwhals are good lads, most of them were born here and they haven't seen other life. Many of them are very skilled, Jurgen Schmidt for example. He is a god of blacksmithing!";
+			dialog.text = "No, they don't. Just don't argue with them and don't visit their territories without permission. They really don't like it. Narwhals are good lads, most of them were born here and they have seen not other life. Many of them are very skilled, Jurgen Schmidt for example. He is a god of blacksmithing!";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
@@ -138,7 +138,7 @@ void ProcessDialogEvent()
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -159,8 +159,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "As you wish...", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -173,7 +173,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

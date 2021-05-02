@@ -26,10 +26,10 @@ void ProcessDialogEvent()
 			{
 				if (CheckAttribute(npchar, "quest.map"))
 				{
-					link.l2 = "Layton, Shark told me that you have a map of the Island. Are you selling it?";
+					link.l2 = "Layton, Shark told me that you've got a map of the Island. Are you selling it?";
 					link.l2.go = "map";
 				}
-				dialog.text = "A-ah, "+GetFullName(pchar)+"! Do you have business with me or you just want to talk again? If so, then bring a bottle of rum next time, he-he.";
+				dialog.text = "A-ah, "+GetFullName(pchar)+"! Do you have business with me or you just want to chat again? If so, then bring a bottle of rum next time, he-he.";
 				link.l1 = "No, I have no particular business for you. I will take care of rum next time.";
 				link.l1.go = "exit";
 			}
@@ -59,13 +59,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "admiral_2":
-			dialog.text = "Good. With all your questions come to me since now.";
+			dialog.text = "Good. All questions go to me now.";
 			link.l1 = "Are you going to exact revenge upon Narwhals for Steven's death?";
 			link.l1.go = "admiral_3";
 		break;
 		
 		case "admiral_3":
-			dialog.text = "You mean, will I declare a war to then? No. There are better ways to make them pay. I will triple the price for provisions for them\nIf they attack the 'San Augustine' we will give them hell. Besides, I am going to try negotiating with Rivados. Sure, we can't trust the niggers and they hold grudges for the death of their wizard, but any problem can be solved.";
+			dialog.text = "You mean, will I declare a war to then? No. There are better ways to make them pay. I will triple the price for provisions for them\nIf they attack the San Augustine we shall give them hell. Besides, I am going to try negotiating with Rivados. Sure, we can't trust the niggers and they hold grudges for the death of their wizard, but any problem can be solved.";
 			link.l1 = "I see. Fine, Layton, I have to go...";
 			link.l1.go = "admiral_4";
 		break;
@@ -78,14 +78,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "admiral_5":
-			dialog.text = "Take these sailing directions. Using them you can return here on ship by sea... in one piece. I mean, you won't be crashed by the reefs, you won't be carried away by the current and your ship won't sink in a storm\nWithout them you will either fail to find a passage or your ship will join her sisters here. Remember that you must use relatively small vessel in order to pass the reefs. Lugger, schooner, brigantine, brig... Fourth class, not bigger.";
+			dialog.text = "Take these sailing directions. Use them to return here on ship and in one piece\nWithout them you will either fail to find a passage or your ship will join her sisters here. Remember that you must use relatively small vessel in order to pass the reefs. Lugger, schooner, brigantine, brig... Fourth class, not bigger.";
 			link.l1 = "Thanks! That is exactly what I need.";
 			link.l1.go = "admiral_6";
 		break;
 		
 		case "admiral_6":
 			GiveItem2Character(pchar, "LSC_navigation_map");
-			dialog.text = "Don't forget to fill your cargo hold with provisions. You must understand that I will sell it here for a good price. Don't show this document to anyone, our base must remain secret. I am giving you this document only because Steven himself was going to give it to you, and you are a friend of Jan Swanson.";
+			dialog.text = "Don't forget to fill your cargo hold with provisions. You must understand that I will sell it here for a good price. Don't show this document to anyone, our base must remain secret. I am giving you this document only because Steven himself was going to give it to you, and you are a friend of Jan Svensson.";
 			link.l1 = "Don't worry about that. Thank you again and see you around!";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Dexter_wait";
@@ -124,14 +124,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "admiral_10":
-			dialog.text = "You mean, will I declare a war to then? No. There are better ways to make them pay. I will triple the price for provisions for them\nIf they attack 'San Augustine', we will give them hell. Besides, we have good relationships with Rivados now, so Narwhals won't risk to act stupidly.";
+			dialog.text = "You mean, will I declare a war to then? No. There are better ways to make them pay. I will triple the price for provisions for them\nIf they attack 'San Augustine we shall give them hell. Besides, we have good relationships with Rivados now, so Narwhals won't risk to act stupidly.";
 			link.l1 = "I see. Do you want to tell me anything else? Or can I go now?";
 			link.l1.go = "admiral_4";
 		break;
 		
 		case "plan":
 			PlaySound("VOICE\Russian\LSC\Layton Dexter-07");
-			dialog.text = "I do. I can see only one possible tactics against Narwhals. It's not perfect, but I don't see any alternative. We will attack from two directions. Shock troop on longboats will board the 'Ceres Smithy', while our second troop along with Rivados forces will be storming the 'Esmeralda'. This will either eliminate them completely, or will make them retreat to the 'San Gabriel. Second scenario is the most probable, San Gabriel is a highly fortified position and the siege of her will take a long time. But, either way, we will win.";
+			dialog.text = "I do. I can see only one possible tactics against Narwhals. It's not perfect, but I don't see any alternative. We shall attack from two directions. Shock troop on longboats will board the Ceres Smithy, while our second troop along with Rivados forces will be storming the Esmeralda. This will either eliminate them completely, or will make them retreat to the San Gabriel. Second scenario is the most probable, San Gabriel is a highly fortified position and the siege of her will take a long time. But, either way, we will win.";
 			link.l1 = "";
 			link.l1.go = "plan_1";
 		break;
@@ -261,14 +261,6 @@ void ProcessDialogEvent()
 				link.l1.go = "exit";
 			break;
 			}
-			if (iTemp >= 15000) // лесник
-			{
-			 iTemp = (15000 - sti(npchar.quest.foodqty))	
-             dialog.text = "Wow, pal, that's too much for us! We won't be able to eat it before it rots. Right now I can't take more than "+iTemp+".";
-			 link.l1 = "Whatever you say.";
-			 link.l1.go = "trade_3";
-			 break;
-            }							  
 			iMoney = (50+drand(5))*iTemp;
 			dialog.text = ""+FindRussianQtyString(iTemp)+"? Fine. I will pay you "+FindRussianMoneyString(iMoney)+". Deal?";
 			link.l1 = "Sure! Nice trading!";
@@ -277,38 +269,7 @@ void ProcessDialogEvent()
 			link.l2.go = "exit";
 			NextDiag.TempNode = "head";
 		break;
-		case "trade_3": // лесник 
-		    iTemp = (15000 - sti(npchar.quest.foodqty))	
-		    iMoney = (50+drand(5))*iTemp;
-			dialog.text = "Deal. I'll pay you "+FindRussianMoneyString(iMoney)+" for the goods. Is it enough?";
-			link.l1 = "Sure! Nice trading!";
-			link.l1.go = "trade_4";
-			link.l2 = "Hm. No, I have changed my mind.";
-			link.l2.go = "exit";
-			NextDiag.TempNode = "head";
-		break;
-		case "trade_4": // лесник 
-		    iTemp = (15000 - sti(npchar.quest.foodqty))	
-			iMoney = (50+drand(5))*iTemp;
-			AddMoneyToCharacter(pchar, iMoney);
-			RemoveCharacterGoods(pchar, GOOD_FOOD, iTemp);
-			npchar.quest.foodqty = sti(npchar.quest.foodqty)+iTemp;
-			if (sti(npchar.quest.foodqty) >= 15000) // склады затарены на полгода
-			{
-				SetFunctionTimerCondition("LSC_ClearFoodStorage", 0, 0, 180, false);
-				dialog.text = "Nice! My storehouse is full now. I won't need to buy provision for the next half a year.";
-				link.l1 = "Good. Then I will bring the next load of provision to you in six months.";
-				link.l1.go = "exit";
-				AddQuestRecord("LSC", "25");
-			}
-			else
-			{
-				dialog.text = "Great! Bring me more next time.";
-				link.l1 = "Sure!";
-				link.l1.go = "exit";
-			}
-			NextDiag.TempNode = "head";
-		break;
+		
 		case "trade_2":
 			iTemp = dialogEditStrings[4];
 			iMoney = (50+drand(5))*iTemp;

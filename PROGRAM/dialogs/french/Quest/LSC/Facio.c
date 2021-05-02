@@ -1,5 +1,5 @@
 // посредник-дипломат кланов Джузеппе Фацио
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -21,8 +21,8 @@ void ProcessDialogEvent()
 		case "First time":
 			if (npchar.quest.meeting == "0")
 			{
-				dialog.text = "Hello, hello... Are you a new one here? I don't recall your face. Allow me to introduce myself - I am Giuseppe Fazio, a specialist in solving problems on this small island.";
-				link.l1 = TimeGreeting()+". My name is "+GetFullName(pchar)+". You are right, I am a new one here. Forgive my curiosity - but what kind of problems do you solve?";
+				dialog.text = "Hello, hello... Are you new here? I don't recall your face. Allow me to introduce myself - I am Giuseppe Fazio, a specialist in solving problems on this small island.";
+				link.l1 = TimeGreeting()+". My name is "+GetFullName(pchar)+". You are right, I am new here. Forgive my curiosity - but what kind of problems do you solve?";
 				link.l1.go = "meeting";
 				npchar.quest.meeting = "1";
 			}
@@ -31,13 +31,13 @@ void ProcessDialogEvent()
 				dialog.text = "Ah, you again, dear "+pchar.name+"! What brings you to my humble house?";
 				if (CheckAttribute(pchar, "GenQuest.NarvalConflict") || CheckAttribute(pchar, "GenQuest.RivadosConflict") || CheckAttribute(pchar, "GenQuest.SharkConflict"))
 				{
-					link.l10 = "Fazio, I have a serious conflict with one clan. I need to solve this problem.";
+					link.l10 = "Fazio, I have got a serious conflict with one clan. I need to solve this problem.";
 					link.l10.go = "conflict";
 				}
 				// --> квестовые ветки
 				if (CheckAttribute(pchar, "questTemp.Saga.SharkHunt") && pchar.questTemp.Saga.SharkHunt == "search_mush_3")
 				{
-					link.l4 = "Giuseppe, I am looking for a man by the name of Adolf Barbier. I've been told that you had been drinking with him at the tavern recently...";
+					link.l4 = "Giuseppe, I am looking for a man by the name of Adolf Barbier. They told me that you had been drinking with him at the tavern recently...";
 					link.l4.go = "adolf";
 				}
 				if (CheckAttribute(pchar, "questTemp.LSC.Drink") && pchar.questTemp.LSC.Drink == "begin")
@@ -56,7 +56,7 @@ void ProcessDialogEvent()
 					link.l1 = "I want to know the current password of the clans to enter their territories.";
 					link.l1.go = "parol_choice";
 				}
-				link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the latest gossips?");
+				link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the latest gossips?");
 				link.l2.go = "rumours_LSC";
 				link.l3 = "Nothing special, Giuseppe. Just wanted to see you.";
 				link.l3.go = "exit";
@@ -65,7 +65,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting":
-			dialog.text = "All sorts, my dear, all sorts. For example, I smooth things up between admiral and clans. As you might already know, Rivados, Narwhals and admiral are mutual enemies. I act as a mediator when things get tricky.\nBesides, I often play a role of a neutral side when admiral sells provision to the clans. But this is just a tiny part of my business. So if you have troubles with Rivados or Narwhals - don't hesitate to ask for my assistance, we'll see what can be done.";
+			dialog.text = "All sorts, my dear, all sorts. For example, I smooth things up between admiral and clans. As you might already know, Rivados, Narwhals and admiral are mutual enemies. I act as a mediator when things get tricky.\nBesides, I often play a role of a neutral side when admiral sells provision to the clans. But this is just a tiny part of my business. So if you will have troubles with Rivados or Narwhals - don't hesitate to ask for my assistance, we'll see what can be done.";
 			link.l1 = "Fine. I will consider that.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
@@ -143,13 +143,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "adolf":
-			dialog.text = "Ah, but of course, my good old Adolfo! Yes, I had a talk with him. See, my dear, I was glad to have my money back, the money I thought I would never see again! Adolfo borrowed a big sum on a collateral of his outstanding rifle and he had troubles with returning my money\nI lost any hope to get them back and was going to sell that stutzen to our beloved Axel Yost. But suddenly dear Adolfo brought me my gold! Turned out that he managed to get coins enough not only to redeem his stutzen, but also to buy a Sessile Gallard's cabin at the head of the 'Santa Florentina'!\nSure, this is much better than living in a half-watered hold\nTherefore, Adolfo has his rifle back, a new home and I have my money. Why could I refuse to have a drink with him, especially when he was buying?";
+			dialog.text = "Ah, but of course, my good old Adolfo! Yes, I had a talk with him. See, my dear, I was glad to have my money back, the money I thought I would never see again! Adolfo borrowed a big sum on a collateral of his outstanding rifle and he had troubles returning my coins\nI had lost any hope to get them back and was going to sell the rifle to our beloved Axel Yost. But suddenly dear Adolfo brought me my gold! Turned out that he managed to get coins enough not only to redeem his rifle, but also to buy a Sessile Gallard's cabin at the head of the Santa Florentina!\nSure, this is much better than living in a half-watered hold\nTherefore, Adolfo has his rifle back, a new home and I have my money. Why wouldn't I had a drink with him, especially when he was buying?";
 			link.l1 = "Ah, sure! You had a lot of things to drink to. And for free... Thanks, Giuseppe, you have helped me a lot. Now I know where to find Adolf.";
 			link.l1.go = "adolf_1";
 		break;
 		
 		case "adolf_1":
-			dialog.text = "It's always my pleasure, dear. But don't look for Adolfo in his cabin until evening comes, he is very busy, running around with some business... Yeah, and visit me more often, have a talk!";
+			dialog.text = "It's always my pleasure, dear. But don't look for Adolfo until evening comes, he is very busy... Yeah, and visit me more often!";
 			link.l1 = "I will invite you when I have my own cabin... Farewell and good luck!";
 			link.l1.go = "adolf_2";
 		break;
@@ -165,8 +165,8 @@ void ProcessDialogEvent()
 			switch (sti(npchar.quest.poisonnode))
 			{
 				case 1: // у себя
-					dialog.text = "Ah? Why are you invading my place like there is a fire? Who do you think you are??";
-					link.l1 = "Your justice... poisoner!";
+					dialog.text = "Ah? Why are you invading my place like there is a fire? What liberties are you taking?";
+					link.l1 = "I will take even more liberties... poisoner!";
 					link.l1.go = "whiskey_1";
 				break;
 				
@@ -188,7 +188,7 @@ void ProcessDialogEvent()
 		
 		case "whiskey_1":
 			dialog.text = "What... what did you say?";
-			link.l1 = "I know everything, bastard. You have been working with Chad Kapper. You have brought a barrel with poisoned rum to admiral. Now pray, you miserable fag...";
+			link.l1 = "I know everything, bastard. You have been working with Chad Kapper. You have brought a barrel with poisoned rum to admiral. Now pray, you miserable f...";
 			link.l1.go = "whiskey_2";
 		break;
 		
@@ -206,8 +206,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "whiskey_4":
-			dialog.text = "He... he received some order from Kapper and has gone. I don't know where he is!";
-			link.l1 = "Lying again. You know everything. Don't be a coward, you filthy creature - Kapper is dead and he won't harm you. But if you don't tell me where Marcello is - I will slaughter you like a pig right now! What did Chad order to Cyclops?";
+			dialog.text = "He... he had received some order from Kapper and was gone. I don't know where he is!";
+			link.l1 = "Lying again. You know everything. Don't be a coward, you filthy creature - Kapper is dead and he won't harm you. But if you don't tell me where Marcello is - I will run you through like a pig right now! What did Chad order to Cyclops?";
 			link.l1.go = "whiskey_5";
 		break;
 		
@@ -219,19 +219,19 @@ void ProcessDialogEvent()
 		
 		case "whiskey_6":
 			dialog.text = "He will get inside Jurgen's cabin while the blacksmith is out. Then he will move to the bottom of the hold, cross it and reach Mary's cabin\nThen the only thing he will need is to wait until the girl turns her back or falls asleep. That is what Chad told me. I know nothing more, I swear!";
-			link.l1 = "That will be enough. When did he go? When, I ask you, did Cyclops go to the 'Ceres Smithy'?";
+			link.l1 = "That will be enough. When did he go? When, I ask you, did Cyclops go to the Ceres Smithy?";
 			link.l1.go = "whiskey_7";
 		break;
 		
 		case "whiskey_7":
-			dialog.text = "He must already be in Jurgen's cabin... or getting down inside the cargo hold...";
-			link.l1 = "Fuck! I don't have time to swim around the Island! Tell me the password to Narwhals ships! Speak, and if you lie to me, I will stay alive anyway, but you will die for sure!";
+			dialog.text = "He must already be at Jurgen's... or getting down inside the cargo hold...";
+			link.l1 = "Damn it!! I don't have time to swim around the Island! Tell me the password to Narwhals ships! Speak, and if you lie to me, I will stay alive anyway, you will be dead for sure!";
 			link.l1.go = "whiskey_8";
 		break;
 		
 		case "whiskey_8":
 			dialog.text = "'"+sNrvParol+"'...";
-			link.l1 = "Got it. Now pray that the girl will survive.";
+			link.l1 = "Got it. Now pray that the girl lives.";
 			link.l1.go = "whiskey_9";
 		break;
 		
@@ -248,14 +248,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "whiskey_repeat":
-			dialog.text = "I have already told you everything I knew! I swear!";
+			dialog.text = "I have already told you everything I know! I swear!";
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "whiskey_repeat";
 		break;
 		
 		case "whiskey_10":
-			dialog.text = "He... He is somewhere inside the 'Fleron'. Chad has ordered him to hide there and wait for his next orders.";
+			dialog.text = "He... He is somewhere inside the Fleron. Chad has ordered him to hide there and wait for his next orders.";
 			link.l1 = "I see. It'd better be the truth...";
 			link.l1.go = "whiskey_11";
 		break;
@@ -292,7 +292,7 @@ void ProcessDialogEvent()
 				link.l3.go = "shark";
 				npchar.quest.clan = "shark";
 			}
-			link.l4 = "No such thing. I was joking, Giuseppe, I am fine.";
+			link.l4 = "No such thing. I was kidding, Giuseppe, I am fine.";
 			link.l4.go = "exit";
 		break;
 		
@@ -326,7 +326,7 @@ void ProcessDialogEvent()
 				link.l1 = "Here, take your coins and deal with it.";
 				link.l1.go = "pay";
 			}
-			link.l2 = "Unfortunately, I don't have enough doubloons with me right now. But I will bring them later, and we will talk again.";
+			link.l2 = "Unfortunately, I don't have enough doubloons with me right now. But I will bring them later, and we shall talk again.";
 			link.l2.go = "exit";
 		break;
 		
@@ -343,7 +343,7 @@ void ProcessDialogEvent()
 				link.l1 = "Here, take your coins and deal with it.";
 				link.l1.go = "pay";
 			}
-			link.l2 = "Unfortunately, I don't have enough doubloons with me right now. But I will bring them later, and we will talk again.";
+			link.l2 = "Unfortunately, I don't have enough doubloons with me right now. But I will bring them later, and we shall talk again.";
 			link.l2.go = "exit";
 		break;
 		
@@ -396,19 +396,19 @@ void ProcessDialogEvent()
 		
 		// --> пей до дна
 		case "drink":
-			dialog.text = "Come on, my boy! Lying, they are all lying, he-he. My head is just a bit tougher than an average head, but I am a human being just like you are, so I also get drunk with rum. People drink rum to get drunk, that is its only purpose. Have you ever thought about that, dear?";
+			dialog.text = "Come on, my boy! Lying, they are all lying, he-he. My head is just a bit tougher than an average head, but I am a human being just like you are, so I also get drunk with rum. People drink rum to get drunk, that is it's only purpose. Have you ever thought about that, dear?";
 			link.l1 = "Quite true.";
 			link.l1.go = "drink_1";
 		break;
 		
 		case "drink_1":
-			dialog.text = "Do you want to play some funny game with me? It's called 'drink to the dregs!', ha-ha! I am sure, that you have already heard about it. Am I right?";
+			dialog.text = "Do you want to play some funny game with me? They call it - 'drink to the dregs!', ha-ha! I am sure, that you have already heard about it. Am I right?";
 			link.l1 = "Yeah, there were some whispers about it... I'd call it 'face on the table'.";
 			link.l1.go = "drink_2";
 		break;
 		
 		case "drink_2":
-			dialog.text = "Ha-ha-ha, my dear boy, you have made the old man laughing, what else can I say! 'Face on the table!' I'll remember it... So what do you say? Play for a hundred doubloons?";
+			dialog.text = "Ha-ha-ha, my dear boy, you have made the old man laughing, what else can I say! 'Face on the table!' I'll remember it... So what say you? Play for a hundred doubloons?";
 			link.l1 = "Hundred doubloons?";
 			link.l1.go = "drink_3";
 		break;
@@ -435,7 +435,7 @@ void ProcessDialogEvent()
 			RemoveItems(pchar, "gold_dublon", 100);
 			Log_Info("You have given 100 doubloons");
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Excellent, my dear! Then see me at nine p.m. in Sancho's tavern! Yes, your stake will stay with me if you are late, this is one of the rules. But you won't be late, my boy, will you?";
+			dialog.text = "Excellent, my dear! Then see me at nine p.m. in Sancho's tavern! Yes, your stake will stay with me if you will be late, this is one of the rules. But you won't be late, my boy, will you?";
 			link.l1 = "Sure, Giuseppe. Prepare for a bottle fight!";
 			link.l1.go = "drink_5";
 		break;

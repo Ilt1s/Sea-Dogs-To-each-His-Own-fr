@@ -1,5 +1,5 @@
 // Леонард Маскетт - пьяница
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -20,7 +20,7 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
@@ -29,7 +29,7 @@ void ProcessDialogEvent()
 			if (CheckAttribute(pchar, "questTemp.Saga.SharkHunt") && pchar.questTemp.Saga.SharkHunt == "find" && CheckAttribute(npchar, "quest.answer_3") && GetNpcQuestPastDayParam(npchar, "quest_date") >= 3 && !CheckAttribute(npchar, "quest.facio"))
 			{
 				dialog.text = "Pal, you are just in time... I want to talk with you... about a business. An important one.";
-				link.l1 = "Really? It looks like you are not drunk. Has anything happened? It is unusual to see you sober.";
+				link.l1 = "Really? It looks like you are not drunk. Has something happened? It is unusual to see you sober.";
 				link.l1.go = "facio";
 				break;
 			}
@@ -44,11 +44,11 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! Hic! What do you want?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -64,7 +64,7 @@ void ProcessDialogEvent()
 			dialog.text = "If you say so. We all here... hic, meet each other.";
 			link.l1 = "Fine, it looks like you are not in a mood to talk. See you!";
 			link.l1.go = "exit";
-			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 			link.l2.go = "rumours_LSC";
 			link.l3 = "I want to ask you a few questions about the island.";
 			link.l3.go = "int_quests"; //информационный блок
@@ -80,14 +80,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "facio_1":
-			dialog.text = "Pal, do you want to make some money? Silver pesos, golden doubloons? I will tell you how. But you will have to share with me - we will work together.";
+			dialog.text = "Pal, do you want to make some money? Silver pesos, golden doubloons? I will tell you how. But you will have to go shares with me - we will work together.";
 			link.l1 = "I always want to. But it all depends on your proposal: I don't do any work even if it's a very profitable one.";
 			link.l1.go = "facio_2";
 		break;
 		
 		case "facio_2":
-			dialog.text = "The business is not really legal, sure, but it is profitable... and we will be able to punish one man who has become to choosy. He won't get poor, he has too much money. Everyone shares with him, so it is his turn to do the same now. Tell me, can you handle rum? How much are you able to drink before going under table?";
-			link.l1 = "It depends. I am not sure that I have a habit for crazy drinking... Are you going to tell me details at last?";
+			dialog.text = "The business is not really legal, sure, but it is profitable... and we will be able to punish one man who has become to choosy. He won't go poor, he has got too much coins. Everyone shares with him, so it is his turn to do the same now. Tell me, can you handle rum? How much are you able to drink before going under table?";
+			link.l1 = "It depends. I am not sure, I don't have a habit for crazy drinking... Are you going to tell me details at last?";
 			link.l1.go = "facio_3";
 		break;
 		
@@ -112,7 +112,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "facio_5":
-			dialog.text = "Fazio loves to sit at Sancho's and have a good drink, but his bulk is too heavy for rum to do its job. So he came up with a drinking game - the game where people try to over drink him. If you propose him to play this game, he will doubtlessly agree\nAnd then comes the fun part. You make a bet with him, go to the tavern, grab rum and drink until one of you kisses a table. If you flake out then the whole plan is failed, I won't be able to do it alone\nThat's why I asked about your head. If you will make Fazio squeak and grunt like a pig then consider it's done. I'll be around all the time. When he is finished, I will take his keys\nThen we move the fat man to a bed upstairs and sneak into his cabin while he is asleep. I'll return the key right after we loot his chest, he won't even realize that he was robbed\nI'll do the acquiring and returning the key, you mission is to get Fazio drunk and to sneak inside his property. I will stay on guard in case someone shows up, so you will have enough time to run away through the back door\nWe will split the chest's insides half-and-half, that would be fair. So, are you in?";
+			dialog.text = "Fazio loves to sit at Sancho's and have a good drink, but his bulk is too heavy for rum to do it's job. So he came up with a drinking game - the game where people try to over drink him. If you propose him to play this game, he will doubtlessly agree\nAnd then comes the fun part. You make a bet with him, go to the tavern, grab rum and drink until one of you kisses a table. If you flake out then the whole plan is failed, I won't be able to do it alone\nThat's why I asked about your head. If you will make Fazio screaming like a pig then consider it done. I'll be around all the time. When he is finished, I will take his keys\nThen we move the fat man to a bed upstairs and sneak into his cabin while he is asleep. I'll return the key right after we loot his chest, he won't even realize that he was robbed\nI'll do the acquiring and returning the key, you mission is to get Fazio drunk and to sneak inside his property. I will stay on guard in case someone shows up, so you will have enough time to run away through the back door\nWe shall split the chest's insides half-and-half, that would be fair. So, are you in?";
 			link.l1 = "Nice plan! Sure, let's try!";
 			link.l1.go = "facio_6";
 			link.l2 = "No, pal. I'll pass. I fear that I won't be able to drink that much to stay on feet and to over drink Fazio. Find another partner, a bit stronger than I am.";
@@ -144,12 +144,12 @@ void ProcessDialogEvent()
 		
 		case "result_0":
 			dialog.text = "It's done, that fat pig is sleeping upstairs. I have got the key. You are doing good, you seem to be sober enough!";
-			link.l1 = "Is that so? It is been a long time since I got that drunk. Feeling a bit dizzy... Let's go?";
+			link.l1 = "You don't say. It is been a long time since I got that drunk. Feeling a bit dizzy... Let's go?";
 			link.l1.go = "result_win";
 		break;
 		
 		case "result_1":
-			dialog.text = "It's done, that fat pig is sleeping upstairs. I have got the key. You are doing good, you have really managed to over drink that piggy...";
+			dialog.text = "It's done, that fat pig is sleeping upstairs. I have got the key. You were doing good, you have really managed to over drink that piggy...";
 			link.l1 = "I have, but it is been a long time since I got that drunk. My head is in a whirl... Let's go then?";
 			link.l1.go = "result_win";
 		break;
@@ -228,7 +228,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "grabbing_0":
-			dialog.text = "Impossible! It seems that it all was for nothing... Perhaps that bastard has put his stash in another chest. Eh! Fine, give me the key and I will return it back to its owner until he won't miss it. Farewell, pal...";
+			dialog.text = "Impossible! It seems that it all was for nothing... Perhaps that bastard has put his stash in another chest. Eh! Fine, give me the key and I will return it back to it's owner until he won't miss it. Farewell, pal...";
 			link.l1 = "...";
 			link.l1.go = "grabbing_exit";
 			AddQuestRecord("LSC_Drink", "6");
@@ -247,12 +247,12 @@ void ProcessDialogEvent()
 			RemoveItems(pchar, "gold_dublon", iDubl);
 			Log_Info("You have given "+iDubl+" doubloons");
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Fine, give me the key and I will return it back to its owner until he won't miss it. Farewell, pal...";
+			dialog.text = "Fine, give me the key and I will return it back to it's owner until he won't miss it. Farewell, pal...";
 			link.l1 = "Good luck, pal...";
 			link.l1.go = "grabbing_exit";
 			AddSimpleRumourCityTip("Fazio was complaining that someone has cleaned out his chest. It seems that the mysterious thief did that.", "LostShipsCity", 3, 1, "LSC", "");
 			AddSimpleRumourCityTip("Have you heard? Fazio was robbed! He was robbed while being drunk after having a game with you.", "LostShipsCity", 3, 1, "LSC", "");
-			AddSimpleRumourCityTip("You have a strong head! To drink so much rum and stay on your own feet! That 's something...", "LostShipsCity", 3, 2, "LSC", "");
+			AddSimpleRumourCityTip("You have got a strong head! To drink so much rum and stay on your own feet! That 's something...", "LostShipsCity", 3, 2, "LSC", "");
 			AddQuestRecord("LSC_Drink", "5");
 		break;
 		
@@ -291,7 +291,7 @@ void ProcessDialogEvent()
 		
 //--------------------------------------- блок вопросов и ответов ---------------------------------------------
 		case "int_quests":
-			dialog.text = "Really?... hic! I am listening...";
+			dialog.text = "You don't say... hic! I am listening...";
 			if (!CheckAttribute(npchar, "quest.answer_1"))
 			{
 				link.l1 = "How did you end up here?";
@@ -324,14 +324,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "Yes, I am a drunkard… Drinking, damn it, because I have nothing left to do… You see, pal, I am done. The bottle of rum is the only thing I want. So I will continue drinking. And money... he-he, rum doesn't cost much. Anyway, I don't even have to buy it\nThere is a place filled with rum, but you need to swim if you want to get it, that is why I buy rum only when I am too drunk to swim... hic! Jizjezezejizeze, no, I won't tell you where to swim, he-he, don't even ask...";
+			dialog.text = "Yes, I am a drunkard... Drinking, damn it, because I have nothing left to do... You see, pal, I am done. The bottle of rum is the only thing I want. So I will continue drinking. And money... he-he, rum doesn't cost much. Anyway, I don't even have to buy it\nThere is a place filled with rum, but you need to swim if you want to get it, that is why I buy rum only when I am too drunk to swim... hic! Jizjezezejizeze, no, I won't tell you where to swim, he-he, don't even ask...";
 			link.l1 = "Wonderful.";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "What can I say, hic... about them? Good people to talk and to drink. Giuseppe Fazio is such an important man, a local bigwig, his chests are filled with gold... and yet he respects old Leo, buys him drinks at the tavern. Though, sometimes he also asks something in return, but it's nothing, hic!\nHeh, don't you know how many doubloons Fazio owns, aha-ha-ha! Enough to spend the rest of your life in the best house of all the Caribbean not working and drinking the best rum in the world. But he stays here, on the Island. Still not enough money for him it seems...";
+			dialog.text = "What can I say, hic... about them? Good people to talk and to drink. Giuseppe Fazio is such an important man, a local bigwig, his chests are filled with gold... and yet he respects old Leo, buying him drinks at the tavern. Though, sometimes he also ask something in return, but it's nothing, hic!\nHeh, don't you know how many doubloons Fazio owns, aha-ha-ha! Enough to spend the rest of your life in the best house of all the Caribbean not working and drinking the best rum in the world. But he stays here, on the Island. Still not enough coins for him it seems...";
 			link.l1 = "Got it...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
@@ -339,7 +339,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_4":
-			dialog.text = "To leave? Hic! Why? No, I don't want to go neither to the mainland nor to the poor island. Is there any free rum? No! There is no any free rum, hic! And it means that it is nothing to do for me there... Pal, I am feeling fine here. I will tell you more - ask people do they want to leave this place. No one does, except of two or three, hic!";
+			dialog.text = "To leave? Hic! Why? No, I don't want to go neither to the mainland nor to the poor island. Is there any free rum? No there is no any free rum, hic! And it means that there is nothing to do for me there... Pal, I am feeling fine here. I will tell you more - ask people do they want to leave this place. No one does, except of two or tree, hic!";
 			link.l1 = "Interesting...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_4 = "true";
@@ -350,13 +350,13 @@ void ProcessDialogEvent()
 		//обнаружение ГГ в сундуках
 		case "Man_FackYou":
 			dialog.text = LinkRandPhrase("What are you doing there, ah? Thief!", "Just look at that! As soon as I was lost in contemplation, you decided to check my chest!", "Decided to check my chests? You won't get away with it!");
-			link.l1 = "Shit!";
+			link.l1 = "Damn it!";
 			link.l1.go = "fight";
 		break;
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -377,8 +377,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -387,11 +387,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

@@ -1,4 +1,4 @@
-
+#include "SD\TEXT\DIALOGS\Pearl_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -15,7 +15,7 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "We have nothing to talk about!";
+			dialog.text = DLG_TEXT_BASE[0];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
@@ -29,68 +29,68 @@ void ProcessDialogEvent()
 		// ==> пиплы в поселении
 		case "PearlMan":
 			NextDiag.TempNode = "PearlMan";
-			dialog.text = NPCStringReactionRepeat("Hello! My name is  " + GetFullName(npchar) + ". What can I do for you?", 
-				"Hello once again!", 
-				"Guest are very rare in this back of beyond...",
-                "It's such a pleasure to talk with a new face! I am already sick with all those old snouts...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Oh, nothing...", 
-				"Me too...",
-                "I see...", 
-				"Heh...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_BASE[71] + GetFullName(npchar) + DLG_TEXT_BASE[72], 
+				DLG_TEXT_BASE[73], 
+				DLG_TEXT_BASE[74],
+                DLG_TEXT_BASE[75], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_BASE[76], 
+				DLG_TEXT_BASE[77],
+                DLG_TEXT_BASE[78], 
+				DLG_TEXT_BASE[79], npchar, Dialog.CurrentNode);
 			link.l1.go = "PearlMan_1";
 		break;
 		case "PearlMan_1":
-			dialog.text = "We're gathering pearls here, serving  " + NationNameGenitive(sti(npchar.nation)) + ", you know...";
-			link.l1 = "Yeah, I know...";
+			dialog.text = DLG_TEXT_BASE[83] + NationNameGenitive(sti(npchar.nation)) + DLG_TEXT_BASE[84];
+			link.l1 = DLG_TEXT_BASE[85];
 			link.l1.go = "exit";
-			link.l2 = "Hey, listen, is it possible to buy several of these little trinkets directly from the 'producer', what would you say?";
+			link.l2 = DLG_TEXT_BASE[86];
 			link.l2.go = "PearlMan_2";
 		break;
 		case "PearlMan_2":
 			if (rand(10) < 9)
 			{
-				dialog.text = "Oh no, of course, not! A theft of even just one small pearl is punishable by death!";
-				link.l1 = "Cruel orders you have here, that's for sure...";
+				dialog.text = DLG_TEXT_BASE[87];
+				link.l1 = DLG_TEXT_BASE[88];
 				link.l1.go = "exit";
 			}
 			else
 			{
-				dialog.text = "Yeah, we have harsh orders here, and one can easily lose his had for any wrongdoings. I am not dealing in this, but I can advise you to talk with the local Indians about this. They have where to run away if anything goes wrong, so they should be bolder than us...";
-				link.l1 = "I see... Alright, thanks.";
+				dialog.text = DLG_TEXT_BASE[89];
+				link.l1 = DLG_TEXT_BASE[90];
 				link.l1.go = "exit";
 			}
 		break;
 		case "PearlMan_Sharp_1":
-			dialog.text = LinkRandPhrase("Are you totally  "+ GetSexPhrase("crazy? Get lost, you idiot","crazy? Get lost, you stupid fool") +"!", 
-				""+ GetSexPhrase("What?! Are you out of your mind, idiot","What?! Are you out of your mind stupid girl") +"?! Get lost with all your questions...", 
-				""+ GetSexPhrase("Have you lost your mind, dear? What pirates? Here?! Just get lost, you dimwit","Have you lost your mind, darling? What pirates? Here?! Just get lost, you stupid girl") +"...");
-			link.l1 = RandPhraseSimple("No need to be rude...", "Watch your tongue!");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[91], 
+				DLG_TEXT_BASE[92], 
+				DLG_TEXT_BASE[93]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_BASE[94], DLG_TEXT_BASE[95]);
 			link.l1.go = "exit";
 		break;
 
 		// ==> индейцы в поселении
 		case "IndPearlMan":
 			NextDiag.TempNode = "IndPearlMan";
-			dialog.text = NPCStringReactionRepeat(""+ GetSexPhrase("Paleface","White squaw") +" wants to talk?", 
-				"You again, "+ GetSexPhrase("paleface","white squaw") +".", 
-				""+ GetSexPhrase("Paleface likes talking. He looks like squaw.","White squaw likes talking.") +"",
-                "Spirits brought my paleface "+ GetSexPhrase("brother","sister") +" to me.", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Yes.", 
-				"Yeah, me again.",
-                "Very poetic.", 
-				"I am glad to see you too", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_BASE[96], 
+				DLG_TEXT_BASE[97], 
+				DLG_TEXT_BASE[98],
+                DLG_TEXT_BASE[99], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_BASE[100], 
+				DLG_TEXT_BASE[101],
+                DLG_TEXT_BASE[102], 
+				DLG_TEXT_BASE[103], npchar, Dialog.CurrentNode);
 			link.l1.go = "IndPearlMan_1";
 		break;
 		case "IndPearlMan_1":
-			dialog.text = "Tell me, why have you come.";
-			link.l1 = "Oh, nothing in particular, just wanted to listen to what you would say.";
+			dialog.text = DLG_TEXT_BASE[104];
+			link.l1 = DLG_TEXT_BASE[105];
 			link.l1.go = "exit";
 		break;
 		
 				
 		case "CitizenNotBlade":
-			dialog.text = "Captain, what are you doing? Hide away your weapon, before you'll make a lot of trouble!";
-			link.l1 = LinkRandPhrase("Fine.", "Okay.", "Don't worry, I am already hiding it away...");
+			dialog.text = "Baissez cette arme capitaine, vous allez avoir des ennuis sinon !";
+			link.l1 = LinkRandPhrase("Bien.", "D'accord.", "Ne vous tracassez pas pour si peu...");
 			link.l1.go = "exit";
 		break;  
 

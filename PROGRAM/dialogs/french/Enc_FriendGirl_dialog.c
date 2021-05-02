@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Enc_FriendGirl_dialog.h"
 void ProcessDialogEvent()
 {	
 	ref NPChar, sld;
@@ -18,31 +19,31 @@ void ProcessDialogEvent()
 		break;
 
 		case "First time":
-			dialog.text = LinkRandPhrase("Oh my Lord, I am so glad that I met you!",
-				"Finally someone!",
-				"Oh my God, I am so glad to see you!");
-			Link.l1 = LinkRandPhrase("What's up, babe?",
-				"Any problems, darling?",
-				"Don't become so agitated - it isn't good for young lady's health. Just tell me now - what's happened?");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[0],
+				DLG_TEXT_BASE[1],
+				DLG_TEXT_BASE[2]);
+			Link.l1 = LinkRandPhrase(DLG_TEXT_BASE[3],
+				DLG_TEXT_BASE[4],
+				DLG_TEXT_BASE[5]);
 			Link.l1.go = "Step_1";			
 		break;
 		case "Step_1":
-			dialog.text = LinkRandPhrase("My friend... she's so brave... she got into an abandoned well!",
-				"My friend went down in an abandoned well, and she still hasn't come out! She's spent there several hours!",
-				"My friend has just disappeared in an abandoned well!");
-			Link.l1 = "And why the hell did she get in there?!";
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[6],
+				DLG_TEXT_BASE[7],
+				DLG_TEXT_BASE[8]);
+			Link.l1 = DLG_TEXT_BASE[9];
 			Link.l1.go = "Step_2";			
 		break;
 		case "Step_2":
-			dialog.text = "Oh, you know, she doesn't fear absolutely anything! She heard that there was a dungeon full of gold, so she went down there... But I am not a fool, I wouldn't even think of it!";
-			Link.l1 = "That's right, there's nothing for you to do in such place.";
+			dialog.text = DLG_TEXT_BASE[10];
+			Link.l1 = DLG_TEXT_BASE[11];
 			Link.l1.go = "Step_3";			
 		break;		
 		case "Step_3":
-			dialog.text = "But what am I supposed do now? Please, help her, for Heaven's sake!";
-			Link.l1 = "Alright, I'll figure it out. And you'd better go home, there's nothing for you to do here.";
+			dialog.text = DLG_TEXT_BASE[12];
+			Link.l1 = DLG_TEXT_BASE[13];
 			Link.l1.go = "Step_agree";
-			Link.l2 = "These are your problems, I don't wanna waste my time. Farewell...";
+			Link.l2 = DLG_TEXT_BASE[14];
 			Link.l2.go = "Step_disAgree";
 		break;
 
@@ -80,9 +81,7 @@ void ProcessDialogEvent()
 						sld.money = iRank*200+1000+rand(500);
 						LAi_SetWarriorType(sld);
 						LAi_warrior_SetStay(sld, true);
-						//LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
-						LAi_group_MoveCharacter(sld, LAI_GROUP_ENEMY);// лесник изменил группу чтобы ядом таино травить можно было
-						LAi_group_Attack(sld, Pchar);// лесник добавил атаку на пчара а то у некоторых баг что они не нападают.
+						LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
 						ChangeCharacterAddressGroup(sld, pchar.GenQuest.EncGirlF.locationId, "quest", "quest" + i);
 						i++;
 						model[iMassive] = "";	
@@ -94,13 +93,11 @@ void ProcessDialogEvent()
 				sld = GetCharacter(NPC_GenerateCharacter("UndergroundGirl", "women_"+(rand(5)+11), "woman", "towngirl", 5, PIRATE, 1, false, "citizen"));
 				sld.dialog.filename = "Enc_FriendGirl_dialog.c";
 				int iTemp = rand(1);
-				sld.dialog.currentnode = "Underground"+ iTemp; //здесь рендом поведения девки: 0-помогите, 1-сама крутая// лесник - раскоментил itemp
+				sld.dialog.currentnode = "Underground1";//+ iTemp; //здесь рендом поведения девки: 0-помогите, 1-сама крутая
 				sld.greeting = "Enc_RapersGirl_" + (iTemp+1); //соотв. озвучка
-			   // LAi_SetStayType(sld);
-				LAi_SetCitizenType(sld);// чтоб ходила по пещере. лесник
+				LAi_SetStayType(sld);
 				LAi_group_MoveCharacter(sld, LAI_GROUP_PLAYER);
-				GetCharacterPos(pchar, &locx, &locy, &locz); // и ниже - ищем ближейший локатор лесник.
-	            ChangeCharacterAddressGroup(sld, pchar.GenQuest.EncGirlF.locationId, "goto", LAi_FindNearestFreeLocator("goto", locx, locy, locz));
+				ChangeCharacterAddressGroup(sld, pchar.GenQuest.EncGirlF.locationId, "monsters", "monster"+(rand(9)+1));
 			}
 			LAi_SetActorTypeNoGroup(npchar);
             LAi_ActorRunToLocation(npchar, "reload", "reload1", "none", "", "", "", -1);
@@ -117,24 +114,24 @@ void ProcessDialogEvent()
 		break;			
 		case "FackYou":
             NextDiag.TempNode = "FackYou";
-            dialog.text = "I don't wanna talk with such a callous "+ GetSexPhrase("clot","wench") +". Get lost!";
-			Link.l1 = "Heh, what a bitch...";
+            dialog.text = DLG_TEXT_BASE[15];
+			Link.l1 = DLG_TEXT_BASE[16];
 			Link.l1.go = "exit";
 		break;
 
 		case "Underground0": //девка реально заблудилась
-            dialog.text = "Oh my God, I am so glad to see you!";
-			Link.l1 = "What's up, beauty?";
+            dialog.text = DLG_TEXT_BASE[17];
+			Link.l1 = DLG_TEXT_BASE[18];
 			Link.l1.go = "Underground0_1";
 		break;
 		case "Underground0_1": 
-            dialog.text = "I've got lost here! Oh my God, I am so terribly scared!!!";
-			Link.l1 = "Well, you're fine now. Follow me, I will show you the way. Once you are on the surface, run home, and pray that I'll never see you here again!";
+            dialog.text = DLG_TEXT_BASE[19];
+			Link.l1 = DLG_TEXT_BASE[20];
 			Link.l1.go = "Underground0_2";
 		break;
 		case "Underground0_2": 
-            dialog.text = "As you say, " + GetAddress_Form(NPChar) + ".";
-			Link.l1 = "Fine.";
+            dialog.text = DLG_TEXT_BASE[21] + GetAddress_Form(NPChar) + ".";
+			Link.l1 = DLG_TEXT_BASE[22];
 			Link.l1.go = "exit";
 			npchar.LifeDay = 0;
 			LAi_SetActorType(npchar);
@@ -143,39 +140,39 @@ void ProcessDialogEvent()
 		break;
 
 		case "Underground1": //крутая мочалка
-            dialog.text = "Wow, it seems that someone else took interest in this dungeon!";
-			Link.l1 = "Beauty, what you are doing here?";
+            dialog.text = DLG_TEXT_BASE[23];
+			Link.l1 = DLG_TEXT_BASE[24];
 			Link.l1.go = "Underground1_1";
 		break;
 		case "Underground1_1": 
-            dialog.text = "None of your business!";
-			Link.l1 = "Wow, that's an answer for a million pesos...";
+            dialog.text = DLG_TEXT_BASE[25];
+			Link.l1 = DLG_TEXT_BASE[26];
 			Link.l1.go = "Underground1_2";
 		break;
 		case "Underground1_2": 
-            dialog.text = "For two million. Will you just go your own way? I don't care less about you.";
-			Link.l1 = "Well, the feeling is mutual, but your friend above was worried sick about you...";
+            dialog.text = DLG_TEXT_BASE[27];
+			Link.l1 = DLG_TEXT_BASE[28];
 			Link.l1.go = "Underground1_3";
 		break;
 		case "Underground1_3": 
-            dialog.text = "What a fool! She would shit her pants with fright, and she thinks that I am as same as her.";
-			Link.l1 = "Wow, you surely don't like her. The devil in the skirt - that's who you are.";
+            dialog.text = DLG_TEXT_BASE[29];
+			Link.l1 = DLG_TEXT_BASE[30];
 			Link.l1.go = "Underground1_4";
 		break;
 		case "Underground1_4": 
-            dialog.text = "Hey, choose your words! And better yet, just get lost.";
-			Link.l1 = "Well, if you don't need my help...";
+            dialog.text = DLG_TEXT_BASE[31];
+			Link.l1 = DLG_TEXT_BASE[32];
 			Link.l1.go = "Underground1_5";
 		break;
 		case "Underground1_5": 
-            dialog.text = "No, I don't!";
-			Link.l1 = "Then farewell and good luck to you.";
+            dialog.text = DLG_TEXT_BASE[33];
+			Link.l1 = DLG_TEXT_BASE[34];
 			Link.l1.go = "exit";
 			NextDiag.TempNode = "Underground1_again";
 		break;
 		case "Underground1_again": 
-            dialog.text = "You again? Get lost, I don't wanna see you anymore...";
-			Link.l1 = "Hmm...";
+            dialog.text = DLG_TEXT_BASE[35];
+			Link.l1 = DLG_TEXT_BASE[36];
 			Link.l1.go = "exit";
 			NextDiag.TempNode = "Underground1_again";
 		break;

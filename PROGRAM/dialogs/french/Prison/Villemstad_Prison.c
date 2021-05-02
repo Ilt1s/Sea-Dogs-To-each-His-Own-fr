@@ -1,30 +1,30 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Prison.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
  	switch(Dialog.CurrentNode)
 	{
         case "quests":
-            dialog.text = "Speak, I am listening";
-			link.l1 = "I was mistaken. Farewell.";
+            dialog.text = DLG_TEXT_PRS[0];
+			link.l1 = DLG_TEXT_PRS[1];
 			link.l1.go = "Exit";
 			//Португалец
 			if (CheckAttribute(pchar, "questTemp.Portugal") && pchar.questTemp.Portugal == "PortugalInPrison")
             {
-                link.l1 = "Officer, you hold a prisoner here named Bartolomeo the Portuguese...";
+                link.l1 = DLG_TEXT_PRS[2];
                 link.l1.go = "Portugal";
             }
 		break;
 		
 		//Португалец
 		case "Portugal":
-			dialog.text = "We do. And why do you care? Only envoys of the Dutch West India Company are allowed to see him and only by the written order of the governor. One of the Company's officer is interrogating this pirate right now. So if you've come here just to see him, you'd better go away and quickly.";
-			link.l1 = "I have come here not to see him.";
+			dialog.text = DLG_TEXT_PRS[3];
+			link.l1 = DLG_TEXT_PRS[4];
 			link.l1.go = "Portugal_1";
 		break;
 		
 		case "Portugal_1":
-			dialog.text = "Why then, allow me to ask?";
-			link.l1 = "To take him!";
+			dialog.text = DLG_TEXT_PRS[5];
+			link.l1 = DLG_TEXT_PRS[6];
 			link.l1.go = "fight";
 			chrDisableReloadToLocation = true;
 			pchar.quest.InMarigoResidenceOver.over = "yes"; //снять таймер

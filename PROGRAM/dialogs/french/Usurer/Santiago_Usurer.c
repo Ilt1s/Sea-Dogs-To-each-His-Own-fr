@@ -1,23 +1,23 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_usurer.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What questions do you have?", "How can I help you?"), "You tried to ask me that question not long ago...", "Yup, let me guess... Once again going around in circles?",
-                          "Listen, I do the finances here, I don't answer questions...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "I've got nothing to talk about at the moment."), "Umph, where has my memory gone...",
-                      "You've guessed it, I'm sorry...", "I understand...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_USR[0], DLG_TEXT_USR[1]), DLG_TEXT_USR[2], DLG_TEXT_USR[3],
+                          DLG_TEXT_USR[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_USR[5], DLG_TEXT_USR[6]), DLG_TEXT_USR[7],
+                      DLG_TEXT_USR[8], DLG_TEXT_USR[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			//Голландский гамбит, Голландия
 			if (CheckAttribute(pchar, "questTemp.HWIC.Holl") && pchar.questTemp.HWIC.Holl == "SantiagoTripBegin")
 			{
-				link.l1 = "Senior, I'm captain " + GetFullName(pchar) + ", and I'm here on an errand for Lucas Rodenburg. I have a package from him to you.";
+				link.l1 = DLG_TEXT_USR[64] + GetFullName(pchar) + DLG_TEXT_USR[65];
 				link.l1.go = "SantiagoTripBank";	
 			}
 			if (CheckAttribute(pchar, "questTemp.HWIC.Holl") && pchar.questTemp.HWIC.Holl == "SantiagoTripReturn")
 			{
-				link.l1 = "I've come for senior Lucas Rodenburg's reply.";
+				link.l1 = DLG_TEXT_USR[66];
 				link.l1.go = "SantiagoTripBank_3";	
 			}
 			//Голландский гамбит, Голландия
@@ -26,23 +26,23 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "SantiagoTripBank":
 			if (GetCharacterItem(pchar, "Chest") >= 5)
 			{
-			dialog.text = "Just imagine... a package! Well, give it, senior.";
-			link.l1 = "Also, Senior Rodenburg asked to transfer you this...";
+			dialog.text = DLG_TEXT_USR[67];
+			link.l1 = DLG_TEXT_USR[68];
 			link.l1.go = "SantiagoTripBank_1";
 			RemoveItems(PChar, "NPC_Letter", 1);
 			RemoveItems(PChar, "Chest", 5);
 			}
 			else
 			{
-			dialog.text = "As far as I know, there was something else I was supposed to receive besides the package, captain. So... where is it? Do you understand what I'm talking about?";
-			link.l1 = "But of course! The chests are under secure watch on my ship. I'll deliver them to you immediately.";
+			dialog.text = DLG_TEXT_USR[69];
+			link.l1 = DLG_TEXT_USR[70];
 			link.l1.go = "exit";
 			}
 		break;
 		
 		case "SantiagoTripBank_1":
-			dialog.text = "Hm-m... interesting. So he 'sends his regrets'. Well-well. Though, senior Rodenburg's regrets are quite persuasive, it's hard to deny. Senior, it will take time to write a proper answer, could you come see me tomorrow around a noon and take a reply? Rest in a tavern, walk around the city. Santiago has a lot to offer.";
-			link.l1 = "Fine, I will come around a noon tomorrow. See you, senior.";
+			dialog.text = DLG_TEXT_USR[71];
+			link.l1 = DLG_TEXT_USR[72];
 			link.l1.go = "SantiagoTripBank_2";
 		break;
 		
@@ -58,14 +58,14 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		
 		case "SantiagoTripBank_3":
-			dialog.text = "Yes, of course... but I believe we can get along without written conventionalities. Just tell him these words 'this man must die'. That would be fair and we won't have any problems if take in account a 'value' of received apologies. And the incident will be considered fully settled.";
-			link.l1 = "Fine, I will remember that, senior. Anything else?";
+			dialog.text = DLG_TEXT_USR[73];
+			link.l1 = DLG_TEXT_USR[74];
 			link.l1.go = "SantiagoTripBank_4";
 		break;
 		
 		case "SantiagoTripBank_4":
-			dialog.text = "Yes, of course. What I've said is the will of the Giraldi family. And you can, of course, give my best wishes onto Senior Lucas. I wish you a fair wind, captain " + GetFullName(pchar) + ".";
-			link.l1 = "I understand. Farewell, senior "+npchar.name+".";
+			dialog.text = DLG_TEXT_USR[75] + GetFullName(pchar) + ".";
+			link.l1 = DLG_TEXT_USR[76]+npchar.name+".";
 			link.l1.go = "SantiagoTripBank_5";
 		break;
 		

@@ -1,4 +1,4 @@
-// лорд Виндзор - генерал-губернатор английских колоний
+#include "SD\TEXT\DIALOGS\Quest_Governor.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -13,8 +13,8 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "What do you want?";
-			link.l1 = "Nothing.";
+			dialog.text = DLG_TEXT_GUB[354];
+			link.l1 = DLG_TEXT_GUB[355];
 			link.l1.go = "exit";			
 			NextDiag.TempNode = "First time";
 		break;

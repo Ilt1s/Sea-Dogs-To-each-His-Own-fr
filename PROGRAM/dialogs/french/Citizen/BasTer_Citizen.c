@@ -1,39 +1,39 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Citizen.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-            dialog.text = RandPhraseSimple("What kind of questions?", "What would you like?");
-			link.l1 = RandPhraseSimple("I have changed my mind...", "I have got nothing to say now.");
+            dialog.text = RandPhraseSimple(DLG_TEXT_CZ[0], DLG_TEXT_CZ[1]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_CZ[2], DLG_TEXT_CZ[3]);
 		    link.l1.go = "exit";
 		break;
 		
 		case "info":
-			dialog.text = LinkRandPhrase("Who are you interested in?","Who do you need?","About who exactly?");
-			link.l1 = "I want to know more about Fadey the Muscovite.";
+			dialog.text = LinkRandPhrase(DLG_TEXT_CZ[10],DLG_TEXT_CZ[11],DLG_TEXT_CZ[12]);
+			link.l1 = DLG_TEXT_CZ[18];
 			link.l1.go = "fadey";
-			link.l2 = "Let's change the subject...";
+			link.l2 = DLG_TEXT_CZ[13];
 			link.l2.go = "new question";
 		break;
 		
 		case "town":
-			dialog.text = LinkRandPhrase("Where do you want to get?","What are you looking for?","Where do you want to go?");
-            link.l1 = "Where is Fadey's house?";
+			dialog.text = LinkRandPhrase(DLG_TEXT_CZ[14],DLG_TEXT_CZ[15],DLG_TEXT_CZ[16]);
+            link.l1 = DLG_TEXT_CZ[19];
 			link.l1.go = "fadey_house";
-			link.l2 = "Let's talk about something else...";
+			link.l2 = DLG_TEXT_CZ[17];
 			link.l2.go = "new question";
 		break;
 		
 		case "fadey":
-			dialog.text = RandPhraseSimple("An important man. He rules the local factory and he is on close with the high life in Basse-Terre. He has a strong accent and he really likes drinking... but he never gets drunk.","He is a big shot and a friend of governor. Fadey rules a local factory. Came from a northern country far far away from here... I don't even know the name of it. He has strong hands and He's really able to drink the whole barrel of rum and won't get drunk.");
-			link.l1 = "My thanks!";
+			dialog.text = RandPhraseSimple(DLG_TEXT_CZ[20],DLG_TEXT_CZ[21]);
+			link.l1 = DLG_TEXT_CZ[22];
 			link.l1.go = "exit";
 		break;
 		
 		case "fadey_house":
-			dialog.text = RandPhraseSimple("Go straight from the pier until you see the square, a house on the left is the Fadey's mansion.","Go to the pier through the square from the governor's residence, a house on the right is the Fadey's mansion.");
-			link.l1 = "My thanks!";
+			dialog.text = RandPhraseSimple(DLG_TEXT_CZ[23],DLG_TEXT_CZ[24]);
+			link.l1 = DLG_TEXT_CZ[25];
 			link.l1.go = "exit";
 		break;
 	}

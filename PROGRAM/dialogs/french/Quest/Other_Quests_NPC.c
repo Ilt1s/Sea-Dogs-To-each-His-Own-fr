@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Quest\Other_Quests_NPC.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -13,8 +14,8 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "What do you want?";
-			link.l1 = "Nothing.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1];
 			link.l1.go = "exit";			
 			NextDiag.TempNode = "First time";
 		break;
@@ -24,26 +25,26 @@ void ProcessDialogEvent()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//--> пинас
 		case "TakeShoreCap":
-    		dialog.text = "Scoundrel! Big surprise to you!";
-    		link.l1 = "What?";
+    		dialog.text = DLG_TEXT_Q[2];
+    		link.l1 = DLG_TEXT_Q[3];
     		link.l1.go = "Node_1";
 		break;
 		
 		case "Node_1":
-			dialog.text = "Ha-ha! No slaves here! You are here for them, right?";
-			link.l1 = "Fuck. And I was thinking why the hell there were so many soldiers on a trading pinnace... A trap!";
+			dialog.text = DLG_TEXT_Q[4];
+			link.l1 = DLG_TEXT_Q[5];
 			link.l1.go = "Node_2";
 		break;
 		
  		case "Node_2":
-			dialog.text = "Yes, bastard, it is a trap. I am not a merchant, I am a military officer! Though you have won the fight, you won't get away from the judgement!";
-			link.l1 = "And why is that? I will end you now, sink your ship and no one will know a thing.";
+			dialog.text = DLG_TEXT_Q[6];
+			link.l1 = DLG_TEXT_Q[7];
 			link.l1.go = "Node_3";
 		break;
 		
  		case "Node_3":
-			dialog.text = "You are wrong. Your business with that banker was revealed. Soon, the governor-general will learn about your little business and you won't get away from the hallows. But I will do you a favour by slaying you right now and right here!";
-			link.l1 = "Try, you governor's dog!";
+			dialog.text = DLG_TEXT_Q[8];
+			link.l1 = DLG_TEXT_Q[9];
 			link.l1.go = "Node_4";
 		break;
 		
@@ -63,14 +64,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Slave_arest":
-			dialog.text = "" + GetFullName(pchar) + ", in the name of the law, you are under arrest! Surrender your weapons and follow us!";
-			link.l1 = "What is going on, officer? To surrender on what grounds?";
+			dialog.text = "" + GetFullName(pchar) + DLG_TEXT_Q[10];
+			link.l1 = DLG_TEXT_Q[11];
 			link.l1.go = "Slave_arest_1";
 		break;
 		
 		case "Slave_arest_1":
-			dialog.text = "Don't try to play stupid, captain! Your dirty business was revealed. And for the slaughter you've committed and for the ship of " + NationNameGenitive(sti(npchar.nation)) + " that you sunk will see you hanged!";
-			link.l1 = "Well, since you put it that way... Go fuck yourself!";
+			dialog.text = DLG_TEXT_Q[12] + NationNameGenitive(sti(npchar.nation)) + DLG_TEXT_Q[13];
+			link.l1 = DLG_TEXT_Q[14];
 			link.l1.go = "Slave_arest_2";
 		break;
 		
@@ -86,20 +87,20 @@ void ProcessDialogEvent()
 		
 		//--> крыса в доме
 		case "Rat_bandos":
-			dialog.text = "Hey, what are you doing here?!";
-    		link.l1 = "Why are so rude, good sir? Is rat Gontier hiding somewhere here, huh?";
+			dialog.text = DLG_TEXT_Q[15];
+    		link.l1 = DLG_TEXT_Q[16];
     		link.l1.go = "Node_rat_1";
 		break;
 			
 		case "Node_rat_1":
-			dialog.text = "No he is not! Get out!";
-			link.l1 = "Looks like you are lying. I will conduct a search of the house and I'll see...";
+			dialog.text = DLG_TEXT_Q[17];
+			link.l1 = DLG_TEXT_Q[18];
 			link.l1.go = "Node_rat_2";
 		break;
 		
  		case "Node_rat_2":
-			dialog.text = "Fuck you! Francois! Run! Guys, help me!";
-			link.l1 = "Crap!";
+			dialog.text = DLG_TEXT_Q[19];
+			link.l1 = DLG_TEXT_Q[20];
 			link.l1.go = "Node_rat_3";
 		break;
 		
@@ -115,20 +116,20 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Rat_lover":
-			dialog.text = "Oh! Don't rape me!";
-    		link.l1 = "What? Where is Francois Gontier? Answer me, you filthy slut, or you will end you just like those fellows of yours!";
+			dialog.text = DLG_TEXT_Q[21];
+    		link.l1 = DLG_TEXT_Q[22];
     		link.l1.go = "Rat_lover_1";
 		break;
 			
 		case "Rat_lover_1":
-			dialog.text = "No, no, I will tell you everything! He has jumped from the window and run away to his ship.";
-    		link.l1 = "What ship? I know that there is no his ship in the port. Don't lie to me, girl, or it will get worse...";
+			dialog.text = DLG_TEXT_Q[23];
+    		link.l1 = DLG_TEXT_Q[24];
     		link.l1.go = "Rat_lover_2";
 		break;
 			
 		case "Rat_lover_2":
-			dialog.text = "I am not lying, I swear! He said that he landed on a small island and got here on a longboat... He must be there! Don't hurt me!";
-    		link.l1 = "Alright, it seems that you are telling the truth. Stay here and be quite. And try to make friends in the more clever way in the future. But, you know, I see your eyes and they are telling me that you've got no brains.";
+			dialog.text = DLG_TEXT_Q[25];
+    		link.l1 = DLG_TEXT_Q[26];
     		link.l1.go = "Rat_lover_3";
 			pchar.quest.Slavetrader_RatAttack.win_condition.l1 = "location";
             pchar.quest.Slavetrader_RatAttack.win_condition.l1.location = "Tortuga";//отправляем в локацию
@@ -147,8 +148,8 @@ void ProcessDialogEvent()
 		
 		//--> беглые рабы
 		case "Slave_woman":
-			dialog.text = "Spare us! Mercy! We surrender!";
-    		link.l1 = "Oh, is that so? Go to the cargo hold now! I will shoot anyone who tries to play stupid!";
+			dialog.text = DLG_TEXT_Q[27];
+    		link.l1 = DLG_TEXT_Q[28];
     		link.l1.go = "exit";
 			AddDialogExitQuestFunction("Slavetrader_Slavewoman");
 		break;
@@ -163,26 +164,26 @@ void ProcessDialogEvent()
 			chrDisableReloadToLocation = false;
 			iCGood = sti(pchar.GenQuest.Contraoffer.Trader.Goods);
 			pchar.GenQuest.Contraoffer.Trader.PatrolSumm = sti(pchar.GenQuest.Contraoffer.Trader.Summ)/3;
-			dialog.text = "Well, well... What have we here? Don't you know that trading goods by and between individuals is forbidden in our colony?";
-			link.l1 = "Is it, officer? To be honest, it is the first time I hear about that. This decree was passed not long ago, am I right?";
+			dialog.text = DLG_TEXT_Q[29];
+			link.l1 = DLG_TEXT_Q[30];
 			link.l1.go = "Contraoffer_patrol_1";
-			link.l2 = "What, trading " + GetGoodsNameAlt(iCGood)+ "? I don't see any " + GetGoodsNameAlt(iCGood)+ " around, officer. I see only these shiny coins... And he sees the same. Why won't you and your soldiers take a look at our coins too?";
+			link.l2 = DLG_TEXT_Q[31] + GetGoodsNameAlt(iCGood)+ DLG_TEXT_Q[32] + GetGoodsNameAlt(iCGood)+ DLG_TEXT_Q[33];
 			link.l2.go = "Contraoffer_patrol_pay1";
 		break;
 		
 		case "Contraoffer_patrol_1":
 			if (GetSummonSkillFromName(pchar, SKILL_SNEAK) > drand(120))
 			{
-				dialog.text = "You didn't know, huh? Hm... it looks like you are not lying. But nevertheless you have violated the law. I won't arrest you, but I am to make you to pay a fine. And the cargo... we will have a talk about it with the second participant of the deal.";
-				link.l1 = "And how much is that fine?";
+				dialog.text = DLG_TEXT_Q[34];
+				link.l1 = DLG_TEXT_Q[35];
 				link.l1.go = "Contraoffer_patrol_pay2";
 			}
 			else
 			{
-				dialog.text = "Don't play stupid, captain! Everyone knows that already, and for a long time already. I am arresting you both for smuggling and your cargo is to be confiscated.";
-				link.l1 = "I don't like casemates, officer. I like the open sea... and I am going to sail there now. But it seems that I would have to do that only over your dead body.";
+				dialog.text = DLG_TEXT_Q[36];
+				link.l1 = DLG_TEXT_Q[37];
 				link.l1.go = "Contraoffer_patrol_fight";
-				link.l2 = "I have no choice, but to surrender. But I really had no idea!";
+				link.l2 = DLG_TEXT_Q[38];
 				link.l2.go = "Contraoffer_patrol_jail";
 			}
 		break;
@@ -191,39 +192,39 @@ void ProcessDialogEvent()
 			iCGood = sti(pchar.GenQuest.Contraoffer.Trader.Goods);
 			if (GetSummonSkillFromName(pchar, SKILL_FORTUNE) > drand(120))
 			{
-				dialog.text = "Now you are talking... Let's see your coins... I beleive, I've overheard a quite specific number - " + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.Summ)) + ". Since we have got three participants now I'd like to get " + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.PatrolSumm)) + ". That is from you and the same from your friend.";
-				link.l1 = "Sure, officer. Here are my shiny coins, or, I am sorry, your shiny coins - you've just dropped them on the beach by accident... And there is no " + GetGoodsNameAlt(iCGood)+ " here, ha-ha, as I've told you.";
+				dialog.text = DLG_TEXT_Q[39] + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.Summ)) + DLG_TEXT_Q[40] + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.PatrolSumm)) + DLG_TEXT_Q[41];
+				link.l1 = DLG_TEXT_Q[42] + GetGoodsNameAlt(iCGood)+ DLG_TEXT_Q[43];
 				link.l1.go = "Contraoffer_patrol_complete1";
-				link.l2 = "Whoa! You are too greedy, officer. Didn't your mom tell you that greed is not good? I suppose that it would be cheaper for me to deal with you with my blade.";
+				link.l2 = DLG_TEXT_Q[44];
 				link.l2.go = "Contraoffer_patrol_fight";
 			}
 			else
 			{
-				dialog.text = "Are joking, captain? Do you want to offer me a bribe? You are under arrest! Seize him!";
-				link.l1 = "Well, if you don't want to take a look at my money than take a look at my sword!";
+				dialog.text = DLG_TEXT_Q[45];
+				link.l1 = DLG_TEXT_Q[46];
 				link.l1.go = "Contraoffer_patrol_fight";
-				link.l2 = "I have no choice, but to surrender. But I really had no idea!";
+				link.l2 = DLG_TEXT_Q[47]
 				link.l2.go = "Contraoffer_patrol_jail";
 			}
 		break;
 		
 		case "Contraoffer_patrol_complete1":
-			dialog.text = "Yes, it looks like you are correct... Nothing of interest here except of several gentlemen and my shiny coins. You are free to go, captain and we will have a talk with your partner.";
-			link.l1 = "See you, officer. Don't hurt him.";
+			dialog.text = DLG_TEXT_Q[48];
+			link.l1 = DLG_TEXT_Q[49];
 			link.l1.go = "Contraoffer_patrol_complete";
 		break;
 		
 		case "Contraoffer_patrol_pay2":
-			dialog.text = "" + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.PatrolSumm)) + ". Thank my good mood.";
-			link.l1 = "Thank you officer. I really had no idea... Here, I am ready to pay my fine.";
+			dialog.text = "" + FindRussianMoneyString(sti(pchar.GenQuest.Contraoffer.Trader.PatrolSumm)) + DLG_TEXT_Q[50];
+			link.l1 = DLG_TEXT_Q[51];
 			link.l1.go = "Contraoffer_patrol_complete2";
-			link.l2 = "I take it that you aren't that honest too, officer. Your fine is too big. I suppose that I will help this colony by saving it from your existence.";
+			link.l2 = DLG_TEXT_Q[52];
 			link.l2.go = "Contraoffer_patrol_fight";
 		break;
 		
 		case "Contraoffer_patrol_complete2":
-			dialog.text = "Fine. You may go now. And I advice you to study the local laws in order to avoid situations like this in the future. Go now, we have to deal with the second participant of the trade, he was aware of everything, that's for sure.";
-			link.l1 = "Good day to you, officer.";
+			dialog.text = DLG_TEXT_Q[53];
+			link.l1 = DLG_TEXT_Q[54];
 			link.l1.go = "Contraoffer_patrol_complete";
 		break;
 		
@@ -249,7 +250,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Contraoffer_patrol_jail":
-			dialog.text = "The commandant will deal with you. Follow me!";
+			dialog.text = DLG_TEXT_Q[55];
 			link.l1 = "...";
 			link.l1.go = "Contraoffer_patrol_jail_exit";
 		break;
@@ -265,8 +266,8 @@ void ProcessDialogEvent()
 		
 	//Jason --> ----------------------------------- Неудачливый вор --------------------------------------------
 		case "Device_poorman":
-			dialog.text = "Good day. Do you want anything?";
-			link.l1 = "I do, pal. I take it that you are my guy. It was you who has stolen "+pchar.GenQuest.Device.Shipyarder.Type+"  from the local shipyard? Everything leads to you, so no arguing.";
+			dialog.text = DLG_TEXT_Q[56];
+			link.l1 = DLG_TEXT_Q[57]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[58];
 			link.l1.go = "Device_poorman_1";
 		break;
 		
@@ -276,33 +277,33 @@ void ProcessDialogEvent()
 				case 0://выбросил
 				if (sti(pchar.GenQuest.Device.Shipyarder.Chance2) != 1)
 				{
-					dialog.text = "I beg you, my lord! Yes, I have stolen this strange thing from the shipyard. But I failed to sell it, nobody needs such item. So I got rid of it. Spare me, good sir, blame my hunger, not me... I would never dare to steal anything otherwise!";
-					link.l1 = "That's a problem... And I don't need you either. I need to find that "+pchar.GenQuest.Device.Shipyarder.Type+". Tell me where did you throw it away?";
+					dialog.text = DLG_TEXT_Q[59];
+					link.l1 = DLG_TEXT_Q[60]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[61];
 					link.l1.go = "Device_poorman_0_1";
 				}
 				else //просто отдаст
 				{
-					dialog.text = "I beg you, my lord! Yes, I have stolen this strange thing from the shipyard. But I failed to sell it, nobody needs such item. I will give it to you. Here, take it, just don't hurt me and don't call the soldiers!";
-					link.l1 = "Fine, you may live, thug. I don't need your skin, I need that instrument. Give it to me immediately and get lost!";
+					dialog.text = DLG_TEXT_Q[62];
+					link.l1 = DLG_TEXT_Q[63];
 					link.l1.go = "Device_poorman_0_2";
 				}
 				break;
 				case 1://упирается, хитрый или храбрый
-					dialog.text = "What do you mean? What is "+pchar.GenQuest.Device.Shipyarder.Type+"? I don't get it!";
-					link.l1 = "You will get it when I will search you or your corpse! Give it to me now!";
+					dialog.text = DLG_TEXT_Q[64]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[65];
+					link.l1 = DLG_TEXT_Q[66];
 					link.l1.go = "Device_poorman_1_1";
 				break;
 				case 2://трусливый
-					dialog.text = "Oh... What is the "+pchar.GenQuest.Device.Shipyarder.Type+"? I... and what is it?";
-					link.l1 = "Don't try to play stupid or run away, I will catch you anyway. Just let me check your pockets...";
+					dialog.text = DLG_TEXT_Q[67]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[68];
+					link.l1 = DLG_TEXT_Q[69];
 					link.l1.go = "Device_poorman_2_1";
 				break;
 			}
 		break;
 		
 		case "Device_poorman_0_1"://идем на поиски
-			dialog.text = "Just behind the city gates, not far from the jungles. I beg you, good sir! If you really need that thing you can pick it up by yourself. It still must be over there, I am sure.";
-			link.l1 = "I should force you to find and bring it to me, but I fear that I would spend more time finding you than the "+pchar.GenQuest.Device.Shipyarder.Type+". I will do it myself. But I will find you if you are lying to me!";
+			dialog.text = DLG_TEXT_Q[70];
+			link.l1 = DLG_TEXT_Q[71]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[72];
 			link.l1.go = "exit";
 			AddQuestRecord("Device", "3");
 			string sCity = pchar.GenQuest.Device.Shipyarder.City + "_ExitTown";
@@ -316,11 +317,11 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Device_poorman_0_2"://получили девайс
-			dialog.text = "Here, take it. Thank you, kind sir!";
-			link.l1 = "Well, it must be what I was looking for... ha! You are free to go now. Move. And be careful next time.";
+			dialog.text = DLG_TEXT_Q[73];
+			link.l1 = DLG_TEXT_Q[74];
 			link.l1.go = "exit";
 			TakeNItems(pchar, "Tool", 1);
-			Log_Info("You have received the stolen instrument");
+			Log_Info(DLG_TEXT_Q[75]);
 			PlaySound("interface\important_item.wav");
 			AddQuestRecord("Device", "4");
 			npchar.lifeday = 0;
@@ -329,22 +330,22 @@ void ProcessDialogEvent()
 		
 		case "Device_poorman_1_1":
 			pchar.GenQuest.Device.Shipyarder.Poorsumm = 1000+drand(1000);
-			dialog.text = "Listen, are you talking about this instrument? It belongs to me and I haven't stolen it! And I am not going to give it to you for free. If you want to get it, pay me " + FindRussianMoneyString(sti(pchar.GenQuest.Device.Shipyarder.Poorsumm)) + ".";
-			link.l1 = "Hm... Fine. I will pay you. Here are your coins and give the instrument to me!";
+			dialog.text = DLG_TEXT_Q[76] + FindRussianMoneyString(sti(pchar.GenQuest.Device.Shipyarder.Poorsumm)) + ".";
+			link.l1 = DLG_TEXT_Q[77];
 			link.l1.go = "Device_poorman_1_2";
-			link.l2 = "Oh, really? Did you really think that I will trust you, miserable thief? Give the "+pchar.GenQuest.Device.Shipyarder.Type+" to me now or I will call the guards, so we could go together to the shipyard and decide whose this instrument really is.";
+			link.l2 = DLG_TEXT_Q[78]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[79];
 			link.l2.go = "Device_poorman_1_3";
-			link.l3 = "Are you stupid, or what? Listen, bastard, you have got two options: either you give me the "+pchar.GenQuest.Device.Shipyarder.Type+" or I stab you and take the instrument from your dead body!";
+			link.l3 = DLG_TEXT_Q[80]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_Q[81];
 			link.l3.go = "Device_poorman_1_4";
 		break;
 		
 		case "Device_poorman_1_2":
-			dialog.text = "Nice deal, captain! I suppose that we will all get our profits, he-he... take it.";
-			link.l1 = "Less talking, thief! Don't think that I have trusted you, I just want to do it peacefully. These coins won't do anything good for you anyway. Get lost!";
+			dialog.text = DLG_TEXT_Q[82];
+			link.l1 = DLG_TEXT_Q[83];
 			link.l1.go = "exit";
 			AddMoneyToCharacter(pchar, -sti(pchar.GenQuest.Device.Shipyarder.Poorsumm));
 			TakeNItems(pchar, "Tool", 1);
-			Log_Info("You have received the stolen instrument");
+			Log_Info(DLG_TEXT_Q[84]);
 			PlaySound("interface\important_item.wav");
 			AddQuestRecord("Device", "5");
 			AddQuestUserData("Device", "sMoney", FindRussianMoneyString(sti(pchar.GenQuest.Device.Shipyarder.Poorsumm)));
@@ -356,14 +357,14 @@ void ProcessDialogEvent()
 		case "Device_poorman_1_3":
 			if (sti(pchar.GenQuest.Device.Shipyarder.Chance2) == 0)//если мы в городе
 			{
-				dialog.text = "No! Don't call the guards! I...I will give you this damn instrument. Here, take it!";
-				link.l1 = "That is much better know! Get lost now. You will end up hanging on a hallow, it is just a matter of time.";
+				dialog.text = DLG_TEXT_Q[85];
+				link.l1 = DLG_TEXT_Q[86];
 				link.l1.go = "exit_device";
 			}
 			else//храбрый попался
 			{
-				dialog.text = "What guards, cap? It is just you and me here. You are arguing too much, so I will have to calm you down... with my blade.";
-				link.l1 = "You dare to threaten me, scum?";
+				dialog.text = DLG_TEXT_Q[87];
+				link.l1 = DLG_TEXT_Q[88];
 				link.l1.go = "Device_poorman_fight";
 			}
 		break;
@@ -371,8 +372,8 @@ void ProcessDialogEvent()
 		case "Device_poorman_1_4":
 			if (sti(pchar.GenQuest.Device.Shipyarder.Chance2) == 0)//если мы в городе
 			{
-				dialog.text = "Ah! Help me! Murderer!";
-				link.l1 = "Stop right there, dog!";
+				dialog.text = DLG_TEXT_Q[89];
+				link.l1 = DLG_TEXT_Q[90];
 			link.l1.go = "exit";
 				sld = characterFromId("Device_poorman");
 				LAi_SetActorType(sld);
@@ -384,25 +385,25 @@ void ProcessDialogEvent()
 			}
 			else//храбрый попался
 			{
-				dialog.text = "Well, let's see who will stab who, captain!";
-				link.l1 = "You dare to threaten me, scum?";
+				dialog.text = DLG_TEXT_Q[91];
+				link.l1 = DLG_TEXT_Q[92];
 				link.l1.go = "Device_poorman_fight";
 			}
 		break;
 		
 		case "Device_poorman_2_1":
-			dialog.text = "Searching? Please, good sire!";
-			link.l1 = "Now listen, either you will peacefully give me the thing you have just stolen from the shipyard or I will take you to the commandant's office. You will give this thing to me anyway, but your heels will be burned with a red-hot iron first. Perhaps they will even hang you after that. The choice is yours.";
+			dialog.text = DLG_TEXT_Q[93];
+			link.l1 = DLG_TEXT_Q[94];
 			link.l1.go = "Device_poorman_2_2";
-			link.l2 = "Give me what you've stolen immediately, bastard, or I will end you right where you stand!";
+			link.l2 = DLG_TEXT_Q[95];
 			link.l2.go = "Device_poorman_2_3";
 		break;
 		
 		case "Device_poorman_2_2":
 			if (sti(pchar.GenQuest.Device.Shipyarder.Chance1) < 2)//тут уж как повезет
 			{
-				dialog.text = "Well, you will have to catch me first, if you want to take me to the commandant's office ...";
-				link.l1 = "Hold right there, dog!";
+				dialog.text = DLG_TEXT_Q[96];
+				link.l1 = DLG_TEXT_Q[97];
 				link.l1.go = "exit";
 				AddQuestRecord("Device", "7");
 				sld = characterFromId("Device_poorman");
@@ -414,22 +415,22 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "No, don't take me to the commandant's office! I will give it myself! Here, take it, you must be looking for this thing. Nobody would buy it anyway...";
-				link.l1 = "Eh, I suppose I could take you to the fort anyway... Fine, give me the tool and be gone!";
+				dialog.text = DLG_TEXT_Q[98];
+				link.l1 = DLG_TEXT_Q[99];
 				link.l1.go = "exit_device";
 			}
 		break;
 		
 		case "Device_poorman_2_3"://напугали
-			dialog.text = "Ouch! Don't hurt me, I will give everything I have to you! Here, take it!";
-			link.l1 = "Now you are talking! Get lost, I will deliver you to the commandant if I ever see you again in this town. Farewell!";
+			dialog.text = DLG_TEXT_Q[100];
+			link.l1 = DLG_TEXT_Q[101];
 			link.l1.go = "exit_device";
 		break;
 		
 		case "exit_device":
 			npchar.lifeday = 0;
 			TakeNItems(pchar, "Tool", 1);
-			Log_Info("You have received the stolen instrument");
+			Log_Info(DLG_TEXT_Q[102]);
 			PlaySound("interface\important_item.wav");
 			AddQuestRecord("Device", "6");
 			DialogExit();
@@ -455,55 +456,55 @@ void ProcessDialogEvent()
 	//<-- Неудачливый вор
 //-------------------------------------------почтовый генератор 2 уровня------------------------------------	
 		case "PostGopHunters":
-			dialog.text = "Stop right there, pal! We need a thing which you are carrying. Give it to us and then walk your way.";
-			link.l1 = "What is that thing are you talking about?";
+			dialog.text = DLG_TEXT_Q[103];
+			link.l1 = DLG_TEXT_Q[104];
 			link.l1.go = "PostGopHunters_1";
-			link.l2 = "These street folks are too insolent nowadays... Prepare yourself, scoundrels!";
+			link.l2 = DLG_TEXT_Q[105];
 			link.l2.go = "PostHunters_fight";
 		break;
 		
 		case "PostGopHunters_1":
-			dialog.text = "Don't pretend of being a fool! Give us the package and you will live. Otherwise... we will take it from your corpse!";
-			link.l1 = "The odds are in your favor... take it, bastards, I have got no choice.";
+			dialog.text = DLG_TEXT_Q[106];
+			link.l1 = DLG_TEXT_Q[107];
 			link.l1.go = "PostGopHunters_2";
-			link.l2 = "Try!";
+			link.l2 = DLG_TEXT_Q[108];
 			link.l2.go = "PostHunters_fight";
 		break;
 		
 		case "PostGopHunters_2":
-			dialog.text = "Watch you tongue, pal... It's clever of you to don't challenge you luck. The end would have been the same, ha-ha! You'll live for a while... See you.";
+			dialog.text = DLG_TEXT_Q[109];
 			link.l1 = "...";
 			link.l1.go = "exit_gophunter";
 		break;
 		
 		case "PostProfHunters":
-			dialog.text = "Wait, " + GetAddress_Form(NPChar) + ", don't hurry like that. I have got a business for you.";
-			link.l1 = "What business? I don't know you.";
+			dialog.text = DLG_TEXT_Q[110] + GetAddress_Form(NPChar) + DLG_TEXT_Q[111];
+			link.l1 = DLG_TEXT_Q[112];
 			link.l1.go = "PostProfHunters_1";
 		break;
 		
 		case "PostProfHunters_1":
-			dialog.text = "I do know you, captain. Now straight to the business. You have just received "+pchar.questTemp.WPU.Current.Add+" in "+XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.City+"Gen")+". Don't try to deny it, we know this for sure - after all, we have been looking for this document for a few days.";
-			link.l1 = "Now I see. So what?";
+			dialog.text = DLG_TEXT_Q[113]+pchar.questTemp.WPU.Current.Add+DLG_TEXT_Q[114]+XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.City+"Gen")+DLG_TEXT_Q[115];
+			link.l1 = DLG_TEXT_Q[116];
 			link.l1.go = "PostProfHunters_2";
 		break;
 		
 		case "PostProfHunters_2":
-			dialog.text = "Give me the package and our brief meeting ends. Don't try to play hero, captain, we intend to get these papers and we are ready to fight the city garrison if we must\nAs you might understand, you will die first if the skirmish is to start. So give us the documents and we'll part as friends.";
-			link.l1 = "The odds are in your favour... take it, bastards, I have got no other choice.";
+			dialog.text = DLG_TEXT_Q[117];
+			link.l1 = DLG_TEXT_Q[118];
 			link.l1.go = "PostProfHunters_3";
-			link.l2 = "You won't scare me, I have seen tougher guys in the sea! Piss off.";
+			link.l2 = DLG_TEXT_Q[119];
 			link.l2.go = "PostProfHunters_4";
 		break;
 		
 		case "PostProfHunters_3":
-			dialog.text = "I am glad that you were reasonable, captain. You have put yourself in a great danger by taking this job. Now I am going to take my leave, if you don't mind.";
+			dialog.text = DLG_TEXT_Q[120];
 			link.l1 = "...";
 			link.l1.go = "exit_profhunter";
 		break;
 		
 		case "PostProfHunters_4":
-			dialog.text = "It was your decision...";
+			dialog.text = DLG_TEXT_Q[121];
 			link.l1 = "...";
 			link.l1.go = "PostHunters_fight";
 			TraderHunterOnMap();//если деремся - запускаем ДУ вдогонку
@@ -549,33 +550,33 @@ void ProcessDialogEvent()
 		
 		case "PostAgent":
 			bDisableFastReload = true; 
-			dialog.text = "Wait, " + GetAddress_Form(NPChar) + ", don't hurry like that. I have got a business for you.";
-			link.l1 = "What business? Speak it quickly, I am in a hurry.";
+			dialog.text = DLG_TEXT_Q[122] + GetAddress_Form(NPChar) + DLG_TEXT_Q[123];
+			link.l1 = DLG_TEXT_Q[124];
 			link.l1.go = "PostAgent_1";
 		break;
 		
 		case "PostAgent_1":
-			dialog.text = "I know who you are. And I also know that you have just received a "+pchar.questTemp.WPU.Current.Add+" "+XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.City+"Gen")+". These papers are the reason why I am so eager to talk with you.";
-			link.l1 = "And I don't want to discuss this matter with the people I don't know. Do you want to get those papers? Just give me a reason...";
+			dialog.text = DLG_TEXT_Q[125]+pchar.questTemp.WPU.Current.Add+" "+XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.City+"Gen")+DLG_TEXT_Q[126];
+			link.l1 = DLG_TEXT_Q[127];
 			link.l1.go = "PostAgent_2";
 		break;
 		
 		case "PostAgent_2":
-			dialog.text = "Enough, captain! Do I look like a robber? I am a businessman and I represent interests of " + NationNameGenitive(sti(pchar.questTemp.WPU.Postcureer.EnemyNation)) + ". I want to offer you a very profitable deal, but not here. Lets go to the tavern room and discuss this matter. It won't take a lot of your time.";
-			link.l1 = "That is way too suspicious... I am not going to have any business with you, sir! Get lost!";
+			dialog.text = DLG_TEXT_Q[128] + NationNameGenitive(sti(pchar.questTemp.WPU.Postcureer.EnemyNation)) + DLG_TEXT_Q[129];
+			link.l1 = DLG_TEXT_Q[130];
 			link.l1.go = "PostAgent_getout";
-			link.l2 = "Hm.. Let's see what you can offer me. But don't even try to attack me. Let's move, I will follow you.";
+			link.l2 = DLG_TEXT_Q[131];
 			link.l2.go = "PostAgent_3";
 		break;
 		
 		case "PostAgent_getout":
-			dialog.text = "You are a stubborn and a foolish man, captain! I have offered you a chance to make easy money. And you... you will regret it.";
-			link.l1 = "Piss off!";
+			dialog.text = DLG_TEXT_Q[132];
+			link.l1 = DLG_TEXT_Q[133];
 			link.l1.go = "PostAgent_getout_exit";
 		break;
 	
 		case "PostAgent_3":
-			dialog.text = "Splendid! Follow me.";
+			dialog.text = DLG_TEXT_Q[134];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);
@@ -601,35 +602,35 @@ void ProcessDialogEvent()
 		break;
 		
 		case "PostAgent_inTavern":
-			dialog.text = "Now we can talk freely.";
-			link.l1 = "And what is your proposal?";
+			dialog.text = DLG_TEXT_Q[135];
+			link.l1 = DLG_TEXT_Q[136];
 			link.l1.go = "PostAgent_inTavern_1";
 		break;
 		
 		case "PostAgent_inTavern_1":
-			dialog.text = "As I said, this is all about the papers you have received at harbour office. All I need is a copy of them, that's it\nYou will keep the original, so they'll pay you for the job. No one will ever know what happened, besides I will pay you well.";
-			link.l1 = "Excuse me... But the package is sealed. You won't be able to make copies without breaking a seal!";
+			dialog.text = DLG_TEXT_Q[137];
+			link.l1 = DLG_TEXT_Q[138];
 			link.l1.go = "PostAgent_inTavern_2";
 		break;
 		
 		case "PostAgent_inTavern_2":
-			dialog.text = "I was expecting this question. I will have to break the seal, but don't worry I will be able to restore it. I have got a duplicate cliche and sealing wax of course. No one will notice that the package was opened.";
-			link.l1 = "Do you have a false cliche of the port's administration of " +XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.StartCity+"Gen")+ "?";
+			dialog.text = DLG_TEXT_Q[139];
+			link.l1 = DLG_TEXT_Q[140] +XI_ConvertString("Colony"+pchar.questTemp.WPU.Postcureer.StartCity+"Gen")+ " ?";
 			link.l1.go = "PostAgent_inTavern_3";
 		break;
 		
 		case "PostAgent_inTavern_3":
 			pchar.questTemp.WPU.Postcureer.AgentMoney = sti(pchar.rank)*3500;
-			dialog.text = "Why are you asking, captain? Yes, I have one. Do you really think that I am just playing around? I am offering you "+ FindRussianMoneyString(sti(pchar.questTemp.WPU.Postcureer.AgentMoney))+" for a possibility to see these papers. So, will you give me the package at last? Please.";
-			link.l1 = "Take it. Do it accurately!";
+			dialog.text = DLG_TEXT_Q[141]+ FindRussianMoneyString(sti(pchar.questTemp.WPU.Postcureer.AgentMoney))+DLG_TEXT_Q[142];
+			link.l1 = DLG_TEXT_Q[143];
 			link.l1.go = "PostAgent_inTavern_4";
-			link.l2 = "You know, I will not. I don't like it.";
+			link.l2 = DLG_TEXT_Q[144];
 			link.l2.go = "PostAgent_inTavern_getout";
 		break;
 		
 		case "PostAgent_inTavern_4":
-			dialog.text = "Don't worry. I am a professional. Take a sit and have a rest. It will take about an hour.";
-			link.l1 = "Fine.";
+			dialog.text = DLG_TEXT_Q[145];
+			link.l1 = DLG_TEXT_Q[146];
 			link.l1.go = "PostAgent_inTavern_5";
 		break;
 		
@@ -642,14 +643,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "PostAgent_inTavern_getout":
-			dialog.text = "Hm... I didn't see this coming. You are too stubborn, captain, so I will have to kill you right where you stand and take the package for free. Pray, because I work with my blade just as good as I work with false cliches.";
-			link.l1 = "It is you who should pray, spy!";
+			dialog.text = DLG_TEXT_Q[147];
+			link.l1 = DLG_TEXT_Q[148];
 			link.l1.go = "PostAgent_inTavern_fight";
 		break;
 		
 		case "PostAgent_inTavern_6":
-			dialog.text = "Done. As I said, it has been done in the most accurate way. Take the package and promised "+ FindRussianMoneyString(sti(pchar.questTemp.WPU.Postcureer.AgentMoney))+". And I have to go. Good luck, captain, I am glad that we had a deal.";
-			link.l1 = "Farewell...";
+			dialog.text = DLG_TEXT_Q[149]+ FindRussianMoneyString(sti(pchar.questTemp.WPU.Postcureer.AgentMoney))+DLG_TEXT_Q[150];
+			link.l1 = DLG_TEXT_Q[151];
 			link.l1.go = "PostAgent_inTavern_7";
 		break;
 		
@@ -681,59 +682,59 @@ void ProcessDialogEvent()
 		
 	// --> --------------------------------- эскорт 2 уровень --------------------------------------------------
 		case "DisasterCap":
-			dialog.text = "Greetings! Oh, I am so glad to see you!";
-			link.l1 = "Good day. Hm, tell me, aren't you in command of the "+pchar.questTemp.WPU.Escort.ShipName+"?";
+			dialog.text = DLG_TEXT_Q[152];
+			link.l1 = DLG_TEXT_Q[153]+pchar.questTemp.WPU.Escort.ShipName+" ?";
 			link.l1.go = "DisasterCap_1";
 		break;
 		
 		case "DisasterCap_1":
-			dialog.text = "Oh! And how did you find out about the "+pchar.questTemp.WPU.Escort.ShipName+"? Yes, I am her cap. Or I was... The ship was sunk not far from here.";
-			link.l1 = "Ah, and I have found you... Let me introduce myself - " + GetFullName(pchar) + ". I am here by the ask of the harbour master of "+XI_ConvertString("Colony"+pchar.questTemp.WPU.Escort.StartCity+"Gen")+". He briefly told me about your caravan's troubles and sent me to find your ship.";
+			dialog.text = DLG_TEXT_Q[154]+pchar.questTemp.WPU.Escort.ShipName+DLG_TEXT_Q[155];
+			link.l1 = DLG_TEXT_Q[156] + GetFullName(pchar) + DLG_TEXT_Q[157]+XI_ConvertString("Colony"+pchar.questTemp.WPU.Escort.StartCity+"Gen")+DLG_TEXT_Q[158];
 			link.l1.go = "DisasterCap_2";
 		break;
 		
 		case "DisasterCap_2":
-			dialog.text = "So you are a captain of the rescue party?";
-			link.l1 = "Something like that. My task was to find your ship or proofs of her death. Unfortunately, I haven't found the ship, but her captain is alive, that is a good thing for sure...";
+			dialog.text = DLG_TEXT_Q[159];
+			link.l1 = DLG_TEXT_Q[160];
 			link.l1.go = "DisasterCap_3";
 		break;
 		
 		case "DisasterCap_3":
-			dialog.text = "Oh, I am sorry, I forgot to introduce myself. I am " + GetFullName(npchar) + ". Do you already know how did we end up here? The storm made our ship uncontrollable\nA few days later, she hit the reefs not far from this bay and the gale destroyed her in minutes. Only a few dozens of my crew survived. The rest are lying at the bottom. We pray for their souls every day...";
-			link.l1 = "Accept my condolences, captain " + GetFullName(npchar) + ". I am so sorry.";
+			dialog.text = DLG_TEXT_Q[161] + GetFullName(npchar) + DLG_TEXT_Q[162];
+			link.l1 = DLG_TEXT_Q[163] + GetFullName(npchar) + DLG_TEXT_Q[164];
 			link.l1.go = "DisasterCap_4";
 		break;
 		
 		case "DisasterCap_4":
-			dialog.text = "Thank you... Survivors have set up a camp on the shore, hoping to get aid. You are just in time, captain! The local war-like Indians are aware of our presence, we will not stand a chance against hundreds of them if they attack us\nThere is also a pirate ship, cruising in this area, it looks like they are looking for us. Have you met this pirate, captain?";
-			link.l1 = "No I haven't.";
+			dialog.text = DLG_TEXT_Q[165];
+			link.l1 = DLG_TEXT_Q[166];
 			link.l1.go = "DisasterCap_5";
 		break;
 		
 		case "DisasterCap_5":
-			dialog.text = "Praise the Lord for that. He is one of those who attacked us before that damn storm. Like a hyena, he is eager to finish a wounded pray, so he has arrived here, to this island.";
-			link.l1 = "I see. Now it's time to decide what we do next.";
+			dialog.text = DLG_TEXT_Q[167];
+			link.l1 = DLG_TEXT_Q[168];
 			link.l1.go = "DisasterCap_6";
 		break;
 		
 		case "DisasterCap_6":
-			dialog.text = "To decide what, captain? Take us aboard and let's get away from this cursed place.";
-			link.l1 = "Absolutely. I have failed to save the ship, at least I will save her crew. Roll up your camp and I will order to send longboats here. Welcome aboard!";
+			dialog.text = DLG_TEXT_Q[169];
+			link.l1 = DLG_TEXT_Q[170];
 			link.l1.go = "DisasterCap_7";
 		break;
 		
 		case "DisasterCap_7":
 			PlaySound("people fight\rifle_fire1.wav");
 			PlaySound("people fight\player_man_shoot_01.wav");
-			dialog.text = "Gratitude, captain! It won't take long. Wait... What the hell? Argh! Those red-skinned devils are coming for us again! Alarm! To arms!";
+			dialog.text = DLG_TEXT_Q[171];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("DisasterShipCrew_IndianAttack");
 		break;
 		
 		case "DisasterCap_8":
-			dialog.text = "Fuh, we have made it... See, captain, I have told you that this bay is the hell itself. It is the third Indian attack already! We have to leave this place as soon as possible, we won't survive another attack.";
-			link.l1 = "Yes, you are right. Gather every living soul and move on my ship! I will order to send us longboats immediately!";
+			dialog.text = DLG_TEXT_Q[172];
+			link.l1 = DLG_TEXT_Q[173];
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("DisasterShipCrew_onBoard");
 			AddQuestRecord("Escort", "38");
@@ -745,14 +746,14 @@ void ProcessDialogEvent()
 		
 	//Jason --> -------------------------- Заносчивый аристократ ------------------------------------------------
 		case "Badboy":
-			dialog.text = "Hic... What do you want from me? Get lost I have no wish to talk with you.";
-			link.l1 = "Are you "+pchar.GenQuest.Badboy.Brothel.Name+"?";
+			dialog.text = DLG_TEXT_Q[174];
+			link.l1 = DLG_TEXT_Q[175]+pchar.GenQuest.Badboy.Brothel.Name+" ?";
 			link.l1.go = "Badboy_1";
 		break;
 		
 		case "Badboy_1":
-			dialog.text = "Yes, I am. And what is your business?";
-			link.l1 = "It is pretty simple. There is someone in this town who's got enough of your tricks. This person is fed up of them. Now I look at you and I see why. Don't show up in the local brothel ever again or you will get troubles. Got it?";
+			dialog.text = DLG_TEXT_Q[176];
+			link.l1 = DLG_TEXT_Q[177];
 			link.l1.go = "Badboy_2";
 		break;
 		
@@ -762,15 +763,15 @@ void ProcessDialogEvent()
 				case 0://или напугается, или будет быковать - от авторитета
 					if (GetSummonSkillFromName(pchar, SKILL_LEADERSHIP) < 30)
 					{
-						dialog.text = "Argh! You... dare to threaten me, jerk? I will pin you on my blade and will cook you like a chicken on the spit!";
-						link.l1 = "Prepare yourself, fucker!";
+						dialog.text = DLG_TEXT_Q[178];
+						link.l1 = DLG_TEXT_Q[179];
 						link.l1.go = "Badboy_fight_1";
 						NextDiag.currentnode = "Badboy_after_fight";
 					}
 					else
 					{
-						dialog.text = "What? What tricks? There weren't any tricks. I got drunk and had a spree for a few times in the brothel. Nobody is perfect... All right, all right, I will never use their services again. Satisfied now? You have my word.";
-						link.l1 = "I hope that the word of honour means something to you and you are aware about consequences in case of breaking it. Keep that in mind. Farewell now.";
+						dialog.text = DLG_TEXT_Q[180];
+						link.l1 = DLG_TEXT_Q[181];
 						link.l1.go = "exit";
 						pchar.GenQuest.Badboy.Complete = "true";
 						LAi_CharacterDisableDialog(npchar);
@@ -778,14 +779,14 @@ void ProcessDialogEvent()
 					}
 				break;
 				case 1://дуэль за городом
-					dialog.text = "You are such an insolent man, sir! I swear that I will make you regret your words before the sunset. I challenge you! I suppose that we'd better fight in private, somewhere in quite. Jungles will do just fine, meet me there in two hours!";
-					link.l1 = "A great idea! At least it would not be a problem to hide your corpse.";
+					dialog.text = DLG_TEXT_Q[182];
+					link.l1 = DLG_TEXT_Q[183];
 					link.l1.go = "Badboy_duel";
 					NextDiag.currentnode = "Badboy_duel_1";
 					break;
 				case 2://призовет на помощь дружков
-					dialog.text = "What? What tricks? There were no any tricks. I got drunk and had a spree for a few times in the brothel. Nobody is perfect... All right, all right, I will never use their services. Satisfied now? You have my word.";
-					link.l1 = "I hope that the word of honour means something to you and you are aware about consequences in case of breaking it. Keep that in mind. Farewell now.";
+					dialog.text = DLG_TEXT_Q[184];
+					link.l1 = DLG_TEXT_Q[185];
 					link.l1.go = "exit_continue";
 					pchar.GenQuest.Badboy.Continue = "true";
 					NextDiag.currentnode = "Badboy_friends";
@@ -809,16 +810,16 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Badboy_after_fight":
-			dialog.text = "Wait! Stop! I surrender! Spare me!";
-			link.l1 = "And than's how you are talking now!";
+			dialog.text = DLG_TEXT_Q[186];
+			link.l1 = DLG_TEXT_Q[187];
 			link.l1.go = "Badboy_after_fight_1";
 		break;
 		
 		case "Badboy_after_fight_1":
-			dialog.text = "I beg you, please, spare me! I will do what you ask! I will never show up in that brothel!";
-			link.l1 = "This pose suits only to a scum like you. I hope that this will be a lesson for you for the rest of your life. And behave yourself properly in this town.";
+			dialog.text = DLG_TEXT_Q[188];
+			link.l1 = DLG_TEXT_Q[189];
 			link.l1.go = "Badboy_exit";
-			link.l2 = "Sure, you won't. Your trickery will be ended here and now.";
+			link.l2 = DLG_TEXT_Q[190];
 			link.l2.go = "Badboy_killed";
 			pchar.GenQuest.Badboy.Complete = "true";
 		break;
@@ -866,8 +867,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Badboy_duel_1":
-			dialog.text = "Time to go to hell, fucker! Pray for yourself, but do it fast, I don't have a whole damn day...";
-			link.l1 = "Less talking, more fighting, scum!";
+			dialog.text = DLG_TEXT_Q[191];
+			link.l1 = DLG_TEXT_Q[192];
 			link.l1.go = "Badboy_duel_2";
 		break;
 		
@@ -894,8 +895,8 @@ void ProcessDialogEvent()
 		break;		
 		
 		case "Badboy_friends":
-			dialog.text = "And there he is, this insolent bastard! Let's show him who owns this town, lads!";
-			link.l1 = "Ah, you're such a degenerate! But I have warned you. You and your apes will be sent right to the hell in a minute!";
+			dialog.text = DLG_TEXT_Q[193];
+			link.l1 = DLG_TEXT_Q[194];
 			link.l1.go = "Badboy_friends_fight";
 		break;
 		
@@ -913,22 +914,22 @@ void ProcessDialogEvent()
 	//Jason --> ------------------------------- Место под солнцем ----------------------------------------------
 		case "Sunplace_Store":
 			pchar.quest.SunplaceContinue_Over.over = "yes";
-			dialog.text = "Greetings. What do you want?";
-			link.l1 = "Aren't you "+pchar.GenQuest.Sunplace.Trader.Enemyname+"? You won't believe me, ha-ha. I want your head.";
+			dialog.text = DLG_TEXT_Q[195];
+			link.l1 = DLG_TEXT_Q[196]+pchar.GenQuest.Sunplace.Trader.Enemyname+DLG_TEXT_Q[197];
 			link.l1.go = "Sunplace_Store_1";
-			link.l2 = "Hm... No... It is nothing. It looks like I was mistaken. Pardon me for bothering you.";
+			link.l2 = DLG_TEXT_Q[198];
 			link.l2.go = "Sunplace_Store_exit";
 		break;
 		
 		case "Sunplace_Store_1":
-			dialog.text = "What a silly joke, sir! Explain yourself or I will...";
-			link.l1 = "And what are you going to do, miserable herring? You have done a bad turn to one good man and he is really upset. So pray now and do it quickly because I am in a hurry.";
+			dialog.text = DLG_TEXT_Q[199];
+			link.l1 = DLG_TEXT_Q[200];
 			link.l1.go = "Sunplace_Store_3";
 		break;
 		
 		case "Sunplace_Store_3":
-			dialog.text = "What... what are you doing, sir! Help! Somebody help! Murderer!";
-			link.l1 = "And I thought you would spend your last seconds on praying, at least you could've had a chance to reach the heavens...";
+			dialog.text = DLG_TEXT_Q[201];
+			link.l1 = DLG_TEXT_Q[202];
 			link.l1.go = "Sunplace_Store_fight";
 		break;
 		
@@ -943,8 +944,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Sunplace_Store_repeat":
-			dialog.text = "You again? Why wouldn't you tell me what do you want?";
-			link.l1 = "It is nothing.";
+			dialog.text = DLG_TEXT_Q[203];
+			link.l1 = DLG_TEXT_Q[204];
 			link.l1.go = "exit";
 		break;
 		
@@ -967,13 +968,13 @@ void ProcessDialogEvent()
 	//------------------------------------- киллеры Лиги-------------------------------------------------------
 		case "LigaHunters":
 			dialog.text = "";
-			link.l1 = "Ah?! What? What the hell are you doing here, damn you? Who has let you in?";
+			link.l1 = DLG_TEXT_Q[205];
 			link.l1.go = "LigaHunters_1";
 		break;
 		
 		case "LigaHunters_1":
-			dialog.text = "The league needs your life, captain...";
-			link.l1 = "What? Fuck!";
+			dialog.text = DLG_TEXT_Q[206];
+			link.l1 = DLG_TEXT_Q[207];
 			link.l1.go = "LigaHunters_2";
 		break;
 		
@@ -1002,14 +1003,14 @@ void ProcessDialogEvent()
 		case "CitizenNotBlade":
 			if (loadedLocation.type == "town")
 			{
-			dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of this town and I'd ask you to hold down your blade.", "Listen, I am the citizen of this town and I'd ask you to hold down your blade.");
-			link.l1 = LinkRandPhrase("Fine.", "Okay.", "Sure...");
+			dialog.text = NPCharSexPhrase(NPChar, DLG_TEXT_Q[208], DLG_TEXT_Q[209]);
+			link.l1 = LinkRandPhrase(DLG_TEXT_Q[210], DLG_TEXT_Q[211], DLG_TEXT_Q[212]);
 			link.l1.go = "exit";
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, "+ GetSexPhrase("pal","girl") +", while running with a weapon. I can get nervous ...", "I don't like when there are "+ GetSexPhrase("men","who knows who") +" are walking in front of me with their weapon ready. It scares me...");
-				link.l1 = LinkRandPhrase("I got it.", "It's okay.", "Don't worry...");
+				dialog.text = NPCharSexPhrase(NPChar, DLG_TEXT_Q[213]+ GetSexPhrase(DLG_TEXT_Q[214],DLG_TEXT_Q[215]) +DLG_TEXT_Q[216], DLG_TEXT_Q[217]+ GetSexPhrase(DLG_TEXT_Q[218],DLG_TEXT_Q[219]) +DLG_TEXT_Q[220]);
+				link.l1 = LinkRandPhrase(DLG_TEXT_Q[221], DLG_TEXT_Q[222], DLG_TEXT_Q[223]);
 			}
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";

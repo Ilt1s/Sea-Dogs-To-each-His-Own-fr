@@ -1,23 +1,23 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Shipyard.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What questions do you have?", "How can I help you?"), "You tried to ask me a question a little while ago...", "I have never met people with such one-sided curiosity in my shipyard or anywhere else in this town.",
-                          "What's with all the questions? My job is to build ships. Let's take care about that.", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "I've got nothing to talk about at the moment."), "Umph, where has my memory gone...",
-                      "Hm, well...", "Go ahead...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[0], DLG_TEXT_SHY[1]), DLG_TEXT_SHY[2], DLG_TEXT_SHY[3],
+                          DLG_TEXT_SHY[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[5], DLG_TEXT_SHY[6]), DLG_TEXT_SHY[7],
+                      DLG_TEXT_SHY[8], DLG_TEXT_SHY[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			// Addon-2016 Jason ФМК-Мартиника
 			if (CheckAttribute(pchar, "questTemp.FMQM") && pchar.questTemp.FMQM == "begin")
             {
-                link.l1 = "Your man told me that you want to see me. I am all ears.";
+                link.l1 = DLG_TEXT_SHY[44];
                 link.l1.go = "FMQM";
             }
 			if (CheckAttribute(pchar, "questTemp.FMQM") && pchar.questTemp.FMQM == "oil" && GetSquadronGoods(pchar, GOOD_OIL) >= 50)
             {
-                link.l1 = "I've done the job. "+FindRussianQtyString(GetSquadronGoods(pchar, GOOD_OIL))+" barrels of resin are inside my cargo holds.";
+                link.l1 = DLG_TEXT_SHY[45]+FindRussianQtyString(GetSquadronGoods(pchar, GOOD_OIL))+DLG_TEXT_SHY[46];
                 link.l1.go = "FMQM_9";
             }
 		break;
@@ -25,28 +25,28 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		// Addon-2016 Jason ФМК-Мартиника
 		case "FMQM":
 			pchar.quest.FMQM_Denial.over = "yes";
-			dialog.text = "Yes-yes, captain "+GetFullName(pchar)+". I saw your vessel entering our port and immediately sent my worker to you. Straight to the business: you are a newcomer, but they say that you have already become a seasoned sailor and the fortune is on your side. This is why I have a business proposal to you.";
-			link.l1 = "Interesting! Go on, tell me.";
+			dialog.text = DLG_TEXT_SHY[47]+GetFullName(pchar)+DLG_TEXT_SHY[48];
+			link.l1 = DLG_TEXT_SHY[49];
 			link.l1.go = "FMQM_1";
 		break;
 		
 		case "FMQM_1":
-			dialog.text = "Have you ever heard of special resin the Spaniards produce on the island of Trinidad? It is a rare resource of strategic value used to fortify the ship hull. Every barrel costs a hefty sum because the Spanish direct all the resin for the needs of their Navy. Every colonial authority keeps a trade of this good under control, to put it simple, it's a pure contraband\nI need this resin for a special order. Of course, our store doesn't have it, same can be said about our local military warehouses or they simply didn't want to sell it. It's irrelevant really. What is relevant is that I need the resin and I know where to get some. All I need is a captain who is comfortable about boardings.";
-			link.l1 = "I think, I am starting to see your point...";
+			dialog.text = DLG_TEXT_SHY[50];
+			link.l1 = DLG_TEXT_SHY[51];
 			link.l1.go = "FMQM_2";
 		break;
 		
 		case "FMQM_2":
-			dialog.text = "Splendid. There is a small trade convoy located in a harbor of Port-of-Spain. One ship is carrying a decent batch of the resin I am so in need of. I will tell more if you like the idea of plundering the enemies of our nation. What's your call?";
-			link.l1 = "I like your proposal. Ready to give it a try.";
+			dialog.text = DLG_TEXT_SHY[52];
+			link.l1 = DLG_TEXT_SHY[53];
 			link.l1.go = "FMQM_3";
-			link.l2 = "I'll pass, monsieur. My ship and my crew are not in their brightest state at the moment.";
+			link.l2 = DLG_TEXT_SHY[54];
 			link.l2.go = "FMQM_exit";
 		break;
 		
 		case "FMQM_exit":
-			dialog.text = "Okay, it's your right to do what you want. Sorry for taking your time, captain.";
-			link.l1 = "Goodbye.";
+			dialog.text = DLG_TEXT_SHY[55];
+			link.l1 = DLG_TEXT_SHY[56];
 			link.l1.go = "FMQM_exit_1";
 		break;
 		
@@ -60,31 +60,31 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "FMQM_3":
 			string sTemp = "barquentine";
 			if (MOD_SKILL_ENEMY_RATE < 7) sTemp = "barque";// Addon 2016-1 Jason пиратская линейка
-			dialog.text = "Then listen: the convoy consists three ships, the resin will be among other goods on a "+sTemp+" called the 'Benseсho'. This is your target. As I've said before, the Spanish are sailing from Port-of-Spain, Trinidad, to San Juan, Puerto Rico. They will set sail tomorrow, so you are free to choose where to attack them.";
-			link.l1 = "Got it. What about a reward?";
+			dialog.text = DLG_TEXT_SHY[57]+sTemp+DLG_TEXT_SHY[58];
+			link.l1 = DLG_TEXT_SHY[59];
 			link.l1.go = "FMQM_4";
 		break;
 		
 		case "FMQM_4":
-			dialog.text = "All I am interested in is the resin. I will pay fifteen golden doubloons for every barrel of stuff. According to my information, the 'Bensecho' carries around a hundred of barrels.";
-			link.l1 = "Holy cow! This is a big sum!";
+			dialog.text = DLG_TEXT_SHY[60];
+			link.l1 = DLG_TEXT_SHY[61];
 			link.l1.go = "FMQM_5";
 		break;
 		
 		case "FMQM_5":
-			dialog.text = "Yes. I told you already that this particular merchandise is very expensive and rare.";
-			link.l1 = "You also told me that this is a contraband.";
+			dialog.text = DLG_TEXT_SHY[62];
+			link.l1 = DLG_TEXT_SHY[63];
 			link.l1.go = "FMQM_6";
 		break;
 		
 		case "FMQM_6":
-			dialog.text = "Don't worry, there will be no need for you to bring it to the store or to smugglers. Come see me when the job's done, we will dock your vessel in my shipyard for repairing and then unload all the cargo secretly at night. No one will suspect anything.";
-			link.l1 = "You think ahead, master. Very well. No wasting time them. I am on the way to set sail.";
+			dialog.text = DLG_TEXT_SHY[64];
+			link.l1 = DLG_TEXT_SHY[65];
 			link.l1.go = "FMQM_7";
 		break;
 		
 		case "FMQM_7":
-			dialog.text = "Godspeed captain.";
+			dialog.text = DLG_TEXT_SHY[66];
 			link.l1 = "...";
 			link.l1.go = "FMQM_8";
 		break;
@@ -97,8 +97,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		
 		case "FMQM_9":
-			dialog.text = "Excellent! Let's put your ship in docks as we agreed before. We will unload her there tonight. Get back to you ship and let me prepare the money for you.";
-			link.l1 = "Let's do this.";
+			dialog.text = DLG_TEXT_SHY[67];
+			link.l1 = DLG_TEXT_SHY[68];
 			link.l1.go = "FMQM_10";
 		break;
 		

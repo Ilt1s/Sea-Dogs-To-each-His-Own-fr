@@ -1,15 +1,15 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Store.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
 
 	switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat("Go ahead, what do you want?",
-                          "We were just talking about that. You must have forgotten...", "This is the third time today you're talking about some question...",
-                          "Listen, this is a store. People buy stuff here. Don't disturb me!", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("You know, " + NPChar.name + ", maybe next time.", "Right, I've forgotten for some reason...",
-                      "Yes, it really is the third time...", "Hm, I wont...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_STR[0],
+                          DLG_TEXT_STR[1], DLG_TEXT_STR[2],
+                          DLG_TEXT_STR[3], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_STR[4] + NPChar.name + DLG_TEXT_STR[5], DLG_TEXT_STR[6],
+                      DLG_TEXT_STR[7], DLG_TEXT_STR[8], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 		break;
 	}

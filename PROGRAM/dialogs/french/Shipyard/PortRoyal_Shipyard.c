@@ -1,41 +1,42 @@
 // диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Shipyard.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What questions do you have?", "How can I help you?"), "You tried to ask me a question a little while ago...", "I have never met people with such one-sided curiosity in my shipyard or anywhere else in this town.",
-                          "What's with all the questions? My job is to build ships. Let's take care about that.", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "I've got nothing to talk about at the moment."), "Umph, where has my memory gone...",
-                      "Hm, well...", "Go ahead...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[0], DLG_TEXT_SHY[1]), DLG_TEXT_SHY[2], DLG_TEXT_SHY[3],
+                          DLG_TEXT_SHY[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[5], DLG_TEXT_SHY[6]), DLG_TEXT_SHY[7],
+                      DLG_TEXT_SHY[8], DLG_TEXT_SHY[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
-			// Addon 2016-1 Jason пиратскаЯ линейка
+			// Addon 2016-1 Jason пиратская линейка
 			if (CheckAttribute(pchar, "questTemp.Mtraxx"))
             {
 				if (pchar.questTemp.Mtraxx == "silk_2" || pchar.questTemp.Mtraxx == "silk_3")
 				{
-					link.l1 = "I've heard this shipyard deals with improving the ship's sailing speed. It requires some silk sailcloth which is very rare. Would you be... to talk about this?";
+					link.l1 = DLG_TEXT_SHY[37];
 					link.l1.go = "mtraxx";
 				}
 			}
 		break;
 		
-		// Addon 2016-1 Jason пиратскаЯ линейка
+		// Addon 2016-1 Jason пиратская линейка
 		case "mtraxx":
-            dialog.text = "Could you be more clear, young man? What exactly brought you here? If you want to improve your ship - let's get to business.";
-			link.l1 = "Not entirely. The type of services you perform require goods which are not freely available in the store. I would like to offer you the type of materials you might require.";
+            dialog.text = DLG_TEXT_SHY[38];
+			link.l1 = DLG_TEXT_SHY[39];
 			link.l1.go = "mtraxx_1";
 		break;
 		
 		case "mtraxx_1":
-            dialog.text = "Well-well... Ugh... Are you aware that only the authorities on this colony are allowed to deal with such strategic goods? You are free to provide your own silk for me to work on improving your ship, however, selling it is strictly forbidden. As is buying it from me - such activities will be fined rather heavily.";
-			link.l1 = "Well, this isn't a store, nor is it a customs office...";
+            dialog.text = DLG_TEXT_SHY[40];
+			link.l1 = DLG_TEXT_SHY[41];
 			link.l1.go = "mtraxx_2";
 		break;
 		
 		case "mtraxx_2":
-            dialog.text = "I acquire all of the silk sailcloth directly from my clients, or purchase limited quantities with a special permission of the governor. If you don't have any further questions then please, let me get back to my job.";
-			link.l1 = "Hm... Very well. Have a good day, master.";
+            dialog.text = DLG_TEXT_SHY[42];
+			link.l1 = DLG_TEXT_SHY[43];
 			link.l1.go = "mtraxx_3";
 		break;
 		

@@ -1,63 +1,61 @@
-
 sea_Cancel {Annuler}
-sea_Moor {Amarrer}
+sea_Moor {Accoster}
 sea_Cabin {Cabine}
-sea_SailTo {Naviguez vers}
-sea_Board {Conseil}
-sea_LandTroops {Troupes terrestres}
+sea_SailTo {Naviguer vers...}
+sea_Board {Aborder}
+sea_LandTroops {Faire débarquer les troupes}
 sea_Map {Carte}
-sea_Attack {Attaque}
-sea_Abordage {Grappin}
-sea_Defend {DÃ©fendre}
-sea_SailAway {PLeine voile}
-sea_HeaveToDrift {Arreter le navire}
-sea_Reload {Commerce}
+sea_Attack {Attaquer}
+sea_Abordage {Aborder}
+sea_Defend {Défendre}
+sea_SailAway {S'éloigner}
+sea_HeaveToDrift {Dériver}
+sea_Reload {Changer}
 sea_Charge {Recharger}
 sea_Speed {Voiles}
-sea_CCommand {ordres}
-sea_Ability {Competence}
-sea_ImmediateDeath {DÃ©truit!}
-sea_InstantBoarding {Embarquement instantanÃ©}
+sea_CCommand {Ordonner}
+sea_Ability {Capacité}
+sea_ImmediateDeath {Détruire !}
+sea_InstantBoarding {Action d'abordage instantané}
 sea_Speak {Parler}
-sea_Sneak {Se faufiler dans la ville}
-sea_Repair {RÃ©paration}
+sea_Sneak {S'infiltrer dans la cité}
+sea_Repair {Réparer}
 
-sea_Brander {BrÃ»leur}
-sea_ImmediateReload {Rechargement}
-sea_LightRepair {RÃ©paration urgente}
-sea_InstantRepair {RÃ©paration de combat}
-sea_SandbankManeuver {ManÅ“uvre en eau peu profonde}
-sea_Turn180 {Tourne-toi}
+sea_Brander {Brûlot}
+sea_ImmediateReload {Rechargement immédiat}
+sea_LightRepair {Réparation de fortune}
+sea_InstantRepair {Réparation d'urgence}
+sea_SandbankManeuver {Échouage compromis}
+sea_Turn180 {Changement rapide de cap}
 
-land_ItemsDead {Butin}
-land_FastReload {Atteindre}
+land_ItemsDead {Corps}
+land_FastReload {Aller rapidement à...}
 land_ItemsUse {Utiliser}
-land_DialogStart {Dialogue}
-land_ItemsChange {Ã‰change}
+land_DialogStart {Parler}
+land_ItemsChange {Échanger}
 land_TakeItem {Prendre}
-land_PlaceItem {Placer}
+land_PlaceItem {Mettre}
 land_OutDoor {Ouvrir}
 land_UseBox {Ouvrir}
-land_ActivateRush {Utiliser la teinture Ometochtli}
+land_ActivateRush {Utiliser mixture Ometochtli}
 land_ActivateCabine {Cabine du capitaine}
-land_DeActivateCabine {Terre}
-land_Look {Regarde}
+land_DeActivateCabine {Débarquer}
+land_Look {Regarder}
 land_Exit {Mer}
-land_SelfRepair {Reparer}
-land_Alchemy {Crafting}
-land_MapAtlas {Carte}
+land_SelfRepair {Réparation}
+land_Alchemy {Alchimie}
+land_MapAtlas {Atlas}
 
-go_store {Boutique}
+go_store {Magasin}
 go_shipyard {Chantier naval}
 go_tavern {Taverne}
-go_residence {Residence}
+go_residence {Résidence}
 go_port {Port}
-go_loanshark {Banquier}
-go_church {Ã‰glise}
+go_loanshark {Usurier}
+go_church {Église}
 go_prison {Prison}
 go_brothel {Bordel}
-go_usurer {Usurier}
-go_portman {MaÃ®tre de port}
+go_usurer {Prêteur}
+go_portman {Chef de port}
 go_duel {Duel}
-
-worldmap_sea {Vers la mer}
+worldmap_sea {Vue rapprochée}

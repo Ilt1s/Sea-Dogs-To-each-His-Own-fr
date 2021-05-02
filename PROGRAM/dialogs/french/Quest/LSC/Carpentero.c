@@ -1,5 +1,5 @@
 // Санчо Карпентеро - бармен
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -82,7 +82,7 @@ void ProcessDialogEvent()
 				}
 				if (CheckCharacterItem(pchar, "talisman1") && CheckAttribute(npchar, "quest.rat"))
 				{
-					link.l7 = "Sancho, do you want me to show you one interesting thing? Is this the bat mask you wanted to get your hands on so much?";
+					link.l7 = "Sancho, do you want me to show you something? Is this the bat mask you wanted to get your hands on so much?";
 					link.l7.go = "rat";
 				}
 				if (makeint(pchar.money) >= 25)
@@ -100,7 +100,7 @@ void ProcessDialogEvent()
 					link.l9 = "Bored... Sancho, I want to spend time here with a bottle of wine until evening...";
 					link.l9.go = "drink_sit";
 				}
-				link.l3 = LinkRandPhrase("Got anything interesting to tell?", "What has happened on the island recently?", "Any gossips?");
+				link.l3 = LinkRandPhrase("Got anything interesting to tell?", "What happened on the island recently?", "Any gossips?");
 				link.l3.go = "rumours_LSC";
 				if (CheckAttribute(npchar, "quest.crab") && npchar.quest.crab == "current" && CheckCharacterItem(pchar, "crab_pincers"))
 				{
@@ -109,7 +109,7 @@ void ProcessDialogEvent()
 				}
 				link.l4 = "Sancho, I want to ask you something about the Island.";
 				link.l4.go = "int_quests"; //информационный блок
-				link.l5 = "No, pal. Just wanted to check how you're doing here.";
+				link.l5 = "No, pal. Just wanted to check how you are doing here.";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -135,7 +135,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "mushket":
-			dialog.text = "No, friend, I can't help you. You know, I am a specialist in beer glasses and wine bottles - but not in muskets, ha-ha! Go to the shop, I heard that Yost sells interesting weapons sometimes. You may find what you need there.";
+			dialog.text = "No, friend, I can't help you. You know, I am a specialist in beer glasses and wine bottles - but not in muskets, ha-ha! Go to the shop, I have heard that Yost sells interesting weapons sometimes. You may find what you need there.";
 			link.l1 = "Thank you for an advice.";
 			link.l1.go = "exit";
 			npchar.quest.mushket = "true";
@@ -154,7 +154,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "adolf_2":
-			dialog.text = "No. They behaved like old buddies. Look, just visit Fazio at the 'Caroline' and ask him about Adolf.";
+			dialog.text = "No. They behaved like old buddies. Look, just visit Fazio at the Caroline and ask him about Adolf.";
 			link.l1 = "Fine, I'll do that.";
 			link.l1.go = "adolf_3";
 		break;
@@ -166,7 +166,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "adolf_4":
-			dialog.text = "Red Mary is one of Narwhals. Young and beautiful girl, but she is completely wild, yes. She knows how use her blade and a handgun as good as any man. Used to be a girlfriend of Alan Milrow, an ex leader of Narwhal clan, before the admiral killed him\nAlan's death hit her hard, most of the time she is crying and cursing Shark in her cabin on the 'Ceres Smithy'... But she will make through it, life is moving on after all\nI don't know much about Marcello, saw him only couple of times. Suspicious guy. They say that he used to be a royal hunter, lost an eye in a fight and went sailing as a boarding officer\nHates all pirates, looks like he is holding grudges on them. Not much of surprise, though, considering his previous service in boarding parties of trade ships.";
+			dialog.text = "Red Mary is one of Narwhals.  Young and beautiful girl, but she is completely wild, yes. She knows how use her blade and a handgun as good as any man. Used to be a girlfriend of Alan Milrow, an ex leader of Narwhal clan, before the admiral killed him\nAlan's death hit her hard, most of the time she is crying and cursing Shark in her cabin on the Ceres Smithy... But she will make through it, life is moving on after all\nI don't know much about Marcello, saw him only couple of times. Suspicious guy. They say that he used to be a royal hunter, lost an eye in a fight and went sailing as a boarding officer\nHates all pirates, looks like he is holding grudges on them. Not much of surprise, though, considering his previous service in boarding parties of trade ships.";
 			link.l1 = "I see. Thanks a lot, Sancho, you have helped me a lot!";
 			link.l1.go = "adolf_5";
 		break;
@@ -185,19 +185,19 @@ void ProcessDialogEvent()
 		
 		// виски для Акулы
 		case "whiskey":
-			dialog.text = "Kapper? No. He even haven't visited me recently. Marcello Cyclops bought a flask of arsenic just fifteen minutes ago - he is also plagued by rats. I perfectly understand him... Damn rats.";
+			dialog.text = "Kapper? No. He even hadn't visited me recently. Marcello Cyclops bought a flask of arsenic just an hour ago - he is also plagued by rats. I perfectly understand him... Damn rats.";
 			link.l1 = "Marcello Cyclops?!";
 			link.l1.go = "whiskey_1";
 		break;
 		
 		case "whiskey_1":
 			dialog.text = "Well, yes. Is that strange?";
-			link.l1 = "No, of course not! I have been looking for him for a few days and turns out that he has been here recently. Could you tell me where he went?";
+			link.l1 = "No, of course not! I have been looking for him and turns out that he was here recently. Where did he go?";
 			link.l1.go = "whiskey_2";
 		break;
 		
 		case "whiskey_2":
-			dialog.text = "He was with Adolf Barbier who lives at the 'Santa Florentina'. Perhaps, they were heading there.";
+			dialog.text = "He was with Adolf Barbier who lives at the Santa Florentina. Perhaps, they were heading there.";
 			link.l1 = "Thanks!";
 			link.l1.go = "whiskey_3";
 		break;
@@ -308,7 +308,7 @@ void ProcessDialogEvent()
 		case "rat_1":
 			PlaySound("interface\important_item.wav");
 			dialog.text = "It is... It really is! It is exactly the same as the picture, which one sailor had drawn for me! Friend, you have brought it to me for some purpose, am I right? What do you want for it? How much?";
-			link.l1 = "Sure I have brought it to you for a purpose. But what do I want? I don't know. And what can you offer? As far as remember, you promised me a royal reward for this thing...";
+			link.l1 = "Sure I have brought it to you for a purpose. But what do I want? I don't know. And what can you offer? As far as remember, you promised me a great reward for this thing...";
 			link.l1.go = "rat_2";
 			link.l2 = "Sorry, pal, it's not for sale. I need it for myself. Just wanted to make sure that this is the talisman you've been talking about.";
 			link.l2.go = "rat_exit";
@@ -316,15 +316,15 @@ void ProcessDialogEvent()
 		
 		case "rat_exit":
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Eh, what a shame... Yes, lad, this is exactly that talisman. Lucky devil! Now the rats will cause you no trouble any more. And I will have to keep exterminating them with arsenic...";
+			dialog.text = "Eh, what a shame... Yes, lad, this is that very talisman. Lucky devil! Now the rats will cause you no trouble any more. And I will have to keep exterminating them with arsenic...";
 			link.l1 = "I am sorry for teasing you, Sancho. I haven't ever seen it before, so I needed a consultation. I am sorry.";
 			link.l1.go = "exit";
 			DeleteAttribute(npchar, "quest.rat");
 		break;
 		
 		case "rat_2":
-			dialog.text = ""+pchar.name+", I will give you the best and the most valuable item I posses. I don't need it, but such an excellent warrior like you will find it very useful\nTake a look: a unique, amazing Milanese cuirass! Prefect protection, light, comfortable. It is a rare piece of armor, even in Europe\nI have found it in a captain's cabin of one Spanish warship. Take the cuirass in exchange for the Rat God!";
-			link.l1 = "Hm... That is a great cuirass! I think that this exchange will work for me. I will deal with rats anyway and I won't find a second cuirass like this one anywhere. It's the first time I see anything like it. That's is a unique armor for sure.";
+			dialog.text = ""+pchar.name+", I will give you the best and the most valuable item I posses. I don't need it, but such an excellent warrior like you will find it very useful\nTake a look: a unique, amazing Milanese cuirass! Prefect protection, light, comfortable. It is a rare piece of armour, even in Europe\nI have found it in a captain's cabin of one Spanish warship. Take the cuirass in exchange for the Rat God!";
+			link.l1 = "Hm... That is a great cuirass! I think that this exchange will work for me. I will deal with rats anyway and I won't find a second cuirass like this one anywhere. It's the first time I see anything like it. That's is a unique armour for sure.";
 			link.l1.go = "rat_3";
 		break;
 		
@@ -379,21 +379,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "Build a long boat or a raft. But it won't end well for you. There is an anomaly storm area around the Island, you will not pass further the outer ring without risking to die in a second of strong gale. Plus, the Island is being circled by a strong current\nYou need a team in order to get even a slim chance of survival. And very few locals are willing to leave this place. Even fewer are willing to take any risks. People like the way of living here. Ask around if you don't believe me.";
+			dialog.text = "To build a long boat and raft. But it won't end well for you. There is a storm area around the Island, you will not pass further the outer ring without risking to die in a second of strong gale. Plus, the Island is being circled by a strong current\nYou need a team in order to get even a slim chance of survival. And very few locals are willing to leave this place. Even fewer are willing to take any risks. People like the way of living here. Ask around.";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "First, you should remember that there are several restricted areas on the Island. Two clans - Narwhals and Rivados, they have been living here for a long time, fighting each other and fearlessly protecting territories they consider their own. Try to pay them an unwanted visit and you are dead\nYou must know a current password if you want to enter their ships. Don't be afraid to get there by accident, guards will give you several warnings before they start shooting.";
+			dialog.text = "First, you should remember that there are several restricted areas on the Island. Two clans - Narwhals and Rivados, they have been living here for a long time, fighting each other and fearlessly protecting territories they consider their own. Try to pay them an unwanted visit - you are dead\nYou must know a current password if you want to enter their ships. Don't be afraid to get there by accident, guards will give you several warnings before they start shooting.";
 			link.l1 = "I'll keep that in mind...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
 		break;
 		
 		case "ansewer_4":
-			dialog.text = "You know, my friend, it's fine. I used to work with food and drinks: I worked as a cook long time ago in Europe, as an intendant in a garrison, a tavern keeper, and a cook on a ship; so the first thing I did here was establishing a tavern\nI like my job and my life is oddly satisfying. Folks are friendly here, mostly. At least they don't kill each other frequently. Clans don't interfere with my activities. All in all, this the best place I had in my life. I'm free here and no one tells me what to do\nThe only thing driving me mad is rats. They are torturing me, eating my provisions and ruining my tableware. I fail to get rid of them.";
+			dialog.text = "You know, my friend, it's fine. I've always been working with food and drinks, so the first thing I did here was establishing a tavern\nI like my job and my life is oddly satisfying. Folks are friendly here, mostly. At least they don't kill each other frequently. Clans don't interfere with my activities. All in all, this the best place I had in my life. No one is telling me what to do\nThe only thing driving me mad is rats. They are torturing me, eating my provisions and ruining my tableware. I fail to get rid of them.";
 			link.l1 = "Rats? Yeah, they are everyone's trouble...";
 			link.l1.go = "ansewer_4_1";
 		break;
@@ -411,7 +411,7 @@ void ProcessDialogEvent()
 		case "drink":
 			if (CheckAttribute(pchar, "questTemp.Rum") && sti(pchar.questTemp.Rum) > 4)
 			{
-				dialog.text = ""+pchar.name+", I think that you should stop. God forbid to get in trouble or going down to fall overboard to become crabs' meal... It's dangerous to get drunk here, a lot of people died because of drinking.";
+				dialog.text = ""+pchar.name+", I think that you should stop. God save you from getting in trouble or going down to become crabs' meal... It's dangerous to get drunk here, a lot of people died because of drinking.";
 				link.l1 = "Hm... I suppose you are right, Sancho - I have had enough already. Thanks for your concern!";			
 				link.l1.go = "exit";
 			}
@@ -451,20 +451,20 @@ void ProcessDialogEvent()
 		case "drink_sit":
 			if (chrDisableReloadToLocation || pchar.questTemp.Saga.SharkHunt == "barmen_whiskey" || pchar.questTemp.Saga.SharkHunt == "whiskey_poison") //идет квест
 			{
-				dialog.text = "I think that you oughtn't to drink now. Trust me...";
-				link.l1 = "Fine.";
+				dialog.text = "I think that you should not drink now. Trust me...";
+				link.l1 = "Whatever.";
 				link.l1.go = "exit";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.LSC.MaryBye") || CheckAttribute(pchar, "questTemp.LSC.MaryWait")) // подружился с Мэри
 			{
-				dialog.text = "Heh, you are a strange man... Don't you have no one to pass the time with here, on the Island? Buddy, Mary will kill me if I let you stay here and get drunk alone. Come here together in the evening and have fun until dawn, if you wish.";
+				dialog.text = "Heh, you are a strange man... Don't you have no one to hang out with here, on the Island? Buddy, Mary will kill me if I let you stay here and get drunk alone. Come here together in the evening and have fun until dawn, if you wish.";
 				link.l1 = "Fine...";
 				link.l1.go = "exit";
 			}
 			else
 			{
-				dialog.text = "No problem, buddy. For just three hundred pesos you will get a fine bottle of "+LinkRandPhrase("Spanish","Italian","French")+" wine - and have fun as long as you want.";
+				dialog.text = "No problem, buddy. For just tree hundred pesos you will get a fine bottle of "+LinkRandPhrase("Spanish","Italian","French")+" wine - and have fun all you want.";
 				link.l1 = "Thanks!";
 				link.l1.go = "drink_sit_1";
 			}
@@ -484,7 +484,7 @@ void ProcessDialogEvent()
 		case "room":
    			if (chrDisableReloadToLocation || pchar.questTemp.Saga.SharkHunt == "barmen_whiskey" || pchar.questTemp.Saga.SharkHunt == "whiskey_poison") //идет квест
 			{
-				dialog.text = "I think that you shouldn't sleep right now. Trust me...";
+				dialog.text = "I think that you should not sleep right now. Trust me...";
 				link.l1 = "Fine.";
 				link.l1.go = "exit";
 				break;
@@ -493,7 +493,7 @@ void ProcessDialogEvent()
 			{
 				if(!isDay())
 				{
-					dialog.text = "I have never met such a strange man. There is a beautiful girl waiting for him in the 'Ceres Smithy' and he is going to spend the night at the tavern. Don't even think that I will let you sleep here. Mary will kill me for that.";
+					dialog.text = "I have never met such a strange man. There is a great girl waiting for him in the Ceres Smithy - and he is going to spend the night at the tavern. Don't even think that I will let you sleep here. Mary will kill me for that.";
 					link.l1 = "Fine...";
 					link.l1.go = "exit";
 				}
@@ -502,7 +502,7 @@ void ProcessDialogEvent()
 					dialog.text = "You can rest upstairs until the evening. But I won't let you spend a night here - Mary will kill me for that. I am sorry...";
 					link.l1 = "Fine. I'll stay here until the evening...";
 					link.l1.go = "hall_night_wait";
-					link.l2 = "Fine... I will manage without sleeping.";
+					link.l2 = "Whatever... I will manage without sleeping.";
 					link.l2.go = "exit";
 				}
 				break;
@@ -515,12 +515,12 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				link.l1 = "By the night.";
+				link.l1 = "By night.";
 				link.l1.go = "hall_night_wait";
 				link.l2 = "Next morning.";
 				link.l2.go = "hall_day_wait";
 			}
-			link.l3 = "I have changed my mind. I don't want to sleep.";
+			link.l3 = "I have changed my mind. Don't want to sleep.";
 			link.l3.go = "exit";
 		break;
 		

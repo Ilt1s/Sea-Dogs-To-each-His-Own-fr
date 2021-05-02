@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Quest\LineMiniQuests\Wine.h"
 void ProcessDialogEvent()
 {
 	ref sld, NPChar;
@@ -19,13 +20,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Wine_fort":
-			dialog.text = "So, did you bring the bottle?";
+			dialog.text = DLG_TEXT_Q[0];
 			if (CheckCharacterItem(pchar, "potionwine"))
 			{
-				link.l1 = "Yes, take it. I paid 700 pesos for it, so I expect 1000 pesos from you.";
+				link.l1 = DLG_TEXT_Q[1];
 				link.l1.go = "Wine_fort_1";
 			}
-			link.l2 = "No, I am still on it.";
+			link.l2 = DLG_TEXT_Q[2];
 			link.l2.go = "exit";
 			NextDiag.TempNode = "Wine_fort";
 		break;
@@ -33,16 +34,16 @@ void ProcessDialogEvent()
 		case "Wine_fort_1":
 			AddMoneyToCharacter(pchar, 1000);
 			RemoveItems(PChar, "potionwine", 1);
-			dialog.text = "Argh, thank you, pal! Here, take your thousand and this bottle is mine now, ha-ha! Listen, since we are already doing a fine business here, I have another request for you\nCould you get more wine for me and my friends, for future use? We have shaken smugglers pretty hard recently, so we have coins, he-he...";
-			link.l1 = "No, pal, I am sorry, I don't have time for this.";
+			dialog.text = DLG_TEXT_Q[3];
+			link.l1 = DLG_TEXT_Q[4];
 			link.l1.go = "Wine_fort_exit";
-			link.l2 = "Hm, interesting. How many bottles do you need?";
+			link.l2 = DLG_TEXT_Q[5];
 			link.l2.go = "Wine_fort_2";
 		break;
 	
 	case "Wine_fort_exit":
-			dialog.text = "As you wish. Thanks for your help anyway!";
-			link.l1 = "Keep up, soldier!";
+			dialog.text = DLG_TEXT_Q[6];
+			link.l1 = DLG_TEXT_Q[7];
 			link.l1.go = "exit";
 			sld = characterFromId(pchar.questTemp.Wine.id);	
 			sld.lifeday = 0;
@@ -53,14 +54,14 @@ void ProcessDialogEvent()
 	break;
 	
 		case "Wine_fort_2":
-			dialog.text = "Well, considering the price of each bottle, we can afford to buy sixty bottles, but not more. But don't bring us less than ten too - it will make no sense.";
-			link.l1 = "Fine. You will get your wine.";
+			dialog.text = DLG_TEXT_Q[8];
+			link.l1 = DLG_TEXT_Q[9];
 			link.l1.go = "Wine_fort_3";
 		break;
 	
 		case "Wine_fort_3":
-			dialog.text = "Nice! I am counting on you, captain. Try to bring me the wine no later than in a week cause then we will go to the sea, and I won't be around for a couple of months.";
-			link.l1 = "I see. I'll try to be quick.";
+			dialog.text = DLG_TEXT_Q[10];
+			link.l1 = DLG_TEXT_Q[11];
 			link.l1.go = "exit";
 			pchar.questTemp.Wine.bottles = "true";
 			npchar.lifeday = 7;
@@ -72,13 +73,13 @@ void ProcessDialogEvent()
 		break;
 	
 		case "Wine_fort_check":
-			dialog.text = "So, captain, have you brought the wine?";
+			dialog.text = DLG_TEXT_Q[12];
 			if (sti(pchar.items.potionwine) >= 10)
 			{
-				link.l1 = "Yes, I have.";
+				link.l1 = DLG_TEXT_Q[13];
 				link.l1.go = "Wine_take";
 			}
-			link.l2 = "No. I am still on it.";
+			link.l2 = DLG_TEXT_Q[14];
 			link.l2.go = "exit";
 			NextDiag.TempNode = "Wine_fort_check";
 		break;
@@ -88,16 +89,16 @@ void ProcessDialogEvent()
 			pchar.questTemp.Wine.Money = sti(pchar.questTemp.Wine.Qty)*1000;
 			if (sti(pchar.items.potionwine) > 60)
 			{
-				dialog.text = "Whoa, so many bottles here! Excellent! Though as I've said, we can afford to buy only sixty bottles, unfortunately we don't have enough money to buy more. Take your coins and I will take care about these sixty bottles.";
-				link.l1 = "Take them. I am sure that you will have a good time with your friends!";
+				dialog.text = DLG_TEXT_Q[15];
+				link.l1 = DLG_TEXT_Q[16];
 				link.l1.go = "Wine_take_1";
 				pchar.questTemp.Wine.Money = 60000;
 				RemoveItems(PChar, "potionwine", 60);
 			}
 			else
 			{
-				dialog.text = "Well, let's see... You have brought "+sti(pchar.questTemp.Wine.Qty)+" bottles. Nice! I'll take them. The payment is " + FindRussianMoneyString(sti(pchar.questTemp.Wine.Money))".";
-				link.l1 = "Take your wine. I am sure that you will have a good rest with your friends!";
+				dialog.text = DLG_TEXT_Q[17]+sti(pchar.questTemp.Wine.Qty)+ DLG_TEXT_Q[18] + FindRussianMoneyString(sti(pchar.questTemp.Wine.Money))".";
+				link.l1 = DLG_TEXT_Q[19];
 				link.l1.go = "Wine_take_1";
 				RemoveItems(PChar, "potionwine", sti(pchar.questTemp.Wine.Qty));
 			}
@@ -105,15 +106,15 @@ void ProcessDialogEvent()
 	
 		case "Wine_take_1":
 			AddMoneyToCharacter(pchar, sti(pchar.questTemp.Wine.Money));
-			dialog.text = "My gratitude, " + GetAddress_Form(NPChar) + "! And I have to go now. Goodbye!";
-			link.l1 = "Goodbye, soldier!";
+			dialog.text = DLG_TEXT_Q[20] + GetAddress_Form(NPChar) + DLG_TEXT_Q[21];
+			link.l1 = DLG_TEXT_Q[22];
 			link.l1.go = "Wine_take_2";
 		break;
 	
 		case "Wine_take_2":
 			DialogExit();
 			PlaySound("interface\important_item.wav");
-			Log_Info ("You have given the wine");
+			Log_Info (DLG_TEXT_Q[23]);
 			pchar.quest.Soldier_wait.over = "yes";//снять прерывание
 			DeleteAttribute(pchar, "questTemp.Wine.City");
 			sld = characterFromId(pchar.questTemp.Wine.id);

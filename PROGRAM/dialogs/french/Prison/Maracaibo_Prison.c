@@ -1,11 +1,11 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Prison.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
  	switch(Dialog.CurrentNode)
 	{
         case "quests":
-            dialog.text = "Speak, I am listening";
-			link.l1 = "I was mistaken. Farewell.";
+            dialog.text = DLG_TEXT_PRS[0];
+			link.l1 = DLG_TEXT_PRS[1];
 			link.l1.go = "Exit";
 		break;
 	}

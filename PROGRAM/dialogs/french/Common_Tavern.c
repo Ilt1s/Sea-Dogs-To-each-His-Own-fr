@@ -1,5 +1,6 @@
-#include "DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
-#include "interface\ship.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"  //homo 25/06/06
+#include "SD\interface\ship.c"
+#include "SD\TEXT\DIALOGS\Common_Tavern.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -12,7 +13,7 @@ void ProcessDialogEvent()
 	makearef(NextDiag, NPChar.Dialog);
 	
     // вызов диалога по городам -->
-    NPChar.FileDialog2 = "DIALOGS\" + LanguageGetLanguage() + "\Tavern\" + NPChar.City + "_Tavern.c";
+    NPChar.FileDialog2 = "SD\DIALOGS\" + LanguageGetLanguage() + "\Tavern\" + NPChar.City + "_Tavern.c";
     if (LoadSegment(NPChar.FileDialog2))
 	{
         ProcessCommonDialog(NPChar, Link, NextDiag);
@@ -23,7 +24,6 @@ void ProcessDialogEvent()
 	
 	int iTest, iTemp;
 	string sTemp;
-	string NPCCity = NPChar.City;
     iTest = FindColony(NPChar.City); // город 
     ref rColony;
 	if (iTest != -1)
@@ -32,12 +32,6 @@ void ProcessDialogEvent()
 	}
 	bool ok;
 	
-	if(!CheckAttribute(pchar, "questTemp.TavernVisit."+(NPCCity) )) 
-	{
-		pchar.questTemp.TavernVisit.(NPCCity) = true;
-		pchar.questTemp.TavernVisit.counter = sti(pchar.questTemp.TavernVisit.counter) + 1;
-	}	
-	
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
@@ -45,18 +39,18 @@ void ProcessDialogEvent()
 			if (LAi_grp_playeralarm > 0)
 			{
        			dialog.text = NPCharRepPhrase(pchar,
-					LinkRandPhrase("Alarm is raised in the town, and everyone is looking for you. If I were you, I wouldn't stay there.", "All the city guards are scouring the town looking for you. I am not a fool and I will not talk to you!", "Run, "+ GetSexPhrase("buddy","lass") +", before the soldiers turned you into a sieve..."),
-					LinkRandPhrase("What do you need, "+ GetSexPhrase("scoundrel","stinker") +"?! The city guards have already hit your scent, you won't get far"+ GetSexPhrase(", filthy pirate!","") +"", "Murderer, leave my place at once! Guards!", "I am not afraid of you, "+ GetSexPhrase("scoundrel","rat") +"! Soon you will be hanged in our fort, you won't get far..."));
+					LinkRandPhrase(DLG_TEXT_BASE[0], DLG_TEXT_BASE[1], "Courez, "+ GetSexPhrase("mon gars","petite") +DLG_TEXT_BASE[2]),
+					LinkRandPhrase("Que voulez-vous, "+ GetSexPhrase("canaille", "peau de vache") +DLG_TEXT_BASE[3], DLG_TEXT_BASE[4], DLG_TEXT_BASE[5]));
 				link.l1 = NPCharRepPhrase(pchar,
-					RandPhraseSimple("Heh, an alarm is never a problem for me...", "They will never get me."),
-					RandPhraseSimple("Shut your mouth, " + GetWorkTypeOfMan(npchar, "") + ", or I'll rip your tongue!", "Heh, " + GetWorkTypeOfMan(npchar, "") + ", and all there - to catch pirates! That's what I tell you, buddy: sit quietly and you will not die..."));
+					RandPhraseSimple(DLG_TEXT_BASE[6], DLG_TEXT_BASE[7]),
+					RandPhraseSimple(DLG_TEXT_BASE[8] + GetWorkTypeOfMan(npchar, "") + DLG_TEXT_BASE[9], DLG_TEXT_BASE[10] + GetWorkTypeOfMan(npchar, "") + DLG_TEXT_BASE[11]));
 				link.l1.go = "exit";
 				break;
 			}
 			if (sti(pchar.GenQuest.Piratekill) > 20 && sti(npchar.nation) == PIRATE)
 			{
-				dialog.text = RandPhraseSimple("And it's you, bastard! You think you be poured rum here? Certainly not! Guys! To arms! Cut the psycho!", "Want a drink, you beast? But no! Now show you what's what! Guys, here sick crazy with weapons! Alert!");
-				link.l1 = RandPhraseSimple("Huh? What?", "Uh, you of that!");
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[272], DLG_TEXT_BASE[273]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[274], DLG_TEXT_BASE[275]);
 				link.l1.go = "fight";
 				bDisableFastReload = true;//закрыть переход
 				pchar.quest.pirate_in_town.win_condition.l1 = "ExitFromLocation";
@@ -67,25 +61,25 @@ void ProcessDialogEvent()
 			//Jason, Бремя гасконца
 			if (CheckAttribute(pchar, "questTemp.Sharlie") && pchar.questTemp.Sharlie == "crew" && npchar.city == "FortFrance")
 			{
-				dialog.text = "Did you want anything, monsieur?";
-				Link.l1 = "Listen, I need to hire a crew for my ship. Can you help me with that?";
+				dialog.text = DLG_TEXT_BASE[276];
+				Link.l1 = DLG_TEXT_BASE[277];
 				Link.l1.go = "Sharlie_crew";
 				break;
 			}
 			
 			if (CheckAttribute(pchar, "questTemp.Sharlie") && pchar.questTemp.Sharlie == "skiper" && npchar.city == "FortFrance")
 			{
-				dialog.text = "What is it this time, monsieur?";
-				Link.l1 = ""+npchar.name+", I realize that I am bothering you with my inquiries, but just one more question. I need a navigator - any idea where I can find one?";
+				dialog.text = DLG_TEXT_BASE[278];
+				Link.l1 = ""+npchar.name + DLG_TEXT_BASE[279];
 				Link.l1.go = "Sharlie_skiper";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.Sharlie.Lock"))
 			{
-    			dialog.text = "What is it that you want, monsieur?";
-				Link.l1 = "I hoped you could answer a couple of questions.";
+    			dialog.text = DLG_TEXT_BASE[280];
+				Link.l1 = DLG_TEXT_BASE[281];
 				Link.l1.go = "quests";
-				link.l2 = "I would like to rent a room.";
+				link.l2 = DLG_TEXT_BASE[282];
                 link.l2.go = "room";
 				break;
 			}			
@@ -93,23 +87,22 @@ void ProcessDialogEvent()
 			// Addon 2016-1 Jason пиратская линейка
 			if (CheckAttribute(pchar, "questTemp.Mtraxx.Retribution") && pchar.questTemp.Mtraxx.Retribution == "tavern" && npchar.city == "Tortuga")
 			{
-				dialog.text = "I am delighted to see a dear guest! What would you like? Rum, brandy, Scottish whiskey?";
-				Link.l1 = "I'd like a bottle of excellent French wine and room's key.";
+				dialog.text = DLG_TEXT_BASE[508];
+				Link.l1 = DLG_TEXT_BASE[509];
 				Link.l1.go = "mtraxx_tortuga";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.Mtraxx.Retribution") && pchar.questTemp.Mtraxx.Retribution == "room" && npchar.city == "Tortuga")
 			{
-				dialog.text = "You have already paid for everything, monseniour, your room is upstairs.";
+				dialog.text = DLG_TEXT_BASE[510];
 				Link.l1 = "...";
 				Link.l1.go = "exit";
 				break;
 			}
-			
 			if(NPChar.quest.meeting == "0")
 			{
-				dialog.Text = GetNatPhrase(npchar, LinkRandPhrase("Welcome to tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "', sir. I'm glad to see you.","At your service, sir! In the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "' we are glad to welcome new visitors.","See you for the first time for me, sir? Do not hesitate, in the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "' you always feel at home!"), LinkRandPhrase("Come in, monsieur captain. This is your first time in tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "'?","Never met you before, monsieur. Let's get acquainted: I'm "+GetFullName(npchar)+", the innkeeper of '" + XI_ConvertString(NPChar.City + "TavernName") + "'.","I'm glad to welcome the new guest, Monsieur Captain! In the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "' first drink is always at my expense! I am the owner of this place, "+GetFullName(npchar)+", will welcome you."), LinkRandPhrase("Senor Captain! Welcome to the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "'!","Oh, what a shining hidalgo's visited the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "'! Is it your first time here, sir?","Greetings, caballero! I'm "+GetFullName(npchar)+", innkeeper of '" + XI_ConvertString(NPChar.City + "TavernName") + "', glad to welcome you here!"),LinkRandPhrase("Hello, mynheer captain. I am the owner of tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "'. First with us?","Good afternoon, mynheer. Welcome to the tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "'.","Very nice mynheer Captain! Tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "' greets you! Rum, wine, ale?"));
-				Link.l1 = LinkRandPhrase("A cozy place you've got here... Allow me to introduce myself - "+GetFullName(pchar)+", it's a pleasure to meet you.",""+GetFullName(pchar)+", it's a pleasure to meet you. So, what are you going to offer me?","My name is "+GetFullName(pchar)+" and I am new to this place. So, what would you offer to your guest?");
+				dialog.Text = GetNatPhrase(npchar, LinkRandPhrase(DLG_TEXT_BASE[283] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[284],DLG_TEXT_BASE[285] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[286],DLG_TEXT_BASE[287] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[288]), LinkRandPhrase(DLG_TEXT_BASE[289] + XI_ConvertString(NPChar.City + "TavernName") + "' ?",DLG_TEXT_BASE[290]+GetFullName(npchar)+DLG_TEXT_BASE[291] + XI_ConvertString(NPChar.City + "TavernName") + "'.",DLG_TEXT_BASE[292] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[293]+GetFullName(npchar)+DLG_TEXT_BASE[294]), LinkRandPhrase(DLG_TEXT_BASE[295] + XI_ConvertString(NPChar.City + "TavernName") + "' !",DLG_TEXT_BASE[296] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[297],DLG_TEXT_BASE[298]+GetFullName(npchar)+DLG_TEXT_BASE[299] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[300]),LinkRandPhrase(DLG_TEXT_BASE[301] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[302],DLG_TEXT_BASE[303] + XI_ConvertString(NPChar.City + "TavernName") + "'.",DLG_TEXT_BASE[304] + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[305]));
+				Link.l1 = LinkRandPhrase(DLG_TEXT_BASE[306]+GetFullName(pchar)+DLG_TEXT_BASE[307],""+GetFullName(pchar)+DLG_TEXT_BASE[308],DLG_TEXT_BASE[32]+GetFullName(pchar)+DLG_TEXT_BASE[309]);
 				Link.l1.go = "meeting";
 				NPChar.quest.meeting = "1";
 			}
@@ -121,49 +114,49 @@ void ProcessDialogEvent()
 		            if(CheckAttribute(PChar, "GenQuest.ChurchQuest_1.NoMoneyToBarmen"))
 		            {
 		            	iTemp = sti(PChar.GenQuest.ChurchQuest_1.MoneyToBarmen);
-		            	dialog.Text = "So, cap, have you brought me " + FindRussianMoneyString(iTemp) + ".";
+		            	dialog.Text = DLG_TEXT_BASE[312] + FindRussianMoneyString(iTemp) + ".";
 		            	if(sti(PChar.Money) >= iTemp)
 		            	{
-							link.l1 = "Yes, I have. Here they are...";
+							link.l1 = DLG_TEXT_BASE[313];
 							link.l1.go = "Tavern_ChurchGenQuest1_Node_4_1";
 						}
 						else
 						{
-							link.l1 = "No, I haven't yet...";
+							link.l1 = DLG_TEXT_BASE[314];
 							link.l1.go = "exit";
 						}
 		            }
 		            else
 		            {
-		            	dialog.Text = "What would you like, gracious "+ GetSexPhrase("sir","lady") +"?";
-						link.l1 = "A bottle of rum for my buddy at that table over there.";
+		            	dialog.Text = DLG_TEXT_BASE[310] + GetSexPhrase("sir","demoiselle") +"?";
+						link.l1 = DLG_TEXT_BASE[311];
 						link.l1.go = "Tavern_ChurchGenQuest1_Node_1";
 					}
 					break;
 				}
 				// <-- Квестовый генератор священника. Квест №1.
-				dialog.Text = pcharrepphrase(LinkRandPhrase(LinkRandPhrase("Oh, what honorable guests! Hey, you - make room for a gallant captain! And be quick about it, before he rushes you, ha-ha!","Oh! If it isn't "+GetFullName(pchar)+"! Not that we ordered a debauche, but please come in, cone in...","Oh, "+GetAddress_Form(NPChar)+", I see you're in a bad mood? Allow me to treat to you? Trust me, it's the best wine around..."),LinkRandPhrase("Oh, it's captain "+GetFullName(pchar)+"! Hey, you! Where are you going, ragamuffins?! Please excuse me, cap - they must have thought of some urgent things to do...","Oh, "+GetAddress_Form(NPChar)+" "+GetFullName(pchar)+"! That night surely is not going to be boring...","Good afternoon, "+GetFullName(pchar)+", I am glad to see you... But please - no scandals tonight, alright?"),LinkRandPhrase("Hello, captain. Suit yourself, but keep in mind that even captain Sharp himself kept up appearances in my establishment.","O-ho-ho! Look who's there? It's "+GetFullName(pchar)+"! himself! And we already started to get bored in your absence...","O-ho-ho! It's "+GetFullName(pchar)+" himself! I hope you're not going to scare away my patrons again with the stories of your adventures?")),LinkRandPhrase(LinkRandPhrase(""+GetFullName(pchar)+"! This old salt is always happy to see you in his establishment!","Please, captain, suit yourself! I am very happy to greet me favourite guest. What's your poison?","Glad to see you again, "+GetFullName(pchar)+"! Will you take a seat in the hall? Or shall I fill you a cup at the bar counter?"),LinkRandPhrase("Good afternoon, captain. Allow me to offer you excellent mulled wine!","Hello, captain "+GetFullName(pchar)+"! I am glad that you have come to visit again. What would you like?","I am glad to have you, "+GetAddress_Form(NPChar)+" "+GetFullName(pchar)+"! I see that you liked my establishment? I am doing everything I can to please you."),LinkRandPhrase("Sir captain! Welcome, welcome! I have got magnificent d'Anjou fit for kings - and saved it specially for you!",""+GetFullName(pchar)+"! I am so glad that you've come to visit. Shall I drive away all those ragmuffins or you would allow them to stay? Trust me, I would gladly clear the entire tavern only to please my best guest!","Once again we have captain "+GetFullName(pchar)+"! Hey, flirts - get the very best tablecloth to the captain's table!")));
-				Link.l1 = pcharrepphrase(RandPhraseSimple(RandPhraseSimple("Oh, I see I am remembered here... Hey, fill my cup, buddy, while I take a look around...","Calm down, buddy, today I am in a very benign mood. Let's start with rum, shall we?..."),RandPhraseSimple("Oh... I take it, you are not too happy to have me here? I hope I misheard you?","I believe your wine is better than your greeting? Otherwise I can get angry, you know...")),RandPhraseSimple(RandPhraseSimple("Always glad to visit you, buddy. So, what do you have to warm up an old salt, frozen in the wind?","Hey, buddy, your establishment gets better with each coming day! Coming to visit here is always a pleasure..."),RandPhraseSimple("You haven't forgotten an old wanderer? Hey, I am flattered, buddy.","So nice to see an old friend again... You still have rum to drink here, I hope?")));
+				dialog.Text = pcharrepphrase(LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[315],"Oh ! Mais si ce n'est pas "+GetFullName(pchar)+DLG_TEXT_BASE[316],"Oh, "+GetAddress_Form(NPChar)+DLG_TEXT_BASE[317]),LinkRandPhrase("Oh, c'est le capitaine "+GetFullName(pchar)+DLG_TEXT_BASE[318],"Oh, "+GetAddress_Form(NPChar)+" "+GetFullName(pchar)+DLG_TEXT_BASE[319],DLG_TEXT_BASE[320]+GetFullName(pchar)+DLG_TEXT_BASE[321]),LinkRandPhrase(DLG_TEXT_BASE[322],DLG_TEXT_BASE[323]+GetFullName(pchar)+DLG_TEXT_BASE[324],"O-ho-ho ! C'est "+GetFullName(pchar)+DLG_TEXT_BASE[325])),LinkRandPhrase(LinkRandPhrase(""+GetFullName(pchar)+DLG_TEXT_BASE[326],DLG_TEXT_BASE[327],DLG_TEXT_BASE[328]+GetFullName(pchar)+DLG_TEXT_BASE[329]),LinkRandPhrase(DLG_TEXT_BASE[330],"Salutation, capitaine "+GetFullName(pchar)+DLG_TEXT_BASE[331],DLG_TEXT_BASE[332]+GetAddress_Form(NPChar)+" "+GetFullName(pchar)+DLG_TEXT_BASE[333]),LinkRandPhrase(DLG_TEXT_BASE[334],""+GetFullName(pchar)+DLG_TEXT_BASE[335],DLG_TEXT_BASE[336]+GetFullName(pchar)+DLG_TEXT_BASE[337])));
+				Link.l1 = pcharrepphrase(RandPhraseSimple(RandPhraseSimple(DLG_TEXT_BASE[338],DLG_TEXT_BASE[339]),RandPhraseSimple(DLG_TEXT_BASE[340],DLG_TEXT_BASE[341])),RandPhraseSimple(RandPhraseSimple(DLG_TEXT_BASE[342],DLG_TEXT_BASE[343]),RandPhraseSimple(DLG_TEXT_BASE[344],DLG_TEXT_BASE[345])));
 				Link.l1.go = "step_node";
 			}
 			break;
 				
 			case "step_node":
-				dialog.Text = LinkRandPhrase("I am listening to you, captain.","Tavern '" + XI_ConvertString(NPChar.City + "TavernName") + "' at your service, Captain!","I listen, Cap'n! What will be your inquiry today?");
-				Link.l1 = "Are there guys on the island ready to set sail?";
+				dialog.Text = LinkRandPhrase(DLG_TEXT_BASE[35]+pchar.name+".","Taverne '" + XI_ConvertString(NPChar.City + "TavernName") + DLG_TEXT_BASE[31],DLG_TEXT_BASE[34]+pchar.name+DLG_TEXT_BASE[36]);
+				Link.l1 = DLG_TEXT_BASE[37];
 				Link.l1.go = "crew hire";
-				Link.l2 = "I hoped you could answer a couple of questions.";
+				Link.l2 = DLG_TEXT_BASE[38];
 				Link.l2.go = "int_quests";
 				if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 				{
-					link.l21 = "I would like to talk about financial affairs.";
+					link.l21 = DLG_TEXT_BASE[39];
 					link.l21.go = "LoanForAll";//(перессылка в кредитный генератор)
 				}
 				
 				// Квестовый генератор священника. Квест №2. Warship -->
 				if(CheckAttribute(PChar, "GenQuest.ChurchQuest_2.AskBarmen") && PChar.location == PChar.GenQuest.ChurchQuest_2.QuestTown + "_tavern")
 		            	{
-					link.l10 = LinkRandPhrase("Can you tell me anything about the recent robbery in the church?", "What do you know about the recent robbery in the church?", "Have you heard anything about the recent robbery in the church?");
+					link.l10 = LinkRandPhrase(DLG_TEXT_BASE[346], DLG_TEXT_BASE[347], DLG_TEXT_BASE[348]);
 					link.l10.go = "Tavern_GenQuest_Church_2_1";
 				}
 				// <-- Квестовый генератор священника. Квест №2.
@@ -171,7 +164,7 @@ void ProcessDialogEvent()
 				//Jason --> генератор Неудачливый вор
 				if (CheckAttribute(pchar, "GenQuest.Device.Shipyarder") && NPChar.location == pchar.GenQuest.Device.Shipyarder.City + "_tavern" && pchar.GenQuest.Device.Shipyarder == "begin" && !CheckAttribute(npchar, "quest.Device"))
 				{
-					link.l16 = "People say that you know just about everything in this colony. I want to buy "+pchar.GenQuest.Device.Shipyarder.Type+", and I was told that it had being sold in your town. Well, someone was selling it on the streets. Can you tell me anything about it?";
+					link.l16 = DLG_TEXT_BASE[349]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_BASE[350];
 					link.l16.go = "Device_Tavern";
 				}
 				// <-- генератор Неудачливый вор
@@ -179,7 +172,7 @@ void ProcessDialogEvent()
 				//Jason --> генератор Место под солнцем
 				if (CheckAttribute(pchar, "GenQuest.Sunplace.Trader") && pchar.GenQuest.Sunplace.Trader == "continue" && NPChar.location == pchar.GenQuest.Sunplace.Trader.CityT + "_tavern")
 				{
-					link.l17 = "Tell me about a profiteer by the name of "+pchar.GenQuest.Sunplace.Trader.Enemyname+". Where can I find him?";
+					link.l17 = DLG_TEXT_BASE[351]+pchar.GenQuest.Sunplace.Trader.Enemyname+DLG_TEXT_BASE[352];
 					link.l17.go = "Sunplace_Tavern";
 				}
 				// <-- генератор Место под солнцем
@@ -187,12 +180,12 @@ void ProcessDialogEvent()
 				// --> Голландский гамбит
 				if (CheckAttribute(pchar, "questTemp.HWIC.Holl") && pchar.questTemp.HWIC.Holl == "JacobOnMain" && NPChar.location == pchar.questTemp.HWIC.Holl.JacobCity + "_tavern")
 				{
-					link.l18 = "Hello, " + npchar.name + ". I need to find Jacob van Berg - where is he? I don't see him in your hall...";
+					link.l18 = npchar.name + DLG_TEXT_BASE[353];
 					link.l18.go = "HWICHollJacob_Tavern";
 				}
 				if (CheckAttribute(pchar, "questTemp.HWIC.Self") && pchar.questTemp.HWIC.Self == "start" && NPChar.nation == SPAIN && !CheckAttribute(npchar, "quest.HWICTalked"))
 				{
-					link.l18 = "Hello, " + npchar.name + ". I am looking for a caballero by the name of Fernando Rodriguez. Did he show up in your town?";
+					link.l18 = npchar.name + DLG_TEXT_BASE[354];
 					link.l18.go = "HWICSelfFernando_Tavern";
 				}
 				// <-- Голландский гамбит
@@ -200,7 +193,7 @@ void ProcessDialogEvent()
 				//Jason --> гонки на гидропланах
 				if (CheckAttribute(pchar, "GenQuest.Racing.Go.Advantage") && NPChar.location == pchar.GenQuest.Racing.Go.StartCity + "_tavern")
 				{
-					link.l19 = "I came to collect my winnings, which are kept safe with you. " + npchar.name + ".";
+					link.l19 = DLG_TEXT_BASE[355] + npchar.name + ".";
 					link.l19.go = "Race_Advantage";
 				}
 				// <-- гонки на гидропланах
@@ -208,14 +201,14 @@ void ProcessDialogEvent()
 				//Jason --> захват пассажиров
 				if (CheckAttribute(pchar, "GenQuest.Marginpassenger") && pchar.GenQuest.Marginpassenger == "take" && NPChar.location == pchar.GenQuest.Marginpassenger.Targetcity+"_tavern")
 				{
-					link.l20 = "I was wondering where can a find a man by the name of "+pchar.GenQuest.Marginpassenger.q2Name+"? He lives in your town.";
+					link.l20 = DLG_TEXT_BASE[356]+pchar.GenQuest.Marginpassenger.q2Name+DLG_TEXT_BASE[357];
 					link.l20.go = "Marginpassenger";
 				}
 				// <-- захват пассажиров
 			
-				link.l3 = pcharrepphrase("Is there a free room in your bug-infested hovel?", "Have you got a free room, I would stay here for a while.");
+				link.l3 = pcharrepphrase(DLG_TEXT_BASE[40], DLG_TEXT_BASE[41]);
 				link.l3.go = "room";
-				Link.l4 = "Alas, I am already leaving, " + NPChar.name + ". See you.";
+				Link.l4 = DLG_TEXT_BASE[42] + NPChar.name + DLG_TEXT_BASE[43];
 				Link.l4.go = "exit";
 		break;
 		
@@ -223,26 +216,26 @@ void ProcessDialogEvent()
 			// Квестовый генератор священника. Квест №1. Warship -->
 			if(CheckAttribute(PChar, "GenQuest.ChurchQuest_1.NeedToDialogWithBarmen") && PChar.location == PChar.GenQuest.ChurchQuest_1.CurPortManColony + "_tavern")
 	        {
-	            dialog.Text = "What would you like, gracious "+ GetSexPhrase("sir","lady") +"?";
-				link.l1 = "A bottle of rum for my buddy at that table over there.";
+	            dialog.Text = DLG_TEXT_BASE[310] + GetSexPhrase("sir","demoiselle") +"?";
+				link.l1 = DLG_TEXT_BASE[311];
 				link.l1.go = "Tavern_ChurchGenQuest1_Node_1";
 				break;
 			}
 			// <-- Квестовый генератор священника. Квест №1.
-			dialog.Text = LinkRandPhrase("I am listening to you, captain.","What can I offer you, captain?","So, cap, what are you going to order?");
-			Link.l1 = "I need a crew, " + NPChar.name + ".";
+			dialog.Text = DLG_TEXT_BASE[44]+GetFullName(pchar)+DLG_TEXT_BASE[45]+GetFullName(npchar)+DLG_TEXT_BASE[46] 
+			Link.l1 = DLG_TEXT_BASE[47] + NPChar.name + ".";
 			Link.l1.go = "crew hire";
-			Link.l2 = NPChar.name + ", let's have a talk...";
+			Link.l2 = NPChar.name + DLG_TEXT_BASE[48];
 			Link.l2.go = "int_quests";
 			if (CheckAttribute(pchar, "GenQuest.LoanChest.TakeChest") && sti(pchar.GenQuest.LoanChest.TargetIdx) == sti(NPChar.index))
 			{
-				link.l21 = "I would like to talk about financial affairs.";
+				link.l21 = DLG_TEXT_BASE[49];
 				link.l21.go = "LoanForAll";//(перессылка в кредитный генератор)
 			}
 			// Квестовый генератор священника. Квест №2. Warship -->
 			if(CheckAttribute(PChar, "GenQuest.ChurchQuest_2.AskBarmen") && PChar.location == PChar.GenQuest.ChurchQuest_2.QuestTown + "_tavern")
 	        {
-				link.l10 = LinkRandPhrase("Can you tell me anything about the recent robbery in the church?", "What do you know about the recent robbery in the church?", "Have you heard anything about the recent robbery in the church?");
+				link.l10 = LinkRandPhrase(DLG_TEXT_BASE[346], DLG_TEXT_BASE[347], DLG_TEXT_BASE[348]);
 				link.l10.go = "Tavern_GenQuest_Church_2_1";
 			}
 			// <-- Квестовый генератор священника. Квест №2.
@@ -250,7 +243,7 @@ void ProcessDialogEvent()
 			//Jason --> генератор Неудачливый вор
 			if (CheckAttribute(pchar, "GenQuest.Device.Shipyarder") && NPChar.location == pchar.GenQuest.Device.Shipyarder.City + "_tavern" && pchar.GenQuest.Device.Shipyarder == "begin" && !CheckAttribute(npchar, "quest.Device"))
 			{
-   				link.l16 = "People say that you know just about everything in this colony. I want to buy "+pchar.GenQuest.Device.Shipyarder.Type+", and I was told that it had being sold in your town. Well, someone was selling it on the streets. Can you tell me anything about it?";
+				link.l16 = DLG_TEXT_BASE[349]+pchar.GenQuest.Device.Shipyarder.Type+DLG_TEXT_BASE[350];
 				link.l16.go = "Device_Tavern";
 			}
 			// <-- генератор Неудачливый вор
@@ -258,7 +251,7 @@ void ProcessDialogEvent()
 			//Jason --> генератор Место под солнцем
 			if (CheckAttribute(pchar, "GenQuest.Sunplace.Trader") && pchar.GenQuest.Sunplace.Trader == "continue" && NPChar.location == pchar.GenQuest.Sunplace.Trader.CityT + "_tavern")
 			{
-   				link.l17 = "Tell me about a profiteer by the name of "+pchar.GenQuest.Sunplace.Trader.Enemyname+". Where can I find him?";
+				link.l17 = DLG_TEXT_BASE[351]+pchar.GenQuest.Sunplace.Trader.Enemyname+DLG_TEXT_BASE[352];
 				link.l17.go = "Sunplace_Tavern";
 			}
 			// <-- генератор Место под солнцем
@@ -266,12 +259,12 @@ void ProcessDialogEvent()
 			//--> Голландский гамбит
 			if (CheckAttribute(pchar, "questTemp.HWIC.Holl") && pchar.questTemp.HWIC.Holl == "JacobOnMain" && NPChar.location == pchar.questTemp.HWIC.Holl.JacobCity + "_tavern")
 				{
-					link.l18 = "Hello, " + npchar.name + ". I need to find Jacob van Berg - where is he? I don't see him in your hall...";
+					link.l18 = npchar.name + DLG_TEXT_BASE[353];
 					link.l18.go = "HWICHollJacob_Tavern";
 				}
 				if (CheckAttribute(pchar, "questTemp.HWIC.Self") && pchar.questTemp.HWIC.Self == "start" && NPChar.nation == SPAIN && !CheckAttribute(npchar, "quest.HWICTalked"))
 				{
-					link.l18 = "Hello, " + npchar.name + ". I am looking for a caballero by the name of Fernando Rodriguez. Did he show up in your town?";
+					link.l18 = npchar.name + DLG_TEXT_BASE[354];
 					link.l18.go = "HWICSelfFernando_Tavern";
 				}
 				//<-- Голландский гамбит
@@ -279,21 +272,21 @@ void ProcessDialogEvent()
 				//Jason --> гонки на гидропланах
 				if (CheckAttribute(pchar, "GenQuest.Racing.Go.Advantage") && NPChar.location == pchar.GenQuest.Racing.Go.StartCity + "_tavern")
 				{
-					link.l19 = "I came to collect my winnings, which are kept safe with you. " + npchar.name + ".";
+					link.l19 = DLG_TEXT_BASE[355] + npchar.name + ".";
 					link.l19.go = "Race_Advantage";
 				}
 				// <-- гонки на гидропланах
 				//Jason --> захват пассажиров
 				if (CheckAttribute(pchar, "GenQuest.Marginpassenger") && pchar.GenQuest.Marginpassenger == "take" && NPChar.location == pchar.GenQuest.Marginpassenger.Targetcity+"_tavern")
 				{
-					link.l20 = "I was wondering where can a find a man by the name of "+pchar.GenQuest.Marginpassenger.q2Name+"? He lives in your town.";
+					link.l20 = DLG_TEXT_BASE[356]+pchar.GenQuest.Marginpassenger.q2Name+DLG_TEXT_BASE[357];
 					link.l20.go = "Marginpassenger";
 				}
 				// <-- захват пассажиров
 				
-			link.l3 = pcharrepphrase("Is there a free room in your bug-infested hovel?", "Have you got a free room, I would stay here for a while.");
+			link.l3 = pcharrepphrase(DLG_TEXT_BASE[50], DLG_TEXT_BASE[51]);
 			link.l3.go = "room";
-			Link.l4 = "I guess I'll come back to you later.";
+			Link.l4 = DLG_TEXT_BASE[52];
 			Link.l4.go = "exit";
 		break;
 		
@@ -303,35 +296,35 @@ void ProcessDialogEvent()
 			
 			if (!ok)
 			{
-				Dialog.text = "And what would you need sailors for? I don't see your ship in the port.";
-				link.l1 = RandPhraseSimple("Exactly... I had moored in the wrong place.", "Forgot to enter the port...");
+				Dialog.text = DLG_TEXT_BASE[53];
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[54], DLG_TEXT_BASE[55]);
 				link.l1.go = "exit";
 				break;
 			}
 			
             if (makeint(environment.time) > 22.0 || makeint(environment.time) < 7.0)
 			{
-				Dialog.text = "Usually there are many people looking to become sailors, but it's too late now - they will start to show up in the morning. Perhaps, you'd like to rent a room and wait for them?";
-				link.l1 = "Alright. Do you have vacant rooms?";
+				Dialog.text = DLG_TEXT_BASE[56];
+				link.l1 = DLG_TEXT_BASE[57];
 				link.l1.go = "room";
-				link.l2 = "I am not interested in a room at the moment. See you.";
+				link.l2 = DLG_TEXT_BASE[58];
 				link.l2.go = "exit";
 			}
 			else
 			{
                 if (GetNationRelation2MainCharacter(sti(NPChar.nation)) == RELATION_ENEMY && sti(NPChar.nation) != PIRATE)
                 {
-                    Dialog.text = "You think that someone would approach you, while you're in hostility with us? Be thankful that I am not calling the guards.";
-					link.l1 = "Thanks.";
+                    Dialog.text = DLG_TEXT_BASE[59];
+					link.l1 = DLG_TEXT_BASE[60];
 					link.l1.go = "exit";
                 }
                 else
                 {
 					if (CheckAttribute(NPChar, "CrewHired.PGGId") && GetNpcQuestPastDayParam(NPChar, "CrewHired") < 3 && GetCrewQuantity(rColony) == 0)
 					{
-						Dialog.text = "I am sorry, but right now there's no one there. They all have left with gallant captain " + GetFullName(CharacterFromID(NPChar.CrewHired.PGGId)) + ".";
-						link.l1 = "That's a pity!";
-						link.l1.go = "exit_crew";
+						Dialog.text = DLG_TEXT_BASE[61] + GetFullName(CharacterFromID(NPChar.CrewHired.PGGId)) + ".";
+						link.l1 = DLG_TEXT_BASE[62];
+						link.l1.go = "exit";
 					}
 					else
 					{						
@@ -348,8 +341,8 @@ void ProcessDialogEvent()
 								}
 								else
 								{
-									dialog.text = "Captain, people say that you're quite stingy. I have no one here who'd like to join your crew.";
-									link.l1 = "I see...";
+									dialog.text = DLG_TEXT_BASE[33];
+									link.l1 = "Je vois...";
 									link.l1.go = "exit";
 								}
 							}
@@ -381,31 +374,31 @@ void ProcessDialogEvent()
 		break;
 	////////////////////////////////////////////////////////=============================================///////////////////////////////////////////////////////	
         case "int_quests":
-			dialog.text = "I am all ears.";
-			//link.l1 = "I am looking for a job. Can you help me?";
+			dialog.text = DLG_TEXT_BASE[63];
+			//link.l1 = DLG_TEXT_BASE[64];
 			//link.l1.go = "work";
 			//homo 15/06/06 слухи
-			link.l2 = LinkRandPhrase("Can you tell me the latest news?","What's going on in these lands?",
-                                    "What's new on land down there?");
+			link.l2 = LinkRandPhrase(DLG_TEXT_BASE[65],DLG_TEXT_BASE[66],
+                                    DLG_TEXT_BASE[67]);
 			link.l2.go = "rumours_tavern";
 			//homo
-			link.l3 = "I came on a different business.";
+			link.l3 = DLG_TEXT_BASE[68];
 			link.l3.go = "quests";
 			if(CheckAttribute(pchar,"GenQuest.EncGirl"))
 			{
 				if(pchar.GenQuest.EncGirl == "EncGirlFack_fighted")
 				{
-					link.l5 = "Do you know where can I find " + pchar.GenQuest.EncGirl.name +"?";
+					link.l5 = DLG_TEXT_BASE[358] + pchar.GenQuest.EncGirl.name +"?";
 					link.l5.go = "EncGirl_1";
 				}	
 				if(pchar.GenQuest.EncGirl == "toParents" || pchar.GenQuest.EncGirl == "FindLover")
 				{
-					link.l6 = "Can you tell me where should I look for " + pchar.GenQuest.EncGirl.sLoverId + "?";
+					link.l6 = DLG_TEXT_BASE[359] + pchar.GenQuest.EncGirl.sLoverId + "?";
 					link.l6.go = "EncGirl_3";
 				}
 				if(pchar.GenQuest.EncGirl == "toLoverFather" && pchar.GenQuest.EncGirl.LoverFather == "tavern_keeper" && pchar.GenQuest.EncGirl.LoverCity == npchar.city)
 				{
-					link.l7 = "Hello, I came by your son's invitation."; 
+					link.l7 = DLG_TEXT_BASE[360]; 
 					link.l7.go = "EncGirl_4";
 					pchar.quest.EncGirl_GetLoverFather.over = "yes";
 				}
@@ -416,31 +409,31 @@ void ProcessDialogEvent()
 				{												
 					if(pchar.GenQuest.CaptainComission.Speak_Tavern == true)
 					{
-						link.l9 = "So, have you seen  " + pchar.GenQuest.CaptainComission.Name + "?";
+						link.l9 = DLG_TEXT_BASE[361] + pchar.GenQuest.CaptainComission.Name + "?";
 						link.l9.go = "CaptainComission_3";
 					}
 					else
 					{
-						link.l9 = "Can you tell me where should I look for  " + pchar.GenQuest.CaptainComission.Name + "?";
+						link.l9 = DLG_TEXT_BASE[362] + pchar.GenQuest.CaptainComission.Name + "?";
 						link.l9.go = "CaptainComission_1";
 					}
 				}	
 
 				if(pchar.GenQuest.CaptainComission.variant == "A2" && pchar.GenQuest.CaptainComission == "Begin_1")
 				{
-					link.l9 = "Do you know where can I find the captain of a patrol " + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + "?";
+					link.l9 = DLG_TEXT_BASE[363] + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + "?";
 					link.l9.go = "CaptainComission_Tavern7";					
 				}				
 				if(pchar.GenQuest.CaptainComission.variant == "A3" && pchar.GenQuest.CaptainComission == "Begin_1")
 				{
 					if(pchar.GenQuest.CaptainComission.Speak_Tavern == true)
 					{
-						link.l9 = "So, have you seen " + GetName( NAMETYPE_ORIG, pchar.GenQuest.CaptainComission.CanoneerName, NAME_NOM) + "?";
+						link.l9 = DLG_TEXT_BASE[361] + GetName( NAMETYPE_ORIG, pchar.GenQuest.CaptainComission.CanoneerName, NAME_NOM) + "?";
 						link.l9.go = "CaptainComission_3";
 					}
 					else
 					{					
-						link.l9 = "Do you know anything about the captain of a patrol " + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + "?";
+						link.l9 = DLG_TEXT_BASE[362] + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + "?";
 						link.l9.go = "CaptainComission_Tavern1";
 						if(!CheckAttribute(pchar,"GenQuest.CaptainComission.GetRumour"))
 						{
@@ -452,35 +445,35 @@ void ProcessDialogEvent()
 			}
 			if(CheckAttribute(pchar,"GenQuest.Hold_GenQuest") && NPChar.city == pchar.GenQuest.Hold_GenQuest.City && pchar.GenQuest.Hold_GenQuest.Speak_Tavern == false )
 			{
-				link.l10 = "Could you tell me where can I find a man called " + pchar.GenQuest.Hold_GenQuest.Name + "?";
+				link.l10 = DLG_TEXT_BASE[364] + pchar.GenQuest.Hold_GenQuest.Name + "?";
 				link.l10.go = "hold_genquest1";
 			}
 			if (CheckCharacterItem(pchar, "CaptainBook") && CheckAttribute(pchar, "questTemp.different.GiveShipLetters") && !CheckAttribute(pchar, "questTemp.different.GiveShipLetters.speakTavern") && (pchar.questTemp.different.GiveShipLetters.city == npchar.city))
 			{
-				link.l11 = "I have found by chance not far from here the ship documents....";
+				link.l11 = DLG_TEXT_BASE[365];
 				link.l11.go = "ShipLetters_4";			
 			}
 
 			// Jason --> квест губера на поиск дезертира
 			if(CheckAttribute(pchar, "GenQuest.FindFugitive") && pchar.GenQuest.FindFugitive != "Late" && sti(NPChar.nation) == PIRATE)
 			{
-				link.l12 = "Listen, I am looking for an old friend of mine, "+pchar.GenQuest.FindFugitive.Name+" is his name. A skipper told me that he was heading to your settlement. Have you met him, by a chance?";
+				link.l12 = DLG_TEXT_BASE[366]+pchar.GenQuest.FindFugitive.Name+DLG_TEXT_BASE[367];
 				link.l12.go = "FindFugitiveTav";
 			}
 			//<-- поиск дезертира
 
-			link.l15 = "Thank you, nothing.";
-			link.l15.go = "exit";
+			link.l99 = DLG_TEXT_BASE[70];
+			link.l99.go = "exit";
 		break;
 		
 		case "hold_genquest1":
 			switch(sti(pchar.GenQuest.Hold_GenQuest.TavernVariant))
 			{
 				case 0:
-					dialog.text = LinkRandPhrase("What did you say? " + pchar.GenQuest.Hold_GenQuest.Name + "? Hmm... Never heard of him.",
-						"Are you certain that he hails from our village? I've never heard of such a person.",
-						"There wasn't anyone like that in our village. Never heard of him in all my time.");
-					link.l1 = "Are you certain?";
+					dialog.text = LinkRandPhrase(DLG_TEXT_BASE[368] + pchar.GenQuest.Hold_GenQuest.Name + DLG_TEXT_BASE[369],
+						DLG_TEXT_BASE[370],
+						DLG_TEXT_BASE[371]);
+					link.l1 = DLG_TEXT_BASE[372];
 					link.l1.go = "hold_genquest2";					
 				break;
 				
@@ -512,25 +505,25 @@ void ProcessDialogEvent()
 							pchar.GenQuest.Hold_GenQuest.found = "store";
 						break;
 					} 
-					dialog.text = "Visit " + pchar.GenQuest.Hold_GenQuest.foundStr + ", he can be found there quite often.";
-					link.l1 = "Thank you, I'll do just that.";
+					dialog.text = "Visitez " + pchar.GenQuest.Hold_GenQuest.foundStr + DLG_TEXT_BASE[373];
+					link.l1 = DLG_TEXT_BASE[374];
 					link.l1.go = "hold_genquest3";				
 				break;
 				
 				case 2:
 					dialog.text = LinkRandPhrase(
-						RandPhraseSimple("What did you say? " + pchar.GenQuest.Hold_GenQuest.Name + "? Hmm... Never heard of him. Are you certain that he hails from our village? I've never heard of such a person.",
-						"He-he... Well, now only the Lord Himself knows where to look for him - in hell or in heavens. He died over a year ago, but people are still sniffing out about him... No rest for the poor guy..."),
-						RandPhraseSimple("You will not find him there - in the land of the living at least. He died not so long ago - yellow fever... God rest his soul... What a stout man he used to be! When he was young, he was a great adventurer! But when death comes after you, there is not much you can do...",
-						"Oh, have you missed him? He left these places long ago. No one knows where he went to - maybe to the kids, maybe went to Europe. He just gathered his belongings and made off."),
-						"Oh, are you looking for that " + pchar.GenQuest.Hold_GenQuest.Name + " who suddenly grew rich and bought himself a house in New Albion? You know, there were times when I sold him rum in credit - he still owes me. People are so ungrateful, you know.");
-					link.l1 = "I see. Well, thanks anyway.";	
+						RandPhraseSimple(DLG_TEXT_BASE[368] + pchar.GenQuest.Hold_GenQuest.Name + DLG_TEXT_BASE[370],
+						DLG_TEXT_BASE[375]),
+						RandPhraseSimple(DLG_TEXT_BASE[376],
+						DLG_TEXT_BASE[377]),
+						DLG_TEXT_BASE[378] + pchar.GenQuest.Hold_GenQuest.Name + DLG_TEXT_BASE[379]);
+					link.l1 = DLG_TEXT_BASE[380];	
 					link.l1.go = "hold_genquest4";
 				break;
 				
 				case 3:
-					dialog.text = "Well, where else to look for him, if not at the tavern? He's a frequent visitor there - drowns his old sins in wine, he-he. Come back a bit later - if he shows up, I'll tell him to wait for you.";	
-					link.l1 = "Thank you, I'll do that.";
+					dialog.text = DLG_TEXT_BASE[381];	
+					link.l1 = DLG_TEXT_BASE[382];
 					link.l1.go = "hold_genquest5";
 				break;
 			}
@@ -538,9 +531,9 @@ void ProcessDialogEvent()
 		break;
 		
 		case "hold_genquest2":
-			dialog.text = "How can't I be sure if I know everyone here personally. It's not the first year I am running the tavern here. "+
-				"I have seen them all in all possible conditions. Sometimes a wife would come to pick her husband up, at times they would leave by themselves, and on some occasions I had to chuck them out. 'Am I sure?!' Of course, I am!";
-			link.l1 = "Well, thanks anyway...";	
+			dialog.text = DLG_TEXT_BASE[383]+
+				DLG_TEXT_BASE[384];
+			link.l1 = DLG_TEXT_BASE[385];	
 			link.l1.go = "exit";
 			pchar.GenQuest.Hold_GenQuest = "prisoner_escaped";
 			AddQuestRecord("HoldQuest", "7");
@@ -575,8 +568,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "CaptainComission_1":
-			dialog.text = LinkRandPhrase("He is a frequent visitor here, but right now he's not there. Come back from time to time - I will tell him to wait here for you if he shows up.","He is a frequent visitor here. If you come back later, you're certain to find him there.","Come back from time to time - he is a frequent visitor here. I will let him know that you were looking for him.");
-			link.l1 = "Thank you, I'll come back later...";
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[386],DLG_TEXT_BASE[387],DLG_TEXT_BASE[388]);
+			link.l1 = DLG_TEXT_BASE[389];
 			link.l1.go = "CaptainComission_2";
 			pchar.GenQuest.CaptainComission.Speak_Tavern = true;
 		break;
@@ -591,48 +584,48 @@ void ProcessDialogEvent()
 		break;
 		
 		case "CaptainComission_3":
-			dialog.text = "He's already come here, so should be somewhere around...";
-			link.l1 = "Thanks.";
+			dialog.text = DLG_TEXT_BASE[390];
+			link.l1 = DLG_TEXT_BASE[391];
 			link.l1.go = "exit";
 			DeleteAttribute(pchar,"GenQuest.CaptainComission.Speak_Tavern");
 		break;
 		
 		case "CaptainComission_Tavern1":
 			pchar.GenQuest.CaptainComission.Speak_Tavern = true;
-			dialog.text = "Is there a man who doesn't know him? The entire settlement is talking about him for several days already.";
-			link.l1 = "Could you tell me more?";
+			dialog.text = DLG_TEXT_BASE[392];
+			link.l1 = DLG_TEXT_BASE[393];
 			link.l1.go = "CaptainComission_Tavern2";
 		break;
 		
 		case "CaptainComission_Tavern2":
-			dialog.text = "In general, the captain was executed, same can be said about some of his crewmen. The rest were scattered across the archipelago absent their ranks and positions… For what? According to a judge, he had sunken a vessel during a patrol and hidden a cargo for himself\n"+
-				"But to believe in it with difficulty, because neither the owner of this vessel or goods have not been found ... So far all the bays are combing.";
-			link.l1 = "What, no one of the crew did reveal the location of the cache?";	
+			dialog.text = DLG_TEXT_BASE[394]+
+				DLG_TEXT_BASE[395];
+			link.l1 = DLG_TEXT_BASE[396];	
 			link.l1.go = "CaptainComission_Tavern3";	
 		break;
 		
 		case "CaptainComission_Tavern3":
-			dialog.text = "Not a single one!.. I still can't understand, why would the governor believe in that slander so eagerly. Captain " + pchar.GenQuest.CaptainComission.Name + " had a decent reputation, and his crew was so well-trained and disciplined, that any admiral would envy him.";
-			link.l1 = "And where should I look for the surviving crew members?";
+			dialog.text = DLG_TEXT_BASE[397] + pchar.GenQuest.CaptainComission.Name + DLG_TEXT_BASE[398];
+			link.l1 = DLG_TEXT_BASE[399];
 			link.l1.go = "CaptainComission_Tavern4";
 		break;
 		
 		case "CaptainComission_Tavern4":
-			dialog.text = "That I don't know - they all have been taken away... Although... there's still one of them remaining, but I doubt you would learn much from him. He was contused. You know, he served as a gunner under " + pchar.GenQuest.CaptainComission.Name + ". He was found unconscious in some cove two days after that accident. First he was sent to the hospital and treated like a hero, but as the plot thickened, they threw him into the dungeon and tried to interrogate him, but then decided that first he should be medically treated, anyway.";
-			link.l1 = "So he's in the settlement right now?";
+			dialog.text = DLG_TEXT_BASE[400] + pchar.GenQuest.CaptainComission.Name + DLG_TEXT_BASE[401];
+			link.l1 = DLG_TEXT_BASE[402];
 			link.l1.go = "CaptainComission_Tavern5";
 		break;
 		
 		case "CaptainComission_Tavern5":
 			pchar.GenQuest.CaptainComission.CanoneerName = "l" + rand(GetNamesCount(NAMETYPE_ORIG) - 1);
-			dialog.text = "Yes, " + GetName( NAMETYPE_ORIG, pchar.GenQuest.CaptainComission.CanoneerName, NAME_NOM) + " is his name. He drops in from time to time, begging for rum. If I see him, I'll tell him to wait here for you.";
-			link.l1 = "Thank you, I'll come back later.";
+			dialog.text = "Oui, " + GetName( NAMETYPE_ORIG, pchar.GenQuest.CaptainComission.CanoneerName, NAME_NOM) + DLG_TEXT_BASE[403];
+			link.l1 = DLG_TEXT_BASE[404];
 			link.l1.go = "CaptainComission_Tavern6";
 		break;
 		
 		case "CaptainComission_Tavern6":
 			AddQuestRecord("CaptainComission2", "39");
-			AddQuestUserData("CaptainComission2", "sShipType", GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Gen"))); 
+			AddQuestUserData("CaptainComission2", "sShipType", GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc"))); 
 			AddQuestUserData("CaptainComission2", "sName", pchar.GenQuest.CaptainComission.Name);
 			AddQuestUserData("CaptainComission2", "sCharName", GetName( NAMETYPE_ORIG, pchar.GenQuest.CaptainComission.CanoneerName, NAME_ABL));
 			AddQuestUserData("CaptainComission2", "sShipName", pchar.GenQuest.CaptainComission.ShipTypeName);			
@@ -643,20 +636,20 @@ void ProcessDialogEvent()
 		
 		case "CaptainComission_Tavern7":
 			DeleteAttribute(pchar,"GenQuest.CaptainComission.Speak_Tavern");
-			dialog.text = "Do I know him? Of course, I do. And what do you need him for?";
-			link.l1 = "I have business with him...";
+			dialog.text = DLG_TEXT_BASE[405];
+			link.l1 = DLG_TEXT_BASE[406];
 			link.l1.go = "CaptainComission_Tavern8";
 		break;
 		
 		case "CaptainComission_Tavern8":
-			dialog.text = "You, " + GetAddress_Form(pchar) + ", should be cautious with that 'business'. " + pchar.GenQuest.CaptainComission.Name + " is detained on suspicion of a service crime, and the governor's sleuths are now scouring the island, searching for his accomplices.";
-			link.l1 = "You don't say so! And what did he do?";
+			dialog.text = "Vous, " + GetAddress_Form(pchar) + DLG_TEXT_BASE[407] + pchar.GenQuest.CaptainComission.Name + DLG_TEXT_BASE[408];
+			link.l1 = DLG_TEXT_BASE[409];
 			link.l1.go = "CaptainComission_Tavern9";
 		break;
 		
 		case "CaptainComission_Tavern9":
-			dialog.text = "I don't know whether it's true or not, but they say that he had stashed away the cargo confiscated from a passing pirate ship. And still no one found neither that pirate, nor the cargo. I still can't understand, why would the governor believe in that slander so eagerly. Captain " + pchar.GenQuest.CaptainComission.CapName + "  had a decent reputation, and he was a great soldier, you can trust my word, " + GetAddress_Form(pchar) + ".";
-			link.l1 = "Well, thanks for the warning. See you.";
+			dialog.text = DLG_TEXT_BASE[410] + pchar.GenQuest.CaptainComission.CapName + DLG_TEXT_BASE[411] + GetAddress_Form(pchar) + ".";
+			link.l1 = DLG_TEXT_BASE[412];
 			link.l1.go = "CaptainComission_Tavern10";
 		break;
 		
@@ -667,29 +660,29 @@ void ProcessDialogEvent()
 				SaveCurrentQuestDateParam("GenQuest.CaptainComission.GetRumour");
 				SetFunctionTimerConditionParam("CaptainComission_TimeIsOver", 0, 0, 2, MakeInt(24 - GetHour()), false);
 				AddQuestRecord("CaptainComission2", "19");
-				AddQuestUserData("CaptainComission2", "sShipType", GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Gen"))); // лесник окончание
+				AddQuestUserData("CaptainComission2", "sShipType", GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc"))); 
 				AddQuestUserData("CaptainComission2", "sName", pchar.GenQuest.CaptainComission.Name);
 			}			
 			DialogExit();
 		break;
 				
 		case "EncGirl_1":
-			dialog.text = "And what do you need her for?";
-			link.l1 = "I have business with her...";
+			dialog.text = DLG_TEXT_BASE[413];
+			link.l1 = DLG_TEXT_BASE[414];
 			link.l1.go = "EncGirl_2";
 		break;
 		
 		case "EncGirl_2":
-			dialog.text = "Half the men in our settlement seem to have business with her. If our women had caught her, they would toss her beyond the town gates, naked.";
-			link.l1 = "Oh well... "+ GetSexPhrase("It seems that I got into a long line, then. Well, if anyone else comes around asking for her, tell them to stand in line behind me.","I see") +"...";
+			dialog.text = DLG_TEXT_BASE[415];
+			link.l1 = "Oh Bien... "+ GetSexPhrase(DLG_TEXT_BASE[416],"Je vois") +"...";
 			link.l1.go = "exit";
 			pchar.quest.EncGirl_SpeakTavernKeeper.over = "yes";
 			DeleteAttribute(pchar, "GenQuest.EncGirl");
 		break;
 		
 		case "EncGirl_3":
-			dialog.text = "He is a frequent visitor here - he usually comes over in search for a job, but right now he's not there. Come back from time to time - I will tell him to wait here for you if he shows up.";
-			link.l1 = "Thank you, I'll come back later...";
+			dialog.text = DLG_TEXT_BASE[417];
+			link.l1 = DLG_TEXT_BASE[418];
 			link.l1.go = "exit";
 			pchar.GenQuest.EncGirl = "FindingLover";
 			pchar.quest.EncGirl_ExitTavern.win_condition.l1 = "ExitFromLocation";
@@ -700,27 +693,27 @@ void ProcessDialogEvent()
 		case "EncGirl_4":
 			if(sti(pchar.GenQuest.EncGirl.LoverFatherAngry) == 0)
 			{
-				dialog.text = "Oh, so you are "+ GetSexPhrase("that captain, who brought","that lass, who brought") +" my prodigal son with a young bride?";
-				link.l1 = "Yes, it was me who had helped.";
+				dialog.text = DLG_TEXT_BASE[419]+ GetSexPhrase(DLG_TEXT_BASE[420],DLG_TEXT_BASE[421]) +DLG_TEXT_BASE[422];
+				link.l1 = DLG_TEXT_BASE[423];
 				link.l1.go = "EncGirl_5";
 			}
 			else
 			{
-				dialog.text = "Oh, there "+ GetSexPhrase("he is, our benefactor","she is, our benefactress") +". Expecting a reward, I take it?";
-				link.l1 = "Well, I'm fine without a reward, but just your thanks would do well.";
+				dialog.text = DLG_TEXT_BASE[424]+ GetSexPhrase(DLG_TEXT_BASE[425],DLG_TEXT_BASE[426]) +DLG_TEXT_BASE[427];
+				link.l1 = DLG_TEXT_BASE[428];
 				link.l1.go = "EncGirl_6";			
 			}
 		break;
 		
 		case "EncGirl_5":
-			dialog.text = "I am very grateful to you that you haven't abandoned my child in dire straits and helped him to find a way out of a delicate situation. Allow me to thank you and please accept this modest sum and a gift from me personally.";
-			link.l1 = "Thanks. Helping out this young couple was my pleasure.";
+			dialog.text = DLG_TEXT_BASE[429];
+			link.l1 = DLG_TEXT_BASE[430];
 			link.l1.go = "EncGirl_5_1";
 		break;
 		
 		case "EncGirl_6":
-			dialog.text = "Thanks? What thanks?! It's been a half a year since that blockhead was hanging around without a job - and look at him, he's got enough time for love affairs! When I was his age, I was already running my own business! Pfft! A governor has a marriageable daughter - and that dunce has brought a slut without kith or kin to my house and dared to ask for my blessing!";
-			link.l1 = "Hmm... Apparently, you don't believe in sincere feelings?";
+			dialog.text = DLG_TEXT_BASE[431];
+			link.l1 = DLG_TEXT_BASE[432];
 			link.l1.go = "EncGirl_6_1";		
 		break;
 		
@@ -735,8 +728,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "EncGirl_6_1":
-			dialog.text = "What feelings? What kind of feelings are you talking about? Feelings... how can one be so light-minded at your age?! Shame on you to indulge the young in their caprices and act as a procurer! Not only have you taken a girl from her home, but you also ruined my greenhorn's life. There will be no thanks to you. Farewell.";
-			link.l1 = "Alright, and all the same to you...";
+			dialog.text = DLG_TEXT_BASE[433];
+			link.l1 = DLG_TEXT_BASE[434];
 			link.l1.go = "EncGirl_6_2";
 		break;
 		
@@ -755,16 +748,16 @@ void ProcessDialogEvent()
 			pchar.questTemp.different.GiveShipLetters.speakTavern = true;
 			if(sti(pchar.questTemp.different.GiveShipLetters.variant) == 0)
 			{
-				dialog.text = "Let me take a look! Hmm... But you're a captain yourself. I think you should see the harbour master about this.";
-				link.l1 = "Thank you for your advice.";
+				dialog.text = DLG_TEXT_BASE[435];
+				link.l1 = DLG_TEXT_BASE[436];
 				link.l1.go = "exit";
 			}
 			else
 			{
-				dialog.text = "Let me take a look! Oh! Judging by the name, this belongs to one of my patrons, quite a respected person. I myself can hand these documents over to the owner. Will you give them to me?";
-				link.l1	= "Probably, not...";
+				dialog.text = DLG_TEXT_BASE[437];
+				link.l1	= DLG_TEXT_BASE[438];
 				link.l1.go = "exit";
-				link.l2 = "Take them. I'm happy I was able be useful to him.";
+				link.l2 = DLG_TEXT_BASE[439];
 				link.l2.go = "ShipLetters_end";				
 			}	
 		break;
@@ -784,38 +777,38 @@ void ProcessDialogEvent()
 		case "work":
 			if (sti(NPChar.nation) != PIRATE && GetNationRelation2MainCharacter(sti(NPChar.nation)) == RELATION_ENEMY)
 			{
-				dialog.text = RandPhraseSimple("I don't care whom to serve since money has no nationality. But I will not be helping you since you came under the flag of " + NationNameGenitive(sti(pchar.nation)) + ".", "I am just a simple tavern owner, but collaboration with " + NationNameAblative(sti(pchar.nation)) + " doesn't seem appealing to me.");
-				link.l1 = RandPhraseSimple("Well, as you wish...", "Well, as you like...");
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[71] + NationNameGenitive(sti(pchar.nation)) + "!", DLG_TEXT_BASE[72] + NationNameAblative(sti(pchar.nation)) + DLG_TEXT_BASE[73]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[74], DLG_TEXT_BASE[75]);
 				link.l1.go = "exit";
 				break;
 			}
 			if (isBadReputation(pchar, 40))
 			{
-				dialog.text = RandPhraseSimple("We usually have a lot of passengers here. Still, I don't think that there would be even one duffy among them, who might agree to travel on your ship. Your ill repute precedes you, and the reputation of an honest captain is yet to be won.", "I am quite frequently approached by merchants who need escorting. But your ill repute precedes you, and I will not recommend you to anyone. I care for my own reputation, you know.");
-				link.l1 = RandPhraseSimple("Oh, really, you shouldn't believe all these gossips...", "I see. It's difficult to make everyone shut up.", "People are just too faint-hearted these days...");
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[77], DLG_TEXT_BASE[78]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[79], DLG_TEXT_BASE[80]);
 				link.l1.go = "exit";
 				break;
 			}
 			if (sti(Pchar.Ship.Type) == SHIP_NOTUSED)
         	{
-				dialog.text = "And where is your ship? Or are you going to carry the passengers around your neck?";
-				link.l1 = "Hmm, you got a point...";
+				dialog.text = DLG_TEXT_BASE[95];
+				link.l1 = DLG_TEXT_BASE[97];
 				link.l1.go = "exit";
 				break;
 			}
-			dialog.text = "I might have a job if you're not afraid to come to pirate settlements or to the ports of enemy nations. Are you looking for something in particular?";
-			link.l1 = "That shouldn't be a problem. I guess I could provide escort.";
+			dialog.text = DLG_TEXT_BASE[76];
+			link.l1 = DLG_TEXT_BASE[82];
 			link.l1.go = "work_1";
-			link.l2 = "Do you have any passengers? I can take them wherever they want, if they pay for it.";
+			link.l2 = DLG_TEXT_BASE[102];
 			link.l2.go = "work_2";
-			link.l3 = "No, such work is not for me. Thanks.";
+			link.l3 = DLG_TEXT_BASE[98];
 			link.l3.go = "exit";
 		break;
 
 		case "work_1":
-				dialog.text = "They usually do not ask me about escorting. Ask the merchants in the tavern - perhaps they would need your services.";
-				link.l1 = "Fine, as you say.";
-                link.l1.go = "exit";
+				dialog.text = DLG_TEXT_BASE[81];
+				link.l1 = DLG_TEXT_BASE[85];
+                link.l1.go = "ConvoyAreYouSure";
 		break;
 
 		case "work_2":
@@ -823,36 +816,36 @@ void ProcessDialogEvent()
     		{					
 				if (GetSummonSkillFromName(pchar, SKILL_LEADERSHIP) < 5)//при низком авторитете не даем
 				{
-					dialog.text = "I am sorry, but I don't have anyone willing to travel with you.";
-					link.l1 = "I see. Well, as you say.";
+					dialog.text = DLG_TEXT_BASE[83];
+					link.l1 = DLG_TEXT_BASE[84];
 					link.l1.go = "exit";
 					break;
 				}
 		         // пассажир
 				if (drand(6) > 1)
 				{
-					dialog.Text = "There's one guy, who just came in - he was recently asking about a passing vessel. You can talk to him, if you like.";
-					link.l1 = RandPhraseSimple("Who is he? Maybe he is a crook? Or, even worse, a wanted criminal?", "And who is he? Will there be any trouble with him?");
+					dialog.Text = DLG_TEXT_BASE[89];
+					link.l1 = RandPhraseSimple(DLG_TEXT_BASE[90], DLG_TEXT_BASE[91]);
 					Link.l1.go = "PassangerAreYouSure";
 				}
 				else
 				{
-					dialog.text = "No, today no one ha asked about it. Perhaps, another day.";
-					link.l1 = RandPhraseSimple("Well, if it's not there, it's not...", "Just my luck... Oh, well, see you, then.");
+					dialog.text = DLG_TEXT_BASE[92];
+					link.l1 = RandPhraseSimple(DLG_TEXT_BASE[93], DLG_TEXT_BASE[94]);
 					link.l1.go = "exit";
 				}
             }
     		else
     		{
-				dialog.text = "There's no one for today. Come back in a couple of days.";
-				link.l1 = "Fine, as you say.";
+				dialog.text = DLG_TEXT_BASE[86];
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[87], DLG_TEXT_BASE[88]);
                 link.l1.go = "exit";
     		}
         break;
 
         case "ConvoyAreYouSure":
-		    dialog.text = LinkRandPhrase("Who could know? You asked - I answered.", "Well, this to you most to solve. I would not vouch for anyone there.", "Solve itself, come to me all sorts. It's a tavern, and not the governor's residence.");
-			Link.l1 = "Thanks, we'll bargain, then.";
+		    dialog.text = LinkRandPhrase(DLG_TEXT_BASE[98], DLG_TEXT_BASE[99], DLG_TEXT_BASE[100]);
+			Link.l1 = DLG_TEXT_BASE[103];
 			Link.l1.go = "exit";
 			pchar.quest.destination = findTraderCity(npchar);
 			pchar.ConvoyQuest.City = npchar.city;
@@ -861,8 +854,8 @@ void ProcessDialogEvent()
         break;
 
         case "PassangerAreYouSure":
-		    dialog.text = LinkRandPhrase("Who could know? You asked - I answered.", "Well, this to you most to solve. I would not vouch for anyone there.", "Solve itself, come to me all sorts. It's a tavern, and not the governor's residence.");
-			Link.l1 = "I see. Let's figure out, who is this guy.";
+		    dialog.text = LinkRandPhrase(DLG_TEXT_BASE[104], DLG_TEXT_BASE[105], DLG_TEXT_BASE[101]);
+			Link.l1 = DLG_TEXT_BASE[106];
 			Link.l1.go = "exit";
 			sGlobalTemp = findPassangerCity(npchar);
 			pchar.GenQuest.GetPassenger_City = npchar.city;
@@ -884,40 +877,40 @@ void ProcessDialogEvent()
 		case "room":
    			if (chrDisableReloadToLocation || CheckAttribute(pchar, "questTemp.different.Church_NightGuard")) //кто-то должен подойти к ГГ.
 			{
-				dialog.text = "The room is occupied, " + GetAddress_Form(NPChar) + ", there's nothing I can do for you.";
-				link.l1 = "Well, that's a pity...";
+				dialog.text = DLG_TEXT_BASE[107] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[108];
+				link.l1 = DLG_TEXT_BASE[109];
 				link.l1.go = "exit";
 				break;
 			}
 			// суп из черепахи
 			if (CheckAttribute(pchar, "questTemp.Terrapin.Room_close") && npchar.location == "Tortuga_tavern")
 			{
-				dialog.text = "Monsieur Henri Thibaut is renting the room at the moment, and he paid for a month in advance, so there's nothing I can do for you, captain.";
-				link.l1 = "Well, that's a pity...";
+				dialog.text = DLG_TEXT_BASE[69];
+				link.l1 = DLG_TEXT_BASE[109];
 				link.l1.go = "exit";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.Terrapin") && pchar.questTemp.Terrapin == "cave" && npchar.location == "Tortuga_tavern")
 			{
-				dialog.text = "The room is occupied, " + GetAddress_Form(NPChar) + ", there's nothing I can do for you.";
-				link.l1 = "Well, that's a pity...";
+				dialog.text = DLG_TEXT_BASE[107] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[108];
+				link.l1 = DLG_TEXT_BASE[109];
 				link.l1.go = "exit";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.Guardoftruth") && pchar.questTemp.Guardoftruth == "shore" && npchar.location == "Baster_tavern") // 070712
 			{
-				dialog.text = "The room is occupied, " + GetAddress_Form(NPChar) + ", there's nothing I can do for you.";
-				link.l1 = "Well, that's a pity...";
+				dialog.text = DLG_TEXT_BASE[107] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[108];
+				link.l1 = DLG_TEXT_BASE[109];
 				link.l1.go = "exit";
 				break;
 			}
 			//-->> квест официантки
 			if (pchar.questTemp.different == "FackWaitress_toRoom")
 			{
-				dialog.text = "You want to rent a room? No problem. 100 coins on the nail - and it's yours.";
+				dialog.text = DLG_TEXT_BASE[112];
 				if (sti(pchar.money) >= 100)
 				{
-					link.l1 = "Here's your money. Show me to my room.";
+					link.l1 = DLG_TEXT_BASE[113];
 					link.l1.go = "exit";
 					AddMoneyToCharacter(pchar, -100);
 					LocatorReloadEnterDisable(npchar.city + "_tavern", "reload2_back", false);
@@ -925,15 +918,15 @@ void ProcessDialogEvent()
 				}
 				else
 				{
-					link.l1 = "Hmm... I guess I'll come back later...";
+					link.l1 = DLG_TEXT_BASE[114];
 					link.l1.go = "exit";
 				}
 				break;
 			}
 			if (pchar.questTemp.different == "FackWaitress_toRoomUp")//квест официантки
 			{
-				dialog.text = "The room is all yours. Come in and relax.";
-				link.l1 = "Thanks, buddy.";
+				dialog.text = DLG_TEXT_BASE[115];
+				link.l1 = DLG_TEXT_BASE[116];
 				link.l1.go = "exit";
 				break;
 			}
@@ -943,10 +936,10 @@ void ProcessDialogEvent()
 			{
 				if(pchar.GenQuest.EncGirl == "EncGirl_ToTavern")
 				{
-					dialog.text = "You want to rent a room? No problem. 100 coins on the nail - and it's yours.";
+					dialog.text = DLG_TEXT_BASE[112];
 					if (sti(pchar.money) >= 100)
 					{
-						link.l1 = "Here's your money. Show me to my room.";
+						link.l1 = DLG_TEXT_BASE[113];
 						link.l1.go = "exit";
 						AddMoneyToCharacter(pchar, -100);
 						LocatorReloadEnterDisable(npchar.city + "_tavern", "reload2_back", false);
@@ -954,82 +947,82 @@ void ProcessDialogEvent()
 					}
 					else
 					{
-						link.l1 = "Hmm... I guess I'll come back later...";
+					link.l1 = DLG_TEXT_BASE[114];
 						link.l1.go = "exit";
 					}
 					break;
 				}
 				if (pchar.GenQuest.EncGirl == "EncGirl_toRoomUp")//квест  по спасению тетки в пампасах
 				{
-					dialog.text = "The room is all yours. Come in and relax.";
-					link.l1 = "Thanks, buddy.";
+					dialog.text = DLG_TEXT_BASE[115];
+					link.l1 = DLG_TEXT_BASE[116];
 					link.l1.go = "exit";
 					break;
 				}
 			}
 			// <-- квест "A damsel in the jungle"
-			dialog.text = "For how long are you planning to stay here?";
+			dialog.text = DLG_TEXT_BASE[117];
 			if(!isDay())
 			{
-				link.l1 = "Till morning.";
+				link.l1 = DLG_TEXT_BASE[118];
 				link.l1.go = "room_day";
 			}
 			else
 			{
-				link.l1 = "Till night.";
+				link.l1 = DLG_TEXT_BASE[119];
 				link.l1.go = "room_night";
-				link.l2 = "Till next morning.";
+				link.l2 = DLG_TEXT_BASE[120];
 				link.l2.go = "room_day_next";
 			}
 		break;
 
 		case "room_day":
-			dialog.text = "That will cost you 5 pesos.";
+			dialog.text = DLG_TEXT_BASE[121];
 			if (makeint(pchar.money) >= 5)
 			{
-				link.l1 = "Deal. Here you go.";
+				link.l1 = DLG_TEXT_BASE[122];
 				link.l1.go = "room_day_wait";
 			}
-			link.l2 = pcharrepphrase("Are you renting royal chambers or what? No, I'd rather stay in a common room for free, then.",
-            "Alas, the luxury of sleeping on a bed is beyond my purse, as it seems. Guess I'll have to sleep in a common room.");
+			link.l2 = pcharrepphrase(DLG_TEXT_BASE[123],
+            DLG_TEXT_BASE[124]);
 			link.l2.go = "hall_day_wait";
 			if (!CheckAttribute(pchar, "questTemp.Sharlie.Lock"))
 			{
-				link.l3 = "Not right now. Let's change the subject.";
+				link.l3 = DLG_TEXT_BASE[125];
 				link.l3.go = "int_quests";
 			}
 		break;
 
 		case "room_day_next":
-			dialog.text = "That will cost you 10 pesos.";
+			dialog.text = DLG_TEXT_BASE[126];
 			if (makeint(pchar.money) >= 10)
 			{
-				link.l1 = "Deal. Here you go.";
+				link.l1 = DLG_TEXT_BASE[127];
 				link.l1.go = "room_day_wait_next";
 			}
-			link.l2 = pcharrepphrase("Are you renting royal chambers or what? No, I'd rather stay in a common room for free, then.",
-            "Alas, the luxury of sleeping on a bed is beyond my purse, as it seems. Guess I'll have to sleep in a common room.");
+			link.l2 = pcharrepphrase(DLG_TEXT_BASE[128],
+            DLG_TEXT_BASE[129]);
 			link.l2.go = "hall_day_wait";
 			if (!CheckAttribute(pchar, "questTemp.Sharlie.Lock"))
 			{
-				link.l3 = "Not right now. Let's change the subject.";
+				link.l3 = DLG_TEXT_BASE[130];
 				link.l3.go = "int_quests";
 			}
 		break;
 
 		case "room_night":
-			dialog.text = "That will cost you 5 pesos.";
+			dialog.text = DLG_TEXT_BASE[131];
 			if (makeint(pchar.money) >= 5)
 			{
-				link.l1 = "Deal. Here you go.";
+				link.l1 = DLG_TEXT_BASE[132];
 				link.l1.go = "room_night_wait";
 			}
-			link.l2 = pcharrepphrase("Are you renting royal chambers or what? No, I'd rather stay in a common room for free, then.",
-            "Alas, the luxury of sleeping on a bed is beyond my purse, as it seems. Guess I'll have to sleep in a common room.");
+			link.l2 = pcharrepphrase(DLG_TEXT_BASE[133],
+            DLG_TEXT_BASE[134]);
 			link.l2.go = "hall_night_wait";
 			if (!CheckAttribute(pchar, "questTemp.Sharlie.Lock"))
 			{
-				link.l3 = "Not right now. Let's change the subject.";
+				link.l3 = DLG_TEXT_BASE[135];
 				link.l3.go = "int_quests";
 			}
 		break;
@@ -1045,8 +1038,8 @@ void ProcessDialogEvent()
 		case "hall_night_wait":
 			if (cRand(3) == 1)
             {
-                Dialog.text = "Get lost, ragamuffin! The common room is free - but there still are limits.";
-				link.l1 = "Alright, alright, I am leaving.";
+                Dialog.text = DLG_TEXT_BASE[136];
+				link.l1 = DLG_TEXT_BASE[137];
 				link.l1.go = "exit";
             }
             else
@@ -1086,8 +1079,8 @@ void ProcessDialogEvent()
 		case "hall_day_wait":
 			if (drand(1) == 1)
             {
-                Dialog.text = "Get lost, ragamuffin! The common room is free - but there still are limits.";
-				link.l1 = "Alright, alright, I am leaving.";
+                Dialog.text = DLG_TEXT_BASE[138];
+				link.l1 = DLG_TEXT_BASE[139];
 				link.l1.go = "exit";
             }
             else
@@ -1101,8 +1094,8 @@ void ProcessDialogEvent()
 		case "tavern_keeper":
 			NextDiag.TempNode = "First time";
 
-			dialog.text = "Stop this outrage in my tavern this instant - or I am calling the guards!";
-			link.l1 = "Alright, alright, I am leaving.";
+			dialog.text = DLG_TEXT_BASE[140];
+			link.l1 = DLG_TEXT_BASE[141];
 			link.l1.go = "exit_sit";
 		break;
 
@@ -1114,22 +1107,22 @@ void ProcessDialogEvent()
 		
 		//******************* ноды квеста священника. поиск грабителей (квест № 2)**********************
 		case "Tavern_GenQuest_Church_2_1":
-			dialog.text = "I don't know much about it... You'd better ask the patrons.";
-			link.l1 = "I see, thanks.";
+			dialog.text = DLG_TEXT_BASE[440];
+			link.l1 = DLG_TEXT_BASE[441];
 			link.l1.go = "exit";
 			DeleteAttribute(PChar, "GenQuest.ChurchQuest_2.AskBarmen");
 		break;
 			
 		//******************* ноды квеста священника. вернуть рукописи (квест № 1)**********************
 		case "Tavern_ChurchGenQuest1_Node_1":
-			dialog.text = "We don't provide services in debt, "+ GetSexPhrase("mister","miss") +".";
-			link.l1 = "I used to pay with a ringing coin. Or is here no longer accept gold or silver?";
+			dialog.text = DLG_TEXT_BASE[442]+ GetSexPhrase("monsieur","mademoiselle") +".";
+			link.l1 = DLG_TEXT_BASE[443];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_2";
 		break;
 			
 		case "Tavern_ChurchGenQuest1_Node_2":
-			dialog.text = "I am sorry, "+ GetSexPhrase("mister","miss") +" captain, but your friend had a debt, and I thought...";
-			link.l1 = "Think less and work faster, buddy. Now, how much does my valiant friend owe you?";
+			dialog.text = "Je vous demande pardon "+ GetSexPhrase("mister le","miss la") +DLG_TEXT_BASE[444];
+			link.l1 = DLG_TEXT_BASE[445];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_3";
 		break;
 			
@@ -1138,23 +1131,23 @@ void ProcessDialogEvent()
 			PChar.GenQuest.ChurchQuest_1.MoneyToBarmen = iTemp;
 			if(rand(1) == 0) // "If he's a simple one and pays right away"
 			{
-				dialog.text = FindRussianMoneyString(iTemp) + ", mis"+ GetSexPhrase("ter","s") +" captain, and he also pawned some church books - that's all he had on him, which had some value.";
+				dialog.text = FindRussianMoneyString(iTemp) + ", mis"+ GetSexPhrase("ter","s") +DLG_TEXT_BASE[446];
 				if(sti(PChar.money) >= iTemp)
 				{
-					link.l1 = "Here are your coins. Hand over the manuscripts. And careful with them - it's not an ale keg, but scriptures of righteous men!";
+					link.l1 = DLG_TEXT_BASE[447];
 					link.l1.go = "Tavern_ChurchGenQuest1_Node_4_1";
 				}
 				else
 				{
-					link.l1 = "Wait a bit... I'll be back with the money";
+					link.l1 = DLG_TEXT_BASE[448];
 					link.l1.go = "exit";
 					PChar.GenQuest.ChurchQuest_1.NoMoneyToBarmen = true;
 				}
 			}
 			else // "If he's not a simple one"
 			{
-				dialog.text = FindRussianMoneyString(iTemp) + ", mis"+ GetSexPhrase("ter","s") +" captain.";
-				link.l1 = "I will pay back his debt and take whatever he left to secure it.";
+				dialog.text = FindRussianMoneyString(iTemp) + ", mis"+ GetSexPhrase("ter","s") +" capitaine.";
+				link.l1 = DLG_TEXT_BASE[449];
 				link.l1.go = "Tavern_ChurchGenQuest1_Node_4_2";
 			}
 		break;
@@ -1176,26 +1169,26 @@ void ProcessDialogEvent()
 		break;
 			
 		case "Tavern_ChurchGenQuest1_Node_4_2":
-			dialog.text = "No, mis"+ GetSexPhrase("ter","s") +", that won't work like that.";
-			link.l1 = "What do you mean - 'that won't work like that'? A captain's debt is paid - he's fine. You have your money back - you're fine. I take his pledge - I am fine. Everyone's fine - so why 'that won't work like that'?";
+			dialog.text = "Non, mis"+ GetSexPhrase("ter","s") +DLG_TEXT_BASE[450];
+			link.l1 = DLG_TEXT_BASE[451];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_4_2_1";
 		break;
 			
 		case "Tavern_ChurchGenQuest1_Node_4_2_1":
-			dialog.text = "Because, mis"+ GetSexPhrase("ter","s") +" captain, I don't need that money. Because I know that captain all too well, so I never actually expected him to pay back and take these manuscripts from me.";
-			link.l1 = "What do you mean - you don't need money? So you planned to keep these books right from the start? But why, in God's name?!";
+			dialog.text = "Parce que, mis"+ GetSexPhrase("ter","s") +DLG_TEXT_BASE[452];
+			link.l1 = DLG_TEXT_BASE[453];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_4_2_2";
 		break;
 			
 		case "Tavern_ChurchGenQuest1_Node_4_2_2":
-			dialog.text = "In God's name - exactly, that's why, mis"+ GetSexPhrase("ter","s") +". My little son was very sick, and me and my wife gave a vow to make a donation to the temple, if the Creator cures the child of fever. Our Lord's mercy had no limits, the boy is alive and well, and now we must keep our vow. And just about time captain " + PChar.GenQuest.ChurchQuest_1.CapFullName + " shows up and pawns the church books. I could not allow such obscenity - paying for drinks with the Word - and therefore I decided to hand over this books to the priest of our parish.";
-			link.l1 = "Well, certainly this is a good deed, but you should also know that these books actually belong to another priest - actually, not even a priest, but a bishop and my spiritual shepherd. And he might get angry and even accurse those who would encroach upon his books. I would like to buy them from you and bring it safely.";
+			dialog.text = DLG_TEXT_BASE[454]+ GetSexPhrase("ter","s") +DLG_TEXT_BASE[455] + PChar.GenQuest.ChurchQuest_1.CapFullName + DLG_TEXT_BASE[456];
+			link.l1 = DLG_TEXT_BASE[457];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_4_2_3";
 		break;
 			
 		case "Tavern_ChurchGenQuest1_Node_4_2_3":
-			dialog.text = "Mis"+ GetSexPhrase("ter","s") +"... Mis"+ GetSexPhrase("ter","s") +" captain... Surely, I will give them back, and I will require no money in return. You just put in a word for us to the bishop - perhaps, he could bless us and relieve us of our vow...";
-			link.l1 = "Of course, your vow will be considered kept - after all, you've given up your profit to return the books to their rightful owner. The particular church doesn't matter, for there is only one God. Alright, give them to me, and good luck to you...";
+			dialog.text = "Mis"+ GetSexPhrase("ter","s") +"... Mis"+ GetSexPhrase("ter","s") +DLG_TEXT_BASE[458];
+			link.l1 = DLG_TEXT_BASE[459];
 			link.l1.go = "Tavern_ChurchGenQuest1_Node_4_2_4";
 		break;
 			
@@ -1216,8 +1209,8 @@ void ProcessDialogEvent()
 		
 		//Jason --> генератор Неудачливый вор
 		case "Device_Tavern":
-			dialog.text = "Hmm, "+pchar.GenQuest.Device.Shipyarder.Type+"? Never heard of it before... Just what is it, actually? I've never heard about such a thing in all my time.";
-			link.l1 = "Well, it's a shipwright's tool, "+pchar.GenQuest.Device.Shipyarder.Describe+". Was anyone offering to you anything like that?";
+			dialog.text = "Hmm, "+pchar.GenQuest.Device.Shipyarder.Type+ DLG_TEXT_BASE[460];
+			link.l1 = DLG_TEXT_BASE[461]+pchar.GenQuest.Device.Shipyarder.Describe+DLG_TEXT_BASE[462];
 			link.l1.go = "Device_Trader_1";
 			npchar.quest.Device = "true";
 		break;
@@ -1225,14 +1218,14 @@ void ProcessDialogEvent()
 		case "Device_Trader_1":
 			if (sti(pchar.GenQuest.Device.Shipyarder.Chance1) == 6)
 			{
-				dialog.text = "Hmm... Yes, one strange type had indeed brought that thing to me. He didn't tell me what it was, though - just tired to exchange it for booze. Of course, I refused - I had no need in that trinket.";
-				link.l1 = "And what did he look like and where did he go? I need that instrument badly.";
+				dialog.text = DLG_TEXT_BASE[463];
+				link.l1 = DLG_TEXT_BASE[464];
 				link.l1.go = "Device_Common";
 			}
 			else
 			{
-				dialog.text = "No, nothing like that. Sorry, I can't help you. Ask around.";
-				link.l1 = "I see. Well - time to ask around!";
+				dialog.text = DLG_TEXT_BASE[465];
+				link.l1 = DLG_TEXT_BASE[466];
 				link.l1.go = "exit";
 			}
 		break;
@@ -1242,14 +1235,14 @@ void ProcessDialogEvent()
 		case "Sunplace_Tavern":
 			if (makeint(environment.time) > 12.0 && makeint(environment.time) < 17.0)//в магазине
 			{
-				dialog.text = ""+pchar.GenQuest.Sunplace.Trader.Enemyname+"? He was recently there, and by now he should have come to his companion - the shopkeeper. Try to look for him at the shop - surely he must be there.";
-				link.l1 = "Thanks! You've helped me out a lot!";
+				dialog.text = ""+pchar.GenQuest.Sunplace.Trader.Enemyname+DLG_TEXT_BASE[467];
+				link.l1 = DLG_TEXT_BASE[468];
 				link.l1.go = "Sunplace_Tavern_1";
 			}
 			else//ушел на рыбалку
 			{
-				dialog.text = ""+pchar.GenQuest.Sunplace.Trader.Enemyname+"? Today, early in the morning, he's sailed out on his lugger for a marine. I bet that he is standing now at the bulwark, admiring the view. If you need him, you can try to find him at sea or wait until he comes back in a couple of days...";
-				link.l1 = "Thanks! I guess I will not be waiting - it's gonna be easier to find him at see. Good luck!";
+				dialog.text = ""+pchar.GenQuest.Sunplace.Trader.Enemyname+DLG_TEXT_BASE[469];
+				link.l1 = DLG_TEXT_BASE[470];
 				link.l1.go = "Sunplace_Tavern_2";
 			}
 		break;
@@ -1281,8 +1274,8 @@ void ProcessDialogEvent()
 		
 		// Jason --> Голландский гамбит
 		case "HWICHollJacob_Tavern":
-			dialog.text = "Psssst... Why are you shouting? He's been waiting for you for quite some time. He already drank a full quart of rum. Go upstairs to the room, you will find him there.";
-			link.l1 = "Oh, I see. Well, goodbye, then.";
+			dialog.text = DLG_TEXT_BASE[471];
+			link.l1 = DLG_TEXT_BASE[472];
 			link.l1.go = "exit";
 			LocatorReloadEnterDisable(pchar.questTemp.HWIC.Holl.JacobCity+"_tavern", "reload2_back", false);
 			pchar.questTemp.HWIC.Holl = "JacobInRoom";
@@ -1294,22 +1287,22 @@ void ProcessDialogEvent()
 			{
 				if (makeint(environment.time) > 10.0 && makeint(environment.time) < 18.0)//на улице
 				{
-					dialog.text = "Yes, I know that noble man. He should be somewhere in the town - I have just recently seen him walking past my tavern.";
-					link.l1 = "Thank you! I will go looking for him!";
+					dialog.text = DLG_TEXT_BASE[473];
+					link.l1 = DLG_TEXT_BASE[474];
 					link.l1.go = "Fernando_Land";
 				}
 				else //в море
 				{
-					dialog.text = "Yes, he is now visiting our town. Right now he is not there, though - he sailed out on his brigantine. He's likely not far from here, within the waters of our island.";
-					link.l1 = "Thanks! You've helped me out a lot!";
+					dialog.text = DLG_TEXT_BASE[475];
+					link.l1 = DLG_TEXT_BASE[476];
 					link.l1.go = "Fernando_Sea";
 				}
 				pchar.questTemp.HWIC.Self = "KillFernando";
 			}
 			else
 			{
-				dialog.text = "Fernando Rodriguez? Never heard of him. No, I don't know anything about this man.";
-				link.l1 = "I see... Well, the search continues....";
+				dialog.text = DLG_TEXT_BASE[477];
+				link.l1 = DLG_TEXT_BASE[478];
 				link.l1.go = "exit";
 			}
 			npchar.quest.HWICTalked = "true";
@@ -1335,8 +1328,8 @@ void ProcessDialogEvent()
 		
 		//Jason --> гонки на гидропланах
 		case "Race_Advantage":
-			dialog.text = "Yes, of course. I am already aware of your victory. Here is your money.";
-			link.l1 = "Thank you, " + npchar.name + ".";
+			dialog.text = DLG_TEXT_BASE[479];
+			link.l1 = "Merci, " + npchar.name + ".";
 			link.l1.go = "Race_Advantage_1";
 		break;
 		
@@ -1354,14 +1347,14 @@ void ProcessDialogEvent()
 		case "Marginpassenger":
 			if (CheckAttribute(pchar, "GenQuest.Marginpassenger.lose"))
 			{
-				dialog.text = "Errr, mister, "+pchar.GenQuest.Marginpassenger.q2Name+" died about "+LinkRandPhrase("a month","three weeks","two months")+" ago. "+LinkRandPhrase("Suddenly succumbed to fever","He was stabbed at the town gates - bandits or those red-skinned savages","He was shot on a duel")+". May the God rest his soul...";
-				link.l1 = "Damn it!.. And what am I supposed do with his... Well, whatever. Thanks for the information. See you, " + npchar.name + ".";
+				dialog.text = "Errr, monsieur, "+pchar.GenQuest.Marginpassenger.q2Name+" est mort il y a "+LinkRandPhrase("un mois","trois semaines","deux mois")+". "+LinkRandPhrase(DLG_TEXT_BASE[480],DLG_TEXT_BASE[481],DLG_TEXT_BASE[482])+DLG_TEXT_BASE[483];
+				link.l1 = DLG_TEXT_BASE[484] + npchar.name + ".";
 				link.l1.go = "Marginpassenger_1";
 			}
 			else
 			{
-				dialog.text = ""+pchar.GenQuest.Marginpassenger.q2Name+"? Yeah, he should be somewhere in the town. Look for him on the streets. But keep in mind that every day till noon he is at the governor's office, and after nine in the evening he locks himself up in his house.";
-				link.l1 = "Thanks! I'll go looking for him...";
+				dialog.text = ""+pchar.GenQuest.Marginpassenger.q2Name+DLG_TEXT_BASE[485];
+				link.l1 = DLG_TEXT_BASE[486];
 				link.l1.go = "Marginpassenger_2";
 			}
 		break;
@@ -1386,14 +1379,14 @@ void ProcessDialogEvent()
 		case "FindFugitiveTav":
 			if (NPChar.city == pchar.GenQuest.FindFugitive.City && sti(pchar.GenQuest.FindFugitive.Chance) == 0)
 			{
-				dialog.text = NPCStringReactionRepeat("It seems that your skipper was telling the truth. "+pchar.GenQuest.FindFugitive.Name+" has indeed recently arrived at our settlement. Look for him on the streets during the day time - he is usually loitering his time away.", "You have already asked me about that man, and I told you everything I knew!", "Are you kidding me or you're an idiot indeed?! You're asking all the same for a third time already!", "Just to think, how such an idiot could become captain...", "block", 1, npchar, Dialog.CurrentNode);
-				link.l1 = HeroStringReactionRepeat("Thank you, friend, you've helped me out a lot!", "Yeah, yeah, fine.", "Wow, Wow, don't get so excited. I just forgot.", "Well, he did, as you can see...", npchar, Dialog.CurrentNode); 
+				dialog.text = NPCStringReactionRepeat(DLG_TEXT_BASE[487]+pchar.GenQuest.FindFugitive.Name+DLG_TEXT_BASE[488], DLG_TEXT_BASE[489], DLG_TEXT_BASE[490], DLG_TEXT_BASE[491], "block", 1, npchar, Dialog.CurrentNode);
+				link.l1 = HeroStringReactionRepeat(DLG_TEXT_BASE[492], DLG_TEXT_BASE[493], DLG_TEXT_BASE[494], DLG_TEXT_BASE[495], npchar, Dialog.CurrentNode); 
 				link.l1.go = DialogGoNodeRepeat("FindFugitiveTav_1", "exit", "", "", npchar, Dialog.CurrentNode);
 			}
 			else
 			{
-				dialog.text = NPCStringReactionRepeat("No, buddy, I've never heard that name before. Ask around - maybe someone knows him...", "You have already asked me about that man, and I told you: I don't know!", "Are you kidding me or you're an idiot indeed?! You're asking all the same for a third time already!", "Just to think, how such an idiot could become captain...", "block", 1, npchar, Dialog.CurrentNode);
-				link.l1 = HeroStringReactionRepeat("I see. Well, thanks anyway.", "Yeah, yeah, fine.", "Wow, Wow, don't get so excited. I just forgot.", "Well, he did, as you can see...", npchar, Dialog.CurrentNode); 
+				dialog.text = NPCStringReactionRepeat(DLG_TEXT_BASE[496], DLG_TEXT_BASE[497], DLG_TEXT_BASE[498], DLG_TEXT_BASE[499], "block", 1, npchar, Dialog.CurrentNode);
+				link.l1 = HeroStringReactionRepeat(DLG_TEXT_BASE[500], DLG_TEXT_BASE[501], DLG_TEXT_BASE[502], DLG_TEXT_BASE[503], npchar, Dialog.CurrentNode); 
 				link.l1.go = DialogGoNodeRepeat("exit", "", "", "", npchar, Dialog.CurrentNode);	
 			}
 		break;
@@ -1412,8 +1405,8 @@ void ProcessDialogEvent()
 		
 		//--> Бремя гасконца
 		case "Sharlie_crew":
-			dialog.text = "Unfortunately, I can't help you right now - nobody of the people I know would serve under you. But I can give you an advice - talk to that sailor who just took the table right behind you. He and his buddies have just left one merchant ship. Perhaps, they will agree to come with you.";
-			link.l1 = "Alright, I'll do just that! Thank you very much!";
+			dialog.text = DLG_TEXT_BASE[504];
+			link.l1 = DLG_TEXT_BASE[505];
 			link.l1.go = "exit";
 			pchar.questTemp.Sharlie = "sailor";
 			//усадим матроса
@@ -1429,8 +1422,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Sharlie_skiper":
-			dialog.text = "I cannot tell you anything specific, friend. At this moment no navigators are frequenting my place. Try to ask around in the port - perhaps, people would know more.";
-			link.l1 = "I see. Alright, I'll go talk to the people.";
+			dialog.text = DLG_TEXT_BASE[506];
+			link.l1 = DLG_TEXT_BASE[507];
 			link.l1.go = "exit";
 			pchar.questTemp.Sharlie = "findskiper";
 			//сгенерим наводчика
@@ -1446,12 +1439,11 @@ void ProcessDialogEvent()
 			LAi_SetLoginTime(sld, 6.0, 21.99);
 		break;
 		//<-- Бремя гасконца
-		
 		// Addon 2016-1 Jason пиратская линейка
 		case "mtraxx_tortuga":
 			sld = characterFromId("Tortuga_waitress");
-            dialog.text = "At once, Monseniour!.. The very best French vine! "+sld.name+"! Go open the guest room, now!.. It`ll be 1000 pesos, Monseniour.";
-			link.l1 = "Take it!";
+            dialog.text = DLG_TEXT_BASE[511]+sld.name+DLG_TEXT_BASE[512];
+			link.l1 = DLG_TEXT_BASE[513];
 			link.l1.go = "mtraxx_tortuga_1";
 		break;
 		

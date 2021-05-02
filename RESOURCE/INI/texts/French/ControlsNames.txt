@@ -3,97 +3,60 @@ newLine {
 
 }
 
-HelpChooser {Select help topic}
-MainInterface {Interface controls}
-DialogControls {Dialog}
-WorldMapControls {World map}
-BattleInterfaceControls {Interface controls}
-Sailing1Pers {1st person sea}
-Sailing3Pers {3rd person sea}
-FightModeControls {Combat mode}
-PrimaryLand {Controls on land}
-
-
-
-ChrCamTurnV
-{
-Vertical movement of the camera following character
-
-}
-ChrCamTurnH
-{
-Horizontal movement of the camera following character
-
-}
-ChrCamCameraSwitch
-{
-Camera mode toggle 'from behind' \ '1st person'
-
-}
-ChrCamNormalize
-{
-Center camera
-
-}
-
+HelpChooser {Choisissez la section d'aide}
+MainInterface {Paramètres d'interface}
+DialogControls {Dialogues}
+WorldMapControls {Carte du monde}
+BattleInterfaceControls {Paramètres des commandes}
+Sailing1Pers {Vue maritime à la première personne}
+Sailing3Pers {Vue maritime à la troisième personne}
+FightModeControls {Mode de bataille}
+PrimaryLand {Commandes de débarquement}
 
 
 
-ShipCamera_Turn_V
+ChrCamTurnV 
 {
-Vertical movement of the camera following ship
+ Caméra du personnage (axe Y) 
 
 }
-ShipCamera_Turn_H
+ChrCamTurnH 
 {
-Horizontal movement of the camera following ship
+ Caméra du personnage (axe X) 
 
 }
-ShipCamera_Forward
+ChrCamCameraSwitch 
 {
-Zoom in to a ship
+ Modifier la caméra (première/troisième personne) 
 
 }
-ShipCamera_Backward
+ChrCamNormalize 
 {
-Zoom out from a ship
+ Centrer la caméra 
 
 }
-
-
-
-
-
 
 
-DeckCamera_Turn_V
-{
-Vertical camera rotation (deck view)
 
-}
-DeckCamera_Turn_H
-{
-Horizontal camera rotation (deck view)
 
-}
-DeckCamera_Forward
+ShipCamera_Turn_V 
 {
-Forward (deck view)
+ Caméra du vaisseau (axe Y) 
 
 }
-DeckCamera_Backward
+ShipCamera_Turn_H 
 {
-Back (deck view)
+ Caméra du vaisseau (axe X) 
 
 }
-DeckCamera_Left
+ShipCamera_Forward 
 {
-Strafe left (deck view)
+ Zoom avant sur le vaisseau 
 
 }
-DeckCamera_Right
+ShipCamera_Backward 
 {
-Strafe right (deck view)
+ Zoom arrière du vaisseau 
 
 }
 
@@ -103,549 +66,430 @@ Strafe right (deck view)
 
 
 
-
-ChrTurnH
+DeckCamera_Turn_V 
 {
-Character rotation
+ Caméra du pont (axe Y) 
 
 }
-ChrTurnV
+DeckCamera_Turn_H 
 {
-Character movement
+ Caméra du pont (axe X) 
 
 }
-ChrTurnHL
+DeckCamera_Forward 
 {
-Rotate character left
+ Zoom avant sur le pont 
 
 }
-ChrTurnHR
+DeckCamera_Backward 
 {
-Rotate character right
+ Zoom arrière sur le pont 
 
 }
-ChrAction
+DeckCamera_Left 
 {
-Perform action
+ Vue gauche (vue du pont) 
 
 }
-ChrForward
-{
-Move forward
+DeckCamera_Right {
+ Vue droite (vue du pont) 
 
 }
-ChrForward1
+ChrTurnH 
 {
-Move forward
+ Faire pivoter le personnage 
 
 }
-ChrForward2
+ChrTurnV 
 {
-Move forward (alternative)
+ Déplacer le personnage 
 
 }
-ChrBackward
+ChrTurnHL 
 {
-Move backwards
+ Faire pivoter le personnage à gauche 
 
 }
-ChrBackward1
+ChrTurnHR 
 {
-Move backwards
+ Faire pivoter le personnage à droite 
 
 }
-ChrRun
+ChrAction 
 {
-Switch to running
+ Action 
 
 }
-ChrRunStick
+ChrForward 
 {
-Switch to running
+ Avancer 
 
 }
-
-ChrBlock
+ChrForward1 
 {
-Block
+ Avancer 
 
 }
-ChrRecoil
+ChrForward2 
 {
-Snap back
+ Avancer (méthode alternative) 
 
 }
-ChrParry
+ChrBackward 
 {
-Parry
+ Reculer 
 
 }
-
-ChrAttackForce
+ChrBackward1 
 {
-Lunge
+ Reculer 
 
 }
-ChrAttackFast
+ChrRun 
 {
-Strike
+ Activer la course 
 
 }
-ChrAttackRound
+ChrRunStick 
 {
-Group attack
+ Activer la course 
 
 }
-ChrAttackBreak
-{
-Heavy attack
 
-}
-ChrAttackFient
+ChrBlock 
 {
-Feint
+ Blocage 
 
 }
-
-ChrAttackBreakBase
+ChrRecoil 
 {
-Heavy attack / Feint
+ Recul 
 
 }
-
-ChrAttackRoundBase
+ChrParry 
 {
-Group attack
+ Esquive 
 
 }
-
-ChrAttackChoseBase
+ChrAttackForce 
 {
-Fencing mode
+ Reculer 
 
 }
-
-ChrBlockBase
+ChrAttackFast 
 {
-Block
+ Trancher 
 
 }
-ChrAttackBase
-{
-Lunge / Parry
+ChrAttackRound {
+ Frapper 
 
 }
-ChrAltAttackBase
-{
-Strike / Group attack
+ChrAttackBreak {
+ Coup d'épée 
 
 }
-
-ChrFire
-{
-Fire
+ChrAttackFient {
+ Feinter 
 
 }
+ChrAttackBreakBase {
+ Coup d'épée et feinte 
 
-ChrFightMode
-{
-Toggle combat mode
-
 }
-BOAL_UsePotion
-{
-Drink health elixir
+ChrAttackRoundBase {
+ Frapper 
 
 }
-BOAL_ActivateRush
-{
-Use Ometochtli tincture 
+ChrAttackChoseBase {
+ Changer d'attaque 
 
 }
-BOAL_DeadSearch
-{
-Loot corpse
+ChrBlockBase {
+ Bloquer 
 
 }
+ChrAttackBase {
+ Reculer et esquiver 
 
-UseAntidote
-{
-Drink antidote
 }
+ChrAltAttackBase {
+ Trancher et coup d'épée 
 
-MapView
-{
-View maps
 }
+ChrFire {
+ Tirer 
 
-Alchemy
-{
-Crafting interface
 }
+ChrFightMode {
+ Activer mode d'attaque 
 
-Dolly
-{
-Teleportation
 }
+BOAL_UsePotion {
+ Boire élixir de santé 
 
-Ultimate_potion
-{
-Drink Indian potion
 }
-
-Ship_TurnLeft
-{
-Turn ship left
+BOAL_ActivateRush {
+ Passer en furie 
 
 }
-Ship_TurnRight
-{
-Turn ship right
+BOAL_DeadSearch {
+ Fouiller le corps 
 
 }
-Ship_SailUp
-{
-Raise sails
+Ship_TurnLeft {
+ Faire tourner le vaisseau vers la gauche 
 
 }
-Ship_SailDown
-{
-Lower sails
+Ship_TurnRight {
+ Faire tourner le vaisseau vers la droite 
 
 }
-Ship_Fire
-{
-Cannon volley
+Ship_SailUp {
+ Lever les voiles 
 
 }
-
-Sea_CameraSwitch
-{
-Toggle camera "behind ship" / "on deck"
+Ship_SailDown {
+ Baisser les voiles 
 
 }
-Telescope
-{
-Toggle spyglass
+Ship_Fire {
+ Faire feu avec les canons 
 
 }
-TelescopeIn
-{
-Spyglass on/zoom in
+Sea_CameraSwitch {
+ Activer la caméra du vaisseau 
 
 }
-TelescopeOut
-{
-Spyglass off/zoom out
+Telescope {
+ Activer la lunette 
 
 }
-
-BI_MapEnter
-{
-Exit to map
+TelescopeIn {
+ Zoom de la lunette 
 
 }
-
-
-
-WMapTurnH
-{
-Rotate camera around ship (in map mode)
+TelescopeOut {
+ Quitter la vue de la lunette 
 
 }
-WMapTurnV
-{
-Camera height (in map mode)
+BI_MapEnter {
+ Passer en mode carte 
 
 }
-WMapCameraRotate
-{
-Camera gliding/rotation mode on
+WMapTurnH {
+ Faire pivoter la caméra (mode carte) 
 
 }
-WMapForward
-{
-Zoom camera in
+WMapTurnV {
+ Ajuster la hauteur de la caméra (mode carte) 
 
 }
-WMapBackward
-{
-Zoom camera out
+WMapCameraRotate {
+ Activer le mode glissée (mode carte) 
 
 }
-WMapCameraSwitch
-{
-Toggle view mode
+WMapForward {
+ Zoom avant de la caméra 
 
 }
-WMapShipSailUp
-{
-Sail forward
+WMapBackward {
+ Zoom arrière de la caméra 
 
 }
-WMapShipSailDown
-{
-Sail back
+WMapCameraSwitch {
+ Changer de mode caméra 
 
 }
-WMapShipTurnLeft
-{
-Turn left
+WMapShipSailUp {
+ Naviguer vers l'avant 
 
 }
-WMapShipTurnRight
-{
-Turn right
+WMapShipSailDown {
+ Naviguer vers l'arrière 
 
 }
-WMapCancel
-{
-Exit map to the sea
+WMapShipTurnLeft {
+ Tourner à gauche 
 
 }
+WMapShipTurnRight {
+ Tourner à droite 
 
-
-
-
-
-
-Interface
-{
-Bring up game interface
-
 }
-MainMenu
-{
-Bring up main menu
+WMapCancel {
+ Quitter vers la vue maritime 
 
 }
-MainMenuDouble
-{
-Bring up main menu
+Interface {
+ Paramètres d'interface 
 
 }
-Help
-{
-Bring up game help
+MainMenu {
+ Menu principal 
 
 }
-
-
-
+MainMenuDouble {
+ Menu principal 
 
-
-BICommandsActivate
-{
-Bring up action menu
-
 }
-LICommandsActivate
-{
-Bring up action menu 
+Help {
+ Aide 
 
 }
-BICommandsConfirm
-{
-Select command 
+BICommandsActivate {
+ Menu des commandes 
 
 }
-BICommandsCancel
-{
-Cancel command 
+LICommandsActivate {
+ Menu des commandes 
 
 }
-BICommandsLeft
-{
-Action menu - navigate left
+BICommandsConfirm {
+ Confirmer commande 
 
 }
-BICommandsRight
-{
-Action menu - navigate right
+BICommandsCancel {
+ Annuler commande 
 
 }
-MiniMapZoomIn
-{
-Zoom in on mini-map
+BICommandsLeft {
+ Déplacer le menu à gauche 
 
 }
-MiniMapZoomOut
-{
-Zoom out on mini-map
+BICommandsRight {
+ Déplacer le menu à droite 
 
 }
-BIFastCommand
-{
-Perform a quick command
+MiniMapZoomIn {
+ Zoom avant sur la carte 
 
 }
-
-
-
+MiniMapZoomOut {
+ Zoom arrière sur la carte 
 
-
-HelpChooser_Cancel
-{
-Exit help
-
 }
-HelpChooser_Action
-{
-Show help for the current element
+BIFastCommand {
+ Commande rapide 
 
 }
-HelpChooser_Next
-{
-Next help element
+HelpChooser_Cancel {
+ Quitter le menu d'aide 
 
 }
-HelpChooser_Prev
-{
-Previous help element
+HelpChooser_Action {
+ Aider avec ce sujet 
 
 }
-HelpChooser_Left
-{
-Left (in help mode)
+HelpChooser_Next {
+ Info suivante 
 
 }
-HelpChooser_Right
-{
-Right (in help mode)
+HelpChooser_Prev {
+ Info précédente 
 
 }
-HelpChooser_Up
-{
-Up (in help mode)
+HelpChooser_Left {
+ Gauche (menu d'aide) 
 
 }
-HelpChooser_Down
-{
-Down (in help mode)
+HelpChooser_Right {
+ Droite (menu d'aide) 
 
 }
+HelpChooser_Up {
+ Haut (menu d'aide) 
 
-
-
-
-
-
-
-DlgAction
-{
-Reply selection in a dialog
-
 }
-DlgAction1
-{
-Reply selection in a dialog
+HelpChooser_Down {
+ Bas (menu d'aide) 
 
 }
-DlgUp
-{
-Previous reply in a dialog
+DlgAction {
+ Choisir réponse 
 
 }
-DlgDown
-{
-Next reply in a dialog
+DlgAction1 {
+ Choisir réponse 
 
 }
-DlgScrollUp
-{
-Scroll dialog down
+DlgUp {
+ Option de dialogue précédente 
 
 }
-DlgScrollDown
-{
-Scroll dialog up
+DlgDown {
+ Option de dialogue suivante 
 
 }
+DlgScrollUp {
+ Faire descendre le texte de dialogue 
 
-hk_charge1
-{
-Load cannons with cannonballs
-
 }
-hk_charge2
-{
-Load cannons with grapeshot
+DlgScrollDown {
+ Faire monter le texte de dialogue 
 
 }
-hk_charge3
-{
-Load cannons with chainshots
+hk_charge1 {
+ Armer de boulets 
 
 }
-hk_charge4
-{
-Load cannons with bombs
+hk_charge2 {
+ Armer de mitraille 
 
 }
+hk_charge3 {
+ Armer de chaînes lestées 
 
-hk_Cure
-{
-Use healing mixture
-
 }
-
-hk_Rush
-{
-Use 'Fury' ability
+hk_charge4 {
+ Armer de bombes 
 
 }
+hk_Cure {
+ Utiliser élixir de santé 
 
-hk_ImmediateReload
-{
-Immediate Reloading
-
 }
+hk_Rush {
+ Utiliser la capacité Furie 
 
-hk_LightRepair
-{
-Turn on simplified repair
-
 }
-
-hk_InstantRepair
-{
-Turn on repair
+hk_ImmediateReload {
+ Initier rechargement rapide 
 
 }
-
-hk_Turn180
-{
-Turn about
+hk_LightRepair {
+ Initier réparations légères 
 
 }
-
-hk_SandbankManeuver
-{
-Activate sandbank maneuvers
+hk_InstantRepair {
+ Initier réparations rapides 
 
 }
+hk_Turn180 {
+ Tournant à 180 degrés 
 
-ChrStrafeLeft
-{
-Step left
 }
+hk_SandbankManeuver {
+ Manœuvre d'esquive de banc de sable 
 
-ChrStrafeRight
-{
-Step right
 }
-
+ChrStrafeLeft {
+ Déplacer à gauche 
+}
+ChrStrafeRight {
+ Déplacer à droite 
+}
 OfficersCharge
 {
-Order for officers : Fight at will
+Ordre aux officiers : Attaquer à vonloté
 }
 
 OfficersHold
 {
-Order for officers : Hold position
+Ordre aux officiers : Tenir la position
 }
 
 OfficersFollow
 {
-Order for officers : Follow
+Ordre aux officiers : Suivre le capitaine
 }

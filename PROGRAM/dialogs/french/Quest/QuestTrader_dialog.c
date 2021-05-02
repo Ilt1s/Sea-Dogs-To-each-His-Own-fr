@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Quest\QuestTrader_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -18,10 +19,10 @@ void ProcessDialogEvent()
 		bool ok = CheckFreeSitFront(npchar);
 			if(drand(11) > 8 && ok && !CheckAttribute(pchar, "GenQuest.Racing.Go") && !CheckAttribute(npchar, "quest.race") && sti(Pchar.Ship.Type) != SHIP_NOTUSED && 6-sti(RealShips[sti(pchar.ship.type)].Class) > 0)//гонки на гидропланах
 			{
-				dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + "! My name is "+ GetFullName(NPChar) + ", I am a captain. I see that you are a captain too. Would you like to join me and have a drink together? My treat.";
-				link.l1 = "Why not? I don't mind a few drinks and a company.";
+				dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + DLG_TEXT_Q[0]+ GetFullName(NPChar) + DLG_TEXT_Q[1];
+				link.l1 = DLG_TEXT_Q[2];
 				link.l1.go = "Race_prepare";
-				link.l2 = "I am sorry, but I am in a hurry. Next time.";
+				link.l2 = DLG_TEXT_Q[3];
 				link.l2.go = "exit";
 				npchar.quest.race = "true";
 			}
@@ -30,17 +31,17 @@ void ProcessDialogEvent()
 			//конвой торгового судна
 				if(!CheckAttribute(pchar, "GenQuest.Escort.Trader") && !CheckAttribute(npchar, "quest.race") && sti(Pchar.Ship.Type) != SHIP_NOTUSED && !CheckAttribute(npchar, "repeat_work") && 6-sti(RealShips[sti(pchar.ship.type)].Class) > 0 && GetCompanionQuantity(pchar) < 3)
 				{
-					dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + "! I am "+ GetFullName(NPChar) + ", a merchant. I take it that you are a captain. How about to make a few thousands pesos?";
-					link.l1 = "I am always eager to make some coins. What kind of work are you going to propose me?";
+					dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + DLG_TEXT_Q[4]+ GetFullName(NPChar) + DLG_TEXT_Q[5];
+					link.l1 = DLG_TEXT_Q[6];
 					link.l1.go = "Escort_choice";
-					link.l2 = "And what kind of work can the merchant propose, huh? To protect his sieved vessel? I don't help profiteers.";
+					link.l2 = DLG_TEXT_Q[7];
 					link.l2.go = "exit_distress";
 					SaveCurrentNpcQuestDateParam(npchar, "repeat_work");
 				}
 				else
 				{
-					dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + "! How are you doing? Need something?";
-					link.l1 = TimeGreeting() + ", " + GetAddress_FormToNPC(NPChar) + ". No, I don't. Just wanted to say hi. Have a nice rest!";
+					dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + DLG_TEXT_Q[8];
+					link.l1 = TimeGreeting() + ", " + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[9];
 					link.l1.go = "exit";
 				}
 			}
@@ -52,8 +53,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Trader_distress":
-			dialog.text = "Captain, we've had a talk already, right? You 'don't help profiteers', so what do you want from me now?";
-			link.l1 = "Yes, you are right. Fine, just sit on you fat arse and drink your rum. I have to go.";
+			dialog.text = DLG_TEXT_Q[10];
+			link.l1 = DLG_TEXT_Q[11];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Trader_distress";
 		break;
@@ -70,11 +71,11 @@ void ProcessDialogEvent()
 					pchar.GenQuest.Escort.Trader.Money = makeint(sti(pchar.GenQuest.Escort.Trader.DaysQty)*400*ShipFactorMC()+sti(pchar.GenQuest.Escort.Trader.ShipType)*700);//оплата от расстояния и классов кораблей ГГ и неписи
 					pchar.GenQuest.Escort.Trader.Type1 = "true";//тип задания
 					pchar.GenQuest.Escort.Trader.Chance = rand(1);
-					pchar.GenQuest.Escort.Trader.Add = "to "+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+"";
-					dialog.text = "I'd like to ask you to escort me to "+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+" within "+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+". I will pay you "+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
-					link.l1 = "Why not? It is always safer to sail together, I understand. I agree.";
+					pchar.GenQuest.Escort.Trader.Add = DLG_TEXT_Q[12]+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+"";
+					dialog.text = DLG_TEXT_Q[13]+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+DLG_TEXT_Q[14]+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+DLG_TEXT_Q[15]+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
+					link.l1 = DLG_TEXT_Q[16];
 					link.l1.go = "EscortType";
-					link.l2 = "I'd be glad to help, but I am heading at the different direction.";
+					link.l2 = DLG_TEXT_Q[17];
 					link.l2.go = "Escort_exit";
 				break;
 				case 1://бухта
@@ -87,11 +88,11 @@ void ProcessDialogEvent()
 					pchar.GenQuest.Escort.Trader.Money = makeint(sti(pchar.GenQuest.Escort.Trader.DaysQty)*400*ShipFactorMC()+sti(pchar.GenQuest.Escort.Trader.ShipType)*700);//оплата
 					pchar.GenQuest.Escort.Trader.Type2 = "true";//тип задания
 					pchar.GenQuest.Escort.Trader.Chance = rand(2);
-					pchar.GenQuest.Escort.Trader.Add = "to "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+", not far from "+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+"";
-					dialog.text = "I'd like to ask you to escort me to "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+", not far from "+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+" within "+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+". I will pay you "+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
-					link.l1 = "Why not? It is always safer to sail together, I understand. I agree.";
+					pchar.GenQuest.Escort.Trader.Add = DLG_TEXT_Q[18]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+DLG_TEXT_Q[19]+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+"";
+					dialog.text = DLG_TEXT_Q[20]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+DLG_TEXT_Q[21]+XI_ConvertString("Colony"+pchar.GenQuest.Escort.Trader.City+"Gen")+DLG_TEXT_Q[22]+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+DLG_TEXT_Q[23]+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
+					link.l1 = DLG_TEXT_Q[24];
 					link.l1.go = "EscortType";
-					link.l2 = "I'd be glad to help, but I am heading at the different direction.";
+					link.l2 = DLG_TEXT_Q[25];
 					link.l2.go = "Escort_exit";
 				break;
 				case 2://необитайка
@@ -101,11 +102,11 @@ void ProcessDialogEvent()
 					pchar.GenQuest.Escort.Trader.Money = makeint(sti(pchar.GenQuest.Escort.Trader.DaysQty)*400*ShipFactorMC()+sti(pchar.GenQuest.Escort.Trader.ShipType)*700);//оплата
 					pchar.GenQuest.Escort.Trader.Type3 = "true";//тип задания
 					pchar.GenQuest.Escort.Trader.Chance = rand(2);
-					pchar.GenQuest.Escort.Trader.Add = "to "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+" of inhabitant island "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Island)+"";
-					dialog.text = "I'd like to ask you to escort me to "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+" which is at "+XI_ConvertString(pchar.GenQuest.Escort.Trader.Island)+", for "+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+". I will pay you "+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
-					link.l1 = "Why not? It is always safer to sail together, I understand. I agree. But I have never heard about shops and trading posts there.";
+					pchar.GenQuest.Escort.Trader.Add = DLG_TEXT_Q[26]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+DLG_TEXT_Q[27]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Island)+"";
+					dialog.text = DLG_TEXT_Q[28]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Shore+"Gen")+DLG_TEXT_Q[29]+XI_ConvertString(pchar.GenQuest.Escort.Trader.Island)+DLG_TEXT_Q[30]+FindRussianDaysString(sti(pchar.GenQuest.Escort.Trader.DaysQty))+DLG_TEXT_Q[31]+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+".";
+					link.l1 = DLG_TEXT_Q[32];
 					link.l1.go = "EscortType";
-					link.l2 = "I'd be glad to help but I am heading at the different direction.";
+					link.l2 = DLG_TEXT_Q[33];
 					link.l2.go = "Escort_exit";
 				break;
 			}
@@ -117,15 +118,15 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Trader_wait":
-			dialog.text = "Are you ready to sail, captain? I am waiting for your orders.";
-			link.l1 = "Yes, we are going to set sail now. See you at the port.";
+			dialog.text = DLG_TEXT_Q[34];
+			link.l1 = DLG_TEXT_Q[35];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Trader_wait";
 		break;
 		
 		case "EscortType":
-			dialog.text = "Splendid! I am glad that we had a deal. I hope that our trip will be safe.";
-			link.l1 = "So do I. It is time to set sail!";
+			dialog.text = DLG_TEXT_Q[36];
+			link.l1 = DLG_TEXT_Q[37];
 			link.l1.go = "EscortType_go";
 			NextDiag.CurrentNode = "Trader_wait";
 		break;
@@ -134,7 +135,10 @@ void ProcessDialogEvent()
 			//общие параметры
 			DialogExit();
 			pchar.GenQuest.Escort.Trader.id = npchar.id;
-			CreateTraderShipAndAdd(npchar);//присоединяем торговца
+			pchar.GenQuest.Escort.Trader.model = npchar.model;
+			npchar.lifeday = sti(pchar.GenQuest.Escort.Trader.DaysQty)+1; // 170712
+			DeleteAttribute(npchar, "CityType");
+			CreateTraderShipAndAdd();//присоединяем торговца
 			pchar.GenQuest.Escort.Trader.ShipMaxHP = sti(npchar.ship.HP);
 			ReOpenQuestHeader("TraderEscort");
 			AddQuestRecord("TraderEscort", "1");
@@ -195,34 +199,34 @@ void ProcessDialogEvent()
 			sld = characterFromId(pchar.GenQuest.Escort.Trader.id);
 			if (sti(sld.ship.HP) < makeint(sti(pchar.GenQuest.Escort.Trader.ShipMaxHP)/4))//если корпуса осталось меньше 1/4 - первая проверка
 			{
-				dialog.text = "Captain, tell me why have I hired you? Look at my ship! What does she look like? She is ruined! She is barely keeping above the water. Can't you see that? I don't get it - who was escorting who? Anyway, you won't get any reward, forget about it.";
-				link.l1 = "Hm... If it wasn't for me you'd be feeding crabs, you stupid merchant. Fine, the world is small and I will meet you someday in the open sea!";
+				dialog.text = DLG_TEXT_Q[38];
+				link.l1 = DLG_TEXT_Q[39];
 				link.l1.go = "EscortTrader_complete_1";
 				break;
 			}
 			if (sti(sld.ship.HP) < makeint(sti(pchar.GenQuest.Escort.Trader.ShipMaxHP)/2))//если корпуса осталось меньше 1/2 - вторая проверка
 			{
 				pchar.GenQuest.Escort.Trader.Money = makeint(sti(pchar.GenQuest.Escort.Trader.Money))/2;
-				dialog.text = "Captain, tell me why have I hired you? Look at my ship! What does she look like? She is ruined! She is barely keeping above the water.. Can't you see that? Anyway, I will pay you only half of your reward. Don't count on getting more!";
-				link.l1 = "Hm... Fine, I agree. Your ship is really... a bit damaged...";
+				dialog.text = DLG_TEXT_Q[40];
+				link.l1 = DLG_TEXT_Q[41];
 				link.l1.go = "EscortTrader_complete_2";
 				break;
 			}
 			if (CheckAttribute(pchar, "GenQuest.Escort.Trader.Type2") && sti(pchar.GenQuest.Escort.Trader.Chance) == 1)//вместо денег - наводка
 			{
-				dialog.text = "Captain, you see... I don't have money to pay you for you job. But don't worry please, I want to offer you another kind of payment which is much bigger than I have promised you before!";
-				link.l1 = "Hm... Actually I was expecting to get coins right now. But I am all ears if that is a case.";
+				dialog.text = DLG_TEXT_Q[42];
+				link.l1 = DLG_TEXT_Q[43];
 				link.l1.go = "EscortTrader_complete_4";
 				break;
 			}
-			dialog.text = "Thank you very much, captain. It was safe sailing with you despite all dangers. Here, take your reward.";
-			link.l1 = "You are welcome... I just did my job.";
+			dialog.text = DLG_TEXT_Q[44];
+			link.l1 = DLG_TEXT_Q[45];
 			link.l1.go = "EscortTrader_complete_3";
 		break;
 		
 		case "EscortTrader_complete_1":
-			dialog.text = "Don't try to scare me! Your battle skills make your threats pathetic. Farewell!";
-			link.l1 = "Get lost, profiteer...";
+			dialog.text = DLG_TEXT_Q[46];
+			link.l1 = DLG_TEXT_Q[47];
 			link.l1.go = "complete_exit";
 			AddQuestRecord("TraderEscort", "4");
 			AddComplexSeaExpToScill(20, 20, 20, 0, 20, 0, 0);
@@ -230,8 +234,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "EscortTrader_complete_2":
-			dialog.text = "Yes, a very wise observation... Here, take your "+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+" and farewell.";
-			link.l1 = "See you, " + npchar.name + ".";
+			dialog.text = DLG_TEXT_Q[48]+FindRussianMoneyString(sti(pchar.GenQuest.Escort.Trader.Money))+DLG_TEXT_Q[49];
+			link.l1 = DLG_TEXT_Q[50] + npchar.name + ".";
 			link.l1.go = "complete_exit";
 			AddMoneyToCharacter(pchar, sti(pchar.GenQuest.Escort.Trader.Money));
 			AddQuestRecord("TraderEscort", "5");
@@ -241,8 +245,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "EscortTrader_complete_3":
-			dialog.text = "You did great! Well I have to go now. Goodbye, captain!";
-			link.l1 = "Good luck, " + npchar.name + "!";
+			dialog.text = DLG_TEXT_Q[51];
+			link.l1 = DLG_TEXT_Q[52] + npchar.name + " !";
 			link.l1.go = "complete_exit";
 			AddMoneyToCharacter(pchar, sti(pchar.GenQuest.Escort.Trader.Money));
 			AddQuestRecord("TraderEscort", "6");
@@ -257,14 +261,14 @@ void ProcessDialogEvent()
 			pchar.GenQuest.Escort.Trader.Enemyname = GenerateRandomName_Generator(sti(npchar.nation), "man");
 			GetEnemyTraderGoods();
 			pchar.GenQuest.Escort.Trader.EnIsland = DesIsland();
-			dialog.text = "There is one merchant - "+ pchar.GenQuest.Escort.Trader.Enemyname +". He owns and commands a flute. I was informed that in two weeks he will arrive to the inhabitant island "+ XI_ConvertString(pchar.GenQuest.Escort.Trader.EnIsland) +", in order to restore his water supplies and to trade with the local Indians. He will have a lot of "+pchar.GenQuest.Escort.Trader.add+" aboard. A pathetic fighter, you won't face any troubles taking his ship\nSo you will benefit from it anyway, captain.";
-			link.l1 = "Homo homini lupus est?";
+			dialog.text = DLG_TEXT_Q[53]+ pchar.GenQuest.Escort.Trader.Enemyname +DLG_TEXT_Q[54]+ XI_ConvertString(pchar.GenQuest.Escort.Trader.EnIsland) +DLG_TEXT_Q[55]+pchar.GenQuest.Escort.Trader.add+DLG_TEXT_Q[56];
+			link.l1 = DLG_TEXT_Q[57];
 			link.l1.go = "EscortTrader_complete_5";
 		break;
 		
 		case "EscortTrader_complete_5":
-			dialog.text = "What?";
-			link.l1 = "You are 'giving away' you colleague in such an easy and honest manner... But I don't care about your conscience and thanks for your information. Good luck, sir!";
+			dialog.text = DLG_TEXT_Q[58];
+			link.l1 = DLG_TEXT_Q[59];
 			link.l1.go = "EscortTrader_complete_6";
 		break;
 		
@@ -326,26 +330,26 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Race_begin"://гонки на гидропланах
-			dialog.text = "Eh, let's drink some old good rum, captain! How are you doing, how is your trade?";
-			link.l1 = "I am not really a merchant. But I am doing just fine.";
+			dialog.text = DLG_TEXT_Q[60];
+			link.l1 = DLG_TEXT_Q[61];
 			link.l1.go = "Race_begin_1";
 		break;
 		
 		case "Race_begin_1":
-			dialog.text = "And that's the most important! Considering that unsafe situation in the open sea.";
-			link.l1 = "Yes, you are right. Especially for you, merchants, there are a lot of hunters for your cargo. And you are rarely able neither to flee nor to fight back. Your vessels are slow and your cannons are small, since you put your profits first. Sailing in convoys with four or five ships together, that is what saves you.";
+			dialog.text = DLG_TEXT_Q[62];
+			link.l1 = DLG_TEXT_Q[63];
 			link.l1.go = "Race_begin_2";
 		break;
 		
 		case "Race_begin_2":
-			dialog.text = "Well, not all of us are like that, friend. I always sail alone, I don't need any ballast. I perfectly know the Caribbean sea and might I say, I am really good in navigating, sailing and commanding my men. I am able to outrun any pirate.";
-			link.l1 = "Really? I can hardly believe that. With a full stored cargo? On the trade vessel? So do you mean that you can escape from a pirate brigantine or a lugger?";
+			dialog.text = DLG_TEXT_Q[64];
+			link.l1 = DLG_TEXT_Q[65];
 			link.l1.go = "Race_begin_3";
 		break;
 		
 		case "Race_begin_3":
-			dialog.text = "It looks like you, pal, are doubting that my ship is able to sail fast? Fine. I offer you a bet.";
-			link.l1 = "What kind of a bet?";
+			dialog.text = DLG_TEXT_Q[66];
+			link.l1 = DLG_TEXT_Q[67];
 			link.l1.go = "Race_begin_4";
 		break;
 		
@@ -358,23 +362,23 @@ void ProcessDialogEvent()
 			pchar.GenQuest.Racing.Go.DaysQty = makeint((GetMaxDaysFromIsland2Island(GetArealByCityName(pchar.GenQuest.Racing.Go.StartCity), GetArealByCityName(pchar.GenQuest.Racing.Go.City)))/1.3);//дни
 			pchar.GenQuest.Racing.Go.ShipName = GenerateRandomNameToShip(sti(npchar.nation));
 			if (sti(pchar.GenQuest.Racing.Go.DaysQty) < 1) pchar.GenQuest.Racing.Go.DaysQty = 1; // patch-8
-			dialog.text = "Listen. I am going to set sail today to "+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City)+". And I say that I will be there in "+FindRussianDaysString(pchar.GenQuest.Racing.Go.DaysQty)+". Try to outrun me and get to "+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City)+" sooner. The time starts to tick now. Want to risk? Or is it too tough for you?";
-			link.l1 = "For who? For me? Don't be that funny. Are you going to make it in that time? Ridiculous. I accept your bet. How much are you ready to loose?";
+			dialog.text = DLG_TEXT_Q[68]+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City)+DLG_TEXT_Q[69]+FindRussianDaysString(pchar.GenQuest.Racing.Go.DaysQty)+DLG_TEXT_Q[70]+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City)+DLG_TEXT_Q[71];
+			link.l1 = DLG_TEXT_Q[72];
 			link.l1.go = "Race_begin_5";
-			link.l2 = "I am too busy to start a race because of some silly boasting.";
+			link.l2 = DLG_TEXT_Q[73];
 			link.l2.go = "Race_exit";
 		break;
 		
 		case "Race_exit":
-			dialog.text = "Hm... Are you afraid to loose? Whatever. But don't be so quick to judge other people, there are a lot of experienced sailors among merchants... much more experienced than you are.";
-			link.l1 = "Fine, fine, don't sermonize me, philosopher. Farewell...";
+			dialog.text = DLG_TEXT_Q[74];
+			link.l1 = DLG_TEXT_Q[75];
 			link.l1.go = "exit_sit";
 			DeleteAttribute(pchar, "GenQuest.Racing.Go");
 			NextDiag.TempNode = "First time";
 		break;
 		
 		case "Race_begin_5":
-			dialog.text = "It is your choice, captain.";
+			dialog.text = DLG_TEXT_Q[76];
 			iTemp = 1;
 			for (i=5; i>=1; i--)
 			{
@@ -388,17 +392,17 @@ void ProcessDialogEvent()
 		case "Racing_rate5"://50 000
 			if (drand(9) > 6)
 			{
-			dialog.text = "Fine. I agree. Your coins please. Here is my bet.";
-			link.l1 = "Just let me to get my purse...";
+			dialog.text = DLG_TEXT_Q[77];
+			link.l1 = DLG_TEXT_Q[78];
 			link.l1.go = "Racing_rate";
 			pchar.GenQuest.Racing.Go.Money = 50000;
 			}
 			else
 			{
-			dialog.text = "What a senseless offer, captain? You can buy a schooner for that much money and drink rum for a whole month. Speak the reasonable sum.";
-			link.l1 = "This sum looks reasonable for me and I am not going to waste my time with you for the less. We are not beggars to bet for a few pesos. Fine... we have had a sit, enough now. If you fear to bet, It is your choice... Boasting is cheap.";
+			dialog.text = DLG_TEXT_Q[79];
+			link.l1 = DLG_TEXT_Q[80];
 			link.l1.go = "Race_exit";
-			link.l2 = "Really? Fine. Let me think...";
+			link.l2 = DLG_TEXT_Q[81];
 			link.l2.go = "Race_begin_5";
 			}
 		break;
@@ -406,17 +410,17 @@ void ProcessDialogEvent()
 		case "Racing_rate4"://40 000
 			if (drand(9) > 4)
 			{
-			dialog.text = "Fine. I agree. Your coins please. Here is my bet.";
-			link.l1 = "Just let me get my purse...";
+			dialog.text = DLG_TEXT_Q[82];
+			link.l1 = DLG_TEXT_Q[83];
 			link.l1.go = "Racing_rate";
 			pchar.GenQuest.Racing.Go.Money = 40000;
 			}
 			else
 			{
-			dialog.text = "What a senseless offer, captain? You can buy a barque for that much money and drink rum for a whole month. Speak the reasonable sum.";
-			link.l1 = "This sum looks reasonable for me and I am not going to waste my time with you for the less. We are not beggars to bet for a few pesos. Fine... we have had a sit, enough now. If you fear to bet, It is your choice... Boasting is cheap.";
+			dialog.text = DLG_TEXT_Q[84];
+			link.l1 = DLG_TEXT_Q[85];
 			link.l1.go = "Race_exit";
-			link.l2 = "Really? Fine. Let me think...";
+			link.l2 = DLG_TEXT_Q[86];
 			link.l2.go = "Race_begin_5";
 			}
 		break;
@@ -424,17 +428,17 @@ void ProcessDialogEvent()
 		case "Racing_rate3"://30 000
 			if (drand(9) > 2)
 			{
-			dialog.text = "Fine. I agree. Your coins please. Here is my bet.";
-			link.l1 = "Just let me get my purse...";
+			dialog.text = DLG_TEXT_Q[87];
+			link.l1 = DLG_TEXT_Q[88];
 			link.l1.go = "Racing_rate";
 			pchar.GenQuest.Racing.Go.Money = 30000;
 			}
 			else
 			{
-			dialog.text = "What a senseless offer, captain? You can buy a sloop for that much money and drink rum for a whole month. Speak the reasonable sum.";
-			link.l1 = "This sum looks reasonable for me and I am not going to waste my time with you for the less. We are not beggars to bet for a few pesos. Fine... we have had a sit, enough now. If you fear to bet, It is your choice... Boasting is cheap..";
+			dialog.text = DLG_TEXT_Q[89];
+			link.l1 = DLG_TEXT_Q[90];
 			link.l1.go = "Race_exit";
-			link.l2 = "Really? Fine. Let me think...";
+			link.l2 = DLG_TEXT_Q[91];
 			link.l2.go = "Race_begin_5";
 			}
 		break;
@@ -442,24 +446,24 @@ void ProcessDialogEvent()
 		case "Racing_rate2"://20 000
 			if (drand(9) > 0)
 			{
-			dialog.text = "Fine. I agree. Your coins please. Here is my bet.";
-			link.l1 = "Just let me get my purse...";
+			dialog.text = DLG_TEXT_Q[92];
+			link.l1 = DLG_TEXT_Q[93];
 			link.l1.go = "Racing_rate";
 			pchar.GenQuest.Racing.Go.Money = 20000;
 			}
 			else
 			{
-			dialog.text = "What a senseless offer, captain? You can buy a lugger for that much money and drink rum for a whole month. Speak the reasonable sum.";
-			link.l1 = "This sum looks reasonable for me and I am not going to waste my time with you for the less. We are not beggars to bet for a few pesos. Fine... we have had a sit, enough now. If you fear to bet, It is your choice... Boasting is cheap.";
+			dialog.text = DLG_TEXT_Q[94];
+			link.l1 = DLG_TEXT_Q[95];
 			link.l1.go = "Race_exit";
-			link.l2 = "Really? Fine. Let me think...";
+			link.l2 = DLG_TEXT_Q[96];
 			link.l2.go = "Race_begin_5";
 			}
 		break;
 		
 		case "Racing_rate1"://10 000
-			dialog.text = "Fine. I agree. Your coins please. Here is my bet.";
-			link.l1 = "Just let me get my purse...";
+			dialog.text = DLG_TEXT_Q[97];
+			link.l1 = DLG_TEXT_Q[98];
 			link.l1.go = "Racing_rate";
 			pchar.GenQuest.Racing.Go.Money = 10000;
 		break;
@@ -468,12 +472,12 @@ void ProcessDialogEvent()
 			dialog.text = "So?";
 			if (sti(pchar.money) >= sti(pchar.GenQuest.Racing.Go.Money))
 			{
-			link.l1 = "Here!";
+			link.l1 = DLG_TEXT_Q[99];
 			link.l1.go = "Racing_Go";
 			}
 			else
 			{
-			link.l1 = "Hm... it looks like I don't have that much.";
+			link.l1 = DLG_TEXT_Q[100];
 			link.l1.go = "Racing_rate_nomoney";
 			}
 		break;
@@ -481,25 +485,25 @@ void ProcessDialogEvent()
 		case "Racing_rate_nomoney":
 			if (sti(pchar.GenQuest.Racing.Go.Money) == 10000 || sti(pchar.Money) < 10000)
 			{
-			dialog.text = "Well, you know we are not some beggars to bet for a few pesos or are you just scared? Fine, hell with you. But don't be so quick to judge other people, there are a lot of experienced sailors among merchants... much more experienced than you are.";
-			link.l1 = "Fine, fine, don't sermonize me, philosopher. Farewell...";
+			dialog.text = DLG_TEXT_Q[101];
+			link.l1 = DLG_TEXT_Q[102];
 			link.l1.go = "exit_sit";
 			DeleteAttribute(pchar, "GenQuest.Racing.Go");
 			NextDiag.TempNode = "First time";
 			}
 			else
 			{
-			dialog.text = "So why don't you check your purse and make a lesser stake?";
-			link.l1 = "Fine, I'll try to remember how much coins I have...";
+			dialog.text = DLG_TEXT_Q[103];
+			link.l1 = DLG_TEXT_Q[104];
 			link.l1.go = "Race_begin_5";
-			link.l2 = "I have changed my mind.";
+			link.l2 = DLG_TEXT_Q[105];
 			link.l2.go = "Racing_exit";
 			}
 		break;
 		
 		case "Racing_exit":
-			dialog.text = "Changed your mind, huh? Aren't you just scared? Fine, hell with you. But don't be so quick to judge other people, there are a lot of experienced sailors among merchants... much more experienced than you are.";
-			link.l1 = "Fine, fine, don't sermonize me, philosopher. Farewell...";
+			dialog.text = DLG_TEXT_Q[106];
+			link.l1 = DLG_TEXT_Q[107];
 			link.l1.go = "exit_sit";
 			DeleteAttribute(pchar, "GenQuest.Racing.Go");
 			NextDiag.TempNode = "First time";
@@ -507,14 +511,14 @@ void ProcessDialogEvent()
 		
 		case "Racing_Go":
 			AddMoneyToCharacter(pchar, -sti(pchar.GenQuest.Racing.Go.Money));
-			dialog.text = "We have got a bet then! Let's call a bartender to witness if you don't mind... and let's give our stakes to him. Winner will return and take the whole sum. Cheating is impossible since gossips spread over the archipelago very fast so he will know who is the winner.";
-			link.l1 = "I agree. That seems right.";
+			dialog.text = DLG_TEXT_Q[108];
+			link.l1 = DLG_TEXT_Q[109];
 			link.l1.go = "Racing_Go_1";
 		break;
 		
 		case "Racing_Go_1":
-			dialog.text = "Well, I suppose it time for us to get on our ships and set sail, the time is ticking. I don't know about you, but I am going to set sail right now. Oh, and my ship is a flute and her name is "+pchar.GenQuest.Racing.Go.ShipName+". I suppose that you will easily recognize her at the port of arrival.";
-			link.l1 = "Don't jump of joy that soon. See you in the tavern of "+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City+"Gen")+"!";
+			dialog.text = DLG_TEXT_Q[110]+pchar.GenQuest.Racing.Go.ShipName+DLG_TEXT_Q[111];
+			link.l1 = DLG_TEXT_Q[112]+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.City+"Gen")+" !";
 			link.l1.go = "Racing_Go_2";
 		break;
 		
@@ -553,14 +557,14 @@ void ProcessDialogEvent()
 		case "Racing_Finished":
 			if (CheckAttribute(pchar, "GenQuest.Racing.Go.MCWin"))
 			{
-			dialog.text = "Heh! I am surprised actually... Congratulations, captain! You were really faster than me. They say that there is always stronger force for any force, right?";
-			link.l1 = "Exactly, sir. But I want to tell you that you are surprisingly experienced and skillful for a captain of the trade ship. Not every merchant is able to sail that way on a flute for such a short time.";
+			dialog.text = DLG_TEXT_Q[113];
+			link.l1 = DLG_TEXT_Q[114];
 			link.l1.go = "Racing_Finished_1";
 			}
 			else
 			{
-			dialog.text = "Well, aren't you surprised, captain? As I said, I perfectly know the sea and sail my ship good enough. See now?";
-			link.l1 = "Argh! Incredible! On a flute... that far and for such a small time... Congratulations, captain!";
+			dialog.text = DLG_TEXT_Q[115];
+			link.l1 = DLG_TEXT_Q[116];
 			link.l1.go = "Racing_Finished_2";
 			}
 			//bDisableFastReload = false;
@@ -570,8 +574,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Racing_Finished_1":
-			dialog.text = "Well, you are the winner. Now, you have to return to "+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.StartCity)+" and take your money from the bartender. You have surely deserved it!";
-			link.l1 = "On my way already. It was a pleasure. Goodbye!";
+			dialog.text = DLG_TEXT_Q[117]+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.StartCity)+DLG_TEXT_Q[118];
+			link.l1 = DLG_TEXT_Q[119];
 			link.l1.go = "Racing_end";
 			pchar.GenQuest.Racing.Count = sti(pchar.GenQuest.Racing.Count)+1;
 			//запустить регату
@@ -595,8 +599,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Racing_Finished_2":
-			dialog.text = "There is no secret in that just skill and experience. And I have to go to "+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.StartCity)+" in order to collect my prize.";
-			link.l1 = "You have earned it. Goodbye!";
+			dialog.text = DLG_TEXT_Q[120]+XI_ConvertString("Colony"+pchar.GenQuest.Racing.Go.StartCity)+DLG_TEXT_Q[121];
+			link.l1 = DLG_TEXT_Q[122];
 			link.l1.go = "Racing_end";
 			npchar.lifeday = 0;
 			DeleteAttribute(pchar, "GenQuest.Racing.Go");
@@ -618,8 +622,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Racing_end_repeat":
-			dialog.text = "Is there is anything else you want to talk about?";
-			link.l1 = "No, it is nothing.";
+			dialog.text = DLG_TEXT_Q[123];
+			link.l1 = DLG_TEXT_Q[124];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Racing_end_repeat";
 		break;

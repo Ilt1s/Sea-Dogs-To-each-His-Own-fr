@@ -1,0 +1,65 @@
+CARDS_RULE {Nous allons jouer au 21. Les règles sont simples. Il y a 36 cartes dans le paquet, des six aux as. Les as valent 11, les rois 4, les reines 3, les valets 2. Toutes les autres cartes ont leur propre valeur. Le but est d'arriver à 21 points\nNous recevons chacun une carte, puis en prenons d'autres pour y parvenir au plus près. Cliquez alors sur le paquet. Cliquez sur le profil en haut à droite pour terminer le tour. Si le score dépasse 21, c'est perdu. Chaque carte est donc un pari. Vous pouvez commencer une partie si vous avez assez d'argent pour trois mises. Pour commencer une nouvelle partie, cliquez sur le paquet. Pour quitter, cliquez sur la croix ou appuyez sur [Échap].}
+DICE_RULE {Jouons au poker joker. Cinq dés par joueur ; on les lance chacun notre tour. Vous pouvez en lancer autant que vous voulez et miser sur le résultat à venir. L'objectif est d'obtenir la meilleure combinaison\nEn ordre croissant : une paire (2 valeurs identiques), deux paires (2 valeurs identiques +2 autres valeurs identiques), un brelan (3 valeurs identiques), un full (3 valeurs identiques +2 valeurs identiques), un carré (4 valeurs identiques), une suite (valeurs à la suite), et un poker (5 valeurs identiques). S'il y a égalité, le vainqueur est celui qui a la meilleure combinaison. Cliquez sur le verre pour lancer les dés, cliquez sur le cube pour lancer à nouveau. Il vous faut de l'argent pour les mises. Lorsque vous n'avez pas à lancer à nouveau, cliquez sur le portrait pour passer votre tour.}
+Dice_1 {Je commence.}
+Dice_2 {Vous commencez. Allez-y, ne nous faites pas attendre.}
+Dice_3 {Début de la partie.}
+Dice_4 {Placez vos paris.}
+Dice_5 {Continuez la partie.}
+Dice_6 {Faites vos paris.}
+Dice_7 {À vous, maintenant. Allez-y, ne nous faites pas attendre.}
+Dice_8 {Faites votre choix. Décidez quoi lancer.}
+Dice_9 {Mon tour maintenant.}
+Dice_10 {Attendez... Il faut que je décide quoi lancer.}
+Dice_11 {J'ai}
+Dice_12 {. Vous avez}
+Dice_13 {Égalité ! Continuons.}
+Dice_14 {Hé, j'ai gagné.}
+Dice_15 {On dirait que vous gagnez.}
+Dice_16 {Vous êtes fichu ! Je gagne.}
+Dice_17 {C'est fini, j'en ai assez.}
+Dice_18 {Je suis fichu. Vous gagnez.}
+Dice_19 {C'est fini, j'en ai assez.}
+Dice_20 {Une fois encore pour la route ?}
+Dice_21 {C'est fini, j'en ai assez.}
+Dice_22 {rien}
+Dice_23 {un poker}
+Dice_24 {une suite}
+Dice_25 {un carré}
+Dice_26 {un full}
+Dice_27 {un brelan}
+Dice_28 {deux paires}
+Dice_29 {une paire}
+Dice_30 {Je vais lancer un dé.}
+Dice_31 {Je vais lancer ces dés.}
+Dice_32 {Je vais lancer ces dés.}
+Dice_33 {Je ne vais rien lancer.}
+Cards_1 {Quoi, plus d'argent ? Pauvre homme !}
+Cards_2 {Aouch, je suis maudit on dirait.}
+Cards_3 {Ouvrez !}
+Cards_4 {Une carte pour moi...}
+Cards_5 {Une carte pour vous...}
+Cards_7 {À vous !}
+Cards_8 {Allez, ne nous faites pas attendre...}
+Cards_9 {Allez, prenez une carte. On n'a pas toute la vie.}
+Cards_10 {Une carte pour moi...}
+Cards_11 { Ça mérite une pièce.}
+Cards_12 {À moi !}
+Cards_13 {Voyons ce qu'on a.}
+Cards_14 {J'en ai trop fait...}
+Cards_15 {Ha ! Vous êtes au-dessus ! Je gagne !}
+Cards_16 {Oups. J'ai dépassé. Vous gagnez.}
+Cards_17 {Une autre partie ?}
+Cards_18 {Une fois encore ?}
+Cards_19 {C'est fini, j'en ai assez.}
+Cards_20 {J'en ai assez. Ouvrez !}
+Cards_21 {À vous ! J'ai ce qu'il me faut.}
+Cards_22 {Tournez les cartes.}
+Cards_23 {Faites vos paris.}
+Cards_24 {Vous gagnez. Vous avez}
+Cards_25 {, et j'ai}
+Cards_26 {La chance me sourit. J'ai}
+Cards_27 {, et vous avez}
+Cards_28 {. Je gagne !}
+Cards_29 {Une autre partie ?}
+Cards_30 {Une fois encore ?}
+Cards_31 {C'est fini, j'en ai assez.}

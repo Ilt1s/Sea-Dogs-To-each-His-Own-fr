@@ -1,5 +1,5 @@
 // Антонио Бетанкур - потомок Франциско Бетанкура
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -18,7 +18,7 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
@@ -35,15 +35,15 @@ void ProcessDialogEvent()
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! What do you want this time?";
 				if(CheckAttribute(pchar, "questTemp.LSC.Betancur"))
 				{
-					link.l4 = "Antonio, they say that you know the Island's history well. I have a question for you about it.";
+					link.l4 = "Antonio, they say that you know the Island's history well. I have got a question for you about it.";
 					link.l4.go = "dolly";
 				}
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -62,7 +62,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting_2":
-			dialog.text = "Exactly. I am a straight offspring of a man who basically occupied the Island.";
+			dialog.text = "Exactly. I am a straight offspring of a man who has basically occupied the Island.";
 			link.l1 = "I see. Glad to meet you, Antonio. See you.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
@@ -100,7 +100,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "dolly_5":
-			dialog.text = "You are welcome, I am always glad to talk!";
+			dialog.text = "You are welcome, I am always glad to chat!";
 			link.l1 = "Farewell!";
 			link.l1.go = "exit";
 			DeleteAttribute(pchar, "questTemp.LSC.Betancur");
@@ -117,7 +117,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(npchar, "quest.answer_2"))
 			{
-				link.l2 = "You were born here... And why aren't you a member of Narwhal clan? I thought that all native white people were Narwhals...";
+				link.l2 = "You were born here... And why you are not a member of Narwhal clan? I though that all native white people are Narwhals...";
 				link.l2.go = "ansewer_2";
 			}
 			if (!CheckAttribute(npchar, "quest.answer_3"))
@@ -149,7 +149,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "Father left me a decent inheritance and I spend it carefully. So I don't need to lurk around old ship wrecks to find some jewels to trade for food. I don't believe in great treasures inside old ships\nThe only treasure I know is the St. Anna's treasury. It is a big iron chest. But no one has managed to find it yet\nAlso, I am going to write a detailed history of the Island based on local stories. How do you think - should I try?";
+			dialog.text = "Father left me a decent inheritance and I spend it carefully. So I don't need to lurk around old ship wrecks to find some jewels to trade for food. I don't believe in great treasures inside old ships\nThe only treasure I know is the St. Anna's treasury. It is a big iron chest. But no one has managed to find it yet\nActually, I am going to write a detailed history of the Island based on local stories. You think I should try?";
 			link.l1 = "I am sure of it. I know at least one man at the Archipelago who would pay for such book a lot of gold. So it's your chance...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
@@ -157,7 +157,7 @@ void ProcessDialogEvent()
 		
 		case "ansewer_4":
 			dialog.text = "Sometimes I think about it. Perhaps if the ship which would be able to handle with the current and survive storms would have come here, I'd take a risk. I am really eager to see things which are so interestingly described in my books! But these are just dreams for now...";
-			link.l1 = "Dreams come true. Just believe in them...";
+			link.l1 = "Dreams happen. Just trust in them...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_4 = "true";
 		break;
@@ -167,13 +167,13 @@ void ProcessDialogEvent()
 		//обнаружение ГГ в сундуках
 		case "Man_FackYou":
 			dialog.text = LinkRandPhrase("What are you doing there, ah? Thief!", "Just look at that! As soon as I was lost in contemplation, you decided to check my chest!", "Decided to check my chests? You won't get away with it!");
-			link.l1 = "Crap!";
+			link.l1 = "Damn it!";
 			link.l1.go = "fight";
 		break;
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -194,8 +194,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "As you wish...", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -204,11 +204,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "As you wish...", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

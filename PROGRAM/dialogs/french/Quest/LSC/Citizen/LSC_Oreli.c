@@ -1,5 +1,5 @@
 // Орели Бертин - просто жительница
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -18,7 +18,7 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
@@ -33,11 +33,11 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -50,13 +50,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting_1":
-			dialog.text = "So you must be one of those crazies who come here of their own will... Well, now you will have enough time to see the Island and to eat plenty of its 'justice'.";
-			link.l1 = "And are there any problems with justice according to your sarcasm?";
+			dialog.text = "So you must be one of those crazies who come here of their own will... Well, now you will have enough time to see the Island and to eat plenty of it's 'justice'.";
+			link.l1 = "And are there any problems with justice according to your irony?";
 			link.l1.go = "meeting_2";
 		break;
 		
 		case "meeting_2":
-			dialog.text = "No, everything is fine. But for some reason we have to pay pirates for our food, which used to be free for all not long ago. And when the clans start fighting on our part of the Island, we are supposed to sit inside the ships to avoid being shot or butchered\nI mean that they are allowed to do whatever they want on our territory but we can't do the same on theirs. But it's alright, no more troubles...";
+			dialog.text = "No, we are fine. But for some reason we have to pay pirates for our food, which used to be free for all not long ago. And when the clans start fighting on our part of the Island, we are supposed to sit inside the ships to avoid being shot or butchered\nI mean that they are allowed to do whatever they want on our territory but we can't do the same on theirs. But it's alright, no more troubles...";
 			link.l1 = "I see. Fine, I am glad to meet you. See you!";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
@@ -82,7 +82,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(npchar, "quest.answer_4"))
 			{
-				link.l4 = "Are pirates bothering you?";
+				link.l4 = "Are pirates troubling you?";
 				link.l4.go = "ansewer_4";
 			}
 			link.l10 = "No questions. Pardon...";
@@ -96,7 +96,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_1_1":
-			dialog.text = "Relatively. I still remember times when buccaneers were trading with us and the most reckless and smart Narwhals were sailing to the mainland to trade provision in exchange for goods from ships' cargo holds. But there are a lot of people who haven't ever seen any places but only the Island because they were born here. They are not just old-timers here but natives.";
+			dialog.text = "Relatively. I still remember times when buccaneers were trading with us and the most reckless and smart Narwhals were sailing to the mainland to trade provision in exchange for goods from ships cargo holds. But there are a lot of people who haven't ever seen any places but only the Island because they were born here. They are not just old-timers here but natives.";
 			link.l1 = "Interesting...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_1 = "true";
@@ -110,14 +110,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "And how are we supposed to think about those bandits? I am trying to stay away from them, that's all. At least Narwhals do some good to the Island, they have very talented craftsmen among them, but Rivados are just savages and pagans\nThey still live by their African laws just like hundreds years ago. Animals. The only thing they learned is to use firearms. They say that they commit rituals of cannibalism!";
+			dialog.text = "And how we are supposed to think about those bandits? I am trying to stay away from them, that's all. At least Narwhals do some good to the Island, they have very talented craftsmen among them, but Rivados are just savages and pagans\nThey still live by their African lows just like hundreds years ago. Animals. The only thing they learnt is to use firearms. They say that they commit rituals of cannibalism!";
 			link.l1 = "Such a nightmare...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
 		break;
 		
 		case "ansewer_4":
-			dialog.text = "The part where they sell us our own food is a bit bothering, but they don't do any harm to citizens. Actually, on the contrary, they brought the clans to order and prevent any violence\nThere was a citizen who was making problems and waving his saber. He even wounded two other locals. Pirates took him to Tartarus for a few weeks. Now the man is quite and peaceful. We don't see him often, the outer ring is his new home...";
+			dialog.text = "The part where they sell us our own food is a bit bothering, but they don't do any harm to citizens. Actually, on the contrary, they brought the clans to order and prevent any violence\nThere was a citizen who were making problems and waving his saber. He even had two other locals injured. Pirates took him to Tartarus for a few weeks. Now the man is quite and peaceful. We don't see him often, the outer ring is his new home...";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_4 = "true";
@@ -134,7 +134,7 @@ void ProcessDialogEvent()
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -155,8 +155,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Okay.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -165,11 +165,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Okay.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

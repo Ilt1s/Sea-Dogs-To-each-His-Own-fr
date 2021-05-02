@@ -1,59 +1,59 @@
-Ship_critical		{Critical Hit!}
-Ship_sunk			{%1 "%2" is sunk. +%3 experience obtained.}
-Ship_sunk_other		{%1 "%2" is sunk.}
-Ship_got_good		{%1 centners of %2 are taken on board}
-Ship_cant_got_good	{No room for %1}
+Ship_critical {Coup critique !}
+Ship_sunk {%1 '%2' coulés +%3 points d'expérience.}
+Ship_sunk_other {%1 '%2' coulés !}
+Ship_got_good {%1 unités de/d' %2 récupérées}
+Ship_cant_got_good {pas de place pour %1}
 
-Fort_destroy		{Fort %1 is destroyed. +%2 experience obtained.}
-Fort_cannon			{Fort's cannon is destroyed!}
+Fort_destroy {Fort %1 détruit ! +%2 points d'expérience.}
+Fort_cannon {Canons du fort détruits !}
 
-seg_Balls 			{cannonballs}
-seg_Grapes 			{grapeshot}
-seg_Knippels 		{knippels}
-seg_Bombs 			{bombs}
-seg_Sailcloth 		{sailcloth}
-seg_Planks 			{planks}
-seg_Slaves 			{slaves}
-seg_Wheat 			{wheat}
-seg_Ebony 			{ebony}
-seg_Chocolate 		{cocoa}
-seg_Suga 			{sugar}
-seg_Wine 			{wine}
-seg_ShipSilk 		{shipsilk}
-seg_Rum 			{rum}
-seg_Tobacco 		{tobacco}
-seg_Coffee 			{coffee}
-seg_Mahogany 		{mahogany}
-seg_Cinnamon 		{vanilla}
-seg_Copra 			{copra}
-seg_Paprika 		{paprika}
-seg_Fruits 			{fruits}
-seg_Ale 			{ale}
-seg_Ropes 			{ropes}
-seg_Clothes 		{clothes}
-seg_Cotton 			{cotton}
-seg_Sandal 			{ironwood}
-seg_Leather 		{leather}
-seg_Oil 			{resin}
-seg_Food 			{food}
-seg_Weapon 			{weapons}
-seg_Gold 			{gold}
-seg_Silver 			{silver}
-seg_Powder 			{gunpowder}
-seg_Brick 			{bricks}
-seg_Medicament 		{medicine}
+seg_Balls {Boulets}
+seg_Grapes {Mitraille}
+seg_Knippels {Chaînes lestées}
+seg_Bombs {Bombes}
+seg_Sailcloth {Toile}
+seg_Planks {Planches}
+seg_Slaves {Esclaves}
+seg_Wheat {Blé}
+seg_Ebony {Ébène}
+seg_Chocolate {Cacao}
+seg_Sugar {Sucre}
+seg_Wine {Vin}
+seg_ShipSilk 		{Voile en soie}
+seg_Rum 			{Rhum}
+seg_Tobacco 		{Tabac}
+seg_Coffee {Café}
+seg_Mahogany {Acajou}
+seg_Cinnamon 		{Vanille}
+seg_Copra 			{Copra}
+seg_Paprika 		{Paprika}
+seg_Fruits 			{Fruits}
+seg_Ale {Bière}
+seg_Ropes 			{Cordes}
+seg_Clothes {Vêtements}
+seg_Cotton {Coton}
+seg_Sandal 			{Bois de fer}
+seg_Leather {Cuir}
+seg_Oil 			{Goudron}
+seg_Food {Rations}
+seg_Weapon {Arme}
+seg_Gold 			{Or}
+seg_Silver 			{Argent}
+seg_Powder 			{Poudre noire}
+seg_Brick 			{Briques}
+seg_Medicament {Remèdes}
 
-seg_Cannon_3		{3p. falconets}
-seg_Cannon_6		{6-pounders}
-seg_Cannon_12		{12-pounders}
-seg_Cannon_16		{16-pounders}
-seg_Cannon_20		{20-pounders}
-seg_Cannon_24		{24-pounders}
-seg_Cannon_32		{32-pounders}
-seg_Cannon_36		{36-pounders}
-seg_Cannon_42		{42-pounders}
-seg_Culverine_8		{Semi-couleuvrines}
+seg_Cannon_3		{Falconets}
+seg_Cannon_6		{Demi-cannons légers}
+seg_Cannon_12		{Demi-cannons}
+seg_Cannon_16		{Demi-cannons navals}
+seg_Cannon_20		{Cannons 20 livres}
+seg_Cannon_24		{Cannons 24 livres}
+seg_Cannon_32		{Cannons 32 livres}
+seg_Cannon_36		{Cannons 36 livres}
+seg_Cannon_42		{Cannons 42 livres}
+seg_Culverine_8		{Couleuvrines légères}
 seg_Culverine_18	{Couleuvrines}
-seg_Culverine_36	{Full couleuvrines}
+seg_Culverine_36	{Couleuvrines lourdes}
 
-sea_exp_add			{+%1 experience obtained}
+sea_exp_add			{+%1 expérience obtenu}

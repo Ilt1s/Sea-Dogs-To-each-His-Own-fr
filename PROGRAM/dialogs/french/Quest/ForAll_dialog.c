@@ -1,4 +1,4 @@
-
+#include "SD\TEXT\DIALOGS\Quest\ForAll_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -15,8 +15,8 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "We have nothing to talk about.";
-			link.l1 = "Fine...";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1];
 			link.l1.go = "exit";	
 			NextDiag.TempNode = "First time";
 		break;
@@ -24,13 +24,13 @@ void ProcessDialogEvent()
 		case "CitizenNotBlade":
 			if(LoadedLocation.type == "town")
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of this town and I'd ask you to hold down your blade.", "Listen, I am the citizen of this town and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Sure.", "Okay...");
+				dialog.text = NPCharSexPhrase(NPChar, DLG_TEXT_Q[699], DLG_TEXT_Q[700]);
+				link.l1 = LinkRandPhrase(DLG_TEXT_Q[701], DLG_TEXT_Q[702], DLG_TEXT_Q[703]);
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, "+ GetSexPhrase("pal","girl") +", running with a weapon. I can get nervous...", "I don't like when there are "+ GetSexPhrase("people","who knows who") +" walking in front of me with their weapon ready. It scares me...");
-				link.l1 = RandPhraseSimple("I got it.", "I got it.");
+				dialog.text = NPCharSexPhrase(NPChar, DLG_TEXT_Q[704]+ GetSexPhrase(DLG_TEXT_Q[705],DLG_TEXT_Q[706]) +DLG_TEXT_Q[707], DLG_TEXT_Q[708]+ GetSexPhrase(DLG_TEXT_Q[709],DLG_TEXT_Q[710]) +DLG_TEXT_Q[711]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_Q[712], DLG_TEXT_Q[713]);
 			}
 			
 			link.l1.go = "exit";
@@ -44,43 +44,43 @@ void ProcessDialogEvent()
 		//--------------------------- квест официантки --------------------------------
 		//грабитель
 		case "WaitressBerglar":
-			dialog.text = "Come on, pal, show me your pockets.";
-			link.l1 = "What?!";
+			dialog.text = DLG_TEXT_Q[227];
+			link.l1 = DLG_TEXT_Q[228];
 			link.l1.go = "WaitressBerglar_1";
 		break;
 		case "WaitressBerglar_1":
-			dialog.text = "You heard me. Quickly, less words. I don't like talking...";
-			link.l1 = "Damn it! And  does " + pchar.questTemp.different.FackWaitress.Name + " work with you?";
+			dialog.text = DLG_TEXT_Q[229];
+			link.l1 = DLG_TEXT_Q[230] + pchar.questTemp.different.FackWaitress.Name + DLG_TEXT_Q[231];
 			link.l1.go = "WaitressBerglar_2";
 		break;
 		case "WaitressBerglar_2":
-			dialog.text = "She does, she does... Give me your cash or I will gut you!";
-			link.l1 = "No! I will gut you!";
+			dialog.text = DLG_TEXT_Q[232];
+			link.l1 = DLG_TEXT_Q[233];
 			link.l1.go = "WaitressBerglar_fight";
-			link.l2 = "Take my coins, bastard! But you won't get away from this...";
+			link.l2 = DLG_TEXT_Q[234];
 			link.l2.go = "WaitressBerglar_take";
 		break;
 		case "WaitressBerglar_take":
-			dialog.text = "Sure, no argue on that. Farewell, fellow. And remember, you are not that handsome to make waitresses wet. Be smarter next time!";
-			link.l1 = "Ouch...";
+			dialog.text = DLG_TEXT_Q[235];
+			link.l1 = DLG_TEXT_Q[236];
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("WaitressFack_outRoom");
 		break;
 		case "WaitressBerglar_fight":
-			dialog.text = "As you say...";
-			link.l1 = "That I do...";
+			dialog.text = DLG_TEXT_Q[237];
+			link.l1 = DLG_TEXT_Q[238];
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("WaitressFack_fight");
 		break;
 		//официантка
 		case "Waitress":
-			dialog.text = "Here I am! Do you want me, handsome?";
-			link.l1 = "That escalated quickly...";
+			dialog.text = DLG_TEXT_Q[239];
+			link.l1 = DLG_TEXT_Q[240];
 			link.l1.go = "Waitress_1";
 		break;
 		case "Waitress_1":
-			dialog.text = "Let's not waste our time!";
-			link.l1 = "Heh, agree!";
+			dialog.text = DLG_TEXT_Q[241];
+			link.l1 = DLG_TEXT_Q[242];
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("WaitressFack_fack");
 		break;
@@ -88,25 +88,25 @@ void ProcessDialogEvent()
 		//--------------------------- догнать кэпа, потерявшего судовой журнал --------------------------------
 		//встретил в городе
 		case "PortmansCap":
-			dialog.text = "Good day. My name is " + GetFullName(npchar) + ". I am a captain of " + GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Acc")) + " '" + npchar.Ship.name + "'."; 
-			link.l1 = "Splendid! At last I have found you.";
+			dialog.text = DLG_TEXT_Q[243] + GetFullName(npchar) + DLG_TEXT_Q[244] + GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Acc")) + " '" + npchar.Ship.name + "'."; 
+			link.l1 = DLG_TEXT_Q[245];
 			link.l1.go = "PortmansCap_1";
 		break;
 		case "PortmansCap_1":
-			dialog.text = "Found me?!";
-			link.l1 = "Yes. Well, I have brought your logbook, which you forgot at the harbour office of " + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + ".";
+			dialog.text = DLG_TEXT_Q[246];
+			link.l1 = DLG_TEXT_Q[247] + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + ".";
 			link.l1.go = "PortmansCap_2";
 		break;
 		case "PortmansCap_2":
-			dialog.text = "Damn! Now I see where I had lost it. This loss has almost provoked a mutiny on my ship...";
-			link.l1 = "So all's well that end's well. Take you logbook and let's talk money.";
+			dialog.text = DLG_TEXT_Q[248];
+			link.l1 = DLG_TEXT_Q[249];
 			link.l1.go = "PortmansCap_3";
 		break;
 		case "PortmansCap_3":
 			if (sti(npchar.quest.stepsQty) == 1)
 			{
-				dialog.text = "Great timing, I haven't started a new one yet, so I'll pay you as much as I can. " + FindRussianMoneyString(sti(npchar.quest.money)) + " and accept a few pieces of my private jewellery.";
-				link.l1 = "Nice. Take it.";
+				dialog.text = DLG_TEXT_Q[250] + FindRussianMoneyString(sti(npchar.quest.money)) + ".";
+				link.l1 = DLG_TEXT_Q[251];
 				link.l1.go = "PortmansCap_4";
 			}
 			else
@@ -114,21 +114,21 @@ void ProcessDialogEvent()
 				if (sti(npchar.quest.stepsQty) < 5)
 				{
 					npchar.quest.money = makeint(sti(npchar.quest.money) / sti(npchar.quest.stepsQty)); //уменьшаем вознаграждение
-					dialog.text = "Hm, you know, I have already started the new logbook. Nevertheless, the old one still holds value to me. So I'll pay you " + FindRussianMoneyString(sti(npchar.quest.money)) + " and accept a few pieces of my private jewellery.";
-					link.l1 = "Deal then. Take your log.";
+					dialog.text = DLG_TEXT_Q[252] + FindRussianMoneyString(sti(npchar.quest.money)) + ".";
+					link.l1 = DLG_TEXT_Q[253];
 					link.l1.go = "PortmansCap_4";
 				}
 				else
 				{
-					dialog.text = "I have already started the new logbook. And transferred all notes from the old one. I don't need it any more, so there is no money for you.";
-					link.l1 = "Great. All this chasing was for nothing.";
+					dialog.text = DLG_TEXT_Q[254];
+					link.l1 = DLG_TEXT_Q[255];
 					link.l1.go = "PortmansCap_5";
 				}
 			}
 		break;
 		case "PortmansCap_4":
-			dialog.text = "Thank you. Farewell, "+ GetSexPhrase("pal","girl") +".";
-			link.l1 = "Same to you...";
+			dialog.text = DLG_TEXT_Q[256];
+			link.l1 = DLG_TEXT_Q[257];
 			link.l1.go = "exit";
 			sTemp = "Timer_" + npchar.id;
 			pchar.quest.(sTemp).over = "yes"; //снимаем таймер на выход в море
@@ -153,8 +153,8 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "PortmansCap_inDeck_over";
 		break;
 		case "PortmansCap_5":
-			dialog.text = "Ha, work on your timing next time.";
-			link.l1 = "True enough.";
+			dialog.text = DLG_TEXT_Q[258];
+			link.l1 = DLG_TEXT_Q[259];
 			link.l1.go = "exit";
 			sTemp = "Timer_" + npchar.id;
 			pchar.quest.(sTemp).over = "yes"; //снимаем таймер на выход в море
@@ -177,26 +177,26 @@ void ProcessDialogEvent()
 		case "PortmansCap_inDeck":
 			if (isBadReputation(pchar, 20))
 			{
-				dialog.text = "I greet you on the deck of my ship. To be honest, you scared me shitless - I thought, that the One-eyed Steed Hunter was hunting me...";
-				link.l1 = "No, captain, I am in a good mood today. I am here to help you.";
+				dialog.text = DLG_TEXT_Q[260];
+				link.l1 = DLG_TEXT_Q[261];
 			}
 			else
 			{
-				dialog.text = "I greet you on the deck of my ship!";
-				link.l1 = "Ahoy, cap! I was looking for you.";
+				dialog.text = DLG_TEXT_Q[262];
+				link.l1 = DLG_TEXT_Q[263];
 			}
 			link.l1.go = "PortmansCap_inDeck_1";
 		break;
 		case "PortmansCap_inDeck_1":
-			dialog.text = "Why?";
-			link.l1 = "You have forgotten your logbook at the harbour master's house of " + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + ".";
+			dialog.text = DLG_TEXT_Q[264];
+			link.l1 = DLG_TEXT_Q[265] + XI_ConvertString("Colony" + npchar.quest.firstCity + "Gen") + DLG_TEXT_Q[266];
 			link.l1.go = "PortmansCap_inDeck_2";
 		break;
 		case "PortmansCap_inDeck_2":
 			if (sti(npchar.quest.stepsQty) == 1)
 			{
-				dialog.text = "Damn it, that's was the place then! This loss has already caused a shitload of troubles for me.";
-				link.l1 = "How about a reward?";
+				dialog.text = DLG_TEXT_Q[267];
+				link.l1 = DLG_TEXT_Q[268];
 				link.l1.go = "PortmansCap_inDeck_3";
 			}
 			else
@@ -204,26 +204,26 @@ void ProcessDialogEvent()
 				if (sti(npchar.quest.stepsQty) < 5)
 				{
 					npchar.quest.money = makeint(sti(npchar.quest.money) / sti(npchar.quest.stepsQty)); //уменьшаем вознаграждение
-					dialog.text = "Damn, now I see where I had lost it! Thank you, but you were looking for me far too long. I have already started the new logbook. Nevertheless, the old one still has to be transferred into the new one...";
-					link.l1 = "And how much?";
+					dialog.text = DLG_TEXT_Q[269];
+					link.l1 = DLG_TEXT_Q[270];
 					link.l1.go = "PortmansCap_inDeck_3";
 				}
 				else
 				{
-					dialog.text = "I have already started the new logbook. And transferred all notes from the old one. I don't need it any more.";
-					link.l1 = "So don't you need an old journal? Really?";
+					dialog.text = DLG_TEXT_Q[271];
+					link.l1 = DLG_TEXT_Q[272];
 					link.l1.go = "PortmansCap_inDeck_5";
 				}
 			}
 		break;
 		case "PortmansCap_inDeck_3":
-			dialog.text = "I can pay you " + FindRussianMoneyString(sti(npchar.quest.money)) + " and some of my jewels. That is all I can afford.";
-			link.l1 = "Fine then. Take your journal.";
+			dialog.text = DLG_TEXT_Q[273] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[274];
+			link.l1 = DLG_TEXT_Q[275];
 			link.l1.go = "PortmansCap_inDeck_4";
 		break;
 		case "PortmansCap_inDeck_4":
-			dialog.text = "Thanks again. Farewell, pal.";
-			link.l1 = "Keep it up.";
+			dialog.text = DLG_TEXT_Q[276];
+			link.l1 = DLG_TEXT_Q[277];
 			link.l1.go = "exit";
 			npchar.LifeDay = 30; // через десять дней снимаем кэпа
 			SaveCurrentNpcQuestDateParam(npchar, "LifeTimeCreate");	
@@ -247,8 +247,8 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "PortmansCap_inDeck_over";
 		break;
 		case "PortmansCap_inDeck_5":
-			dialog.text = "That's for sure. If you are chasing someone then you have to be faster.";
-			link.l1 = "Don't loose your logbooks in the first place. Fine.";
+			dialog.text = DLG_TEXT_Q[278];
+			link.l1 = DLG_TEXT_Q[279];
 			link.l1.go = "exit";
 			npchar.LifeDay = 30; // через десять дней снимаем кэпа
 			SaveCurrentNpcQuestDateParam(npchar, "LifeTimeCreate");	
@@ -267,20 +267,20 @@ void ProcessDialogEvent()
 			NextDiag.TempNode = "PortmansCap_inDeck_over";
 		break;
 		case "PortmansCap_inDeck_over":
-			dialog.text = "I thought that we'd settled all down.";
-			link.l1 = "Yes, that's true.";
+			dialog.text = DLG_TEXT_Q[280];
+			link.l1 = DLG_TEXT_Q[281];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "PortmansCap_inDeck_over";
 		break;
 		//--------------------------- розыск украденного корабля --------------------------------
 		case "SeekCap_inDeck":
-			dialog.text = "Greeting. What do you want?";
-			link.l1 = "It's nothing, just wanted to hear some news. Are you selling?";
+			dialog.text = DLG_TEXT_Q[282];
+			link.l1 = DLG_TEXT_Q[283];
 			link.l1.go = "SeekCap_inDeck_1";
 		break;
 		case "SeekCap_inDeck_1":
-			dialog.text = "I have nothing to sell to you and I don't have any news. By the way, your presence here is not desirable. Am I clear?";
-			link.l1 = "You are... Farewell then, pal.";
+			dialog.text = DLG_TEXT_Q[284];
+			link.l1 = DLG_TEXT_Q[285];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "SeekCap_inDeck_over";
 			sld = characterFromId(npchar.quest.cribCity + "_PortMan");
@@ -290,25 +290,25 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sShipTypeName", GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName)));
 		break;
 		case "SeekCap_inDeck_over":
-			dialog.text = "I have told you that you've got nothing to do here!";
-			link.l1 = "I see...";
+			dialog.text = DLG_TEXT_Q[286];
+			link.l1 = DLG_TEXT_Q[287];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "SeekCap_inDeck_over";
 		break;
 		//абордаж
 		case "SeekCap":
-			dialog.text = "Why have you attacked me?!";
-			link.l1 = "I have to return the ship to its owner..";
+			dialog.text = DLG_TEXT_Q[288];
+			link.l1 = DLG_TEXT_Q[289];
 			link.l1.go = "SeekCap_1";
 		break;
 		case "SeekCap_1":
-			dialog.text = "To what kind of the owner? I am the owner!";
-			link.l1 = "No, you are not. I don't know, who owns this ship. But she is stolen and I have to return her back.";
+			dialog.text = DLG_TEXT_Q[290];
+			link.l1 = DLG_TEXT_Q[291];
 			link.l1.go = "SeekCap_2";
 		break;
 		case "SeekCap_2":
-			dialog.text = "Fuck! But it is not over yet for me. At least I'll try to kill you...";
-			link.l1 = "Trying is all you can do.";
+			dialog.text = DLG_TEXT_Q[292];
+			link.l1 = DLG_TEXT_Q[293];
 			link.l1.go = "SeekCap_3";
 		break;
 		case "SeekCap_3":
@@ -346,10 +346,10 @@ void ProcessDialogEvent()
 //--------------------------------------------поисковые квесты дворян---------------------------------------------
 		
 		case "SCQ_Nobleman":
-			dialog.text = "Greetings, "+GetAddress_Form(NPChar)+". I see that you are a captain of your own ship? My name is "+GetFullName(npchar)+" and I want to offer you a deal.";
-			link.l1 = RandPhraseSimple("I am so sorry, but I have to go.", "I am so sorry, but I have no time to talk with you.");
+			dialog.text = DLG_TEXT_Q[714]+GetAddress_Form(NPChar)+DLG_TEXT_Q[715]+GetFullName(npchar)+DLG_TEXT_Q[716];
+			link.l1 = RandPhraseSimple(DLG_TEXT_Q[717], DLG_TEXT_Q[718]);
 			link.l1.go = "SCQ_exit";
-			link.l2 = "I am all ears.";
+			link.l2 = DLG_TEXT_Q[719];
 			link.l2.go = "SCQ_Nobleman_1";
 		break;
 
@@ -359,53 +359,53 @@ void ProcessDialogEvent()
 				case 0: //вариант А
 					if (sti(pchar.reputation.nobility) < 35)
 					{
-						dialog.text = "Listen then. "+SelectNB_battleText()+"\nI don't possess neither time nor chance to find him. Of course, he never shows up here. I guess, you see now, what I am going to propose you?";
-						link.l1 = LinkRandPhrase("I suppose, I have to track him down and bring him to you?","Perhaps, to find the bastard and bring him to you?","You want me to find this man and bring him here?");
+						dialog.text = DLG_TEXT_Q[720]+SelectNB_battleText()+DLG_TEXT_Q[721];
+						link.l1 = LinkRandPhrase(DLG_TEXT_Q[722],DLG_TEXT_Q[723],DLG_TEXT_Q[724]);
 						link.l1.go = "SCQ_NM_battle";
 					}
 					else //вариант В
 					{
 						SelectNB_prisonerText(npchar);
-						dialog.text = "Listen then."+SelectNB_battleText()+"\nI don't possess neither time nor chance to find him. Of course, he never shows up here. I guess, you see now, what I am going to propose you?";
-						link.l1 = LinkRandPhrase("I suppose, you want me to track him down and bring him to you?","Perhaps, to find the bastard and bring him to you?","You want me to find this man and bring him here?");
+						dialog.text = DLG_TEXT_Q[725]+SelectNB_battleText()+DLG_TEXT_Q[726];
+						link.l1 = LinkRandPhrase((DLG_TEXT_Q[727],DLG_TEXT_Q[728],DLG_TEXT_Q[729]);
 						link.l1.go = "SCQ_NM_prisoner"
 					}
 		break;
 				
 				case 1: //вариант С
 					SelectNB_peaceText(npchar);
-					dialog.text = "Listen then. Actually, "+npchar.quest.text+" is serving in the navy as a captain. He doesn't even know that I am here too!\nI'd like to meet him, yet I don't possess neither time nor chance to find him...";
-					link.l1 = "I take it that you want me to find this captain and tell him about you?";
+					dialog.text = DLG_TEXT_Q[730]+npchar.quest.text+DLG_TEXT_Q[731];
+					link.l1 = DLG_TEXT_Q[732];
 					link.l1.go = "SCQ_NM_peace";
 				break;
 			}
 		break;
 		
 		case "SCQ_NM_battle": //вариант А
-			dialog.text = "Not quite so. Find him, but there is no need in bringing him here. Kill him and that will be enough. Sink him with his filthy ship, shoot him, stab him with your blade - I don't really care about that, just make this bastard stop poisoning this world by his presence. The reward will be generous.";
-			link.l1 = "Ha! Easy enough. Tell me his name and the name of his ship.";
+			dialog.text = DLG_TEXT_Q[733];
+			link.l1 = DLG_TEXT_Q[734];
 			link.l1.go = "SCQ_NM_battle_1";
 		break;
 		
 		case "SCQ_NM_battle_1":
 			npchar.quest.SeekCap = "NM_battle"; //личный флаг на квест
 			SetSeekCapCitizenParam(npchar, rand(HOLLAND)); //любая нация кроме пиратов
-			dialog.text = "" + npchar.quest.SeekCap.capName + " of the " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Voc")) + " named " + npchar.quest.SeekCap.shipName + ". He is an often guest in the port of "+XI_ConvertString("Colony"+npchar.quest.Qcity)+". I'll pay you "+FindRussianMoneyString(sti(npchar.quest.money))+" in golden doubloons.";
-			link.l1 = "That's all I need to know. I will be attentive in the sea. And when I find your friend, I'll make him dead.";
+			dialog.text = "" + npchar.quest.SeekCap.capName + DLG_TEXT_Q[735] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Voc")) + DLG_TEXT_Q[736] + npchar.quest.SeekCap.shipName + DLG_TEXT_Q[737]+XI_ConvertString("Colony"+npchar.quest.Qcity)+DLG_TEXT_Q[738]+FindRussianMoneyString(sti(npchar.quest.money))+DLG_TEXT_Q[739];
+			link.l1 = DLG_TEXT_Q[740];
 			link.l1.go = "SCQ_NM_battle_2";
-			link.l2 = "It's not enough for that kind of work.";
+			link.l2 = DLG_TEXT_Q[741];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		
 		case "SCQ_NM_battle_2":
-			dialog.text = "I am glad that we've made a deal. I'll be waiting for your return.";
-			link.l1 = "Where will I be able to find you? Let's clarify this now, I don't want to waste time searching for you.";
+			dialog.text = DLG_TEXT_Q[742];
+			link.l1 = DLG_TEXT_Q[743];
 			link.l1.go = "SCQ_NM_battle_3";
 		break;
 		
 		case "SCQ_NM_battle_3":
-			dialog.text = "Every morning I attend a service in the local church. You can find me there every day from 8 to 9 a.m.";
-			link.l1 = "Deal then! Expect the result soon.";
+			dialog.text = DLG_TEXT_Q[744];
+			link.l1 = DLG_TEXT_Q[745];
 			link.l1.go = "exit";
 			DeleteAttribute(npchar, "LifeDay");
 			DeleteAttribute(npchar, "talker");
@@ -432,8 +432,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_NM_prisoner": //вариант В
-			dialog.text = "Exactly. Find him and bring him to me. Alive. I want to deal with him by myself. I will generously reward you.";
-			link.l1 = "Well, I can try to find him, but I need details.";
+			dialog.text = DLG_TEXT_Q[746];
+			link.l1 = DLG_TEXT_Q[747];
 			link.l1.go = "SCQ_NM_prisoner_1";
 		break;
 		
@@ -444,22 +444,22 @@ void ProcessDialogEvent()
 			forName.nation = sti(npchar.nation);
 			forName.sex = "man";
 			forName.name = GenerateRandomName(sti(npchar.nation), "man");
-			dialog.text = "The bastard's name is "+npchar.quest.SeekCap.name+". He serves on " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName+"Voc")) + " named " + npchar.quest.SeekCap.shipName + ", which is under the command of " + npchar.quest.SeekCap.capName + ". The ship often can be seen in the port of "+XI_ConvertString("Colony"+npchar.quest.Qcity)+". I will pay you for this work "+FindRussianMoneyString(sti(npchar.quest.money))+" in golden doubloons.";
-			link.l1 = "That's enough for me. I will be attentive in the open sea.";
+			dialog.text = DLG_TEXT_Q[748]+npchar.quest.SeekCap.name+DLG_TEXT_Q[749] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName+"Voc")) + DLG_TEXT_Q[750] + npchar.quest.SeekCap.shipName + DLG_TEXT_Q[751] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[752]+XI_ConvertString("Colony"+npchar.quest.Qcity)+DLG_TEXT_Q[753]+FindRussianMoneyString(sti(npchar.quest.money))+DLG_TEXT_Q[754];
+			link.l1 = DLG_TEXT_Q[755];
 			link.l1.go = "SCQ_NM_prisoner_2";
-			link.l2 = "It's not enough for that kind of work.";
+			link.l2 = DLG_TEXT_Q[756];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		
 		case "SCQ_NM_prisoner_2":
-			dialog.text = "I am glad that we've made a deal. I'll be waiting for your return.";
-			link.l1 = "Where will I be able to find you? Let's clarify this now, I don't want to waste time searching for you.";
+			dialog.text = DLG_TEXT_Q[757];
+			link.l1 = DLG_TEXT_Q[758];
 			link.l1.go = "SCQ_NM_prisoner_3";
 		break;
 		
 		case "SCQ_NM_prisoner_3":
-			dialog.text = "Every morning I attend a service in the local church. You can find me there every day from 8 to 9 a.m.";
-			link.l1 = "Deal then! Expect the result soon.";
+			dialog.text = DLG_TEXT_Q[759];
+			link.l1 = DLG_TEXT_Q[760];
 			link.l1.go = "exit";
 			DeleteAttribute(npchar, "LifeDay");
 			DeleteAttribute(npchar, "talker");
@@ -487,30 +487,30 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_NM_peace": //вариант С
-			dialog.text = "Exactly! Find him and tell him that I live in this town. I will pay for your services.";
-			link.l1 = "Well... I can try. Tell me details.";
+			dialog.text = DLG_TEXT_Q[761];
+			link.l1 = DLG_TEXT_Q[762];
 			link.l1.go = "SCQ_NM_peace_1";
 		break;
 		
 		case "SCQ_NM_peace_1":
 			npchar.quest.SeekCap = "NM_peace"; //личный флаг на квест
 			SetSeekCapCitizenParam(npchar, sti(npchar.nation)); //нация = нации квестодателя
-			dialog.text = "His name is " + npchar.quest.SeekCap.capName + ". And he serves on " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Voc")) + " " + npchar.quest.SeekCap.shipName + "'. He often visits "+XI_ConvertString("Colony"+npchar.quest.Qcity)+". I will pay you for this work "+FindRussianMoneyString(sti(npchar.quest.money))+" in golden doubloons.";
-			link.l1 = "Deal! I suppose, that I will find your friend soon enough.";
+			dialog.text = DLG_TEXT_Q[763] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[764] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Voc")) + " " + npchar.quest.SeekCap.shipName + DLG_TEXT_Q[765]+XI_ConvertString("Colony"+npchar.quest.Qcity)+DLG_TEXT_Q[766]+FindRussianMoneyString(sti(npchar.quest.money))+DLG_TEXT_Q[767];
+			link.l1 = DLG_TEXT_Q[768];
 			link.l1.go = "SCQ_NM_peace_2";
-			link.l2 = "It is not enough for me.";
+			link.l2 = DLG_TEXT_Q[769];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		
 		case "SCQ_NM_peace_2":
-			dialog.text = "I am glad that we've made a deal. I will be expecting your return.";
-			link.l1 = "Where will I be able to find you? Let's clarify this now, I don't want to waste time searching for you.";
+			dialog.text = DLG_TEXT_Q[770];
+			link.l1 = DLG_TEXT_Q[771];
 			link.l1.go = "SCQ_NM_peace_3";
 		break;
 		
 		case "SCQ_NM_peace_3":
-			dialog.text = "I always attend an evening service in the local church. You can find me there every day from 6 to 8 p.m.";
-			link.l1 = "Deal then! Expect the result soon.";
+			dialog.text = DLG_TEXT_Q[772];
+			link.l1 = DLG_TEXT_Q[773];
 			link.l1.go = "exit";
 			DeleteAttribute(npchar, "LifeDay");
 			DeleteAttribute(npchar, "talker");
@@ -538,36 +538,36 @@ void ProcessDialogEvent()
 		
 		//--> разговор на суше, вариант А
 		case "NM_battleCap":
-			dialog.text = "And? What do you want, sir?";
-			link.l1 = "Are you captain "+GetFullName(npchar)+"?";
+			dialog.text = DLG_TEXT_Q[774];
+			link.l1 = DLG_TEXT_Q[775]+GetFullName(npchar)+" ?";
 			link.l1.go = "NM_battleCap_1";
 		break;
 		
 		case "NM_battleCap_1":
-			dialog.text = "Yes I am. What's the deal?";
-			link.l1 = "One man has a very great interest in you, his name is "+GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)])+". Remember?";
+			dialog.text = DLG_TEXT_Q[776];
+			link.l1 = DLG_TEXT_Q[777]+GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)])+DLG_TEXT_Q[778];
 			link.l1.go = "NM_battleCap_2";
-			link.l2 = "I've heard that there are a lot of redwood in your cargo. I want to buy it. Will you sell?";
+			link.l2 = DLG_TEXT_Q[779];
 			link.l2.go = "NM_battleCap_4";
 		break;
 		
 		case "NM_battleCap_2":
-			dialog.text = "It's the first time I hear this name. You were mistaken somehow, captain. Are we done?";
-			link.l1 = "Hm. Fine, pardon me...";
+			dialog.text = DLG_TEXT_Q[780];
+			link.l1 = DLG_TEXT_Q[781];
 			link.l1.go = "NM_battleCap_exit";
-			link.l2 = "Oh really? But he does remember you quite well. He mentioned your debt to him...";
+			link.l2 = DLG_TEXT_Q[782];
 			link.l2.go = "NM_battleCap_3";
 		break;
 		
 		case "NM_battleCap_3":
-			dialog.text = "What debt? What are you talking about?";
-			link.l1 = "The debt of honour!";
+			dialog.text = DLG_TEXT_Q[783];
+			link.l1 = DLG_TEXT_Q[784];
 			link.l1.go = "NM_battleCap_fight";
 		break;
 		
 		case "NM_battleCap_4":
-			dialog.text = "You are mistaken. I don't trade any wood. Are we done?";
-			link.l1 = "Hm. Fine, excuse me...";
+			dialog.text = DLG_TEXT_Q[785];
+			link.l1 = DLG_TEXT_Q[786];
 			link.l1.go = "NM_battleCap_exit";
 		break;
 		
@@ -587,43 +587,43 @@ void ProcessDialogEvent()
 		
 		//--> разговор на суше и палубе одинаковый, вариант В
 		case "NM_prisonerCap":
-			dialog.text = "And? What do you want, sir?";
-			link.l1 = "Are you captain "+GetFullName(npchar)+"?";
+			dialog.text =DLG_TEXT_Q[787];
+			link.l1 = DLG_TEXT_Q[788]+GetFullName(npchar)+" ?";
 			link.l1.go = "NM_prisonerCap_1";
 		break;
 		
 		case "NM_prisonerCap_1":
 			sld = &characters[GetCharacterIndex("QuestCitiz_" + npchar.quest.cribCity)];//квестодатель
-			dialog.text = "Yes, that's me. What's the deal?";
-			link.l1 = "Does a man named "+sld.quest.SeekCap.name+" serve under your command?";
+			dialog.text = DLG_TEXT_Q[789];
+			link.l1 = DLG_TEXT_Q[790]+sld.quest.SeekCap.name+DLG_TEXT_Q[791];
 			link.l1.go = "NM_prisonerCap_2";
 		break;
 		 
 		case "NM_prisonerCap_2":
 			sld = &characters[GetCharacterIndex("QuestCitiz_" + npchar.quest.cribCity)];//квестодатель
-			dialog.text = "Yes. He is one of my officers. Now tell me why are you asking?";
-			link.l1 = "Sure I will tell you. I am searching for this man by the orders of authorities of "+XI_ConvertString("Colony"+sld.city+"Gen")+", and I am in power to arrest him and deliver him to "+XI_ConvertString("Colony"+sld.city)+". I request you to assist me with the matter.";
+			dialog.text = DLG_TEXT_Q[792];
+			link.l1 = DLG_TEXT_Q[793]+XI_ConvertString("Colony"+sld.city+"Gen")+DLG_TEXT_Q[794]+XI_ConvertString("Colony"+sld.city)+DLG_TEXT_Q[795];
 			link.l1.go = "NM_prisonerCap_3";
 		break;
 		
 		case "NM_prisonerCap_3":
 			if(sti(npchar.reputation.nobility) > 41)
 			{
-				dialog.text = "Really? And such man serves in my crew? Are you serious?";
-				link.l1 = "Don't bother yourself with that, "+GetAddress_FormToNPC(NPChar)+". I will send a longboat to your ship and we will take him ourselves.";
+				dialog.text = DLG_TEXT_Q[796];
+				link.l1 = DLG_TEXT_Q[797]+GetAddress_FormToNPC(NPChar)+DLG_TEXT_Q[798];
 				link.l1.go = "NM_prisonerCap_good";
 			}
 			else
 			{
-				dialog.text = "You don't say so. You know what, sir, I don't give a damn about his past. It doesn't concern me. And who are you by the way? Authorities? Really? Ha! I don't give my officers to you or to anyone else. This conversation is over. Off you go!";
-				link.l1 = "Wrong choice... A very wrong one!";
+				dialog.text = DLG_TEXT_Q[799];
+				link.l1 = DLG_TEXT_Q[800];
 				link.l1.go = "NM_prisonerCap_bad";
 			}
 		break;
 		
 		case "NM_prisonerCap_good":
-			dialog.text = "Do what you have to do.";
-			link.l1 = "On it.";
+			dialog.text = DLG_TEXT_Q[801];
+			link.l1 = DLG_TEXT_Q[802];
 			link.l1.go = "NM_prisonerCap_good_1";
 		break;
 		
@@ -640,7 +640,7 @@ void ProcessDialogEvent()
 			//SetCharacterRemovable(&characters[sti(pchar.GenQuest.LastQuestPrisonerIdx)], false);
 			AddPassenger(pchar, chr, false);//добавить пассажира
 			SetCharacterRemovable(chr, false);
-			log_info(sld.quest.SeekCap.name+" is under arrest");
+			log_info(sld.quest.SeekCap.name+DLG_TEXT_Q[803]);
 			PlaySound("interface\notebook.wav");
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).win_condition.l1 = "MapEnter";
@@ -661,7 +661,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "NM_prisonerDeck_exit":
-			dialog.text = "Are we done, captain?";
+			dialog.text = DLG_TEXT_Q[804];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "NM_prisonerDeck_exit";
@@ -669,21 +669,21 @@ void ProcessDialogEvent()
 		
 		//--> разговор на суше и палубе одинаковый, вариант C
 		case "NM_peaceCap":
-			dialog.text = "Good day. What do you want, captain?";
-			link.l1 = "You are captain "+GetFullName(npchar)+", am I right?";
+			dialog.text = DLG_TEXT_Q[805];
+			link.l1 = DLG_TEXT_Q[806]+GetFullName(npchar)+DLG_TEXT_Q[848];
 			link.l1.go = "NM_peaceCap_1";
 		break;
 		
 		case "NM_peaceCap_1":
 			sld = characterFromId("QuestCitiz_" + npchar.quest.cribCity);//квестодатель
-			dialog.text = "You are right. Do you have something for me?";
-			link.l1 = "I have. A man named "+GetFullName(sld)+" is looking for you. He wants you to pay him a visit as soon as possible. He lives in "+XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat")+".";
+			dialog.text = DLG_TEXT_Q[807];
+			link.l1 = DLG_TEXT_Q[808]+GetFullName(sld)+DLG_TEXT_Q[809]+XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat")+".";
 			link.l1.go = "NM_peaceCap_2";
 		break;
 		 
 		case "NM_peaceCap_2":
-			dialog.text = "Ha! So, he also moved to the New World? Then I really should pay him a visit... Thanks for the information, sir!";
-			link.l1 = "You are welcome. My work will be paid by your friend. Good luck, "+GetAddress_FormToNPC(NPChar)+"!";
+			dialog.text = DLG_TEXT_Q[810];
+			link.l1 = DLG_TEXT_Q[811]+GetAddress_FormToNPC(NPChar)+" !";
 			link.l1.go = "NM_peaceCap_3";
 		break;
 		
@@ -702,22 +702,22 @@ void ProcessDialogEvent()
 		break;
 		
 		case "NM_peaceCap_exit":
-			dialog.text = "It was a pleasure, "+GetAddress_Form(NPChar)+"!";
-			link.l1 = "The pleasure was mine, captain.";
+			dialog.text = DLG_TEXT_Q[812]+GetAddress_Form(NPChar)+" !";
+			link.l1 = DLG_TEXT_Q[813];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "NM_peaceCap_exit";
 		break;
 		
 		//--> встреча на палубе, вариант А
 		case "NM_battleDeck":
-			dialog.text = "Ahoy, "+GetAddress_Form(NPChar)+". What do you want?";
-			link.l1 = "I heard that you've got a lot of redwood in your cargo and I want to buy it. Will you sell?";
+			dialog.text = DLG_TEXT_Q[814]+GetAddress_Form(NPChar)+DLG_TEXT_Q[815];
+			link.l1 = DLG_TEXT_Q[816];
 			link.l1.go = "NM_battleDeck_1";
 		break;
 		
 		case "NM_battleDeck_1":
-			dialog.text = "You are mistaken. I don't trade any wood and your visit here smells quite suspicious to me. I think that you'd better leave my ship!";
-			link.l1 = "Fine, I was just asking. Farewell.";
+			dialog.text = DLG_TEXT_Q[817];
+			link.l1 = DLG_TEXT_Q[818];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "NM_battleDeck_exit";
 			npchar.DeckDialogNode = "NM_battleDeck_exit";
@@ -728,7 +728,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "NM_battleDeck_exit":
-			dialog.text = "Do you want troubles, sir? Should I repeat myself?";
+			dialog.text = DLG_TEXT_Q[819];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "NM_battleDeck_exit";
@@ -737,14 +737,14 @@ void ProcessDialogEvent()
 		 //--> абордаж, вариант А
 		case "NM_battleBoard":
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "Why have you attacked my ship, scoundrel?";
-			link.l1 = "I am here to give you best regards from "+XI_ConvertString("Colony"+npchar.quest.cribCity)+" , from the man named "+GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)])+". I hope that you understand the situation now.";
+			dialog.text = DLG_TEXT_Q[820];
+			link.l1 = DLG_TEXT_Q[821]+XI_ConvertString("Colony"+npchar.quest.cribCity)+DLG_TEXT_Q[822]+GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)])+DLG_TEXT_Q[823];
 			link.l1.go = "NM_battleBoard_1";
 		break;
 		
 		case "NM_battleBoard_1":
-			dialog.text = "Impossible! Nothing to lose for me then...";
-			link.l1 = "How about your life?";
+			dialog.text = DLG_TEXT_Q[824];
+			link.l1 = DLG_TEXT_Q[825];
 			link.l1.go = "NM_battleBoard_2";
 		break;
 		
@@ -760,22 +760,22 @@ void ProcessDialogEvent()
 		 //--> абордаж, вариант В
 		case "NM_prisonerBoard":
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];//квестодатель
-			dialog.text = "Why have you attacked my ship, scoundrel?";
+			dialog.text = DLG_TEXT_Q[826];
 			if (CheckAttribute(npchar, "quest.mustboarding"))
 			{
-				link.l1 = "Got any ideas? I have asked you to give me your officer peacefully. Now I am taking him, you and your tub!";
+				link.l1 = DLG_TEXT_Q[827];
 				link.l1.go = "NM_prisonerBoard_1";
 			}
 			else
 			{
-				link.l1 = "There is one scoundrel serving under your command. His name is "+sld.quest.SeekCap.name+". Authorities of "+XI_ConvertString("Colony"+npchar.quest.cribCity)+" are really eager to see him. He will be arrested and put in my hold.";
+				link.l1 = DLG_TEXT_Q[828]+sld.quest.SeekCap.name+DLG_TEXT_Q[829]+XI_ConvertString("Colony"+npchar.quest.cribCity)+DLG_TEXT_Q[830];
 				link.l1.go = "NM_prisonerBoard_1";
 			}
 		break;
 		
 		case "NM_prisonerBoard_1":
-			dialog.text = "And that is why you have committed a slaughter on my ship? Bastard! I still have some strength left... I will kill you!";
-			link.l1 = "Stronger men has tried...";
+			dialog.text = DLG_TEXT_Q[831];
+			link.l1 = DLG_TEXT_Q[832];
 			link.l1.go = "NM_prisonerBoard_2";
 		break;
 		
@@ -802,39 +802,39 @@ void ProcessDialogEvent()
 		
 		//--> результаты квестов дворян
 		case "SCQ_NM_result":
-			dialog.text = "Would you say anything, captain? Got any progress with my matter?";
-			link.l1 = "Not yet. But I am on it.";
+			dialog.text = DLG_TEXT_Q[833];
+			link.l1 = DLG_TEXT_Q[834];
 			link.l1.go = "exit";
 			switch (npchar.quest.SeekCap)
 			{
 				case "NM_battleover"://сдача квеста, вариант А
-					dialog.text = "Would you say anything, captain? Got any progress with my matter?";
-					link.l1 = "I do. And you are going to like it." + npchar.quest.SeekCap.capName + " is dead and his " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName)) + " is at the bottom of the sea.";
+					dialog.text = DLG_TEXT_Q[835];
+					link.l1 = DLG_TEXT_Q[836] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[837] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName)) + DLG_TEXT_Q[838];
 					link.l1.go = "SCQ_NM_result_A1";
 				break;
 				
 				case "NM_prisonerover"://сдача квеста, вариант B
-					dialog.text = "Would you say anything, captain? Got any progress with my matter?";
-					link.l1 = "I do. And you are going to like it."+npchar.quest.SeekCap.Name+" is sitting in the cabin of my ship under arrest.";
+					dialog.text = DLG_TEXT_Q[839];
+					link.l1 = DLG_TEXT_Q[840]+npchar.quest.SeekCap.Name+DLG_TEXT_Q[841];
 					link.l1.go = "SCQ_NM_result_B1";
 				break;
 				
 				case "NM_peaceover"://сдача квеста, вариант C
-					dialog.text = "Aha, here you are. I am glad to see you. I was informed that you have succeeded in your mission!";
-					link.l1 = "Has your friend visited you?";
+					dialog.text = DLG_TEXT_Q[842];
+					link.l1 = DLG_TEXT_Q[843];
 					link.l1.go = "SCQ_NM_result_C1";
 				break;
 			}
 		break;
 		
 		case "SCQ_NM_result_A1":
-			dialog.text = "Splendid! I knew that I can count on you. Here, take your gold. You have earned it.";
-			link.l1 = "Thanks. Talk to me again in case you'll get another enemy.";
+			dialog.text = DLG_TEXT_Q[844];
+			link.l1 = DLG_TEXT_Q[845];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
 			TakeNItems(pchar, "gold_dublon", sti(npchar.quest.dublon));
-			Log_Info("You have received "+FindRussianDublonString(sti(npchar.quest.dublon))+"");
+			Log_Info(DLG_TEXT_Q[846]+FindRussianDublonString(sti(npchar.quest.dublon))+"");
 			PlaySound("interface\important_item.wav");
 			sTitle = npchar.city + "SCQ_NM_battle";
 			CloseQuestHeader(sTitle);
@@ -848,13 +848,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_NM_result_B1":
-			dialog.text = "Splendid! I will order my men to take him off your ship immediately. He won't get away now! Here, take your gold. You have earned it.";
-			link.l1 = "Thanks. Address me any time for a job like this.";
+			dialog.text = DLG_TEXT_Q[847];
+			link.l1 = DLG_TEXT_Q[849];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
 			TakeNItems(pchar, "gold_dublon", sti(npchar.quest.dublon));
-			Log_Info("You have received "+FindRussianDublonString(sti(npchar.quest.dublon))+"");
+			Log_Info(DLG_TEXT_Q[850]+FindRussianDublonString(sti(npchar.quest.dublon))+"");
 			PlaySound("interface\important_item.wav");
 			sTitle = npchar.city + "SCQ_NM_prisoner";
 			CloseQuestHeader(sTitle);
@@ -869,8 +869,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "SCQ_NM_result_C1":
-			dialog.text = "Yes, he was here and told me about you. Here, take your gold. You have earned it.";
-			link.l1 = "My thanks. Farewell, sir!";
+			dialog.text = DLG_TEXT_Q[851];
+			link.l1 = DLG_TEXT_Q[852];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
@@ -884,7 +884,7 @@ void ProcessDialogEvent()
 			sTemp = "SCQ_" + sld.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть кэпа
 			TakeNItems(pchar, "gold_dublon", sti(npchar.quest.dublon));
-			Log_Info("You have received "+FindRussianDublonString(sti(npchar.quest.dublon))+"");
+			Log_Info(DLG_TEXT_Q[853]+FindRussianDublonString(sti(npchar.quest.dublon))+"");
 			PlaySound("interface\important_item.wav");
 			sTitle = npchar.city + "SCQ_NM_peace";
 			CloseQuestHeader(sTitle);
@@ -900,12 +900,12 @@ void ProcessDialogEvent()
 
 		//========= квесты мужиков ===========
 		case "SCQ_man":
-			dialog.text = LinkRandPhrase("Greetings, captain. I want to ask for your help.", 
-				"Captain! Can you help me? Please.", 
-				"Captain, I am asking for you help!");
-			link.l1 = RandPhraseSimple("I am busy.", "I am in a hurry.");
+			dialog.text = LinkRandPhrase(DLG_TEXT_Q[300], 
+				DLG_TEXT_Q[301], 
+				DLG_TEXT_Q[302]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_Q[303], DLG_TEXT_Q[304]);
 			link.l1.go = "SCQ_exit";
-			link.l2 = RandPhraseSimple("What's the matter?", "Speak your problems. Perhaps I will be able to help you.");
+			link.l2 = RandPhraseSimple(DLG_TEXT_Q[305], DLG_TEXT_Q[306]);
 			link.l2.go = "SCQ_man_1";
 		break;
 		case "SCQ_exit":
@@ -938,47 +938,47 @@ void ProcessDialogEvent()
 			switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
-					dialog.text = "One year ago one captain promised to take me to " + XI_ConvertString("Colony" + SelectNotEnemyColony(NPChar) + "Acc") + ". But in his ship I was thrown into the hold and sold to slavery afterwards. I barely made it through. Was close to death several times... Anyway, I want to remind my 'friend' that I am still alive.";
-					link.l1 = "What do you mean? Tell me exactly what do you want.";
+					dialog.text = DLG_TEXT_Q[307] + XI_ConvertString("Colony" + SelectNotEnemyColony(NPChar) + "Acc") + DLG_TEXT_Q[308];
+					link.l1 = DLG_TEXT_Q[309];
 					link.l1.go = "SCQ_Slave";
 				break;
 				case "1":
-					dialog.text = "My wife was kidnapped. One captain, a pirate as they say, was courting her. My wife had to stay at home for days, because of his stalking. I have tried to make town's authorities to help us, but failed. And now...";
-					link.l1 = "Now what?";
+					dialog.text = DLG_TEXT_Q[310];
+					link.l1 = DLG_TEXT_Q[311];
 					link.l1.go = "SCQ_RapeWife";
 				break;
 				case "2":
-					dialog.text = "You know, I am looking for my fellow-townsman. Three years ago we arrived here together from Europe to find a better life. We have lost each other. But not long ago I heard that he is a trading captain now! I tried to find him myself, yet failed.";
-					link.l1 = "So?";
+					dialog.text = DLG_TEXT_Q[312];
+					link.l1 = DLG_TEXT_Q[313];
 					link.l1.go = "SCQ_Friend";
 				break;
 			}
 		break;
 		// квест бывшего раба, которого негодяй-кэп взял в плен
 		case "SCQ_Slave":
-			dialog.text = "I want you to find him and kill him. I want him dead so much that I can't even eat...";
-			link.l1 = "I see... I suppose I can help you with that. Tell me his name and the name of his ship.";
+			dialog.text = DLG_TEXT_Q[314];
+			link.l1 = DLG_TEXT_Q[315];
 			link.l1.go = "SCQ_Slave_1";
-			link.l2 = "I am sorry but I am not interested.";
+			link.l2 = DLG_TEXT_Q[316];
 			link.l2.go = "SCQ_exit";
 		break;
 		case "SCQ_Slave_1":
 			npchar.quest.SeekCap = "manSlave"; //личный флаг ситизена на квест
 			SetSeekCapCitizenParam(npchar, PIRATE);
-			dialog.text = "" + npchar.quest.SeekCap.capName + " of the " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + " named " + npchar.quest.SeekCap.shipName + ". I'll pay you  " + FindRussianMoneyString(sti(npchar.quest.money)) + ", plus all of my jewels.";
-			link.l1 = "I see. I will be attentive in the sea. If I will find the target... Consider him dead then.";
+			dialog.text = DLG_TEXT_Q[317] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[318] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + DLG_TEXT_Q[319] + npchar.quest.SeekCap.shipName + DLG_TEXT_Q[320] + FindRussianMoneyString(sti(npchar.quest.money)) + ".";
+			link.l1 = DLG_TEXT_Q[321];
 			link.l1.go = "SCQ_Slave_2";
-			link.l2 = "I won't do a thing for that much money. Find another fool to do your revenge.";
+			link.l2 = DLG_TEXT_Q[322];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_Slave_2":
-			dialog.text = "That is what I was hoping to hear! Oh, I can eat now! Finally! I have to get some food...";
-			link.l1 = "Bon appetit. I will find you once the job is done.";
+			dialog.text = DLG_TEXT_Q[323];
+			link.l1 = DLG_TEXT_Q[324];
 			link.l1.go = "SCQ_Slave_3";
 		break;
 		case "SCQ_Slave_3":
-			dialog.text = "I will be waiting for you in the local church.";
-			link.l1 = "Good.";
+			dialog.text = DLG_TEXT_Q[325];
+			link.l1 = DLG_TEXT_Q[326];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1002,8 +1002,8 @@ void ProcessDialogEvent()
 		break;
 		//пират похитил жену у ситизена
 		case "SCQ_RapeWife":
-			dialog.text = "I was too idle and the bastard grabbed my wife and took her aboard of his vessel. I ask you to find this scoundrel!";
-			link.l1 = "Hm, and why should I fight with a fellow scoundrel?";
+			dialog.text = DLG_TEXT_Q[327];
+			link.l1 = DLG_TEXT_Q[328];
 			link.l1.go = "SCQ_RapeWife_1";
 		break;
 		case "SCQ_RapeWife_1":
@@ -1014,25 +1014,25 @@ void ProcessDialogEvent()
 			forName.sex = "woman";
 			SetRandomNameToCharacter(forName); //npchar.quest.SeekCap.name - имя жены ситизена
 			forName.lastname = npchar.lastname; //фамилия как и у мужа есно
-			dialog.text = "I am not rich, but it will be my pleasure to give you all valuables I posses! If you free my wife and bring her to me, I will pay you " + FindRussianMoneyString(sti(npchar.quest.money)) + ", plus all of my jewels.";
-			link.l1 = "Fine, I am in. Tell me the details. His name, his ship and what's the name of your wife.";
+			dialog.text = DLG_TEXT_Q[329] + FindRussianMoneyString(sti(npchar.quest.money)) + ".";
+			link.l1 = DLG_TEXT_Q[330];
 			link.l1.go = "SCQ_RapeWife_2";
-			link.l2 = "No, pal, I want do it for such a small sum. I am sorry...";
+			link.l2 = DLG_TEXT_Q[331];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_RapeWife_2":
-			dialog.text = "Her name is " + npchar.quest.SeekCap.name + ". And the name of the bastard is " + npchar.quest.SeekCap.capName + ", he swims on " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + " named " + npchar.quest.SeekCap.shipName + ".";
-			link.l1 = "Shit swims, pal. Captains sail...";
+			dialog.text = DLG_TEXT_Q[332] + npchar.quest.SeekCap.name + DLG_TEXT_Q[333] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[334] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + DLG_TEXT_Q[335] + npchar.quest.SeekCap.shipName + "'.";
+			link.l1 = DLG_TEXT_Q[336];
 			link.l1.go = "SCQ_RapeWife_3";
 		break;
 		case "SCQ_RapeWife_3":
-			dialog.text = "Yes, yes, I am so sorry! I am not a sailor, I hope that you will understand...";
-			link.l1 = "It is alright, don't worry. Whatever, I'll be back as soon as it's done.";
+			dialog.text = DLG_TEXT_Q[337];
+			link.l1 = DLG_TEXT_Q[338];
 			link.l1.go = "SCQ_RapeWife_4";
 		break;
 		case "SCQ_RapeWife_4":
-			dialog.text = "Thank you very much! I will be waiting for you in the local church. But I beg you to hurry. I really worry for my wife...";
-			link.l1 = "Yeah, I don't envy her either.";
+			dialog.text = DLG_TEXT_Q[339];
+			link.l1 = DLG_TEXT_Q[340];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1057,32 +1057,32 @@ void ProcessDialogEvent()
 		break;
 		//поиски земляка
 		case "SCQ_Friend":
-			dialog.text = "Problem is, my friend doesn't have any estate. His ship is his home. So I can't find him, because he is always in a sail. And I can't afford useless travels, I have to make money for living.";
-			link.l1 = "I can't help you, if you don't have money...";
+			dialog.text = DLG_TEXT_Q[341];
+			link.l1 = DLG_TEXT_Q[342];
 			link.l1.go = "SCQ_Friend_1";
 		break;
 		case "SCQ_Friend_1":
 			npchar.quest.SeekCap = "manFriend"; //личный флаг ситизена на квест
 			SetSeekCapCitizenParam(npchar, sti(npchar.nation));
-			dialog.text = "I can pay you " + FindRussianMoneyString(sti(npchar.quest.money)) + " and I will give you all of my jewels. This is all I can afford right now.";
-			link.l1 = "This sum works for me. I am in. Actually, you may join me as a passenger, so you will see your friend as soon as we find him.";
+			dialog.text = DLG_TEXT_Q[343] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[344];
+			link.l1 = DLG_TEXT_Q[345];
 			link.l1.go = "SCQ_Friend_2";
-			link.l2 = "It is not enough for me. Look for somebody else to do it.";
+			link.l2 = DLG_TEXT_Q[346];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_Friend_2":
-			dialog.text = "No, I suppose I'd stay here. We don't know for how long these searches will go and I may loose all of my money. I've got a job here.";
-			link.l1 = "I see. No tell me, who is your friend and what ship he is on.";
+			dialog.text = DLG_TEXT_Q[347];
+			link.l1 = DLG_TEXT_Q[348];
 			link.l1.go = "SCQ_Friend_3";
 		break;
 		case "SCQ_Friend_3":
-			dialog.text = "His name is " + npchar.quest.SeekCap.capName + ". As far as I know he commands a " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Gen")) + " named " + npchar.quest.SeekCap.shipName + ".";
-			link.l1 = "I see. Well, I will tell your friend about you if I see him.";
+			dialog.text = DLG_TEXT_Q[349] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[350] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Gen")) + DLG_TEXT_Q[351] + npchar.quest.SeekCap.shipName + "'.";
+			link.l1 = DLG_TEXT_Q[352];
 			link.l1.go = "SCQ_Friend_4";
 		break;
 		case "SCQ_Friend_4":
-			dialog.text = "Thank you. I will be waiting for your arrival in the local church. You'll get your coins once the job is done.";
-			link.l1 = "Sure. Farewell then, expect the results soon.";
+			dialog.text = DLG_TEXT_Q[353];
+			link.l1 = DLG_TEXT_Q[354];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1108,24 +1108,24 @@ void ProcessDialogEvent()
 
 		// --- результаты мужских квестов ---
 		case "SCQ_manResult":
-			dialog.text = "Good day to you, captain. Got any results already?";
-			link.l1 = "Remind me of your problem...";
+			dialog.text = DLG_TEXT_Q[355];
+			link.l1 = DLG_TEXT_Q[356];
 			link.l1.go = "SCQ_manResult_exit";
 			switch (npchar.quest.SeekCap)
 			{
 				case "manSlaveover":
-					dialog.text = "I take it that I was avenged. Is that so?";
-					link.l1 = "Exactly. " + npchar.quest.SeekCap.capName + " is dead and his " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName)) + " is at the bottom of the sea.";
+					dialog.text = DLG_TEXT_Q[357];
+					link.l1 = DLG_TEXT_Q[358] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[359] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName)) + DLG_TEXT_Q[360];
 					link.l1.go = "SCQR_manSlave";
 				break;
 				case "manRapeWifeover":
-					dialog.text = "You have found my wife! I can't believe it! Can I?";
-					link.l1 = "You can. She is my passenger. You can take her back, if " + npchar.quest.SeekCap.name + " " + npchar.quest.SeekCap.lastname + " really is you wife...";
+					dialog.text = DLG_TEXT_Q[361];
+					link.l1 = DLG_TEXT_Q[362] + npchar.quest.SeekCap.name + " " + npchar.quest.SeekCap.lastname + DLG_TEXT_Q[363];
 					link.l1.go = "SCQR_manRapeWife";
 				break;
 				case "manFriendover":
-					dialog.text = "Good day to you, captain. Have you found my fellow?";
-					link.l1 = "I have and told him about you.";
+					dialog.text = DLG_TEXT_Q[364];
+					link.l1 = DLG_TEXT_Q[365];
 					link.l1.go = "SCQR_manFriend";
 				break;
 			}
@@ -1134,26 +1134,26 @@ void ProcessDialogEvent()
 			switch (npchar.quest.SeekCap)
 			{
 				case "manSlave":
-					dialog.text = "What? Have you really forgotten that I asked you to avenge captain " + npchar.quest.SeekCap.capName + " for a year of my slavery?";
-					link.l1 = "No, I haven't.";
+					dialog.text = DLG_TEXT_Q[366] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[367];
+					link.l1 = DLG_TEXT_Q[368];
 					link.l1.go = "exit";
 				break;
 				case "manRapeWife":
-					dialog.text = "I can believe my ears! Have you forgotten that I asked you to find and release my wife? She was captured by the pirate named " + npchar.quest.SeekCap.capName + "!";
-					link.l1 = "I haven't.";
+					dialog.text = DLG_TEXT_Q[369] + npchar.quest.SeekCap.capName + "!";
+					link.l1 = DLG_TEXT_Q[370];
 					link.l1.go = "exit";
 				break;
 				case "manFriend":
-					dialog.text = "Wait a second... Have you forgotten about your promise to find my fellow named " + npchar.quest.SeekCap.capName + "?";
-					link.l1 = "I haven't.";
+					dialog.text = DLG_TEXT_Q[371] + npchar.quest.SeekCap.capName + "?";
+					link.l1 = DLG_TEXT_Q[372];
 					link.l1.go = "exit";
 				break;
 			}
 		break;
 
 		case "SCQR_manSlave":
-			dialog.text = "Excellent, I was right about you! So, as I promised to you, here are your " + FindRussianMoneyString(sti(npchar.quest.money)) + " and jewels. Thanks for your help.";
-			link.l1 = "You are welcome...";
+			dialog.text = DLG_TEXT_Q[373] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[374];
+			link.l1 = DLG_TEXT_Q[375];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
@@ -1163,8 +1163,8 @@ void ProcessDialogEvent()
 			CloseQuestHeader(sTitle);
 		break;
 		case "SCQR_manRapeWife":
-			dialog.text = "Oh my God! You have saved us! Please, take your " + FindRussianMoneyString(sti(npchar.quest.money)) + " and jewels. And know that we will pray for you forever!";
-			link.l1 = "Pray if you want. I have no problems with that.";
+			dialog.text = DLG_TEXT_Q[376] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[377];
+			link.l1 = DLG_TEXT_Q[378];
 			link.l1.go = "SCQ_exit";
 			sld = characterFromId("manRapeWife_" + npchar.City);
 			RemovePassenger(pchar, sld);
@@ -1177,8 +1177,8 @@ void ProcessDialogEvent()
 			CloseQuestHeader(sTitle);
 		break;
 		case "SCQR_manFriend":
-			dialog.text = "Splendid!... Here, take " + FindRussianMoneyString(sti(npchar.quest.money)) + " and jewels. And thank you, captain.";
-			link.l1 = "You are welcome, friend. Farewell...";
+			dialog.text = DLG_TEXT_Q[379] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[380];
+			link.l1 = DLG_TEXT_Q[381];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
@@ -1189,12 +1189,12 @@ void ProcessDialogEvent()
 		break;
 		//========= квесты баб ===========
 		case "SCQ_woman":
-			dialog.text = LinkRandPhrase("Greetings, captain. Can you help me?", 
-				"Captain! Can you help a woman? Would you be kindly...", 
-				"Captain, help "+ GetSexPhrase("a girl","me") +".");
-			link.l1 = RandPhraseSimple("I am busy.", "I'm sorry, " + GetAddress_FormToNPC(NPChar) + ", but I don't have any time to spare...");
+			dialog.text = LinkRandPhrase(DLG_TEXT_Q[382], 
+				DLG_TEXT_Q[383], 
+				DLG_TEXT_Q[384]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_Q[385], DLG_TEXT_Q[386] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[387]);
 			link.l1.go = "SCQ_exit";
-			link.l2 = RandPhraseSimple("What's your problem, " + GetAddress_FormToNPC(NPChar) + "?", "Speak your problems, " + GetAddress_FormToNPC(NPChar) + ". I will try to help you.");
+			link.l2 = RandPhraseSimple(DLG_TEXT_Q[388] + GetAddress_FormToNPC(NPChar) + "?", DLG_TEXT_Q[389] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[390]);
 			link.l2.go = "SCQ_woman_1";
 		break;
 		//выбираем квест
@@ -1202,18 +1202,18 @@ void ProcessDialogEvent()
 			switch (npchar.quest.SeekCap.numQuest)
 			{
 				case "0":
-					dialog.text = "My husband is a trader, he delivers goods to every colony around. Three months ago he went to the sea. He hasn't returned yet!";
-					link.l1 = "Do you think that anything happened to him?";
+					dialog.text = DLG_TEXT_Q[391];
+					link.l1 = DLG_TEXT_Q[392];
 					link.l1.go = "SCQ_Hasband";
 				break;
 				case "1":
-					dialog.text = ""+ GetSexPhrase("Captain, I see that you are a brave captain, a perfect rogue","Captain, I see that you are a strong woman, that you can deal with any man") +"...";
-					link.l1 = "And why are you saying that, " + GetAddress_FormToNPC(NPChar) + "?";
+					dialog.text = DLG_TEXT_Q[393];
+					link.l1 = DLG_TEXT_Q[394] + GetAddress_FormToNPC(NPChar) + "?";
 					link.l1.go = "SCQ_Revenge";
 				break;
 				case "2":
-					dialog.text = "Captain, please help me, I beg you! My husband was captured! Can you save him?";
-					link.l1 = "Wait a second, I don't get it. Who was captured by whom?";
+					dialog.text = DLG_TEXT_Q[395];
+					link.l1 = DLG_TEXT_Q[396];
 					link.l1.go = "SCQ_Pirates";
 				break;
 			}
@@ -1221,22 +1221,22 @@ void ProcessDialogEvent()
 		
 		//жещина разыскивает мужа-торговца
 		case "SCQ_Hasband":
-			dialog.text = "I don't know, but I still hope that he is just too busy to write me. He could sent me a letter, he knows that I worry about him!";
-			link.l1 = "It is not safe in the sea, anything could happen...";
+			dialog.text = DLG_TEXT_Q[397];
+			link.l1 = DLG_TEXT_Q[398];
 			link.l1.go = "SCQ_Hasband_1";
 		break;
 		case "SCQ_Hasband_1":
 			npchar.quest.SeekCap = "womanHasband"; //личный флаг ситизена на квест
 			SetSeekCapCitizenParam(npchar, sti(npchar.nation));
-			dialog.text = "Exactly! You understand what I am talking about. You look like a "+ GetSexPhrase("brave captain","brave girl") +", so I want to ask you to find my husband. I am ready to pay you " + FindRussianMoneyString(sti(npchar.quest.money)) + ", plus I will give you all of my jewels.";
-			link.l1 = "Fine. I will tell your husband about your worries, if I meet him in the sea or anywhere else. Tell me his name and the name of his ship.";
+			dialog.text = DLG_TEXT_Q[399] + FindRussianMoneyString(sti(npchar.quest.money)) + ".";
+			link.l1 = DLG_TEXT_Q[400];
 			link.l1.go = "SCQ_Hasband_2";
-			link.l2 = "I am not interested in such small sum.";
+			link.l2 = DLG_TEXT_Q[401];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_Hasband_2":
-			dialog.text = "His name is " + npchar.quest.SeekCap.capName + ". He sails on a " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + " named " + npchar.quest.SeekCap.shipName + ".";
-			link.l1 = "I see. Now you need to wait. Try to spend most of your time in church, so I could find you.";
+			dialog.text = DLG_TEXT_Q[402] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[403] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + DLG_TEXT_Q[404] + npchar.quest.SeekCap.shipName + "'.";
+			link.l1 = DLG_TEXT_Q[405];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1258,52 +1258,52 @@ void ProcessDialogEvent()
 		break;
 		//месть отвергнутой женщины
 		case "SCQ_Revenge":
-			dialog.text = ""+ GetSexPhrase("I am saying that, good sir, because I want to hire you to do the job you are used to... so to speak.","I want you to help me. I hope that you will understand me as a woman.") +"One captain has annoyed me and I want him dead.";
-			link.l1 = "And what has that poor soul done to you?";
+			dialog.text = DLG_TEXT_Q[406];
+			link.l1 = DLG_TEXT_Q[407];
 			link.l1.go = "SCQ_Revenge_1";
 		break;
 		case "SCQ_Revenge_1":
-			dialog.text = "This bastard has fooled me. He pretended to be in love with me, he was even courting me. And the reason he was doing all of that was to get something valuable from my husband! And when the dog got his lawn, he told me that he didn't mean anything... Just friends!";
-			link.l1 = "Hm, perhaps he was right?";
+			dialog.text = DLG_TEXT_Q[408];
+			link.l1 = DLG_TEXT_Q[409];
 			link.l1.go = "SCQ_Revenge_2";
 		break;
 		case "SCQ_Revenge_2":
-			dialog.text = "Do I look like an idiot?! Do you think that I don't see the difference between a courting and a simple bubble talk?";
-			link.l1 = "Sure you don't...";
+			dialog.text = DLG_TEXT_Q[410];
+			link.l1 = DLG_TEXT_Q[411];
 			link.l1.go = "SCQ_Revenge_3";
 		break;
 		case "SCQ_Revenge_3":
-			dialog.text = "He used me, this scoundrel! I will never forget him for that!";
-			link.l1 = "Yes, men are just like that. But,  perhaps you can calm yourself down? There is nothing awful in that...";
+			dialog.text = DLG_TEXT_Q[412];
+			link.l1 = DLG_TEXT_Q[413];
 			link.l1.go = "SCQ_Revenge_4";
 		break;
 		case "SCQ_Revenge_4":
-			dialog.text = "Nothing awful?! "+ GetSexPhrase("You are a moralist of some sort, but not a true pirate!","It seems that you have never been in situation like that! Oh, yes, who would take a risk... and I am just a weak woman...");
-			link.l1 = "Okay. Enought. I simply wish to know, how much your intentions are serious.";
+			dialog.text = DLG_TEXT_Q[414];
+			link.l1 = DLG_TEXT_Q[415];
 			link.l1.go = "SCQ_Revenge_5";
 		break;
 		case "SCQ_Revenge_5":
-			dialog.text = "Damn it, "+ GetSexPhrase(" you just don't know how does a revenge of rejected woman look like ","you are a woman and you have got to understand what is like being rejected! I want to revenge ") +"!";
-			link.l1 = ""+ GetSexPhrase("It's true, never had such an experience","Well, you know, she would just cry a bit, break some glass and that would be over") +"...";
+			dialog.text = DLG_TEXT_Q[416];
+			link.l1 = DLG_TEXT_Q[417];
 			link.l1.go = "SCQ_Revenge_6";
 		break;
 		case "SCQ_Revenge_6":
-			dialog.text = ""+ GetSexPhrase("Consider yourself lucky. The rejected and deceived in her expectations woman is a fury, a devil in the skirt! Nothing in the world could soft her anger","And I am not like her. Nothing could soft my anger") +"!\nSo I want you to kill him personally. And before he dies, he must learn who is paying for his death...";
-			link.l1 = "Hm, I don't even know what to say... And how much are you paying?";
+			dialog.text = DLG_TEXT_Q[418];
+			link.l1 = DLG_TEXT_Q[419];
 			link.l1.go = "SCQ_Revenge_7";
 		break;
 		case "SCQ_Revenge_7":
 			npchar.quest.SeekCap = "womanRevenge"; //личный флаг ситизена на квест
 			SetSeekCapCitizenParam(npchar, PIRATE);
-			dialog.text = "Everything I have . I will give you my jewels and " + FindRussianMoneyString(sti(npchar.quest.money)) + "! Deal?";
-			link.l1 = "I am interested. Tell me his name and the name of his ship.";
+			dialog.text = DLG_TEXT_Q[420] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[421];
+			link.l1 = DLG_TEXT_Q[422];
 			link.l1.go = "SCQ_Revenge_8";
-			link.l2 = "Not interested. Bye.";
+			link.l2 = DLG_TEXT_Q[423];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_Revenge_8":
-			dialog.text = "The scoundrel's name is " + npchar.quest.SeekCap.capName + " and he sails on a " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Acc")) + " named " + npchar.quest.SeekCap.shipName + ".";
-			link.l1 = "Consider it done, " + GetAddress_FormToNPC(NPChar) + ". Wait me in the local church. I hope that you will calm yourself down for a bit...";
+			dialog.text = DLG_TEXT_Q[424] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[425] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Acc")) + DLG_TEXT_Q[426] + npchar.quest.SeekCap.shipName + "'.";
+			link.l1 = DLG_TEXT_Q[427] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[428];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1330,42 +1330,42 @@ void ProcessDialogEvent()
 		break;
 		//муж женщины попал в плен к пиратам
 		case "SCQ_Pirates":
-			dialog.text = "I will explain. Problem is that my husband who is just a common man was captured by pirates! They were killing everybody and hadn't spared anyone...";
-			link.l1 = "It seems that captain dared to resist. They would had spared the crew otherwise.";
+			dialog.text = DLG_TEXT_Q[429];
+			link.l1 = DLG_TEXT_Q[430];
 			link.l1.go = "SCQ_Pirates_1";
 		break;
 		case "SCQ_Pirates_1":
-			dialog.text = "Perhaps so, but my husband is an innocent. He was just a passenger there. He had to tell them that he is rich in order to save his life. Pirates spared him, he wasn't even put in a cargo hold.";
-			link.l1 = "And how do you know that?";
+			dialog.text = DLG_TEXT_Q[431];
+			link.l1 = DLG_TEXT_Q[432];
 			link.l1.go = "SCQ_Pirates_2";
 		break;
 		case "SCQ_Pirates_2":
-			dialog.text = "He managed to send me a letter. He wrote that he is fine and being held in a cabin not like the rest of the prisoners.";
-			link.l1 = "And what are you planning to do? It can't go on just like that. Sooner or later, pirates will see through him.";
+			dialog.text = DLG_TEXT_Q[433];
+			link.l1 = DLG_TEXT_Q[434];
 			link.l1.go = "SCQ_Pirates_3";
 		break;
 		case "SCQ_Pirates_3":
-			dialog.text = "Are you a pirate too? Yes-yes, I know... I beg you, help us, save my husband! He has described that pirate ship and written the captain's name. It won't be difficult for you to find them!";
-			link.l1 = "It is not that easy as you think. All prisoners are the rightful prize of the captain who captured your husband, plus it will take time.";
+			dialog.text = DLG_TEXT_Q[435];
+			link.l1 = DLG_TEXT_Q[436];
 			link.l1.go = "SCQ_Pirates_4";
 		break;
 		case "SCQ_Pirates_4":
-			dialog.text = "But you can try at least! Besides, you have got enough time for searching. My husband is not a fool and he has pretended to be a merchant from the Old World, so those pirates don't demand coins from him for now. If you free him, I will give you everything I have!";
-			link.l1 = "And what do you have?";
+			dialog.text = DLG_TEXT_Q[437];
+			link.l1 = DLG_TEXT_Q[438];
 			link.l1.go = "SCQ_Pirates_5";
 		break;
 		case "SCQ_Pirates_5":
 			npchar.quest.SeekCap = "womanPirates"; //личный флаг ситизена на квест
 			SetSeekCapCitizenParam(npchar, PIRATE);
-			dialog.text = "Not much, " + FindRussianMoneyString(sti(npchar.quest.money)) + " and all of my jewels... But I will pray for your soul forever!";
-			link.l1 = "Yes, that is really not much... Fine, I am ready to help you.";
+			dialog.text = DLG_TEXT_Q[439] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[440];
+			link.l1 = DLG_TEXT_Q[441];
 			link.l1.go = "SCQ_Pirates_6";
-			link.l2 = "I am sorry, but it is not enough for me.";
+			link.l2 = DLG_TEXT_Q[442];
 			link.l2.go = "SCQ_exit_clear";
 		break;
 		case "SCQ_Pirates_6":
-			dialog.text = "Thank you, thank you so much!";
-			link.l1 = "You will thank me, if I succeed, so stop. You'd better tell me your husband's name and everything you know about those pirates.";
+			dialog.text = DLG_TEXT_Q[443];
+			link.l1 = DLG_TEXT_Q[444];
 			link.l1.go = "SCQ_Pirates_7";
 		break;
 		case "SCQ_Pirates_7":
@@ -1374,8 +1374,8 @@ void ProcessDialogEvent()
 			forName.sex = "man";
 			SetRandomNameToCharacter(forName); //npchar.quest.SeekCap.name - имя жены ситизена
 			forName.lastname = npchar.lastname; //фамилия как и у жены есно
-			dialog.text = "His name is " + GetFullName(forName) + ". Captain's " + npchar.quest.SeekCap.capName + ", he sails on " + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + " named " + npchar.quest.SeekCap.shipName + ".";
-			link.l1 = "I see. Well, now you should wait and hope that I will succeed on my search. Stay in the church, wait and pray ...";
+			dialog.text = DLG_TEXT_Q[445] + GetFullName(forName) + DLG_TEXT_Q[446] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[447] + GetStrSmallRegister(XI_ConvertString(npchar.quest.SeekCap.shipTapeName + "Dat")) + DLG_TEXT_Q[448] + npchar.quest.SeekCap.shipName + "'.";
+			link.l1 = DLG_TEXT_Q[449];
 			link.l1.go = "exit";
 			//==> ставим квестодателя в церковь
 			pchar.quest.SeekShip_Stay.win_condition.l1 = "ExitFromLocation";
@@ -1401,24 +1401,24 @@ void ProcessDialogEvent()
 		break;
 		// --- результаты женских квестов ---
 		case "SCQ_womanResult":
-			dialog.text = "Oh, captain, I am so glad to see you! Tell me now, what do you have to tell me concerning my ask?";
-			link.l1 = "Hm, remind me, " + GetAddress_FormToNPC(NPChar) + ", what ask are you talking about?";
+			dialog.text = DLG_TEXT_Q[450];
+			link.l1 = DLG_TEXT_Q[451] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[452];
 			link.l1.go = "SCQ_womanResult_exit";
 			switch (npchar.quest.SeekCap)
 			{
 				case "womanHasbandover":
-					dialog.text = "Ah, captain, I have received a letter from my husband! He has written that you have found him.";
-					link.l1 = "Yes, it is correct, " + GetAddress_FormToNPC(NPChar) + ". Your husband, " + npchar.quest.SeekCap.capName + ",  is fine and healthy. He is just too busy...";
+					dialog.text = DLG_TEXT_Q[453];
+					link.l1 = DLG_TEXT_Q[454] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[455] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[456];
 					link.l1.go = "SCQR_womanHasband";
 				break;
 				case "womanRevengeover":
-					dialog.text = "What would you say, captain? Have you done what I've asked you about? Is captain " + npchar.quest.SeekCap.capName + " dead?";
-					link.l1 = "Yes, he is dead, " + GetAddress_FormToNPC(NPChar) + ". I told him who was the reason of his death. The last thing he heard in his life was your name.";
+					dialog.text = DLG_TEXT_Q[457] + npchar.quest.SeekCap.capName + DLG_TEXT_Q[458];
+					link.l1 = DLG_TEXT_Q[459] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[460];
 					link.l1.go = "SCQR_womanRevenge";
 				break;
 				case "womanPiratesover":
-					dialog.text = "You have saved my husband! I beg you to tell me that is true!";
-					link.l1 = "Yes, it is. He is on my ship right now. You can see him if " + npchar.quest.SeekCap.name + " " + npchar.quest.SeekCap.lastname + "is really your husband...";
+					dialog.text = DLG_TEXT_Q[461];
+					link.l1 = DLG_TEXT_Q[462] + npchar.quest.SeekCap.name + " " + npchar.quest.SeekCap.lastname + DLG_TEXT_Q[463];
 					link.l1.go = "SCQR_womanPirates";
 				break;
 			}
@@ -1427,26 +1427,26 @@ void ProcessDialogEvent()
 			switch (npchar.quest.SeekCap)
 			{
 				case "womanHasband":
-					dialog.text = "Have you really forgotten that you promised me to find my husband? His name is " + npchar.quest.SeekCap.capName + "!";
-					link.l1 = "Oh, yes, sure... I haven't forgotten.";
+					dialog.text = DLG_TEXT_Q[464] + npchar.quest.SeekCap.capName + "!";
+					link.l1 = DLG_TEXT_Q[465];
 					link.l1.go = "exit";
 				break;
 				case "womanRevenge":
-					dialog.text = "I don't get it! Have you forgotten that you must kill my offender, a captain named " + npchar.quest.SeekCap.capName + "?!";
-					link.l1 = "Oh please, of course I haven't. You order is in process, please wait...";
+					dialog.text = DLG_TEXT_Q[466] + npchar.quest.SeekCap.capName + "?!";
+					link.l1 = DLG_TEXT_Q[467] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[468];
 					link.l1.go = "exit";
 				break;
 				case "womanPirates":
-					dialog.text = "Jesus, captain, have you forgotten your promise to free my husband?";
-					link.l1 = "I haven't. Do you remember ... 'Wait and pray!'. Just wait, " + GetAddress_FormToNPC(NPChar) + " " + npchar.lastname + ".";
+					dialog.text = DLG_TEXT_Q[469];
+					link.l1 = DLG_TEXT_Q[470] + GetAddress_FormToNPC(NPChar) + " " + npchar.lastname + ".";
 					link.l1.go = "exit";
 				break;
 			}
 		break;
 
 		case "SCQR_womanHasband":
-			dialog.text = "Oh, god, I am so grateful! And yes, take your " + FindRussianMoneyString(sti(npchar.quest.money)) + ". And thanks again!";
-			link.l1 = "Hm, you are welcome...";
+			dialog.text = DLG_TEXT_Q[471] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[472];
+			link.l1 = DLG_TEXT_Q[473];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
@@ -1456,8 +1456,8 @@ void ProcessDialogEvent()
 			CloseQuestHeader(sTitle);
 		break;
 		case "SCQR_womanRevenge":
-			dialog.text = "Excellent! Well, take your " + FindRussianMoneyString(sti(npchar.quest.money)) + " and jewels. Farewell...";
-			link.l1 = "Farewell. ";
+			dialog.text = DLG_TEXT_Q[474] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[475];
+			link.l1 = DLG_TEXT_Q[476];
 			link.l1.go = "SCQ_exit";
 			sTemp = "SCQ_" + npchar.index;
 			pchar.quest.(sTemp).over = "yes"; //снимаем прерывание смерть горожанина-квестодателя
@@ -1475,8 +1475,8 @@ void ProcessDialogEvent()
 			CloseQuestHeader(sTitle);
 		break;
 		case "SCQR_womanPirates":
-			dialog.text = "Sure it is him!!! Oh god, captain, I am so grateful. Take your " + FindRussianMoneyString(sti(npchar.quest.money)) + ". I will pray for you every day of my life!";
-			link.l1 = "Sounds good...";
+			dialog.text = DLG_TEXT_Q[477] + FindRussianMoneyString(sti(npchar.quest.money)) + DLG_TEXT_Q[478];
+			link.l1 = DLG_TEXT_Q[479];
 			link.l1.go = "SCQ_exit";
 			sld = characterFromId("womanPirates_" + npchar.City);
 			RemovePassenger(pchar, sld);
@@ -1493,35 +1493,35 @@ void ProcessDialogEvent()
 			switch (npchar.quest.SeekCap)
 			{
 				case "manSlave":
-					dialog.text = "Greetings to my college. Want something"+ GetSexPhrase(", pal ",",  girl") +"?";
-					link.l1 = "Your name is " + GetFullName(npchar) + ", am I right?";
+					dialog.text = DLG_TEXT_Q[480];
+					link.l1 = DLG_TEXT_Q[481] + GetFullName(npchar) + DLG_TEXT_Q[482];
 					link.l1.go = "CCmanSlave";
 				break;
 			}
 		break;
 		case "CCmanSlave":
-			dialog.text = "Yes, you are!";
-			link.l1 = "Too bad for you. I will tell you one name and you'd better know it." + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + ". Remember him?";
+			dialog.text = DLG_TEXT_Q[483];
+			link.l1 = DLG_TEXT_Q[484] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + DLG_TEXT_Q[485];
 			link.l1.go = "CCmanSlave_1";
 		break;
 		case "CCmanSlave_1":
-			dialog.text = "Hm, I do...";
-			link.l1 = "Now listen, he is very angry with you, pal. It is time to pay for selling a free man to a slavery.";
+			dialog.text = DLG_TEXT_Q[486];
+			link.l1 = DLG_TEXT_Q[487];
 			link.l1.go = "CCmanSlave_2";
 		break;
 		case "CCmanSlave_2":
-			dialog.text = "To pay?! What the fuck are talking about?";
-			link.l1 = "I mean that I am going to kill you right where you stand.";
+			dialog.text = DLG_TEXT_Q[488];
+			link.l1 = DLG_TEXT_Q[489];
 			link.l1.go = "CCmanSlave_3";
 		break;
 		case "CCmanSlave_3":
-			dialog.text = "Think about it, who are you working for?! This man is miserable and his place is on the sugar plantation!";
-			link.l1 = "Well, this is out of your concerns. Now you have to answer for what you have done!";
+			dialog.text = DLG_TEXT_Q[490];
+			link.l1 = DLG_TEXT_Q[491];
 			link.l1.go = "CCmanSlave_4";
 		break;
 		case "CCmanSlave_4":
-			dialog.text = "Ho! I will answer in only way I usually do!";
-			link.l1 = "Go on...";
+			dialog.text = DLG_TEXT_Q[492];
+			link.l1 = DLG_TEXT_Q[493];
 			link.l1.go = "CCmanSlave_fight";
 		break;
 		case "CCmanSlave_fight":
@@ -1533,18 +1533,18 @@ void ProcessDialogEvent()
 		break;
 
 		case "CitizCap_inDeck": //встреча на палубе
-			dialog.text = "What do you want?";
-			link.l1 = "I want to ask you, do you carry passengers? ";
+			dialog.text = DLG_TEXT_Q[494];
+			link.l1 = DLG_TEXT_Q[495];
 			link.l1.go = "CitizCap_inDeck_1";
 		break;
 		case "CitizCap_inDeck_1":
-			dialog.text = "And how does it concern you?";
-			link.l1 = "Just asking.";
+			dialog.text = DLG_TEXT_Q[496];
+			link.l1 = DLG_TEXT_Q[497];
 			link.l1.go = "CitizCap_inDeck_2";
 		break;
 		case "CitizCap_inDeck_2":
-			dialog.text = "Just asking... Look, you'd better get out from here while I still give you this opportunity. I don't like you!";
-			link.l1 = "Fine, fine, calm down. I am leaving...";
+			dialog.text = DLG_TEXT_Q[498];
+			link.l1 = DLG_TEXT_Q[499];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "CitizCap_inDeck_exit";
 			npchar.DeckDialogNode = "CitizCap_inDeck_exit";
@@ -1554,31 +1554,31 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sShipTypeName", GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen")));
 		break;
 		case "CitizCap_inDeck_exit":
-			dialog.text = "We have already talked, so don't test me!";
-			link.l1 = "I don't.";
+			dialog.text = DLG_TEXT_Q[500];
+			link.l1 = DLG_TEXT_Q[501];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "CitizCap_inDeck_exit";
 		break;
 		//========= разыскиваемый кэп, похитивший чужую жену ===========
 		case "RapeWifeCap":  //встреча на суше
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "Greetings, colleague! Do you want anything?";
-			link.l1 = "I'd like to know, didn't you take away the woman from " + XI_ConvertString("Colony" + npchar.quest.cribCity + "Gen") + " named " + GetFullName(sld) + "?";
+			dialog.text = DLG_TEXT_Q[502];
+			link.l1 = DLG_TEXT_Q[503] + XI_ConvertString("Colony" + npchar.quest.cribCity + "Gen") + DLG_TEXT_Q[504] + GetFullName(sld) + "?";
 			link.l1.go = "RapeWifeCap_1";
 		break;
 		case "RapeWifeCap_1":
-			dialog.text = "Heh, you are right, she is in my cabin! Hot gal, great legs by the way... Why are you asking?";
-			link.l1 = "Pal, this woman is married. This is wrong.";
+			dialog.text = DLG_TEXT_Q[505];
+			link.l1 = DLG_TEXT_Q[506];
 			link.l1.go = "RapeWifeCap_2";
 		break;
 		case "RapeWifeCap_2":
-			dialog.text = "So what? I like her and that's it. I won't let some ragged idiot to interfere in our relationship just because he is her husband!";
-			link.l1 = "Let me tell you that the Brethren doesn't approve such things.";
+			dialog.text = DLG_TEXT_Q[507];
+			link.l1 = DLG_TEXT_Q[508];
 			link.l1.go = "RapeWifeCap_3";
 		break;
 		case "RapeWifeCap_3":
-			dialog.text = "Are you going to start sermonizing me?";
-			link.l1 = "Calm down, I was just taking an interest... Farewell.";
+			dialog.text = DLG_TEXT_Q[509];
+			link.l1 = DLG_TEXT_Q[510];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RapeWifeCap_exit";
 			npchar.DeckDialogNode = "RapeWifeCap_exit";
@@ -1588,30 +1588,30 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sShipTypeName", GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen")));
 		break;
 		case "RapeWifeCap_exit":
-			dialog.text = "We have already had a talk about women. I don't want to discuss the matter again!";
-			link.l1 = "Whatever...";
+			dialog.text = DLG_TEXT_Q[511];
+			link.l1 = DLG_TEXT_Q[512];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RapeWifeCap_exit";
 		break;
 		case "RapeWifeCap_inDeck":  //встреча на палубе
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "I am glad to greet a colleague on my deck! What do you want?";
-			link.l1 = "I'd like to know if you've kidnapped a woman from " + XI_ConvertString("Colony" + npchar.quest.cribCity + "Gen") + " by the name of" + GetFullName(sld) + "?";
+			dialog.text = DLG_TEXT_Q[513];
+			link.l1 = DLG_TEXT_Q[514] + XI_ConvertString("Colony" + npchar.quest.cribCity + "Gen") + DLG_TEXT_Q[515] + GetFullName(sld) + "?";
 			link.l1.go = "RapeWifeCap_1";
 		break;
 		case "RapeWifeCap_inDeck_1":
-			dialog.text = "Heh, you are right, she is in my cabin! Hot gal, nice legs by the way!... Why are you asking?";
-			link.l1 = "Pal, this woman is married. This is wrong.";
+			dialog.text = DLG_TEXT_Q[516];
+			link.l1 = DLG_TEXT_Q[517];
 			link.l1.go = "RapeWifeCap_inDeck_2";
 		break;
 		case "RapeWifeCap_inDeck_2":
-			dialog.text = "So what? I like her and that's it. I won't let some ragged fellow to interfere in our relationship just because he is her husband!";
-			link.l1 = "Let me tell you that the Brethren doesn't approve such things.";
+			dialog.text = DLG_TEXT_Q[518];
+			link.l1 = DLG_TEXT_Q[519];
 			link.l1.go = "RapeWifeCap_inDeck_3";
 		break;
 		case "RapeWifeCap_inDeck_3":
-			dialog.text = "Are you going to start sermonizing me?";
-			link.l1 = "Calm down, I was just taking an interest... Farewell.";
+			dialog.text = DLG_TEXT_Q[520];
+			link.l1 = DLG_TEXT_Q[521];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RapeWifeCap_exit";
 			npchar.DeckDialogNode = "RapeWifeCap_exit";
@@ -1622,13 +1622,13 @@ void ProcessDialogEvent()
 		break;
 		case "RapeWifeCap_Board": //абордаж
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "What do you want from me, scum?!";
-			link.l1 = "I am here for the woman you've stolen from her husband. Remember " + XI_ConvertString("Colony"+npchar.quest.cribCity) + "? Her name is " + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
+			dialog.text = DLG_TEXT_Q[522];
+			link.l1 = DLG_TEXT_Q[523] + XI_ConvertString("Colony"+npchar.quest.cribCity) + DLG_TEXT_Q[524] + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
 			link.l1.go = "RapeWifeCap_Board_1";
 		break;
 		case "RapeWifeCap_Board_1":
-			dialog.text = "Damn it! You will never see her just as well as you will never see your ears!";
-			link.l1 = "Moron. I can see them in a mirror. And I am going to cut off yours!";
+			dialog.text = DLG_TEXT_Q[525];
+			link.l1 = DLG_TEXT_Q[526];
 			link.l1.go = "RapeWifeCap_Board_2";
 		break;
 		case "RapeWifeCap_Board_2":
@@ -1651,18 +1651,18 @@ void ProcessDialogEvent()
 		break;
 		//========= похищенная жена ===========
 		case "manRapeWife_Board":
-			dialog.text = "Who are you?";
-			link.l1 = "Hello. I've come for you because your husband asked me to. Now you are free and I can take you to him.";
+			dialog.text = DLG_TEXT_Q[527];
+			link.l1 = DLG_TEXT_Q[528];
 			link.l1.go = "manRapeWife_Board_1";
 		break;
 		case "manRapeWife_Board_1":
-			dialog.text = "Is it a dream?! Is it true?!";
-			link.l1 = "It is, " + GetAddress_FormToNPC(NPChar) + ".";
+			dialog.text = DLG_TEXT_Q[529];
+			link.l1 = DLG_TEXT_Q[530] + GetAddress_FormToNPC(NPChar) + ".";
 			link.l1.go = "manRapeWife_Board_2";
 		break;
 		case "manRapeWife_Board_2":
-			dialog.text = "Praise the Lord!!! I am ready, let's get away from here!";
-			link.l1 = "Sure, " + GetAddress_FormToNPC(NPChar) + ", prepare for a safe return to your husband.";
+			dialog.text = DLG_TEXT_Q[531];
+			link.l1 = DLG_TEXT_Q[532] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[533];
 			link.l1.go = "exit";
 			//уберем жену из каюты
 			npchar.location = "none";
@@ -1679,23 +1679,23 @@ void ProcessDialogEvent()
 		break;
 		//========= разыскиваемый земляк-торговый кэп ===========
 		case "FriendCap": //встреча на суше
-			dialog.text = "Hello! Glad to greet a colleague on the ground...";
-			link.l1 = TimeGreeting() + ", I have a business to you.";
+			dialog.text = DLG_TEXT_Q[534];
+			link.l1 = TimeGreeting() + DLG_TEXT_Q[535];
 			link.l1.go = "FriendCap_1";
 		break;
 		case "FriendCap_1":
-			dialog.text = "I am listening.";
-			link.l1 = "A fellow of yours is looking for you. You together were sailing here from the Old World." + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + ", remember?";
+			dialog.text = DLG_TEXT_Q[536];
+			link.l1 = DLG_TEXT_Q[537] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + DLG_TEXT_Q[538];
 			link.l1.go = "FriendCap_2";
 		break;
 		case "FriendCap_2":
-			dialog.text = "Ha, sure I do! And where does he live now?";
-			link.l1 = "In " + XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat");
+			dialog.text = DLG_TEXT_Q[539];
+			link.l1 = DLG_TEXT_Q[540] + XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat") + DLG_TEXT_Q[541];
 			link.l1.go = "FriendCap_3";
 		break;
 		case "FriendCap_3":
-			dialog.text = " Thank you! You know, I thought that you are a pirate!";
-			link.l1 = "I am. Sort of. Or I am not. But anyway, I am in a good mood today, so you have nothing to worry about. Farewell.";
+			dialog.text = DLG_TEXT_Q[542];
+			link.l1 = DLG_TEXT_Q[543];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "FriendCap_exit";
 			npchar.DeckDialogNode = "FriendCap_exit";
@@ -1714,29 +1714,29 @@ void ProcessDialogEvent()
 			DeleteAttribute(forName, npchar.id);
 		break;
 		case "FriendCap_exit":
-			dialog.text = "Is there a problem? I am sorry, I am a bit nervous...";
-			link.l1 = "It is all right, pal.";
+			dialog.text = DLG_TEXT_Q[544];
+			link.l1 = DLG_TEXT_Q[545];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "FriendCap_exit";
 		break;
 		case "FriendCap_inDeck": //встреча на палубе
-			dialog.text = TimeGreeting() + ". What do you want from me? I am just a common merchant and...";
-			link.l1 = "I know, pal. Don't worry this much, they say it's not good for health. I have a business to you.";
+			dialog.text = TimeGreeting() + DLG_TEXT_Q[546];
+			link.l1 = DLG_TEXT_Q[547];
 			link.l1.go = "FriendCap_inDeck_1";
 		break;
 		case "FriendCap_inDeck_1":
-			dialog.text = "What kind of a business?";
-			link.l1 = "A friend of yours is looking for you. His name is " + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + ". Do you know him?";
+			dialog.text = DLG_TEXT_Q[548];
+			link.l1 = DLG_TEXT_Q[549] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + DLG_TEXT_Q[550];
 			link.l1.go = "FriendCap_inDeck_2";
 		break;
 		case "FriendCap_inDeck_2":
-			dialog.text = "Oh, at last! That's great... I am so sorry for such a rude greeting, but I thought that you are a pirate.";
-			link.l1 = "I am. Sort of. Or I am not. But anyway, I am in a good mood today, so you have got nothing to worry about. I was asked to deliver a message to you and I've done the job. Your fellow lives in " + XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat") + ".";
+			dialog.text = DLG_TEXT_Q[551];
+			link.l1 = DLG_TEXT_Q[552] + XI_ConvertString("Colony"+npchar.quest.cribCity+"Dat") + ".";
 			link.l1.go = "FriendCap_inDeck_3";
 		break;
 		case "FriendCap_inDeck_3":
-			dialog.text = "Isn't that something! You are a honourable man. Thank you!";
-			link.l1 = "You are welcome. Farewell and watch yourself, pal.";
+			dialog.text = DLG_TEXT_Q[553] + GetAddress_FormToNPC(NPChar) + DLG_TEXT_Q[554];
+			link.l1 = DLG_TEXT_Q[555];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "FriendCap_exit";
 			npchar.DeckDialogNode = "FriendCap_exit";
@@ -1752,23 +1752,23 @@ void ProcessDialogEvent()
 		break;
 		//========= разыскиваемый муж-торговец ===========
 		case "HasbandCap": //встреча на суше
-			dialog.text = "Hello. Want something?";
-			link.l1 = "Your name is " + GetFullName(npchar) + ", am I right?";
+			dialog.text = DLG_TEXT_Q[556];
+			link.l1 = DLG_TEXT_Q[557] + GetFullName(npchar) + DLG_TEXT_Q[558];
 			link.l1.go = "HasbandCap_1";
 		break;
 		case "HasbandCap_1":
-			dialog.text = "Yes, it is me.";
-			link.l1 = "It probably sounds stupid, but your wife has asked me to tell you that she worries about you.";
+			dialog.text = DLG_TEXT_Q[559];
+			link.l1 = DLG_TEXT_Q[560];
 			link.l1.go = "HasbandCap_2";
 		break;
 		case "HasbandCap_2":
-			dialog.text = "Ha! I see... Actually, I was too busy, there are a lot of profitable offers and I can't loose possible incomes just because my wife worries too much.";
-			link.l1 = "But you could at least write to her a letter and tell that you are fine.";
+			dialog.text = DLG_TEXT_Q[561];
+			link.l1 = DLG_TEXT_Q[562];
 			link.l1.go = "HasbandCap_3";
 		break;
 		case "HasbandCap_3":
-			dialog.text = "Yes, you are right. I will write her immediately! Thank you for taking part in our family matters!";
-			link.l1 = "You are welcome, pal.";
+			dialog.text = DLG_TEXT_Q[563];
+			link.l1 = DLG_TEXT_Q[564];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "HasbandCap_inDeck_exit";
 			npchar.DeckDialogNode = "HasbandCap_inDeck_exit";
@@ -1786,23 +1786,23 @@ void ProcessDialogEvent()
 			DeleteAttribute(forName, npchar.id);
 		break;
 		case "HasbandCap_inDeck": //встреча на палубе
-			dialog.text = "Good day to you. How can I help you?";
-			link.l1 = "Your name is " + GetFullName(npchar) + ", am I right?";
+			dialog.text = DLG_TEXT_Q[565];
+			link.l1 = DLG_TEXT_Q[566] + GetFullName(npchar) + DLG_TEXT_Q[567];
 			link.l1.go = "HasbandCap_inDeck_1";
 		break;
 		case "HasbandCap_inDeck_1":
-			dialog.text = "Yes, it is me.";
-			link.l1 = "It probably sounds stupid, but your wife has asked me to tell you that she worries about you.";
+			dialog.text = DLG_TEXT_Q[568];
+			link.l1 = DLG_TEXT_Q[569];
 			link.l1.go = "HasbandCap_inDeck_2";
 		break;
 		case "HasbandCap_inDeck_2":
-			dialog.text = "Fuh, damn it! I feared that it was famous bounty hunter coming for me - One-eyed Steve Hunter. Well, it's good that I was wrong\nYou see, I am so busy with my work and I can't spare any time for her. I have profitable offers coming all the time and I can't turn them down because of my wife's worries.";			
-			link.l1 = "You are right, sure. But you could at least write her a letter and tell that you are fine.";
+			dialog.text = DLG_TEXT_Q[570];
+			link.l1 = DLG_TEXT_Q[571];
 			link.l1.go = "HasbandCap_inDeck_3";
 		break;
 		case "HasbandCap_inDeck_3":
-			dialog.text = "Yes, you are right. I will do it in the very first port... Thank you for taking part in our family matters!";
-			link.l1 = "You are welcome, pal.";
+			dialog.text = DLG_TEXT_Q[572];
+			link.l1 = DLG_TEXT_Q[573];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "HasbandCap_inDeck_exit";
 			npchar.DeckDialogNode = "HasbandCap_inDeck_exit";
@@ -1816,45 +1816,45 @@ void ProcessDialogEvent()
 			DeleteAttribute(forName, npchar.id);
 		break;
 		case "HasbandCap_inDeck_exit":
-			dialog.text = "You have my thanks, captain...";
-			link.l1 = "You are welcome.";
+			dialog.text = DLG_TEXT_Q[574];
+			link.l1 = DLG_TEXT_Q[575];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "HasbandCap_inDeck_exit";
 		break;
 		//========= разыскиваемый капитан-обманщик ===========
 		case "RevengeCap": //встреча на суше
-			dialog.text = "Glad to see you in this town, captain. Do you need anything from me?";
-			link.l1 = ""+ GetSexPhrase("You know, captain... Fuh, I don't even know how to say!","Yes, I have.") +"";
+			dialog.text = DLG_TEXT_Q[576];
+			link.l1 = DLG_TEXT_Q[577];
 			link.l1.go = "RevengeCap_1";
 		break;
 		case "RevengeCap_1":
-			dialog.text = ""+ GetSexPhrase("Say as it is.","Interesting, and what?") +"";
-			link.l1 = " I have got a question for you. Do you know a woman named " + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + "?";
+			dialog.text = DLG_TEXT_Q[578];
+			link.l1 = DLG_TEXT_Q[579] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + "?";
 			link.l1.go = "RevengeCap_2";
 		break;
 		case "RevengeCap_2":
-			dialog.text = "Heh, I do. Had a bad luck knowing her. A foolish girl, I can tell you...";
-			link.l1 = "Hm... Yes, and this foolish girl has asked me to kill you. That's it....";
+			dialog.text = DLG_TEXT_Q[580];
+			link.l1 = DLG_TEXT_Q[581];
 			link.l1.go = "RevengeCap_3";
 		break;
 		case "RevengeCap_3":
-			dialog.text = "Nonsense.";
-			link.l1 = ""+ GetSexPhrase("I agree. Beg pardon, but there is a bounty for your head","It is not. There is a bounty") +". I am going to receive it.";
+			dialog.text = DLG_TEXT_Q[582];
+			link.l1 = DLG_TEXT_Q[583];
 			link.l1.go = "RevengeCap_4";
 		break;
 		case "RevengeCap_4":
-			dialog.text = "Ho-ho!... Are you kidding me, captain?";
-			link.l1 = ""+ GetSexPhrase("No, friend.","Wasn't even going to!") +"";
+			dialog.text = DLG_TEXT_Q[584];
+			link.l1 = DLG_TEXT_Q[585];
 			link.l1.go = "RevengeCap_5";
 		break;
 		case "RevengeCap_5":
-			dialog.text = ""+ GetSexPhrase("You are not my friend, idiot! You can't even call yourself a captain. You are a toy of this foolish fury!","Damn it! One fury has hired another! What the hell is going on with this world?") +"!";
-			link.l1 = ""+ GetSexPhrase("Ouch! So rude.","You have used her, so don't be surprised that she has decided to avenge you.") +"";
+			dialog.text = DLG_TEXT_Q[586];
+			link.l1 = DLG_TEXT_Q[587];
 			link.l1.go = "RevengeCap_6";
 		break;
 		case "RevengeCap_6":
-			dialog.text = ""+ GetSexPhrase("Did I hit the nerve?","Women solidarity?!") +"";
-			link.l1 = "Let's end this!";
+			dialog.text = DLG_TEXT_Q[588];
+			link.l1 = DLG_TEXT_Q[589];
 			link.l1.go = "RevengeCap_7";
 		break;
 		case "RevengeCap_7":
@@ -1866,53 +1866,53 @@ void ProcessDialogEvent()
 			AddDialogExitQuest("MainHeroFightModeOn");
 		break;
 		case "RevengeCapCap_exit":
-			dialog.text = "I have already talked with you. Get lost, moron!";
-			link.l1 = "Moron?! Fine then...";
+			dialog.text = DLG_TEXT_Q[590];
+			link.l1 = DLG_TEXT_Q[591];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RevengeCapCap_exit";
 		break;
 		case "RevengeCap_inDeck": //встреча на палубе
-			dialog.text = "Glad to see you aboard, captain. What do you want?";
-			link.l1 = "I have got a question for you. Do you know a woman named " + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + "?";
+			dialog.text = DLG_TEXT_Q[592];
+			link.l1 = DLG_TEXT_Q[593] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + "?";
 			link.l1.go = "RevengeCap_inDeck_1";
 		break;
 		case "RevengeCap_inDeck_1":
-			dialog.text = "Heh, I do. Had a bad luck knowing her. A foolish girl, I can tell you...";
-			link.l1 = "Yes, and this foolish girl has asked me to kill you.";
+			dialog.text = DLG_TEXT_Q[594];
+			link.l1 = DLG_TEXT_Q[595];
 			link.l1.go = "RevengeCap_inDeck_2";
 		break;
 		case "RevengeCap_inDeck_2":
-			dialog.text = "Captain don't make me laugh. If you don't have any serious business to me, then I say you goodbye.";
-			link.l1 = "Farewell, then. But consider what I've told you.";
+			dialog.text = DLG_TEXT_Q[596];
+			link.l1 = DLG_TEXT_Q[597];
 			link.l1.go = "RevengeCap_inDeck_3";
 		break;
 		case "RevengeCap_inDeck_3":
-			dialog.text = "Sure, captain, how else could it be?!";
-			link.l1 = "Farewell.";
+			dialog.text = DLG_TEXT_Q[598];
+			link.l1 = DLG_TEXT_Q[599];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RevengeCapCap_inDeck_exit";
 			npchar.DeckDialogNode = "RevengeCapCap_inDeck_exit";
 			npchar.quest.SeekCap = "womanRevengeFight"; //флаг квеста для зачета в прерывании на убийство
 		break;
 		case "RevengeCapCap_inDeck_exit":
-			dialog.text = "I don't want to talk about this matter any more, captain. This is way too ridiculous.";
-			link.l1 = "Whatever you say...";
+			dialog.text = DLG_TEXT_Q[600];
+			link.l1 = DLG_TEXT_Q[601];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "RevengeCapCap_exit";
 		break;
 		case "RevengeCap_board": //абордаж
-			dialog.text = "What the hell is going on here?! Why have you attacked my ship?";
-			link.l1 = "By the ask of the lady named " + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + ". Do you know her?";
+			dialog.text = DLG_TEXT_Q[602];
+			link.l1 = DLG_TEXT_Q[603] + GetFullName(&characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)]) + DLG_TEXT_Q[604];
 			link.l1.go = "RevengeCap_board_1";
 		break;
 		case "RevengeCap_board_1":
-			dialog.text = "What the hell!!! I can't believe it...";
-			link.l1 = "You have to! Don't you know women, buddy? They can bite.";
+			dialog.text = DLG_TEXT_Q[605];
+			link.l1 = DLG_TEXT_Q[606];
 			link.l1.go = "RevengeCap_board_2";
 		break;
 		case "RevengeCap_board_2":
-			dialog.text = "Well, I am not going to die just like that. Thanks for the chat, now I have more strengths.";
-			link.l1 = "It won't help you.";
+			dialog.text = DLG_TEXT_Q[607];
+			link.l1 = DLG_TEXT_Q[608];
 			link.l1.go = "RevengeCap_board_3";
 		break;
 		case "RevengeCap_board_3":
@@ -1928,18 +1928,18 @@ void ProcessDialogEvent()
 		//========= вызволение мужа из пиратских затрюмков =========
 		case "PiratesCap_inDeck": //встреча на палубе
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "Glad to see you aboard. Can I help you?";
-			link.l1 = "You can. I am looking for a man named " + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
+			dialog.text = DLG_TEXT_Q[609];
+			link.l1 = DLG_TEXT_Q[610] + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
 			link.l1.go = "PiratesCap_1";
 		break;
 		case "PiratesCap_inDeck_1":
-			dialog.text = "This man is my prisoner and I am planning to ransom him.";
-			link.l1 = "I want to take him.";
+			dialog.text = DLG_TEXT_Q[611];
+			link.l1 = DLG_TEXT_Q[612];
 			link.l1.go = "PiratesCap_inDeck_2";
 		break;
 		case "PiratesCap_inDeck_2":
-			dialog.text = "Unfortunately, that is impossible. If that's all, I'd ask you to leave my ship.";
-			link.l1 = "Fine, captain, as you say.";
+			dialog.text = DLG_TEXT_Q[613];
+			link.l1 = DLG_TEXT_Q[614];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "PiratesCapCap_exit";
 			npchar.DeckDialogNode = "PiratesCapCap_exit";
@@ -1949,24 +1949,24 @@ void ProcessDialogEvent()
 			AddQuestUserData(sTitle, "sShipTypeName", GetStrSmallRegister(XI_ConvertString(RealShips[sti(npchar.Ship.Type)].BaseName + "Gen")));
 		break;
 		case "PiratesCapCap_exit":
-			dialog.text = "We have already talked about my prisoner. Nothing has changed.";
-			link.l1 = "I see...";
+			dialog.text = DLG_TEXT_Q[615];
+			link.l1 = DLG_TEXT_Q[616];
 			link.l1.go = "exit";
 		break;
 		case "PiratesCap": //встреча на суше
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "Pleasure to meet you. Can I help you?";
-			link.l1 = "You can. I am looking for a man named " + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
+			dialog.text = DLG_TEXT_Q[617];
+			link.l1 = DLG_TEXT_Q[618] + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
 			link.l1.go = "PiratesCap_1";
 		break;
 		case "PiratesCap_1":
-			dialog.text = "This man is my prisoner and I am planning to ransom him.";
-			link.l1 = "I want to take him.";
+			dialog.text = DLG_TEXT_Q[619];
+			link.l1 = DLG_TEXT_Q[620];
 			link.l1.go = "PiratesCap_2";
 		break;
 		case "PiratesCap_2":
-			dialog.text = "I am sorry but it is not possible.";
-			link.l1 = "Too bad...";
+			dialog.text = DLG_TEXT_Q[621];
+			link.l1 = DLG_TEXT_Q[622];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "PiratesCapCap_exit";
 			npchar.DeckDialogNode = "PiratesCapCap_exit";
@@ -1977,13 +1977,13 @@ void ProcessDialogEvent()
 		break;
 		case "PiratesCap_Board": //абордаж
 			sld = &characters[GetCharacterIndex("QuestCitiz_"+npchar.quest.cribCity)];
-			dialog.text = "Damn it! What the hell?!";
-			link.l1 = "I need your prisoner named " + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
+			dialog.text = DLG_TEXT_Q[623];
+			link.l1 = DLG_TEXT_Q[624] + sld.quest.SeekCap.name + " " + sld.quest.SeekCap.lastname + ".";
 			link.l1.go = "PiratesCap_Board_1";
 		break;
 		case "PiratesCap_Board_1":
-			dialog.text = "Ha! No way, only over my corpse!";
-			link.l1 = "Since you've asked...";
+			dialog.text = DLG_TEXT_Q[625];
+			link.l1 = DLG_TEXT_Q[626];
 			link.l1.go = "PiratesCap_Board_2";
 		break;
 		case "PiratesCap_Board_2":
@@ -2006,13 +2006,13 @@ void ProcessDialogEvent()
 		break;
 		//========= пленный муж ===========
 		case "womanPirates_Board":
-			dialog.text = "Who are you?";
-			link.l1 = "I am captain " + GetFullName(pchar) + ". Don't worry, I am here to get you to your wife.";
+			dialog.text = DLG_TEXT_Q[627];
+			link.l1 = DLG_TEXT_Q[628] + GetFullName(pchar) + DLG_TEXT_Q[629];
 			link.l1.go = "womanPirates_Board_1";
 		break;
 		case "womanPirates_Board_1":
-			dialog.text = "Damn it, I must be a dream!";
-			link.l1 = "I can assure you that it is not... Well, it is all over, now let's get away from here.";
+			dialog.text = DLG_TEXT_Q[630];
+			link.l1 = DLG_TEXT_Q[631];
 			link.l1.go = "exit";
 			//уберем мужа из каюты
 			npchar.location = "none";
@@ -2031,8 +2031,8 @@ void ProcessDialogEvent()
 		case "plantation_slave":
 			if (CheckAttribute(npchar, "CityType") && npchar.CityType == "citizen" && findsubstr(npchar.id, "Slave_" , 0) != -1)
     		{
-				dialog.text = RandPhraseSimple(RandPhraseSimple("I am exhausted, help me.", "I have no more strength to live like that!"), RandPhraseSimple("This work is eating us alive.", "Fucking guards left no piece of skin on my back!"));				
-				link.l1 = RandPhraseSimple("What a shame.", "Yes, life is a bitch.");
+				dialog.text = RandPhraseSimple(RandPhraseSimple(DLG_TEXT_Q[854], DLG_TEXT_Q[855]), RandPhraseSimple(DLG_TEXT_Q[856], DLG_TEXT_Q[857]));				
+				link.l1 = RandPhraseSimple(DLG_TEXT_Q[858], DLG_TEXT_Q[859]);
 				link.l1.go = "exit";				
     		} 
 		break;
@@ -2048,8 +2048,8 @@ void ProcessDialogEvent()
 				// "Честь мундира".
 				if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.CoatHonor"))
 				{
-					dialog.text = "Oh, captain, take a sit with me. I am buying!";
-					link.l1 = "My pleasure.";
+					dialog.text = DLG_TEXT_Q[860];
+					link.l1 = DLG_TEXT_Q[861];
 					link.l1.go = "AffairOfHonor_CoatHonor_1";
 					PChar.QuestTemp.AffairOfHonor.CoatHonor = true;
 					break;
@@ -2062,8 +2062,8 @@ void ProcessDialogEvent()
 					// "Невольник чести".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.HonorSlave"))
 					{
-						dialog.text = "Hello, captain. You are a captain, right? Even a navy captain, perhaps?\nYes, you must be good with a sword as opposed to my good-for-nothing son who is going to die tomorrow… Because of this lustful bastard who put an eye on my son's dame of interest!";
-						link.l1 = "Yes, I am a captain, and my sword has already saved me many times, but what about the rest of your depressive speech? Care to explain?";
+						dialog.text = DLG_TEXT_Q[862];
+						link.l1 = DLG_TEXT_Q[863];
 						link.l1.go = "AffairOfHonor_HonorSlave_1";
 						PChar.QuestTemp.AffairOfHonor.HonorSlave = true;
 						break;
@@ -2072,8 +2072,8 @@ void ProcessDialogEvent()
 					// "Красотка и пират".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.BeautifulPirate"))
 					{
-						dialog.text = "Greetings, captain. Let me ask, aren't you a pirate by any chance? Oh, of course not! You are not. Pirates are bad looking, behave like animals and that stench...";
-						link.l1 = "Do you have grudges on pirates?";
+						dialog.text = DLG_TEXT_Q[864];
+						link.l1 = DLG_TEXT_Q[865];
 						link.l1.go = "AffairOfHonor_BeautifulPirate_1";
 						PChar.QuestTemp.AffairOfHonor.BeautifulPirate = true;
 						break;
@@ -2085,10 +2085,10 @@ void ProcessDialogEvent()
 						//if(NPChar.city == "PortRoyal" || NPChar.city == "Havana" || NPChar.city == "Villemstad" || NPChar.city == "FortFrance")
 						//{
 						// Jason: что за чудное условие? Типа - столица? Кроме Гаваны, квест более нигде не выпадет - остальные города непригодны априори. Убираю. Неразумно ограничивать одним городом.
-							dialog.text = "Hey, you! Yes, you, tell me, where are your manners? Why the hell you are standing here and bothering me? No, just look at him, such a moron! I am talking to you! Make way! Too many outsiders here!";
-							link.l1 = "Calm down, I didn't mean to bother you. Beg your pardon.";
+							dialog.text = DLG_TEXT_Q[866];
+							link.l1 = DLG_TEXT_Q[867];
 							link.l1.go = "AffairOfHonor_Exit";
-							link.l2 = "Watch your tongue, or I will cut it off, my good sir.";
+							link.l2 = DLG_TEXT_Q[868];
 							link.l2.go = "AffairOfHonor_Jackanapes_1";
 							PChar.QuestTemp.AffairOfHonor.Jackanapes = true;
 							break;
@@ -2098,18 +2098,18 @@ void ProcessDialogEvent()
 					// "Волки и овцы".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.WolvesAndSheeps"))
 					{
-						dialog.text = "Greetings, captain. I have something to ask you for. You won't stay aside if you are a man of honour.\nSo, let's cut to the chase: one nobleman stayed in our tavern a month ago. He turned out to be a debauchee and a bastard! Even more, he is a murderer!";
-						link.l1 = "As far as remember, the penalty of murdering an innocent is the gallows. Being a debauchee and a bastard won't do much good in the court either. Am I right?";
+						dialog.text = DLG_TEXT_Q[869];
+						link.l1 = DLG_TEXT_Q[870];
 						link.l1.go = "AffairOfHonor_WolvesAndSheeps_1";
 						PChar.QuestTemp.AffairOfHonor.WolvesAndSheeps = true;
 						break;
 					}
-					                                                                                                                                                
+					
 					// "Трусливый фехтовалщик".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.CowardFencer"))
 					{
-						dialog.text = "Captain, wait, I beg you. You look like a skilful fencer, much better than me. So I want ask you to replace me.";
-						link.l1 = "Intriguing. Go on.";
+						dialog.text = DLG_TEXT_Q[871];
+						link.l1 = DLG_TEXT_Q[872];
 						link.l1.go = "AffairOfHonor_CowardFencer_1";
 						PChar.QuestTemp.AffairOfHonor.CowardFencer = true;
 						break;
@@ -2118,10 +2118,10 @@ void ProcessDialogEvent()
 					// "Божий суд".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.GodJudgement"))
 					{
-						dialog.text = "Please, I beg you, don't go away! Wait... Wouldn't you help poor me in one matter which requires an interference of such brave military officer like yourself?\nThing is, that I had a quarrel concerning local grape plantations with my neighbour, by the way, he is suspected in dealings with smugglers. Yes, yes, and he might even has something with pirates, how else could he make such a fortune in no time?\nHe had nothing but a barque a year ago and now he wants to take my vineyards, do you listen?! My vineyards!";
-						link.l1 = "I feel bad about your vineyards. Honestly. Farewell.";
+						dialog.text = DLG_TEXT_Q[873];
+						link.l1 = DLG_TEXT_Q[874];
 						link.l1.go = "exit";
-						link.l2 = "Beg pardon, but can't you address the local authorities?";
+						link.l2 = DLG_TEXT_Q[875];
 						link.l2.go = "AffairOfHonor_GodJudgement_1";
 						PChar.QuestTemp.AffairOfHonor.GodJudgement = true;
 						break;
@@ -2132,10 +2132,10 @@ void ProcessDialogEvent()
 					// "Навязчивый кавалер".
 					if(!CheckAttribute(PChar, "QuestTemp.AffairOfHonor.Cavalier"))
 					{
-						dialog.text = "Captain, captain, I beg you! Protect an honour of the innocent girl!";
-						link.l1 = "I don't have time for this, pretty one. Look for someone else...";
+						dialog.text = DLG_TEXT_Q[876];
+						link.l1 = DLG_TEXT_Q[877];
 						link.l1.go = "AffairOfHonor_Exit";
-						link.l2 = "Greetings, my lady. Don't shiver like that! What happened?";
+						link.l2 = DLG_TEXT_Q[878];
 						link.l2.go = "AffairOfHonor_Cavalier_1";
 						PChar.QuestTemp.AffairOfHonor.Cavalier = true;
 						break;
@@ -2143,7 +2143,7 @@ void ProcessDialogEvent()
 				}
 			}
 			
-			dialog.text = "Bug. Les the devs know.";
+			dialog.text = DLG_TEXT_Q[879];
 			link.l1 = RandSwear();
 			link.l1.go = "exit";
 		break;
@@ -2155,8 +2155,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Cavalier_1":
-			dialog.text = "Captain, I've been stalked in the most unambiguous manner by an officer of our garrison. You could have heard these filthy rumours he spreads about me, trying to put me in shame!\nAlas, I don't have friends capable of protecting my honest name! I am desperate! Oh, God, that's him! Help me!";
-			link.l1 = "Don't worry I will see it through.";
+			dialog.text = DLG_TEXT_Q[880];
+			link.l1 = DLG_TEXT_Q[881];
 			link.l1.go = "exit";
 			int Rank = sti(pchar.rank)+MOD_SKILL_ENEMY_RATE+12;
 			int Scl = 30+2*sti(pchar.rank);
@@ -2176,20 +2176,20 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Cavalier_2":
-			dialog.text = "Ah, there you are, my lady! Another cavalier, I take it? When are you going to settle down? Perhaps never... Go work in the brothel, that's the most suitable place for you...";
-			link.l1 = "Officer, stop your mouth from erupting insults or I will make you to stop it in my own special way!";
+			dialog.text = DLG_TEXT_Q[882];
+			link.l1 = DLG_TEXT_Q[883];
 			link.l1.go = "AffairOfHonor_Cavalier_2a";
 		break;
 		
 		case "AffairOfHonor_Cavalier_2a":
-			dialog.text = "Hm... Who are you? A-ah, salted by the sea itself the brave captain of a barque, am I right? And what are you going to do, sea... lion?";
-			link.l1 = "This lady is my friend! And I will spare a gauntlet for you!";
+			dialog.text = DLG_TEXT_Q[884];
+			link.l1 = DLG_TEXT_Q[885];
 			link.l1.go = "AffairOfHonor_Cavalier_3";
 		break;
 		
 		case "AffairOfHonor_Cavalier_3":
-			dialog.text = "What?! You ain't going to challenge me because of this...";
-			link.l1 = "Enough! I will be waiting for you near the lighthouse in two hours. And don't forget to bring your sword!";
+			dialog.text = DLG_TEXT_Q[886];
+			link.l1 = DLG_TEXT_Q[887];
 			link.l1.go = "AffairOfHonor_Cavalier_4";
 		break;
 		
@@ -2208,8 +2208,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Cavalier_5":
-			dialog.text = "Ah, I know everything, sir! You don't even understand how am I grateful to you! May the Lord protect you!";
-			link.l1 = "I am glad that I could help you. Good luck!";
+			dialog.text = DLG_TEXT_Q[888];
+			link.l1 = DLG_TEXT_Q[889];
 			link.l1.go = "exit";
 			ChangeCharacterComplexReputation(PChar, "nobility", 7);
 			ChangeCharacterComplexReputation(pchar, "authority", 1);
@@ -2223,7 +2223,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Cavalier_6":
-			dialog.text = "Ah, you are just like all of them, leave me!";
+			dialog.text = DLG_TEXT_Q[890];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			LAi_CharacterDisableDialog(NPChar);
@@ -2231,17 +2231,17 @@ void ProcessDialogEvent()
 		
 		case "AffairOfHonor_HonorSlave_1":
 			sTemp = "";
-			if (FindLocation(NPChar.city + "_brothel") != -1) sTemp = "or in the brothel ";
-			dialog.text = "Oh, "+GetAddress_Form(NPChar)+"... I don't dare to hope, but perhaps your sword could protect my family for this time?\nAs I said, my son is not a fencer, but he is going to duel at tomorrow dawn. Ah, if it wasn't for his dame and an honour\nBut he couldn't step aside and now he is doomed, can't you see that? I am desperate, he is my only son and an heir, therefore I ask you to kill the bastard who challenged my little boy before the dawn comes. I will make it worth for your time, you can count on that!\nYou will find the man in the tavern "+sTemp+" - there, where bastards like him spend their free time... I beg you...";
-			link.l1 = "I don't care about neither about you nor about your son. Let me go!";
+			if (FindLocation(NPChar.city + "_brothel") != -1) sTemp = DLG_TEXT_Q[891];
+			dialog.text = "Oh, "+GetAddress_Form(NPChar)+DLG_TEXT_Q[892]+sTemp+DLG_TEXT_Q[893];
+			link.l1 = DLG_TEXT_Q[894];
 			link.l1.go = "exit";
-			link.l2 = "Hm ... Just like that? Fine, we will see how this ends.";
+			link.l2 = DLG_TEXT_Q[895];
 			link.l2.go = "AffairOfHonor_HonorSlave_1a";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_1a":
-			dialog.text = "Will you really help my son? Oh, "+GetAddress_Form(NPChar)+"! I will be praying for you and your luck!";
-			link.l1 = "I see no harm in that... Wait for me!";
+			dialog.text = DLG_TEXT_Q[896]+GetAddress_Form(NPChar)+DLG_TEXT_Q[897];
+			link.l1 = DLG_TEXT_Q[898];
 			link.l1.go = "AffairOfHonor_HonorSlave_2";
 		break;
 		
@@ -2275,32 +2275,32 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_HonorSlave_3":
-			dialog.text = "What the hell do you want from me? I am having a rest here and I don't want to be bothered. There are plenty of spare seats and free ears so leave me alone, sir!";
-			link.l1 = "Unfortunately, you will have to take a break from your rest until the better times.";
+			dialog.text = DLG_TEXT_Q[899];
+			link.l1 = DLG_TEXT_Q[900];
 			link.l1.go = "AffairOfHonor_HonorSlave_3a";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_3a":
-			dialog.text = "What?! And who are you to tell me what to do?!";
-			link.l1 = "Have you forgotten me, huh? But I remember you! And my point is that scoundrels like you are poisoning our world by their only presence!";
+			dialog.text = DLG_TEXT_Q[901];
+			link.l1 = DLG_TEXT_Q[902];
 			link.l1.go = "AffairOfHonor_HonorSlave_3b";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_3b":
-			dialog.text = "Ah?! Sailor, it seems that you are way too drunk! It is the first time I see you! But I am not going to ignore your behaviour! This is your last chance to save your miserable life! Make your excuses now, you bloated herring, and I will forget your insolent speech!";
-			link.l1 = "I make excuses only to honourable men not to filthy pigs!";
+			dialog.text = DLG_TEXT_Q[903];
+			link.l1 = DLG_TEXT_Q[904];
 			link.l1.go = "AffairOfHonor_HonorSlave_4";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_4":
-			dialog.text = "What the fuck?! Are you looking for troubles, latrine louse?";
-			link.l1 = "I will shut your fucking throat with your words, rat! I will be waiting for you near the lighthouse in two hours and don't forget to bring that rusty crap which you are carrying on your belt!";
+			dialog.text = DLG_TEXT_Q[905];
+			link.l1 = DLG_TEXT_Q[906];
 			link.l1.go = "AffairOfHonor_HonorSlave_5";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_5":
-			dialog.text = "Ha! I will be there!";
-			link.l1 = "See you soon!";
+			dialog.text = DLG_TEXT_Q[907];
+			link.l1 = DLG_TEXT_Q[908];
 			link.l1.go = "AffairOfHonor_HonorSlave_6";
 		break;
 		
@@ -2315,18 +2315,18 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_HonorSlave_7":
-			dialog.text = "Oh, it is you! You are alive which means that...";
-			link.l1 = "Yes, I am, and your son may not hurry tomorrow morning..";
+			dialog.text = DLG_TEXT_Q[909];
+			link.l1 = DLG_TEXT_Q[910];
 			link.l1.go = "AffairOfHonor_HonorSlave_8";
 		break;
 		
 		case "AffairOfHonor_HonorSlave_8":
-			dialog.text = "Such a fine day! I should go and tell my wife good news!\nCaptain, the fate itself has sent you to aid me. Here, take these coins and accept the gratitude of our family!";
-			link.l1 = "Thank you!";
+			dialog.text = DLG_TEXT_Q[911];
+			link.l1 = DLG_TEXT_Q[912];
 			link.l1.go = "exit";
 			iTemp = 50+drand(5)*10;
 			TakeNItems(pchar, "gold_dublon", iTemp);
-			Log_Info("You have received "+FindRussianDublonString(iTemp)+"");
+			Log_Info(DLG_TEXT_Q[913]+FindRussianDublonString(iTemp)+"");
 			PlaySound("interface\important_item.wav");
 			ChangeCharacterComplexReputation(pchar, "authority", 1);
 			ChangeCharacterNationReputation(pchar, sti(npchar.Nation), 2);
@@ -2338,23 +2338,23 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_HonorSlave_9":
-			dialog.text = "Piss off, kid murderer!";
+			dialog.text = DLG_TEXT_Q[914];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			LAi_CharacterDisableDialog(NPChar);
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_1":
-			dialog.text = "Me? Thank God, I am fine, but my sister is not that lucky. She serves in a tavern\nThere is a privateer who often visits the place, a very dangerous type. Pirate! His vessel has been in the voyage for a week not less. The man is drinking, threatening people and promises to kill everyone who tries to reason him. The worst part is that my sister told me that he boasts to steal her and take her devil knows where if she won't fulfil his dirty wishes!\nI don't know what to do! The authorities don't care about some servant girl and peaceful citizens like myself fear this privateer. Help us to deal with him, please!";
-			link.l1 = "I have no time to calm down drunkards in taverns. Talk with the commandant, they pay him to solve such matters.";
+			dialog.text = DLG_TEXT_Q[915];
+			link.l1 = DLG_TEXT_Q[916];
 			link.l1.go = "exit";
-			link.l2 = "Hm, a menacing privateer? Fine, I will deal with it.";
+			link.l2 = DLG_TEXT_Q[917];
 			link.l2.go = "AffairOfHonor_BeautifulPirate_1a";
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_1a":
-			dialog.text = "Ah, thanks, captain! I am sure that he will listen to you as a sailor listens to a sailor! Make him leave my sister alone forever! We are not reach but we will pay you enough!";
-			link.l1 = "Fine, fine... I am on my way to solve your problems. Wait for me!";
+			dialog.text = DLG_TEXT_Q[918];
+			link.l1 = DLG_TEXT_Q[919];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_1_1";
 		break;
 		
@@ -2382,29 +2382,29 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_r":
-			dialog.text = "So what? Have you spoken with that pirate? Will he leave us alone?";
-			link.l1 = "Wait a bit. I am on it.";
+			dialog.text = DLG_TEXT_Q[920];
+			link.l1 = DLG_TEXT_Q[921];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "AffairOfHonor_BeautifulPirate_r";
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_2":
-			dialog.text = "What do you want? Don't you see that I am having a rest here?";
-			link.l1 = "Well, well... Behold, the great lord of beer cups, stealer of girls and the storm of this small town in flesh, am I right? And would you be that brave outside the town? Near the lighthouse, a duel, in two hours?";
+			dialog.text = DLG_TEXT_Q[922];
+			link.l1 = DLG_TEXT_Q[923];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_2a";
 			DeleteQuestCondition("AffairOfHonor_TimeIsLeft");
 			SetFunctionTimerConditionParam("AffairOfHonor_TimeIsLeft2", 0, 0, 0, GetHour() + 3, false);
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_2a":
-			dialog.text = "Oh-ho-ho! Are you pretending to be a hero? Whatever, pal, I am in a good mood today so I forgive you. Go and buy me a few pints of ale!";
-			link.l1 = "I am not your pal. Should I repeat myself to an idiot like you? Would you be that brave on a duel as you are in the tavern?";
+			dialog.text = DLG_TEXT_Q[924];
+			link.l1 = DLG_TEXT_Q[925];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_3";
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_3":
-			dialog.text = "Are you challenging me?! Got bored and want to fight? Fine, if you really want that I will walk to the lighthouse, rip your guts out and then I will destroy this blasted tavern!";
-			link.l1 = "Talk is cheap!";
+			dialog.text = DLG_TEXT_Q[926];
+			link.l1 = DLG_TEXT_Q[927];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_4";
 		break;
 		
@@ -2417,20 +2417,20 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_5":
-			dialog.text = "So what? Have you spoken with that pirate? Will he leave us alone? Sister has told me that he left the tavern and hasn't returned back...";
-			link.l1 = "I have. The fellow was a bit rude, but my arguments were quite reasonable. Your sister has nothing to be feared about now.";
+			dialog.text = DLG_TEXT_Q[928];
+			link.l1 = DLG_TEXT_Q[929];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_6";
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_6":
-			dialog.text = "This... is it over? Can we breath freely now? Thank you, captain! And where... where is that scoundrel??";
-			link.l1 = "He... is on his ship. He has decided to leave this town as soon as possible.";
+			dialog.text = DLG_TEXT_Q[930];
+			link.l1 = DLG_TEXT_Q[931];
 			link.l1.go = "AffairOfHonor_BeautifulPirate_7";
 		break;
 		
 		case "AffairOfHonor_BeautifulPirate_7":
-			dialog.text = "You have done a great service to the citizens of this colony! Here, take this reward for your help! It is quite modest but you will get respect from all my friends and, trust me, I have got a lot of them!";
-			link.l1 = "My thanks! Good luck to you and your sister. I wish her to get married with an honourable man. Farewell!";
+			dialog.text = DLG_TEXT_Q[932];
+			link.l1 = DLG_TEXT_Q[933];
 			link.l1.go = "exit";
 			iTemp = 50+drand(5)*10;
 			AddMoneyToCharacter(pchar, iTemp*100);
@@ -2444,14 +2444,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Jackanapes_1":
-			dialog.text = "Oh, really? And how are you planning to stop me?";
-			link.l1 = "With my sword of course, that is the only suitable way for such an insolent pig like you.";
+			dialog.text = DLG_TEXT_Q[934];
+			link.l1 = DLG_TEXT_Q[935];
 			link.l1.go = "AffairOfHonor_Jackanapes_1_1";
 		break;
 		
 		case "AffairOfHonor_Jackanapes_1_1":
-			dialog.text = "Splendid! I will be waiting for you near the lighthouse in two hours.";
-			link.l1 = "Nice! I will be there for sure.";
+			dialog.text = DLG_TEXT_Q[936];
+			link.l1 = DLG_TEXT_Q[937];
 			link.l1.go = "AffairOfHonor_Jackanapes_1_2";
 		break;
 		
@@ -2470,29 +2470,29 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_Jackanapes_2":
-			dialog.text = "Get off my way, coward!";
+			dialog.text = DLG_TEXT_Q[938];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			LAi_CharacterDisableDialog(NPChar);
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_1":
-			dialog.text = "Captain, the bastard is not that simple, Tom, my old friend, died on a duel with him, blamed for cards-harping! He was innocent, I swear. But the governor said that there was no crime in that cursed duel.";
-			link.l1 = "Hm... It is all your friend's fault. Cards-harping can end bad for your health.";
+			dialog.text = DLG_TEXT_Q[939];
+			link.l1 = DLG_TEXT_Q[940];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_2";
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_2":
-			dialog.text = "Yeah? There have been four cardsharpers already for the last two weeks in our town. And all of them were trying to cheat on our nobleman? What would you say about that? My point is that this nobleman is the cardsharper himself. If you don't believe me then go and check by yourself.";
-			link.l1 = "You mean to gamble with him? No, I don't like to gamble. Not a chance.";
+			dialog.text = DLG_TEXT_Q[941];
+			link.l1 = DLG_TEXT_Q[942];
 			link.l1.go = "exit";
-			link.l2 = "I suppose I will do that... Something is very wrong here.";
+			link.l2 = DLG_TEXT_Q[943];
 			link.l2.go = "AffairOfHonor_WolvesAndSheeps_3";
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_3":
-			dialog.text = "Captain, me and my friends have collected a sum to pay the man who will reveal that noble and avenge on him for all of his deeds. I will be waiting in the town to give you your reward once the job is done.";
-			link.l1 = "I will do that if what you are saying is true.";
+			dialog.text = DLG_TEXT_Q[944];
+			link.l1 = DLG_TEXT_Q[945];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_4";
 		break;
 		
@@ -2522,23 +2522,23 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_5":
-			dialog.text = "My respects, sir! I see a noble man and perhaps... a gambler? Fancy a game?";
-			link.l1 = "Sure! Let's talk stakes. What about 50 coins?";
+			dialog.text = DLG_TEXT_Q[946];
+			link.l1 = DLG_TEXT_Q[947];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_6";
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_6":
 			if(sti(PChar.money) < 200)
 			{
-				dialog.text = "You are probably kidding me? You don't have them!";
-				link.l1 = "You are right...";
+				dialog.text = DLG_TEXT_Q[948];
+				link.l1 = DLG_TEXT_Q[949];
 				link.l1.go = "exit";
 				NextDiag.TempNode = "AffairOfHonor_WolvesAndSheeps_5";
 			}
 			else
 			{
-				dialog.text = "Stake is irrelevant, we are going to gamble, that's the best part. I have almost forgotten how the cards look like, because of local idiots.";
-				link.l1 = "Well, let's start.";
+				dialog.text = DLG_TEXT_Q[950];
+				link.l1 = DLG_TEXT_Q[951];
 				link.l1.go = "exit";
 				PChar.QuestTemp.friend_in_tavern = NPChar.id;
 				AddDialogExitQuest("alc");
@@ -2551,7 +2551,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_7":
-			dialog.text = "So, the stake is 50 coins.";
+			dialog.text = DLG_TEXT_Q[952];
 			link.l1 = "...";
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_8";
 			PChar.GenQuest.Cards.npcharIdx = NPChar.index;
@@ -2567,14 +2567,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_9":
-			dialog.text = "Wait a bit, what is it?.. Impossible! Sir, you are a cheater! Return me my coins!";
-			link.l1 = "You must have solid reasons to blame me,  "+GetAddress_FormToNPC(NPChar)+". You'd better shoot them right now, or it's a duel!";
+			dialog.text = DLG_TEXT_Q[953];
+			link.l1 = DLG_TEXT_Q[954]+GetAddress_FormToNPC(NPChar)+DLG_TEXT_Q[955];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_10";
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_10":
-			dialog.text = "Ah, just like that? Fine, a duel then! Today, in two hours, near the lighthouse!";
-			link.l1 = "Deal!";
+			dialog.text = DLG_TEXT_Q[956];
+			link.l1 = DLG_TEXT_Q[957];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_11";
 		break;
 		
@@ -2589,14 +2589,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_12":
-			dialog.text = "Any news, captain?";
-			link.l1 = "You were correct, I was blamed in cheating as well, so I had to slice the bastard in a duel.";
+			dialog.text = DLG_TEXT_Q[958];
+			link.l1 = DLG_TEXT_Q[959];
 			link.l1.go = "AffairOfHonor_WolvesAndSheeps_13";
 		break;
 		
 		case "AffairOfHonor_WolvesAndSheeps_13":
-			dialog.text = "See now? I knew that! A lot of thanks from me and my friends! Here, take your reward, captain.";
-			link.l1 = "Thank you.";
+			dialog.text = DLG_TEXT_Q[960];
+			link.l1 = DLG_TEXT_Q[961];
 			link.l1.go = "exit";
 			iTemp = 50+drand(5)*10;
 			AddMoneyToCharacter(pchar, iTemp*100);
@@ -2611,16 +2611,16 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CowardFencer_1":
-			dialog.text = "Did I tell you that I have come here to apply to a fencing tutor position? No? So, the local governor is looking for a tutor for his nephew and it suits me just perfect. I know the basics of this art, yet I never tried it in a way of practice\nI almost had the job in my pocket, yet it turned out that the local merchant has faced a trouble, some dangerous looking rascal is threatening him. The governor gave me an order to deal with this matter in order to test my professional skills.";
-			link.l1 = "Do it then. Farewell.";
+			dialog.text = DLG_TEXT_Q[962];
+			link.l1 = DLG_TEXT_Q[963];
 			link.l1.go = "exit";
-			link.l2 = "And what does this scoundrel want from the merchant and what do you need me for?";
+			link.l2 = DLG_TEXT_Q[964];
 			link.l2.go = "AffairOfHonor_CowardFencer_1_1";
 		break;
 		
 		case "AffairOfHonor_CowardFencer_1_1":
-			dialog.text = "I thought that the man is a mercenary and you can always make a deal with mercenaries. Old debts or whatever… But the man was serious about his intentions to continue putting pressure on the merchant. I wanted to ask you to help the merchant and me by saving him from the mercenary and fulfilling the governor's orders\nI really need this position and I can't get rid of the mercenary on my own. Please, help me and I will give you every coin I have saved or I will be forced to leave the city in shame!";
-			link.l1 = "Fine, fine, I'll help you... master of fencing.";
+			dialog.text = DLG_TEXT_Q[965];
+			link.l1 = DLG_TEXT_Q[966];
 			link.l1.go = "AffairOfHonor_CowardFencer_1_2";
 		break;
 		
@@ -2646,16 +2646,16 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CowardFencer_2":
-			dialog.text = "What do you want? Don't you see that I am busy?!";
-			link.l1 = "Bothering some respectable merchant and racketing?";
+			dialog.text = DLG_TEXT_Q[967];
+			link.l1 = DLG_TEXT_Q[968];
 			link.l1.go = "AffairOfHonor_CowardFencer_3";
 			DeleteQuestCondition("AffairOfHonor_TimeIsLeft");
 			SetFunctionTimerConditionParam("AffairOfHonor_TimeIsLeft2", 0, 0, 0, GetHour() + 3, false);
 		break;
 		
 		case "AffairOfHonor_CowardFencer_3":
-			dialog.text = "Bah! Another protector? It will be cheaper to pay me, rather than hire guards every day. I don't really like killing work as opposed to knocking out the debts, so if you are such a hero then come to the lighthouse and we'll test each other on a duel. And if you aren't, then don't mess with me.";
-			link.l1 = "Deal! I will be waiting for you there.";
+			dialog.text = DLG_TEXT_Q[969];
+			link.l1 = DLG_TEXT_Q[970];
 			link.l1.go = "AffairOfHonor_CowardFencer_4";
 		break;
 		
@@ -2668,21 +2668,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CowardFencer_4_1":
-			dialog.text = "It looks like you are even bigger coward than me...";
-			link.l1 = "Yup, I am.";
+			dialog.text = DLG_TEXT_Q[971];
+			link.l1 = DLG_TEXT_Q[972];
 			link.l1.go = "exit";
 			LAi_CharacterDisableDialog(NPChar);
 		break;
 		
 		case "AffairOfHonor_CowardFencer_5":
-			dialog.text = "Any news, captain?";
-			link.l1 = "The mercenary is dead. I hope that the position is yours now?";
+			dialog.text = DLG_TEXT_Q[973];
+			link.l1 = DLG_TEXT_Q[974];
 			link.l1.go = "AffairOfHonor_CowardFencer_6";
 		break;
 		
 		case "AffairOfHonor_CowardFencer_6":
-			dialog.text = "Oh, captain, my thanks! Take your reward and I will report to our governor!";
-			link.l1 = "Farewell... master.";
+			dialog.text = DLG_TEXT_Q[975];
+			link.l1 = DLG_TEXT_Q[976];
 			link.l1.go = "exit";
 			ChangeCharacterComplexReputation(pchar, "authority", 1);
 			ChangeCharacterComplexReputation(PChar, "nobility", 2);
@@ -2693,7 +2693,7 @@ void ProcessDialogEvent()
 			npchar.lifeday = 0;
 			LAi_CharacterDisableDialog(NPChar);
 			GiveItem2Character(pchar, "chest"); 
-			Log_Info("You have received a chest filled with doubloons");
+			Log_Info(DLG_TEXT_Q[977]);
 			PlaySound("interface\important_item.wav");
 		break;
 		
@@ -2707,40 +2707,40 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2":
-			dialog.text = "One more?";
-			link.l1 = "Bottoms up.";
+			dialog.text = DLG_TEXT_Q[978];
+			link.l1 = DLG_TEXT_Q[979];
 			link.l1.go = "AffairOfHonor_CoatHonor_2_1";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2_1":
-			dialog.text = "And more!";
-			link.l1 = "Wait a bit! Where are you rushing off to?";
+			dialog.text = DLG_TEXT_Q[980];
+			link.l1 = DLG_TEXT_Q[981];
 			link.l1.go = "AffairOfHonor_CoatHonor_2_2";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2_2":
-			dialog.text = "Hell with the questions! Drink!";
-			link.l1 = "Fine, but maybe you'll tell me later what has happened to you?";
+			dialog.text = DLG_TEXT_Q[982];
+			link.l1 = DLG_TEXT_Q[983];
 			link.l1.go = "AffairOfHonor_CoatHonor_2_3";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2_3":
-			dialog.text = "Are you really interested? Then listen while I can still talk! I won't be able to speak in a few days because I'll be dead… Yes, dead! And it's rum to blame. A lot of rum and this officer, apparently brought by the devil over my head!\nSure I would not fight with the best fencer of our garrison and the city if I were sober or at least not that drunk. But what now? I am doomed, wasted and I am dead! Such foolish of me...";
-			link.l1 = "Yes, that was too silly. But you will likely behave smarter in the future... in case you will survive the duel of course. Farewell.";
+			dialog.text = DLG_TEXT_Q[984];
+			link.l1 = DLG_TEXT_Q[985];
 			link.l1.go = "AffairOfHonor_CoatHonor_Exit";
-			link.l2 = "Getting drunk is not the best option either, officer. I am sure that a solution for this trouble exists.";
+			link.l2 = DLG_TEXT_Q[986];
 			link.l2.go = "AffairOfHonor_CoatHonor_2_4";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2_4":
-			dialog.text = "What kind of solution? To desert and loose my reputation and officer's uniform? Or to commit a suicide to prevent myself from being cut like a pig? What will be your advice?";
-			link.l1 = "Neither of them. I will help you and I'll try to prevent your opponent from dealing to you any damage before the time of your duel. Where can I find him?";
+			dialog.text = DLG_TEXT_Q[987];
+			link.l1 = DLG_TEXT_Q[988];
 			link.l1.go = "AffairOfHonor_CoatHonor_2_5";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_2_5":
-			dialog.text = "Are you serious? You will do it?! Oh, I swear, I will make it worth your while!\nHe can be found in the city. His mistress lives here, all officers heard about her, but alas her address is unknown...";
-			link.l1 = "That's enough. Wait for me here. I'll go and have a chat with your... first sword.";
+			dialog.text = DLG_TEXT_Q[989];
+			link.l1 = DLG_TEXT_Q[990];
 			link.l1.go = "AffairOfHonor_CoatHonor_3";
 		break;
 		
@@ -2764,21 +2764,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CoatHonor_Next":
-			dialog.text = "Have any news for me, sir? Good ones or... not that good?";
-			link.l1 = "I have no news yet. Wait here. All will be well.";
+			dialog.text = DLG_TEXT_Q[991];
+			link.l1 = DLG_TEXT_Q[992];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "AffairOfHonor_CoatHonor_Next";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_Final":
-			dialog.text = "Have any news for me, sir? Good ones or... not that good?";
-			link.l1 = "It is over. Your potential opponent will not be able to harm anyone... You are safe now. But I hope that you will learn this lesson and won't be aggressive with people you don't know.";
+			dialog.text = DLG_TEXT_Q[993];
+			link.l1 = DLG_TEXT_Q[994];
 			link.l1.go = "AffairOfHonor_CoatHonor_Final_1";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_Final_1":
-			dialog.text = "Aren't you kidding me, right? I.. I am really grateful, "+GetAddress_Form(NPChar)+"! Here, take everything I have. This is my wage, take it all!\nA lesson, you say? Yes, damn it, you are right! It won't happen again!";
-			link.l1 = "Fine then. Farewell, officer...";
+			dialog.text = DLG_TEXT_Q[995]+GetAddress_Form(NPChar)+DLG_TEXT_Q[996];
+			link.l1 = DLG_TEXT_Q[997];
 			link.l1.go = "AffairOfHonor_CoatHonor_Final_2";
 		break;
 		
@@ -2787,7 +2787,7 @@ void ProcessDialogEvent()
 			npchar.lifeday = 0;
 			NextDiag.CurrentNode = "AffairOfHonor_CoatHonor_End";
 			TakeNItems(pchar, "purse3", 1); 
-			Log_Info("You have received a purse with doubloons");
+			Log_Info(DLG_TEXT_Q[998]);
 			PlaySound("interface\important_item.wav");
 			ChangeCharacterComplexReputation(pchar, "authority", 1);
 			ChangeCharacterNationReputation(pchar, sti(npchar.Nation), 2);
@@ -2797,33 +2797,33 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CoatHonor_End":
-			dialog.text = "Thanks again, "+GetAddress_Form(NPChar)+", for you help!";
-			link.l1 = "You are always welcome...";
+			dialog.text = DLG_TEXT_Q[999]+GetAddress_Form(NPChar)+DLG_TEXT_Q[1000];
+			link.l1 = DLG_TEXT_Q[1001];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "AffairOfHonor_CoatHonor_End";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_4":
-			dialog.text = "Hey, what the hell? What are you doing in the chambers of my dame? Get away from here or I will drag you out by force!";
-			link.l1 = "I walk wherever I want and I am not going to report you about my actions! By force? Try then!";
+			dialog.text = DLG_TEXT_Q[1002];
+			link.l1 = DLG_TEXT_Q[1003];
 			link.l1.go = "AffairOfHonor_CoatHonor_5";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_5":
-			dialog.text = "Such an insolence! Unheard-of effrontery! Sir, you are really mistaken! Leave this house immediately or I swear that you will regret your living!";
-			link.l1 = "Talk is cheap! You will regret this, not me, "+GetAddress_FormToNPC(NPChar)+"! ";
+			dialog.text = DLG_TEXT_Q[1004];
+			link.l1 = DLG_TEXT_Q[1005]+GetAddress_FormToNPC(NPChar)+" ! ";
 			link.l1.go = "AffairOfHonor_CoatHonor_6";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_6":
-			dialog.text = "Really? Beware then! If I kill you in this house, it will be a murder. So your death won't damage my name, men of honour settle such matter near a lighthouse!\nI challenge you, "+GetAddress_Form(NPChar)+", you insolent man! You will answer for your words! So, a duel in two hours?";
-			link.l1 = "Sure, "+GetAddress_FormToNPC(NPChar)+" bold guy.";
+			dialog.text = DLG_TEXT_Q[1006]+GetAddress_Form(NPChar)+DLG_TEXT_Q[1007];
+			link.l1 = DLG_TEXT_Q[1008]+GetAddress_FormToNPC(NPChar)+DLG_TEXT_Q[1009];
 			link.l1.go = "AffairOfHonor_CoatHonor_7";
 		break;
 		
 		case "AffairOfHonor_CoatHonor_7":
-			dialog.text = "Then make sure to be there in the right time. You still have a time to order a requiem from our priest.";
-			link.l1 = "A requiem for you? You don't worth it. See you near the lighthouse!";
+			dialog.text = DLG_TEXT_Q[1010];
+			link.l1 = DLG_TEXT_Q[1011];
 			link.l1.go = "AffairOfHonor_CoatHonor_8";
 		break;
 		
@@ -2840,21 +2840,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_CoatHonor_9":
-			dialog.text = "Get lost!";
+			dialog.text = DLG_TEXT_Q[1012];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "AffairOfHonor_CoatHonor_9";
 		break;
 		
 		case "AffairOfHonor_GodJudgement_1":
-			dialog.text = "Do you mean the governor? Ha! 'God's judgment' is what the governor told me in response to my complaints! Duel! How do you like it? I am a quiet, peace-loving planter not a bandit or a fighter\nThis will be a murder, not a duel! And you, undoubtedly, are better in such things then I am. Therefore, I ask you to act as my representative for the upcoming duel. Believe me, I will not stay in debt.";
-			link.l1 = "When is the duel?";
+			dialog.text = DLG_TEXT_Q[1013];
+			link.l1 = DLG_TEXT_Q[1014];
 			link.l1.go = "AffairOfHonor_GodJudgement_1_1";
 		break;
 		
 		case "AffairOfHonor_GodJudgement_1_1":
-			dialog.text = "Today before the midnight near the lighthouse. Will you help me?";
-			link.l1 = "Fine, I will help you. Wait for me in the town!";
+			dialog.text = DLG_TEXT_Q[1015];
+			link.l1 = DLG_TEXT_Q[1016];
 			link.l1.go = "AffairOfHonor_GodJudgement_1_2";
 		break;
 		
@@ -2882,19 +2882,19 @@ void ProcessDialogEvent()
 		break;
 		
 		case "AffairOfHonor_GodJudgement_2":
-			dialog.text = "Tell me what has happened there? Did we... I am sorry, did you win?";
-			link.l1 = "It would interesting for you to know that there was an ambush. Perhaps, your neighbour decided to get reinsured by inviting a few more representatives instead of one and all of them were experienced bandits. Fortunately, I am an experienced fencer.";
+			dialog.text = DLG_TEXT_Q[1017];
+			link.l1 = DLG_TEXT_Q[1018];
 			link.l1.go = "AffairOfHonor_GodJudgement_3";
 		break;
 		
 		case "AffairOfHonor_GodJudgement_3":
-			dialog.text = "Such a bastard! Now, I suppose, our governor won't has any reasons to reject my ask to arrest the scoundrel! Thank you! Take your reward and I have to go to the residence.";
-			link.l1 = "Farewell.";
+			dialog.text = DLG_TEXT_Q[1019];
+			link.l1 = DLG_TEXT_Q[1020];
 			link.l1.go = "exit";
 			npchar.lifeday = 0;
 			TakeNItems(pchar, "purse3", 1); 
 			TakeNItems(pchar, "purse"+(drand(2)+1), 1); 
-			Log_Info("You have received purses of doubloons");
+			Log_Info(DLG_TEXT_Q[1021]);
 			PlaySound("interface\important_item.wav");
 			ChangeCharacterComplexReputation(pchar, "authority", 1);
 			ChangeCharacterComplexReputation(PChar, "nobility", 3);
@@ -2907,65 +2907,65 @@ void ProcessDialogEvent()
 		
 		// Диалоги до боя -->
 		case "AffairOfHonor_BeforeFight_1":
-			dialog.text = "It's fun to play without bugs, since those bitches are hard to find.";
-			link.l1 = "Relax, I will inform the devs.";
+			dialog.text = DLG_TEXT_Q[1022];
+			link.l1 = DLG_TEXT_Q[1023];
 			link.l1.go = "AffairOfHonor_BeforeFight_2";
 			
 			switch(AffairOfHonor_GetCurQuest())
 			{
 				case "Cavalier":
-					dialog.text = "Ah, there you are. These are my friends and seconds. Let's start?";
-					link.l1 = "I am at your service!";
+					dialog.text = DLG_TEXT_Q[1024];
+					link.l1 = DLG_TEXT_Q[1025];
 					link.l1.go = "AffairOfHonor_BeforeFight_2";
 				break;
 				
 				case "HonorSlave":
-					dialog.text = "All are assembled. Are you ready?";
-					link.l1 = "Yes, we can start!";
+					dialog.text = DLG_TEXT_Q[1026];
+					link.l1 = DLG_TEXT_Q[1027];
 					link.l1.go = "AffairOfHonor_BeforeFight_2";
 				break;
 				
 				case "BeautifulPirate":
-					dialog.text = "At last! I was thinking already that I had to walk such a long road for nothing... Let's finish this quickly, I've got a rum and a wench back in the tavern!";
-					link.l1 = "I am sure that you won't need both of them any more!";
+					dialog.text = DLG_TEXT_Q[1028];
+					link.l1 = DLG_TEXT_Q[1029];
 					link.l1.go = "AffairOfHonor_BeforeFight_2"
 				break;
 				
 				case "Jackanapes":
-					dialog.text = "So you have come here? Even better then! Let's start!";
-					link.l1 = "Don't hurry like that!";
+					dialog.text = DLG_TEXT_Q[1030];
+					link.l1 = DLG_TEXT_Q[1031];
 					link.l1.go = "AffairOfHonor_BeforeFight_2"
 				break;
 				
 				case "WolvesAndSheeps":
-					dialog.text = "And these are my seconds, sir. Now prepare to die!";
-					link.l1 = "So do you!";
+					dialog.text = DLG_TEXT_Q[1032]
+					link.l1 = DLG_TEXT_Q[1033];
 					link.l1.go = "AffairOfHonor_BeforeFight_2"
 				break;
 				
 				case "CowardFencer":
-					dialog.text = "Here we are. Prepare you sword, sir!";
-					link.l1 = "You are welcome!";
+					dialog.text = DLG_TEXT_Q[1034];
+					link.l1 = DLG_TEXT_Q[1035];
 					link.l1.go = "AffairOfHonor_BeforeFight_2"
 				break;
 				
 				case "CoatHonor":
-					dialog.text = "Excellent everyone are on their places... Let's start, sir!";
-					link.l1 = "Let's dance!";
+					dialog.text = DLG_TEXT_Q[1036];
+					link.l1 = DLG_TEXT_Q[1037];
 					link.l1.go = "AffairOfHonor_BeforeFight_2"
 				break;
 				
 				case "GodJudgement":
-					dialog.text = "And who are you? You don't look like a common citizen, pal...";
-					link.l1 = "So I have a duel arranged with you?!";
+					dialog.text = DLG_TEXT_Q[1038];
+					link.l1 = DLG_TEXT_Q[1039];
 					link.l1.go = "AffairOfHonor_BeforeFight_2_1"
 				break;
 			}
 		break;
 		
 		case "AffairOfHonor_BeforeFight_2_1":
-			dialog.text = "Ha! A duel! It seems that you are our client. Guys, lets stab him and just go and take our reward. Kill!";
-			link.l1 = "An ambush? Fine then...";
+			dialog.text = DLG_TEXT_Q[1040];
+			link.l1 = DLG_TEXT_Q[1041];
 			link.l1.go = "AffairOfHonor_BeforeFight_2";
 		break;
 		
@@ -3014,28 +3014,28 @@ void ProcessDialogEvent()
 		case "AffairOfHonor_AfterFight_1":
 			if(CheckAttribute(PChar, "QuestTemp.AffairOfHonor.FightWithHelpers"))
 			{
-				dialog.text = "Don't you think that we will let you to kill our friend and get away just like that? To arms!";
-				link.l1 = "I should have expected this from such a miserable bastard!";
+				dialog.text = DLG_TEXT_Q[1042];
+				link.l1 = DLG_TEXT_Q[1043];
 				link.l1.go = "AffairOfHonor_AfterFight_FightWithHelpers";
 				break;
 			}
 			if(AffairOfHonor_GetCurQuest() == "CoatHonor")
 			{
-				dialog.text = "Captain, the honour is restored, you have won. But allow me to give you a good advice - leave the town and don't show up here for some time...";
-				link.l1 = "And what's the problem??";
+				dialog.text = DLG_TEXT_Q[1044];
+				link.l1 = DLG_TEXT_Q[1045];
 				link.l1.go = "AffairOfHonor_AfterFight_2_1";
 			}
 			else
 			{
-				dialog.text = "It was all by honour and now let us go and take our friend.";
-				link.l1 = "Sure, I won't stop you..";
+				dialog.text = DLG_TEXT_Q[1046];
+				link.l1 = DLG_TEXT_Q[1047];
 				link.l1.go = "AffairOfHonor_AfterFight_2";
 			}
 		break;
 		
 		case "AffairOfHonor_AfterFight_2_1":
-			dialog.text = "The problem is that you have killed an orderly of our commandant. He was a bad man and no one will regret his death... but the commandant really liked him and he will never forgive you for the death of his friend.";
-			link.l1 = "Thanks for an advice, I will surely follow it. Farewell.";
+			dialog.text = DLG_TEXT_Q[1048];
+			link.l1 = DLG_TEXT_Q[1049];
 			link.l1.go = "AffairOfHonor_AfterFight_2";
 		break;
 		
@@ -3073,6 +3073,53 @@ void ProcessDialogEvent()
 			
 			DialogExit();
 		break;
+		
+		case "BlueBirdCapitain":
+			dialog.text = DLG_TEXT_Q[109];
+			link.l1 = DLG_TEXT_Q[110] + GetFullName(pchar) + DLG_TEXT_Q[111];
+			link.l1.go = "BlueBirdCapitain_1";
+		break;
+		case "BlueBirdCapitain_1":
+			dialog.text = DLG_TEXT_Q[112];
+			link.l1 = DLG_TEXT_Q[113];
+			link.l1.go = "BlueBirdCapitain_2";
+		break;
+		case "BlueBirdCapitain_2":
+			dialog.text = DLG_TEXT_Q[114];
+			link.l1 = DLG_TEXT_Q[115];
+			link.l1.go = "BlueBirdCapitain_3";
+		break;
+		case "BlueBirdCapitain_3":
+			dialog.text = DLG_TEXT_Q[116];
+			link.l1 = DLG_TEXT_Q[117];
+			link.l1.go = "BlueBirdCapitain_4";
+		break;		
+		case "BlueBirdCapitain_4":
+			LAi_SetCurHPMax(npchar);
+			QuestAboardCabinDialogExitWithBattle(""); 
+            DialogExit();
+			AddDialogExitQuest("MainHeroFightModeOn");
+		break;	
+		//капитаны флейтов торговцев
+		case "BlueBirdTrader":
+			dialog.text = DLG_TEXT_Q[118];
+			link.l1 = DLG_TEXT_Q[119];
+			link.l1.go = "BlueBirdTrader_1";
+		break;
+		case "BlueBirdTrader_1":
+			dialog.text = DLG_TEXT_Q[120];
+			link.l1 = DLG_TEXT_Q[121] + GetFullName(pchar) + DLG_TEXT_Q[122];
+			link.l1.go = "BlueBirdTrader_2";
+		break;
+		case "BlueBirdTrader_2":
+			dialog.text = DLG_TEXT_Q[123];
+			link.l1 = DLG_TEXT_Q[124];
+			link.l1.go = "BlueBirdTrader_3";
+		break;
+		case "BlueBirdTrader_3":
+			QuestAboardCabinDialogNotBattle(); 
+            DialogExit();
+		break;	
 		// <-- Диалоги после боя.
 		//=====================================================================================================================================
 		// <-- Серия миниквестов "Дело чести".
@@ -3270,12 +3317,12 @@ string SelectNB_battleText()
 	string sText;
 	switch (drand(5))
 	{
-		case 0: sText = "One bastard has seduced my sister because of her naivety and then left her once he has had his fun with her. I couldn't let him get away unpunished and challenged him. He got frightened and run away on his ship" break;
-		case 1: sText = "One dishonourable bastard has lost a huge sum to me in gambling and has run away on his ship" break;
-		case 2: sText = "One scoundrel has loaned money from me and when I wasn't at home he has repaid the debt with false coins to my servant. Now he is hiding somewhere on his ship" break;
-		case 3: sText = "One scoundrel has tried to dishonour me in the eyes of our governor but his lie was revealed and this bastard has run away on his ship " break;
-		case 4: sText = "My mistake, I have hired some rogue as a accountant. He has committed a great peculation, bought a ship and run away " break;
-		case 5: sText = "My ex-guard has stolen a box filled with jewels from my wife's boudoir and run away. Now I see where has he got enough coins to buy a ship " break;
+		case 0: sText = DLG_TEXT_Q[1050] break;
+		case 1: sText = DLG_TEXT_Q[1051] break;
+		case 2: sText = DLG_TEXT_Q[1052] break;
+		case 3: sText = DLG_TEXT_Q[1053] break;
+		case 4: sText = DLG_TEXT_Q[1054] break;
+		case 5: sText = DLG_TEXT_Q[1055] break;
 	}
 	return sText;
 }
@@ -3285,28 +3332,28 @@ void SelectNB_prisonerText(ref npchar)
 	switch (drand(5))
 	{
 		case 0:
-			npchar.quest.text = "One bastard has seduced my sister because of her naivety and then left her when he has had his fun with her. I couldn't let him get away unpunished and challenged him. But he has got hired as a ship master and has sailed away";
-			npchar.quest.text1 = " dishonoured a woman and cowardly run away";
+			npchar.quest.text = DLG_TEXT_Q[1056];
+			npchar.quest.text1 = DLG_TEXT_Q[1057];
 		break;
 		case 1:
-			npchar.quest.text = "One dishonourable bastard has lost a huge sum to me in gambling and has run away, he has got hired  as a cannoneer and has run away";
-			npchar.quest.text1 = "lost all his money in gambling and don't want to repay the debit ";
+			npchar.quest.text = DLG_TEXT_Q[1058];
+			npchar.quest.text1 = DLG_TEXT_Q[1059];
 		break;
 		case 2:
-			npchar.quest.text = "One scoundrel has loaned money from me and when I wasn't at home he has repaid the debt with false coins to my servant. Now he is serving on one ship as quartermaster and hiding from me ";
-			npchar.quest.text1 = "counterfeiter who has committed a crime";
+			npchar.quest.text = DLG_TEXT_Q[1060];
+			npchar.quest.text1 = DLG_TEXT_Q[1061];
 		break;
 		case 3:
-			npchar.quest.text = "One scoundrel has tried to dishonour me in the eyes of our governor but his lie was revealed and this bastard has got hired as a doctor on one ship and has run away";
-			npchar.quest.text1 = "slanderer and intrigant who has tried to dishonour one good citizen";
+			npchar.quest.text = DLG_TEXT_Q[1062];
+			npchar.quest.text1 = DLG_TEXT_Q[1063];
 		break;
 		case 4:
-			npchar.quest.text = "My mistake, I have hired some rogue as a accountant. He has committed a great peculation and now he is serving on one ship as quartermaster and hiding from me";
-			npchar.quest.text1 = "is blamed in peculation and misappropriation";
+			npchar.quest.text = DLG_TEXT_Q[1064];
+			npchar.quest.text1 = DLG_TEXT_Q[1065];
 		break;
 		case 5:
-			npchar.quest.text = "My ex-guard has stolen a box filled with jewels from my wife's boudoir and run away. He has got hired as an officer for the boarding party on one ship";
-			npchar.quest.text1 = "a common thief and his place is in jail. He has stolen jewels from his job's employer";
+			npchar.quest.text = DLG_TEXT_Q[1066];
+			npchar.quest.text1 = DLG_TEXT_Q[1067];
 		break;
 	}
 }
@@ -3316,28 +3363,28 @@ void SelectNB_peaceText(ref npchar)
 	switch (drand(5))
 	{
 		case 0: 
-			npchar.quest.text = "my old pal, who was my close friend in the Old World";
-			npchar.quest.text1 = "he is your old friend";
+			npchar.quest.text = DLG_TEXT_Q[1068];
+			npchar.quest.text1 = DLG_TEXT_Q[1069];
 		break;
 		case 1:
-			npchar.quest.text = "a man, who basically was my father";
-			npchar.quest.text1 = "you was a father for him";
+			npchar.quest.text = DLG_TEXT_Q[1070];
+			npchar.quest.text1 = DLG_TEXT_Q[1071];
 		break;
 		case 2:
-			npchar.quest.text = "my stepbrother, who has left the old world in his youth";
-			npchar.quest.text1 = "you are his stepbrother";
+			npchar.quest.text = DLG_TEXT_Q[1072];
+			npchar.quest.text1 = DLG_TEXT_Q[1073];
 		break;
 		case 3:
-			npchar.quest.text = "a man who has really helped me in the Old World";
-			npchar.quest.text1 = "you have helped him a lot";
+			npchar.quest.text = DLG_TEXT_Q[1074];
+			npchar.quest.text1 = DLG_TEXT_Q[1075];
 		break;
 		case 4:
-			npchar.quest.text = "my sister's husband who was friend in the Old World";
-			npchar.quest.text1 = "you are his sister's husband";
+			npchar.quest.text = DLG_TEXT_Q[1076];
+			npchar.quest.text1 = DLG_TEXT_Q[1077];
 		break;
 		case 5:
-			npchar.quest.text = "my friend, who was my brother in arms in the Old World";
-			npchar.quest.text1 = "you were brothers in arms";
+			npchar.quest.text = DLG_TEXT_Q[1078];
+			npchar.quest.text1 = DLG_TEXT_Q[1079];
 		break;
 	}
 }

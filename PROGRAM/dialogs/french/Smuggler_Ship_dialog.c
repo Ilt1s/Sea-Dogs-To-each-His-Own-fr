@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Smuggler_Ship_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -22,34 +23,34 @@ void ProcessDialogEvent()
 		break;
 
 		case "start":
-			dialog.text = "Wake up, " + Pchar.name + "! We have reached the "+ Pchar.HeroParam.Land +" at last, after all of these storms!"+
-                          "  What are you going to do now? You've lost your ship.";
-			link.l1 = "Not my first time! Fortune is a bitch.";
+			dialog.text = DLG_TEXT_BASE[0] + Pchar.name + DLG_TEXT_BASE[1]+ Pchar.HeroParam.Land +DLG_TEXT_BASE[2]+
+                          DLG_TEXT_BASE[3];
+			link.l1 = DLG_TEXT_BASE[4];
 			link.l1.go = "start1";
-			link.l2 = "Do you want to offer me a job, Abraham?";
+			link.l2 = DLG_TEXT_BASE[5];
 			link.l2.go = "start2";
 		break;
 
 		case "start1":
-			dialog.text = "I hope that you'll have more luck since now than with your 'Mercury'. Farewell.";
-			link.l1 = "No doubt in that. Farewell, captain!";
+			dialog.text = DLG_TEXT_BASE[6];
+			link.l1 = DLG_TEXT_BASE[7];
 			link.l1.go = "game_begin";
 		break;
 		
 		case "start2":
-            ret = Pchar.name + ", I am a smuggler not a governor, what kind of job are you talking about?";
+            ret = Pchar.name + DLG_TEXT_BASE[8];
             if (sti(Pchar.nation) == PIRATE)
             {
-                dialog.text = ret + " Check up the Inness's tavern. She is aware about everyone in the town."+
-                              "  Go to Urksen, he is the leader here. But have a talk with local pirates first.";
+                dialog.text = ret + DLG_TEXT_BASE[9]+
+                              DLG_TEXT_BASE[10];
             }
             else
             {
-                dialog.text = ret + "Borrow some money, sell your stuff. You know what to do.";
+                dialog.text = ret + DLG_TEXT_BASE[11];
             }
-            link.l1 = "Fine, thanks for an advice. Farewell.";
+            link.l1 = DLG_TEXT_BASE[12];
 			link.l1.go = "game_begin";
-			link.l2 = "You know, Abraham, I'd better take your ship. I like this one!";
+			link.l2 = DLG_TEXT_BASE[13];
 			link.l2.go = "start3";
 		break;
 		
@@ -59,23 +60,23 @@ void ProcessDialogEvent()
 		break;
 		
 		case "start3":
-			dialog.text = "Bad joke, pal.";
-			link.l1 = "Don't worry , old man. Farewell!";
+			dialog.text = DLG_TEXT_BASE[14];
+			link.l1 = DLG_TEXT_BASE[15];
 			link.l1.go = "game_begin";
-			link.l2 = "Who said that I was joking? You'll tell your people that you've sold your vessel to me. And I'll spare your life. Deal?";
+			link.l2 = DLG_TEXT_BASE[16];
 			link.l2.go = "start4";
 		break;
 		
 		case "start4":
-			dialog.text = "I heard that you've murdered your master Malcolm Hatcher for a cheap saber. I thought that it was just a bubble talk. Such a fool I was. You'll be feeding fish tonight, lad. You have got no chance.";
-			link.l1 = "Oh, do you think so?";
+			dialog.text = DLG_TEXT_BASE[17];
+			link.l1 = DLG_TEXT_BASE[18];
 			link.l1.go = "exit";
 			addDialogExitQuest("Tut_KillOnShip");
 		break;
 
 		case "First time":
 			dialog.text = "";
-			Link.l1 = "Oops...";
+			Link.l1 = DLG_TEXT_BASE[19];
 			Link.l1.go = "exit";
 		break;
 
@@ -85,21 +86,21 @@ void ProcessDialogEvent()
 		case "Travel_talkStart":
             NPChar.location = "none"; // чтоб на палубе не болтался
 			//Шанс на то что продадут на рудники.
-			int iRnd = (rand(100) == 30);
+			int iRnd = (rand(100) <= 10);
 			if (iRnd)
 			{
-				dialog.text = "Well, buddy. You know, we thought that it would be a good idea to sell you as a slave. Ha-ha! Money is always useful.";
-				link.l1 = "What?!";
+				dialog.text = DLG_TEXT_BASE[20];
+				link.l1 = DLG_TEXT_BASE[21];
 				//заглушка, пока нет рудников.
 				link.l1.go = "Travel_fight";
 				//"Travel_mine"; //Собственно тоже можно боевку организовать, ГГ сопротивляется.
 			}
 			else
 			{
-				dialog.text = "We've reached our destination. Farewell.";
-				link.l1 = "Farewell.";
+				dialog.text = DLG_TEXT_BASE[22];
+				link.l1 = DLG_TEXT_BASE[23];
 				link.l1.go = "Travel_end";
-				link.l2 = "I like your ship. I want to keep it to myself.";
+				link.l2 = DLG_TEXT_BASE[24];
 				link.l2.go = "Travel_fight";
 			}
 		break;

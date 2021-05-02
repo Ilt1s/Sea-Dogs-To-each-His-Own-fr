@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Enc_Raiders_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -24,9 +25,9 @@ void ProcessDialogEvent()
 		case "exit_Robbed":
 			int iMoney = makeint(makeint(Pchar.money)/20)*10;
 			AddMoneyToCharacter(pchar, -iMoney);
-			AddSimpleRumour(LinkRandPhrase("Have you heard? The local robber " + GetFullName(npchar) + " found a new victim. One captain has got scared and bought off. They say, he gave him " + FindRussianMoneyString(iMoney) + ", he-he... ", 
-				"Yeah, captain " + GetFullName(pchar) + ", I already heard that you had to pay " + FindRussianMoneyString(iMoney) + ", to buy off a local bandit, " + GetFullName(npchar) + ". Now that's what I call bad luck! Ha-ha-ha!", 
-				"Have you heard that the local bandits attacked one captain? He was totally robbed, he lost " + FindRussianMoneyString(iMoney) + "!"), sti(npchar.nation), 5, 1);
+			AddSimpleRumour(LinkRandPhrase(DLG_TEXT_BASE[0] + GetFullName(npchar) + DLG_TEXT_BASE[1] + FindRussianMoneyString(iMoney) + DLG_TEXT_BASE[2], 
+				DLG_TEXT_BASE[3] + GetFullName(pchar) + DLG_TEXT_BASE[4] + FindRussianMoneyString(iMoney) + DLG_TEXT_BASE[5] + GetFullName(npchar) + DLG_TEXT_BASE[6], 
+				DLG_TEXT_BASE[7] + GetMainCharacterNameGen() + DLG_TEXT_BASE[8] + FindRussianMoneyString(iMoney) + " !"), sti(npchar.nation), 5, 1);
 			for(i = 0; i < iTemp; i++)
 			{
 				sld = CharacterFromID(sTemp + i);
@@ -56,10 +57,9 @@ void ProcessDialogEvent()
 		break;
 
 		case "exit_RunFight":
-			AddSimpleRumour(LinkRandPhrase(RandPhraseSimple("Have you heard? That bandit " + GetFullName(npchar) + " has finally found justice. He and his boys tried to rob "+ GetSexPhrase("some captain, but he turned out to be","some lady captain, but she turned out to be") +" a tough nut. So our dear robber shited his pants, ha-ha! That will be a lesson for him! Robbing the local farmers is one thing, but a brave captain is a different story!", 
-				"Thank you, captain " + GetFullName(pchar) + ", for finally dealing with the gang of that bandit " + GetFullName(npchar) + ". Those rascals were really a pain in everyone's ass. We were scared to even send couriers to the farm for milk, they could have intercepted them and rob of all the money."), 
-				"Have you heard, "+ GetSexPhrase("finally, some captain","finally, some lady captain") +" stopped that rascal " + GetFullName(npchar) + ", who was at 'charge' in the jungle, terrorizing all the local farmers. I do hope, it will stop them from their dirty deeds for long enough...", 
-				"Have you heard that local bandit " + GetFullName(npchar) + " and his boys attempted to rob "+ GetSexPhrase("some captain","some lady captain") +"? Bah! Nothing of the sort! That captain turned out to be a tough nut. They say, he chased on these robbers over all the jungle like a shark chases flock of sardines. Thank God that there are still people who can stand up for us at time when the authorities do nothing, too busy with their dark deeds..."), sti(npchar.nation), 5, 1);
+			AddSimpleRumour(LinkRandPhrase(DLG_TEXT_BASE[9] + GetFullName(npchar) + DLG_TEXT_BASE[10], 
+				DLG_TEXT_BASE[11] + GetFullName(pchar) + DLG_TEXT_BASE[12] + GetFullName(npchar) + DLG_TEXT_BASE[13], 
+				DLG_TEXT_BASE[14] + GetFullName(npchar) + DLG_TEXT_BASE[15] + GetMainCharacterNameGen() + DLG_TEXT_BASE[16]), sti(npchar.nation), 5, 1);
 			for(i = 0; i < iTemp; i++)
 			{
 				sld = CharacterFromID(sTemp + i);
@@ -90,51 +90,51 @@ void ProcessDialogEvent()
 				LAi_RemoveCheckMinHP(sld);
 				LAi_SetImmortal(sld, false);
 			}
-			dialog.text = LinkRandPhrase(LinkRandPhrase("Stand where you are and drop your weapon! Your money or your life!",
-				"Stand where you are, "+ GetSexPhrase("traveler","lass") +"!) Don't touch your weapon and no sudden moves!",
-				"Stand where you are, "+ GetSexPhrase("traveler","lass") +"! This is a toll road. If you wanna pass - pay the toll."),
-				LinkRandPhrase("Hey, "+ GetSexPhrase("buddy","lass") +"! Not so fast! I want to see how heavy your purse is.",
-				"Would you come closer, friend. I want to hear the jingle of gold in your purse.",
-				"Hold on, "+ GetSexPhrase("buddy","lass") +". Me and guys bet on how much gold will fit into your purse. Now we must check it before things get violent."),
-				"Don't hurry, "+ GetSexPhrase("traveler","darling") +"! Let's have a heart-to-heart talk, will we?");				
-			Link.l1 = LinkRandPhrase(LinkRandPhrase("Why are you saying this nonsense?","What's up?", "What are you talking about?"), "What do you mean?", "Just what are you implying?");
+			dialog.text = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[17],
+				DLG_TEXT_BASE[18],
+				DLG_TEXT_BASE[19]),
+				LinkRandPhrase(DLG_TEXT_BASE[84]+ GetSexPhrase(DLG_TEXT_BASE[85],DLG_TEXT_BASE[86]) +DLG_TEXT_BASE[87],
+				DLG_TEXT_BASE[88],
+				DLG_TEXT_BASE[89]+ GetSexPhrase(DLG_TEXT_BASE[90],DLG_TEXT_BASE[91]) +DLG_TEXT_BASE[92]),
+				DLG_TEXT_BASE[93]+ GetSexPhrase(DLG_TEXT_BASE[94],DLG_TEXT_BASE[95]) +DLG_TEXT_BASE[96]);				
+			Link.l1 = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[20],DLG_TEXT_BASE[21], DLG_TEXT_BASE[97]), DLG_TEXT_BASE[22], DLG_TEXT_BASE[98]);
 			Link.l1.go = "Node_2";
-			Link.l2 = LinkRandPhrase(LinkRandPhrase("Brigands?! Excellent, I was longing for a fight!", 
-				"Oh, you're brigands! Hiding from justice, I take it? Well, it seems that justice has just come for you...",
-				"Haven't you been taught that bothering strangers with your nonsense is a sign of bad manners? Seems that I have to teach you that lesson..."),
-				LinkRandPhrase("Oh, you're an insolent one, aren't you?! I hope that your blade is as sharp as your tongue.",
-				"I see that you are a master of your tongue, I hope you are a master of your sword too.",
-				"Oh, bandits! So many of your kind were hanged, but you still can't stop walking right to the gallows."),
-				LinkRandPhrase(RandPhraseSimple("Oh, brigands! You know, I usually don't waste words with your kind!",
-				"What an insolent fellow! Stinks like a steaming pile of shit and still dares to address a decent "+ GetSexPhrase("guy","girl") +"."),
-				"I will not waste words with you, but you'll find my pistol quite talkative!",
-				"Brigands again! Well, I will not promise you the gallows, but I can surely give you a couple of holes in your belly!"));
+			Link.l2 = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[23], 
+				DLG_TEXT_BASE[99],
+				DLG_TEXT_BASE[100]),
+				LinkRandPhrase(DLG_TEXT_BASE[25],
+				DLG_TEXT_BASE[101],
+				DLG_TEXT_BASE[24]),
+				LinkRandPhrase(RandPhraseSimple(DLG_TEXT_BASE[102],
+				DLG_TEXT_BASE[103]+ GetSexPhrase(DLG_TEXT_BASE[104],DLG_TEXT_BASE[105]) +"."),
+				DLG_TEXT_BASE[106],
+				DLG_TEXT_BASE[107]));
 			Link.l2.go = "CheckSkills";	
-			Link.l3 = LinkRandPhrase("And do you know that a patrolling party is following me closely? I can just give them a whistle and you are done.", 
-				RandPhraseSimple("You know, I can call the patrol, aren't you afraid of that? They are nearby. I guess, looking for you.", 
-				"A patrolling party has been recently dispatched to find you, and they will be here any moment. You're taking a great risk."),
-				RandPhraseSimple("I would advise you to run as fast as you can. A patrolling party is heading this way, I've just talked with their officer.",
-				"I would gladly continued our conversation, but I'm afraid the patrol unit that I've just met, won't let our acquaintance come into a close friendship."));
+			Link.l3 = LinkRandPhrase(DLG_TEXT_BASE[108], 
+				RandPhraseSimple(DLG_TEXT_BASE[109], 
+				DLG_TEXT_BASE[110]),
+				RandPhraseSimple(DLG_TEXT_BASE[111],
+				DLG_TEXT_BASE[112]));
 			Link.l3.go = "Node_3";
 		break;
 		
 		case "Node_2":
-			dialog.text = LinkRandPhrase(LinkRandPhrase("Don't play a fool! Cash on the nail and maybe then I will let you go!",
-				"Haven't you heard about the travelling pay? If you don't part with your gold, you will part with a head!",
-				"Heh, this ordinary adventure will cost you a purse... if I don't get angry."),
-				RandPhraseSimple("It's very simple. You give us all your gold and then you are free to leave, or you stay here, and we take off all your gold, anyway. But I think that this way is not what you would like, he-he.",
-				"Don't pretend you don't understand! Give me your purse if you don't want me to take it from your body!"),
-				"I'll explain, if you're so slow-witted - give me all your money, if you cherish your life.");
-			Link.l1 = "Goddammit, scoundrel! I only have " + makeint(makeint(Pchar.money)/20)*10 + " pesos.";
+			dialog.text = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[26],
+				DLG_TEXT_BASE[27],
+				DLG_TEXT_BASE[113]),
+				RandPhraseSimple(DLG_TEXT_BASE[114],
+				DLG_TEXT_BASE[115]),
+				DLG_TEXT_BASE[28]);
+			Link.l1 = DLG_TEXT_BASE[29] + makeint(makeint(Pchar.money)/20)*10 + DLG_TEXT_BASE[30];
 			Link.l1.go = "CheckMoney";
-			Link.l2 = LinkRandPhrase(LinkRandPhrase("You want my money? Come and get it, and I will see how much you're worth!",
-				"How dare you, boor! I'll teach you a lesson of good manners!",
-				"What a self-assurance! Well, let's see how you stand against a real "+ GetSexPhrase("sea wolf","girl is old salt") +"!"),
-				LinkRandPhrase("You should be flogged for such outrage!",
-				"You scoundrels! Pray to your devils about a warm place in the hell!",
-				"You should have been hanged long ago, gallows-birds! Well, it seems that I will have to stain my saber with your blood!"),
-				RandPhraseSimple("And what makes you think that I will give you my money?",
-				"And haven't you noticed that I am well-armed and came here not for a simple walk?"));
+			Link.l2 = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[31],
+				DLG_TEXT_BASE[116],
+				DLG_TEXT_BASE[117]+ GetSexPhrase(DLG_TEXT_BASE[118],DLG_TEXT_BASE[119]) +" !"),
+				LinkRandPhrase(DLG_TEXT_BASE[120],
+				DLG_TEXT_BASE[121],
+				DLG_TEXT_BASE[122]),
+				RandPhraseSimple(DLG_TEXT_BASE[123],
+				DLG_TEXT_BASE[124]));
 			Link.l2.go = "CheckSkills";	
 		break;
 
@@ -142,65 +142,64 @@ void ProcessDialogEvent()
 			bOk = makeint(pchar.reputation.nobility) < 11 || makeint(pchar.reputation.nobility) > 90;  
 			if(bOk || GetSummonSkillFromName(pchar, SKILL_LEADERSHIP) == 100 || CheckCharacterPerk(pchar, "Trustworthy") || CheckCharacterPerk(pchar, "SeaDogProfessional"))
 			{
-				dialog.text = RandPhraseSimple("Damn it! Alright, you may leave. But don't even think to make some noise while you are here!", 
-					"This time you got lucky, but next time you'll owe us twice as much! Don't forget to remind us, he-he.");
-				Link.l1 = RandPhraseSimple("But of course.", "Run already, while you still can.");
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[125], 
+					DLG_TEXT_BASE[126]);
+				Link.l1 = RandPhraseSimple(DLG_TEXT_BASE[127], DLG_TEXT_BASE[128]);
 				Link.l1.go = "Exit_NoFight";
 			}
 			else
 			{
-				bOk = makeint(pchar.reputation.nobility) < 51 && makeint(pchar.reputation.nobility) > 41; // Captain Beltrop, 23.01.21 - жесть!!! Надо было всего лишь убрать единичку!
+				bOk1 = makeint(pchar.reputation.nobility) < 51 && makeint(pchar.reputation.nobility) > 41;
 				if(!bOk || GetSummonSkillFromName(pchar, SKILL_LEADERSHIP) < 35)
 				{
-					dialog.text = RandPhraseSimple("We'll slay you quietly, you won't even let out a squeak.", 
-						"Goddammit! We'll have to slay you quickly before you will raise alarm.");
-					Link.l1 = "Well, this is your funeral. I warned you.";
+					dialog.text = RandPhraseSimple(DLG_TEXT_BASE[129], 
+						DLG_TEXT_BASE[130]);
+					Link.l1 = DLG_TEXT_BASE[131];
 					Link.l1.go = "Exit_Fight";
 				}
 				else
 				{
-					dialog.text = RandPhraseSimple("And why should I care about your patrol? I am paying them. So, give me your purse and stop running your mouth.", 
-						"You think you can scare me? I am myself 'the patrol' for those like you in this jungle. No one yet has left without a fee!");
-					Link.l1 = "Goddammit, scoundrel! I only have " + makeint(makeint(Pchar.money)/20)*10 + " pesos.";
+					dialog.text = RandPhraseSimple(DLG_TEXT_BASE[132], 
+						DLG_TEXT_BASE[133]);
+					Link.l1 = DLG_TEXT_BASE[134] + makeint(makeint(Pchar.money)/20)*10 + " pesos.";
 					Link.l1.go = "CheckMoney";	
-					Link.l2 = RandPhraseSimple(LinkRandPhrase("He-h, I'm not gonna obey orders from such a wimp like you.", 
-						"I'll make a couple of new holes in your skull 'cause of such impudence! Just to ventilate your brains a bit.",
-						"Such impudence won't stay unpunished!"),
-						"You should't have done that...");
+					Link.l2 = RandPhraseSimple(LinkRandPhrase(DLG_TEXT_BASE[135], 
+						DLG_TEXT_BASE[136],
+						DLG_TEXT_BASE[137]),
+						DLG_TEXT_BASE[138]);
 					Link.l2.go = "CheckSkills";
 				}
 			}
 		break;
 		
 		case "CheckSkills":
-		    bool isStrong = (GetCharacterSkillToOld(Pchar, "FencingL") >= 7) || (GetCharacterSkillToOld(Pchar, "FencingS") >= 7) || (GetCharacterSkillToOld(Pchar, "FencingH") >= 7);
-			bool z_ok = (isStrong) && (makeint(Pchar.Rank) >= 8) && (Makeint(PChar.reputation.nobility) <= 30); // Captain Beltrop & mitrokosta, 23.01.21 проверяем на оружие (новый вариант)
+			bool z_ok = (GetCharacterSkillToOld(Pchar, "FencingS") >= 7) && (makeint(Pchar.Rank) >= 8) && (Makeint(PChar.reputation.nobility) <= 30);
 			if (z_ok || CheckCharacterPerk(pchar, "SeaDogProfessional"))
 			{
 				Diag.TempNode = "GetLost";
-				dialog.text = LinkRandPhrase(RandPhraseSimple("Hey, don't get so excited, "+ GetSexPhrase("buddy","lass") +"! I was just joking! You can continue your way!",
-					"Alright, I have changed my mind. You may go, if you're so formidable."),
-					"What, a "+ GetSexPhrase("'gallant captain'","'militant lass'") +"? again? Alright, go in peace...",
-					"Quiet, "+ GetSexPhrase("buddy","lass") +". You see, we were mistaken, "+ GetSexPhrase(" we thought you were a merchant","") +". You can go.");
-				Link.l1 = LinkRandPhrase(LinkRandPhrase("Alright, until we meet again!",
-					"You ought to quit robbering, while you still can.",
-					"Alright, but if I ever see you again..."),
-					RandPhraseSimple("Next time pay attention whom you are threatening, cur.",
-					"Thank God that I am in a good mood today."),	
-					RandPhraseSimple("This criminal trade will surely kill in the end. Farewell.",
-					"That's a wise decision. Well, good luck!"));
+				dialog.text = LinkRandPhrase(RandPhraseSimple(DLG_TEXT_BASE[32],
+					DLG_TEXT_BASE[33]),
+					DLG_TEXT_BASE[34],
+					DLG_TEXT_BASE[139]+ GetSexPhrase(DLG_TEXT_BASE[140],DLG_TEXT_BASE[141]) +DLG_TEXT_BASE[142]+ GetSexPhrase(DLG_TEXT_BASE[143],"") +DLG_TEXT_BASE[144]);
+				Link.l1 = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[35],
+					DLG_TEXT_BASE[36],
+					DLG_TEXT_BASE[37]),
+					RandPhraseSimple(DLG_TEXT_BASE[145],
+					DLG_TEXT_BASE[146]),	
+					RandPhraseSimple(DLG_TEXT_BASE[147],
+					DLG_TEXT_BASE[148]));
 				Link.l1.go = "Exit_NoFight";
-				Link.l99 = LinkRandPhrase("No, buddy. Now I'll teach you good manners!",
-					"Oh, got scared? Well, one should answer for his deeds, right?",
-					"No! Now I will not calm down until I skin you alive!");
+				Link.l99 = LinkRandPhrase(DLG_TEXT_BASE[38],
+					DLG_TEXT_BASE[39],
+					DLG_TEXT_BASE[40]);
 				Link.l99.go = "GetTheHellOut";
 			}
 			else 
 			{
-				dialog.text = LinkRandPhrase("But you could go in peace! Now blame only yourself!",
-								"You shouldn't have started it, you rascal! Now you're gonna die like a dog!",
-								"Ah well! I'll tear you to pieces! Cut out the liver and feed the dogs!");
-				Link.l1 = RandPhraseSimple("I will stuff your words back into your throat!","Whom are you threatening, scum?!");
+				dialog.text = LinkRandPhrase(DLG_TEXT_BASE[41],
+								DLG_TEXT_BASE[42],
+								DLG_TEXT_BASE[43]);
+				Link.l1 = RandPhraseSimple(DLG_TEXT_BASE[149],DLG_TEXT_BASE[44]);
 				Link.l1.go = "Exit_Fight";
 			}
 		break;
@@ -209,53 +208,53 @@ void ProcessDialogEvent()
 			if(makeint(makeint(Pchar.money)/20)*10 >= makeint(Pchar.rank)*100)
 			{
 				Diag.TempNode = "OnceAgain";
-				dialog.text = LinkRandPhrase(RandPhraseSimple("Alright! Give it to me and get lost!",
-					"Not much, but still better than nothing. It's good to deal with a smart person! You're free to go."),
-					"Now that's a different story! Like one my friend was saying 'it's always good to listen to someone smart, but talking to the fool is much better'! He-he!",
-					"In exchange for your gold I will give you an advice, you should not walk in the jungle, if you're "+ GetSexPhrase("such a wimp. Drink your rum at the tavern, you and your purse will be safety!","a lass. You know, being robbed is not the worst that could have happened to you.") +".");
-				Link.l1 = "Damned hanged!";
+				dialog.text = LinkRandPhrase(RandPhraseSimple(DLG_TEXT_BASE[45],
+					DLG_TEXT_BASE[46]),
+					DLG_TEXT_BASE[150],
+					DLG_TEXT_BASE[47]);
+				Link.l1 = DLG_TEXT_BASE[48];
 				Link.l1.go = "Exit_Robbed";				
 			}
 			else
 			{
-				dialog.text = "I guess, you're trying to cheat on me! No worry, I'll tickle you with my knife, and maybe something drops down.";
-				Link.l1 = "Dammit!";
+				dialog.text = DLG_TEXT_BASE[49];
+				Link.l1 = DLG_TEXT_BASE[50];
 				Link.l1.go = "Exit_Fight";				
 			}				
 		break;
 
 		case "OnceAgain":
 			Diag.TempNode = "OnceAgain";
-			dialog.text = LinkRandPhrase("You again? Run home to your mommy, before I am angry with you!",
-				"What? You haven't given me all your gold yet? Ha-ha!",
-				"Look, "+ GetSexPhrase("buddy","lass") +", I'm fed up with you! Go away of sight while you're still alive!");
-			Link.l1 = "Yeah, I am already leaving.";
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[51],
+				DLG_TEXT_BASE[52],
+				DLG_TEXT_BASE[53]);
+			Link.l1 = DLG_TEXT_BASE[54];
 			Link.l1.go = "Exit";
-			Link.l2 = "I thought that it wouldn't be fair. Therefore I decided to equalize the costs...";
+			Link.l2 = DLG_TEXT_BASE[55];
 			Link.l2.go = "Exit_Fight";
 		break;
 				
 		case "GetLost":
 			Diag.TempNode = "GetLost";
-			dialog.text = LinkRandPhrase("What else do you need? We have already agreed that you're leaving!",
-				"Leave me be, "+ GetSexPhrase("fellow","lass") +". I mind my own business, you have your own, and we shouldn't try to get along!",
-				"Leave now, "+ GetSexPhrase("buddy","lass") +"! Goddammit, are you really willing to give away all your money?");
-			Link.l1 = "Yeah, I am already leaving.";
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[56],
+				DLG_TEXT_BASE[57],
+				DLG_TEXT_BASE[58]);
+			Link.l1 = DLG_TEXT_BASE[59];
 			Link.l1.go = "Exit";
-			Link.l2 = "I've remembered that you didn't say goodbye! So let's say - goodbye...";
+			Link.l2 = DLG_TEXT_BASE[60];
 			Link.l2.go = "Exit_Fight";
 		break;
 
 		case "GetTheHellOut":
 			Diag.TempNode = "GetTheHellOut";
-			dialog.text = LinkRandPhrase("Leave me be! Help me! I want to live!",
-				"Help me! "+ GetSexPhrase("He is a maniac","She is a maniac") +"! Don't kill me!",
-				"Spare me! I am just a humble brigand! I am too young to die!");
-			Link.l1 = LinkRandPhrase(LinkRandPhrase("If you had stayed at home, you would have lived on!",
-				"You should have thought about it before!",
-				"You should have realized the consequences!"),
-				"Sooner or later, this was bound to happen.",
-				"Too late to repent - protect yourselves!");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[61],
+				DLG_TEXT_BASE[62],
+				DLG_TEXT_BASE[63]);
+			Link.l1 = LinkRandPhrase(LinkRandPhrase(DLG_TEXT_BASE[64],
+				DLG_TEXT_BASE[151],
+				DLG_TEXT_BASE[64]),
+				DLG_TEXT_BASE[152],
+				DLG_TEXT_BASE[83]);
 			Link.l1.go = "exit_Fight";			
 		break; 				
 	}

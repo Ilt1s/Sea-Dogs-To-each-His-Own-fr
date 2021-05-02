@@ -1,13 +1,13 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_ItemTrader.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What kind of questions?", "What do you want, " + GetAddress_Form(NPChar) + "?"), "Questions again, " + GetAddress_Form(NPChar) + "...", "Questions, questions... How about to trade, " + GetAddress_Form(NPChar) + "?",
-                          "Listen, how long are you planning to talk?", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("No questions...", "Nothing to say now..."), "Meh, once again...",
-                      "Maybe it's really time to trade...", "Hm, sorry, trader...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_ITR[0], DLG_TEXT_ITR[1] + GetAddress_Form(NPChar) + "?"), DLG_TEXT_ITR[2] + GetAddress_Form(NPChar) + "...", DLG_TEXT_ITR[3] + GetAddress_Form(NPChar) + "?",
+                          DLG_TEXT_ITR[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_ITR[5], DLG_TEXT_ITR[6]), DLG_TEXT_ITR[7],
+                      DLG_TEXT_ITR[8], DLG_TEXT_ITR[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 		break;
 	}

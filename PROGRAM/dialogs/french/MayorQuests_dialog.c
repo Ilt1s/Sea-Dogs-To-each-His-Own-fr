@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\MayorQuests_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -30,28 +31,28 @@ void ProcessDialogEvent()
 				LAi_RemoveCheckMinHP(sld);
 			}
 			sTemp = GetFullName(&characters[GetCharacterIndex(pchar.GenQuest.DestroyGang.MayorId)]);
-			dialog.text = LinkRandPhrase("Cash on the barell "+ GetSexPhrase("buddy","lass") +"! My name is " + GetFullName(npchar) + ", and I am not used to objections...",
-				"Now show me your purse, "+ GetSexPhrase("buddy","lass") +", and be quick about it! My name is  " + GetFullName(npchar) + ", and I hope you've heard abut me...",
-				"Give me every valuable you have, I also requisition the contents of your purse. And hurry, patience is not my strongest part. Can't say the same about my blood thirst!");
-			Link.l1 = LinkRandPhrase("Heh, so you're that famous bandit " + GetFullName(npchar) + ", about whom the local governor " + sTemp + " never stops speaking?",
-				"Oh, so you're that bandit hunted down by the local governor " + sTemp + "?!", 
-				"Glad"+ GetSexPhrase("","а") +" to see you, " + GetFullName(npchar) + ". The local governor, " + sTemp + " is talking only about you.");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[0]+ GetSexPhrase(DLG_TEXT_BASE[1],DLG_TEXT_BASE[2]) +DLG_TEXT_BASE[3] + GetFullName(npchar) + DLG_TEXT_BASE[4],
+				DLG_TEXT_BASE[5]+ GetSexPhrase(DLG_TEXT_BASE[6],DLG_TEXT_BASE[7]) +DLG_TEXT_BASE[8] + GetFullName(npchar) + DLG_TEXT_BASE[9],
+				DLG_TEXT_BASE[10]);
+			Link.l1 = LinkRandPhrase(DLG_TEXT_BASE[11] + GetFullName(npchar) + DLG_TEXT_BASE[12] + sTemp + DLG_TEXT_BASE[13],
+				DLG_TEXT_BASE[14] + sTemp + " ?!", 
+				DLG_TEXT_BASE[15]+ GetSexPhrase("","а") +DLG_TEXT_BASE[16] + GetFullName(npchar) + DLG_TEXT_BASE[17] + sTemp + DLG_TEXT_BASE[18]);
 			Link.l1.go = "DestroyGang_1";
 		break;		
 		case "DestroyGang_1":
-			dialog.text = LinkRandPhrase("Yup, I am well-known in these lands, he-he... Hold on, aren't you another "+ GetSexPhrase("filthy hound","filthy bitch") +" of the governor whom he has sent to track me down?",
-				"The governor is my good friend, that's true. And aren't you, by chance, "+ GetSexPhrase("another hero, sent","another heroine, sent") +" by him for my head?",
-				"The governor is my best buddy, it's not a secret, he-he. But how do you know that? Perhaps, he sent you after me?");
-			Link.l1 = LinkRandPhrase("Exactly, scoundrel. Prepare to die!", "Aren't you a quick-witted one! Alright, time to proceed with your liquidation. Enough talking.", "Yeah, that's me. Take out your weapon, buddy! Let's see what color your blood is.");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[19]+ GetSexPhrase(DLG_TEXT_BASE[20],DLG_TEXT_BASE[21]) +DLG_TEXT_BASE[22],
+				DLG_TEXT_BASE[23]+ GetSexPhrase(DLG_TEXT_BASE[24],DLG_TEXT_BASE[25]) +DLG_TEXT_BASE[26],
+				DLG_TEXT_BASE[27]);
+			Link.l1 = LinkRandPhrase(DLG_TEXT_BASE[28], DLG_TEXT_BASE[29], DLG_TEXT_BASE[30]);
 			Link.l1.go = "DestroyGang_ExitFight";	
-			Link.l2 = LinkRandPhrase("Oh, nevermind! I have no need of such troubles at all...", "No, no, I am not a hero, by no means...", "No, no, I'd never! I don't need troubles...");
+			Link.l2 = LinkRandPhrase(DLG_TEXT_BASE[31], DLG_TEXT_BASE[32], DLG_TEXT_BASE[33]);
 			Link.l2.go = "DestroyGang_2";	
 		break;
 		case "DestroyGang_2":
-			dialog.text = LinkRandPhrase("That's better, "+ GetSexPhrase("buddy","lass") +"...And now get lost!",
-				"And that's a right decision. I wish you knew how many heroes I have sent to another world... Fine, less words. Get lost, "+ GetSexPhrase("piece of shit","bitch") +"!",
-				"Good boy! A very wise social position - to not interfere in the affairs of others... Alright, get lost already, "+ GetSexPhrase("buddy","lass") +".");
-			Link.l1 = "Farewell and best of luck to you...";
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[34]+ GetSexPhrase(DLG_TEXT_BASE[35],DLG_TEXT_BASE[36]) +DLG_TEXT_BASE[37],
+				DLG_TEXT_BASE[38]+ GetSexPhrase(DLG_TEXT_BASE[39],DLG_TEXT_BASE[40]) +" !",
+				DLG_TEXT_BASE[41]+ GetSexPhrase(DLG_TEXT_BASE[42],DLG_TEXT_BASE[43]) +".");
+			Link.l1 = DLG_TEXT_BASE[44];
 			Link.l1.go = "DestroyGang_ExitAfraid";	
 		break;
 
@@ -89,16 +90,16 @@ void ProcessDialogEvent()
 			AddDialogExitQuest("MainHeroFightModeOn");
 		break;
 
-		// ќ«√ - пассажир
+		// ОЗГ - пассажир
 		case "ContraPass_abordage":
-			dialog.text = "Arghh, you scoundrel! How did you dare to attack my ship?! You will pay for that!";
-			link.l1 = "On the contrary, I am actually being paid for it. You have one certain man on board, named "+pchar.GenQuest.TakePassenger.Name+". He's the one I need.";
+			dialog.text = DLG_TEXT_BASE[45];
+			link.l1 = DLG_TEXT_BASE[46]+pchar.GenQuest.TakePassenger.Name+DLG_TEXT_BASE[47];
 			link.l1.go = "ContraPass_abordage_1";
 		break;
 		
 		case "ContraPass_abordage_1":
-			dialog.text = "I knew that this crook would bring trouble upon us... But you will not get me that easily! Defend yourself, filthy pirate!";
-			link.l1 = "It's you who needs to think about defense, cur.";
+			dialog.text = DLG_TEXT_BASE[48];
+			link.l1 = DLG_TEXT_BASE[49];
 			link.l1.go = "ContraPass_abordage_2";
 		break;
 		
@@ -113,19 +114,19 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Tempsailor":
-			dialog.text = "Captain, we have searched the cabins and the hold, as you had ordered. That scoundrel tried to hide, but we have found him.";
-			link.l1 = "Excellent! Where is he now?";
+			dialog.text = DLG_TEXT_BASE[50];
+			link.l1 = DLG_TEXT_BASE[51];
 			link.l1.go = "Tempsailor_1";
 		break;
 		
 		case "Tempsailor_1":
-			dialog.text = "He is in the hold, as you ordered us.";
-			link.l1 = "Excellent! Now let's get off this old tub. It's time to return.";
+			dialog.text = DLG_TEXT_BASE[52];
+			link.l1 = DLG_TEXT_BASE[53];
 			link.l1.go = "Tempsailor_2";
 		break;
 		
 		case "Tempsailor_2":
-			dialog.text = "Right away, captain!";
+			dialog.text = DLG_TEXT_BASE[54];
 			link.l1 = "...";
 			link.l1.go = "Tempsailor_3";
 		break;
@@ -144,28 +145,28 @@ void ProcessDialogEvent()
 		
 		case "Fugitive_city": // ходит по городу
 			pchar.quest.AllMayorsQuests_Late.over = "yes"; //снимаем общий таймер
-			dialog.text = "What do you want, sir?";
-			link.l1 = "Well-well... So you are "+pchar.GenQuest.FindFugitive.Name+", aren't you? I am very glad to see you...";
+			dialog.text = DLG_TEXT_BASE[55];
+			link.l1 = DLG_TEXT_BASE[56]+pchar.GenQuest.FindFugitive.Name+DLG_TEXT_BASE[57];
 			link.l1.go = "Fugitive_city_1";
 		break;
 		
 		case "Fugitive_city_1":
-			dialog.text = "Well, that's me, indeed, although why are you glad to see me? Seems strange to me, since I've never seen you before... Mind to explain yourself!";
-			link.l1 = "But of course. I came from "+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity+"Gen")+", by orders of the local governor. You're arrested and I must deliver you to the defined city... Oh, hands away from your sabre! Don't try anything stupid, good man, or it will turn bad for you!";
+			dialog.text = DLG_TEXT_BASE[58];
+			link.l1 = DLG_TEXT_BASE[59]+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity+"Gen")+DLG_TEXT_BASE[60];
 			link.l1.go = "Fugitive_city_2";
 		break;
 		
 		case "Fugitive_city_2":
-			dialog.text = "So, you have found me after all... Sir, listen to me and, perhaps, you will change your mind. Yes, I have deserted from the garrison. But I couldn't watch the degradation of our army!\nI wanted a peaceful life and I have found such life here, in this village... Leave me alone, tell them that you have failed to find me or that I have escaped with pirates into the open sea. In return I will give you this pouch of amber. A very valuable item I should say...";
-			link.l1 = "Don't even think about bribing me, sir! Surrender your weapon and follow me!";
+			dialog.text = DLG_TEXT_BASE[61];
+			link.l1 = DLG_TEXT_BASE[62];
 			link.l1.go = "Fugitive_city_fight";
-			link.l2 = "Hmm... Degradation? Quiet and peaceful life? Alright, I guess I can make your wish true. Where is your amber?";
+			link.l2 = DLG_TEXT_BASE[63];
 			link.l2.go = "Fugitive_city_gift";
 		break;
 		
 		case "Fugitive_city_fight":
-			dialog.text = "Then unsheathe your blade, mercenary! You won't get me that easily!";
-			link.l1 = "Alright, let's see your worth!";
+			dialog.text = DLG_TEXT_BASE[64];
+			link.l1 = DLG_TEXT_BASE[65];
 			link.l1.go = "Fugitive_fight_1";
 		break;
 		
@@ -173,9 +174,9 @@ void ProcessDialogEvent()
 			TakeNItems(pchar, "jewelry8", 50+drand(25));
 			TakeNItems(pchar, "jewelry7", 2+drand(5));
 			PlaySound("interface\important_item.wav");
-			Log_Info("You have received amber");
-			dialog.text = "Here... And I do hope that I will never see neither you nor other 'envoys' again.";
-			link.l1 = "I assure you that you won't. Farewell, sir!";
+			Log_Info(DLG_TEXT_BASE[66]);
+			dialog.text = DLG_TEXT_BASE[67];
+			link.l1 = DLG_TEXT_BASE[68];
 			link.l1.go = "Fugitive_gift_exit";
 		break;
 		
@@ -202,8 +203,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Fugitive_afterfight":
-			dialog.text = "Arrgh! You have won, screw you! I surrender...";
-			link.l1 = "Watch your tongue, sir! And now, give me your saber, please... Follow me, and without silly tricks!";
+			dialog.text = DLG_TEXT_BASE[69];
+			link.l1 = DLG_TEXT_BASE[70];
 			link.l1.go = "Fugitive_afterfight_1";
 		break;
 		
@@ -226,22 +227,22 @@ void ProcessDialogEvent()
 		
 		case "Fugitive_shore": // в бухте
 			pchar.quest.AllMayorsQuests_Late.over = "yes"; //снимаем общий таймер
-			dialog.text = "Sir, I am not in the mood to talk with you, so...";
-			link.l1 = "Nevertheless, you will have to talk with me. You are "+pchar.GenQuest.FindFugitive.Name+", aren't you? I think you shouldn't deny it.";
+			dialog.text = DLG_TEXT_BASE[71];
+			link.l1 = DLG_TEXT_BASE[72] +pchar.GenQuest.FindFugitive.Name+DLG_TEXT_BASE[73];
 			link.l1.go = "Fugitive_shore_1";
 		break;
 		
 		case "Fugitive_shore_1":
-			dialog.text = "And I am not going to deny it, that's me. But what do you want?";
-			link.l1 = "I need to bring you to "+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+", the local governor is dying to see you. No silly tricks, please! Surrender your weapon and follow me!";
+			dialog.text = DLG_TEXT_BASE[74];
+			link.l1 = DLG_TEXT_BASE[75]+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+DLG_TEXT_BASE[76];
 			link.l1.go = "Fugitive_shore_2";
 		break;
 		
 		case "Fugitive_shore_2":
-			dialog.text = "I see... Sir, before you shoot from the hip let me tell you something. Yes, I have deserted from the garrison. But I had reasons to do so. I can't stay at the service, it's more than I can take! Do you understand me? I cannot!\nI want a peaceful life and I have found such life here, in this village... Leave me alone, tell them that you have failed to find me or that I have escaped with pirates into the open sea. In return I will give you my weekly catch of pearls. That's all I've got.";
-			link.l1 = "Don't even think about bribing me, sir! Surrender your weapon and follow me!";
+			dialog.text = DLG_TEXT_BASE[77];
+			link.l1 = DLG_TEXT_BASE[78];
 			link.l1.go = "Fugitive_city_fight";
-			link.l2 = "Hmm... Are you tired of military service? Wanna a peaceful life? Alright, I guess I can make your wish true. Where is your pearls?";
+			link.l2 = DLG_TEXT_BASE[79];
 			link.l2.go = "Fugitive_shore_gift";
 		break;
 		
@@ -249,24 +250,24 @@ void ProcessDialogEvent()
 			TakeNItems(pchar, "jewelry52", 100+drand(40));
 			TakeNItems(pchar, "jewelry53", 400+drand(100));
 			PlaySound("interface\important_item.wav");
-			Log_Info("You have received pearls");
-			dialog.text = "Here... And I do hope that I will never see neither you nor other 'envoys' again.";
-			link.l1 = "I assure you that you won't. Farewell, sir!";
+			Log_Info(DLG_TEXT_BASE[80]);
+			dialog.text = DLG_TEXT_BASE[81];
+			link.l1 = DLG_TEXT_BASE[82];
 			link.l1.go = "Fugitive_gift_exit";
 		break;
 		
 		case "Fugitive_tavern": // в таверне
 			pchar.quest.AllMayorsQuests_Late.over = "yes"; //снимаем общий таймер
-			dialog.text = "Ehhh... hic! Sir, I am not looking for company - especially yours. Get lost!";
-			link.l1 = "But I AM looking for your company, "+pchar.GenQuest.FindFugitive.Name+"! And you will tolerate my company in the hold of my ship. We are going to  "+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+", to the town's governor. He is nearly dying to see you.";
+			dialog.text = DLG_TEXT_BASE[83];
+			link.l1 = DLG_TEXT_BASE[84]+pchar.GenQuest.FindFugitive.Name+DLG_TEXT_BASE[85]+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+DLG_TEXT_BASE[86];
 			link.l1.go = "Fugitive_tavern_1";
 		break;
 		
 		case "Fugitive_tavern_1":
-			dialog.text = "H-Hic!"+RandSwear()+" So he has chased me down after all! Listen, pal, you don't know what happened, you weren't there! I couldn't stay at the service, I simply could not! I still get drunk every evening to forget about that\nLook, let's make a deal. Tell him that you have failed to find me or that I have escaped with pirates into the open sea. In return I will give you all nuggets I found in the local cave. That's all I've got, see, I am giving away everything to you, just to never see "+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+"...";
-			link.l1 = "Don't even think about bribing me, sir! Surrender your weapon and follow me!";
+			dialog.text = "H-Hic !"+RandSwear()+DLG_TEXT_BASE[87]+XI_ConvertString("Colony"+pchar.GenQuest.FindFugitive.Startcity)+"...";
+			link.l1 = DLG_TEXT_BASE[88];
 			link.l1.go = "Fugitive_tavern_fight";
-			link.l2 = "Hmm... An unpleasant story? Are you tormented by nightmares or guilty conscience? Alright, I guess I can leave you with this on your own. Where is your nuggets?";
+			link.l2 = DLG_TEXT_BASE[89];
 			link.l2.go = "Fugitive_tavern_gift";
 		break;
 		
@@ -274,22 +275,22 @@ void ProcessDialogEvent()
 			TakeNItems(pchar, "jewelry5", 50+drand(30));
 			TakeNItems(pchar, "jewelry6", 100+drand(50));
 			PlaySound("interface\important_item.wav");
-			Log_Info("You have received nuggets");
-			dialog.text = "Here... And I do hope that I will never see neither you nor other 'envoys' again.";
-			link.l1 = "I assure you that you won't. Farewell, sir!";
+			Log_Info(DLG_TEXT_BASE[90]);
+			dialog.text = DLG_TEXT_BASE[91];
+			link.l1 = DLG_TEXT_BASE[92];
 			link.l1.go = "Fugitive_gift_exit";
 		break;
 		
 		case "Fugitive_tavern_fight":
-			dialog.text = "Then unsheathe your blade, mercenary! You won't get me that easily!";
-			link.l1 = "Alright, let's see your worth!";
+			dialog.text = DLG_TEXT_BASE[93];
+			link.l1 = DLG_TEXT_BASE[94];
 			link.l1.go = "Fugitive_fight_2";
 		break;
 		
 		case "Fugitive_fight_2":// в таверне
 			DialogExit();
 			chrDisableReloadToLocation = true;//закрыть локацию
-			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);//разрешить дратьс€
+			LAi_LocationFightDisable(&Locations[FindLocation(pchar.location)], false);//разрешить драться
 			LAi_SetImmortal(npchar, false);
 			LAi_SetStayType(npchar);
 			GetCharacterPos(pchar, &locx, &locy, &locz);

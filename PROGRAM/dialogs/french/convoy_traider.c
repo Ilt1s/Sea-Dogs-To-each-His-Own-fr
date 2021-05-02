@@ -1,4 +1,4 @@
-//#include "DIALOGS\convoy_traider.h"
+#include "SD\TEXT\DIALOGS\convoy_traider.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, d;
@@ -22,32 +22,32 @@ void ProcessDialogEvent()
 		case "prepare_convoy_quest":
 			if (isBadReputation(pchar, 40)) 
 			{
-				dialog.text = RandPhraseSimple("Ahhh, hell! I know who you are! Only a total idiot would hire you to escort his ship. Farewell!", "Oh, I know who you are! Hiring you as an escort, you say? I am no fool...");
-				link.l1 = RandPhraseSimple("Heh, what a pity!", "People are certainly too easily scared these days!");
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[0], DLG_TEXT_BASE[1]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[2], DLG_TEXT_BASE[3]);
 				link.l1.go = "convoy_refused";
 			}
 			else
 			{
-				dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + "! I am "+ GetFullName(NPChar) + ", a merchant. I heard you were looking for a job?";
-				link.l1 = "Something like that. And, you, as I heard, are looking for the captain, who will escort you and your ship to your destination?";
+				dialog.text = TimeGreeting() + ", "+GetAddress_Form(NPChar) + DLG_TEXT_BASE[4]+ GetFullName(NPChar) + DLG_TEXT_BASE[5];
+				link.l1 = DLG_TEXT_BASE[6];
 				link.l1.go = "prepare_convoy_quest_2";
 			}
 		break;
 		
 		case "prepare_convoy_quest_2":
-			dialog.text = "Exactly. Moreover, I believe you're just the right person for my escorting. What would you say?";
-			link.l1 = "Well, make me an offer, and perhaps, you'll get a deal.";
+			dialog.text = DLG_TEXT_BASE[7];
+			link.l1 = DLG_TEXT_BASE[8];
 			link.l1.go = "prepare_convoy_quest_3";
 		break;
 		
 		case "prepare_convoy_quest_3":
 			LookShipConvoy();
 			GenerateConvoyQuest(npchar);
-			dialog.text = "I need to be escorted to " + XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ", that located on " + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Dat") +
-				", for " + FindRussianDaysString(sti(pchar.ConvoyQuest.iDay)) +", and for that I'll pay you " + FindRussianMoneyString(sti(pchar.ConvoyQuest.convoymoney)) + ". So, your decision?";
-			link.l1 = "I'm in.";
+			dialog.text = DLG_TEXT_BASE[9] + XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + DLG_TEXT_BASE[10] + XI_ConvertString(GetIslandByCityName(pchar.quest.destination) + "Dat") +
+				DLG_TEXT_BASE[11] + FindRussianDaysString(sti(pchar.ConvoyQuest.iDay)) +DLG_TEXT_BASE[12] + FindRussianMoneyString(sti(pchar.ConvoyQuest.convoymoney)) + DLG_TEXT_BASE[13];
+			link.l1 = DLG_TEXT_BASE[14];
 			link.l1.go = "convoy_agreeded";
-			link.l2 = "I don't think it's an interesting proposition.";
+			link.l2 = DLG_TEXT_BASE[15];
 			link.l2.go = "convoy_refused";
 		break;
 		
@@ -68,14 +68,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "complete_convoy_quest":
-			dialog.text = "Oh! Thank you. Under your protection I felt myself safety like never before. Here's your well-deserved reward.";
-			Link.l1 = "You're welcome.";
+			dialog.text = DLG_TEXT_BASE[16];
+			Link.l1 = DLG_TEXT_BASE[17];
 			link.l1.go = "exit";
 			//слухи
-			AddSimpleRumour(LinkRandPhrase("A merchant captain by the name of " + GetFullName(npchar) + " says that captain " + GetMainCharacterNameDat() + " can be trusted when one needs an escort.", 
-				"Negociant named " + GetFullName(npchar) + " says that captain " + GetMainCharacterNameDat() + " can be trusted. "+ GetSexPhrase("He","She") +" protected his ship in the best possible way while escorting him to " + XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ".", 
-				"I heard that you keep the word given to trading captains which ask you for an escort. A trader named " + GetFullName(npchar) + " speaks well about you."), sti(npchar.nation), 40, 1);
-			pchar.quest.generate_convoy_quest_progress = "completed";
+			AddSimpleRumour(LinkRandPhrase(DLG_TEXT_BASE[18] + GetFullName(npchar) + DLG_TEXT_BASE[19] + GetMainCharacterNameDat() + DLG_TEXT_BASE[20], 
+				DLG_TEXT_BASE[21] + GetFullName(npchar) + DLG_TEXT_BASE[22] + GetMainCharacterNameDat() + DLG_TEXT_BASE[23] + XI_ConvertString("Colony" + pchar.quest.destination + "Gen") + ".", 
+				DLG_TEXT_BASE[24] + GetFullName(npchar) + DLG_TEXT_BASE[25]), sti(npchar.nation), 40, 1);
 			chrDisableReloadToLocation = false;
 			npchar.LifeDay = 0;
 			AddDialogExitQuest("convoy_refused");

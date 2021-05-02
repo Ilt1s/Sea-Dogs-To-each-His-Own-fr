@@ -1,5 +1,5 @@
 // Дугал Эббот - дворянин
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -18,14 +18,14 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
 			}
 			if (npchar.quest.meeting == "0")
 			{
-				dialog.text = "Greeting, mister. Let me introduce myself - Dougall Abbot. It is good to see a noble man here. I am tired of local peasants. I could never imagine that I would have to live the rest of my life among common folks.";
+				dialog.text = "Greeting, mister. Let me introduce myself - Dougall Abbot. It is good to see a noble man here. I am tired of local peasants. I could never imagine that I will have to live the rest of my life among common folks.";
 				link.l1 = TimeGreeting()+". My name is "+GetFullName(pchar)+". It's good to meet you. And why don't you like the locals?";
 				link.l1.go = "meeting";
 				npchar.quest.meeting = "1";
@@ -33,11 +33,11 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -50,10 +50,10 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting_1":
-			dialog.text = "Yes, it happens often - ships sink and just a few survivors get here on their ships' boats. Sometimes people live here for months and you never meet them.";
+			dialog.text = "Yes, it happens often - ships sink and just a few survivors got here on their ships' boats. Sometimes people live here for months and you never meet them.";
 			link.l1 = "I see. It was good to meet you, mister Abbot. See you!";
 			link.l1.go = "exit";
-			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the latest gossips?");
+			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the latest gossips?");
 			link.l2.go = "rumours_LSC";
 			link.l3 = "I want to ask you a few questions about the island.";
 			link.l3.go = "int_quests"; //информационный блок
@@ -88,28 +88,28 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_1":
-			dialog.text = "It was five years ago, but I still remember perfectly like it happened yesterday. One unfortunate day I had decided to sail on my flute from Port Royal to Belize, there was too valuable cargo to trust others the deal\nNext day my misadventures started, first, our boatswain got drunk and fell overboard, then we almost hit the reefs and in the end of it our navigator made a mistake, so we sailed in the wrong direction\nThen we were chased by a brig and a galleon. We tried to flee, but they were pushy. The galleon was left behind but the brig had finally caught us\nThe galleon was too far away of there, so we boarded the brig without shooting. Those Spanish dogs didn't expect that and we won, but most of my crew was dead\nFew hours later, storm got us, we couldn't fight the weather with so little crew and now you see the result. My flute is somewhere at the outer ring, me and the other three survivors made it here.";
+			dialog.text = "It was five years ago, but I still remember perfectly like it happened yesterday. One unfortunate day I had decided to sail on my flute from Port Royal to Belize, that cargo was way too valuable to trust others the deal\nNext day my misadventures had started, first, our boatswain got drunk and fell overboard, then we almost hit the reefs and in the end of it our navigator made a mistake, so we sailed in the wrong direction\nThen we were chased by a brig and a galleon. We tried to flee, but they were pushy. The galleon was left behind but the brig had finally catched us\nThe galleon was still out there, so we boarded the brig without shooting. Those Spanish dogs didn't expect that and we won, but most of my crew was dead\nFew hours later, storm got us, we couldn't fight the weather with so little crew and now you see the result. My flute is somewhere at the outer ring, me and the other three survivors made it here.";
 			link.l1 = "Got it...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_1 = "true";
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "Scum. All of them. Low lifes of all kind. Richard Shambon is a criminal, it's just written on his face. Kassel? Killing people for him is natural as breathing. Jasper Pratt is a convict. Musket is a drunkard. Should I even continue?\nJosef Loderdale is the only decent man here, except you, he is an ex military of English navy. There are two nobles here - Antonio Betancourt and Lorenzo Solderra, blasted Spanish scum, I won't even sit with him by the same table.";
+			dialog.text = "Scum. All of them. Low lifes of all kind. Richard Shambon is a criminal, it's just written on his face. Kassel? Killing people for him is natural as breathing. Jasper Pratt is a convict. Musket is a drunkard. Should I even continue?\nJosef Loderdale is the only decent man here, except you, he is an ex military of English navy. There are two nobles here - Antonio Betancourt and Lorenzo Solderra, blasted Spanish scum, I won't even sit with them by the same table.";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "A bunch of bastards and scum. They don't harm us though. They are more interested in stabbing and shooting each other. They can't live without it. I don't like pirates either but I must admit that they made the Island more peaceful place when arrived here.";
+			dialog.text = "A bunch of bastards and scum's. They don't harm us though. They are more interested in stabbing and shooting each other. They can't live without it. I don't like pirates either but I must admit that they made the Island more peaceful place.";
 			link.l1 = "Interesting...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
 		break;
 		
 		case "ansewer_4":
-			dialog.text = "They never do. Storms often happen around the Island but this place is always calm and quite, maybe it's some kind of magic or God's will, I don't know. A strong wind can reach this place sometimes and that's it. Rains can do any damage either.";
+			dialog.text = "They never do. Storms are often happen around the Island but this place is always calm and quite. A strong wind can reach this place sometimes and that's it. Rains can do any damage either.";
 			link.l1 = "Interesting...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_4 = "true";
@@ -126,7 +126,7 @@ void ProcessDialogEvent()
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -147,8 +147,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Okay.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -161,7 +161,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

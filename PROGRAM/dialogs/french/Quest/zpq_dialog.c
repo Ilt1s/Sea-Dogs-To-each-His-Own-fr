@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Quest\zpq_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -12,8 +13,8 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "I don't want to talk.";
-			link.l1 = "Hm, I see.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1];
 			link.l1.go = "exit";
 		break;
 
@@ -23,51 +24,51 @@ void ProcessDialogEvent()
 		break;
 
 		case "zpq_sld2":
-			dialog.text = "Just a minute, senor, are you "+ GetFullName (pchar) +"?";
-			link.l1 = "Yes.. How can I help you??";
+			dialog.text = DLG_TEXT_Q[2]+ GetFullName (pchar) +" ?";
+			link.l1 = DLG_TEXT_Q[3];
 			link.l1.go = "zpq_sld2_1";
 		break;
 		case "zpq_sld2_1":
-			dialog.text = "We need you. Your money to be more specific. And don't try to play stubborn because I am not in a good mood today, I can get angry.";
-			link.l1 = "Oh, please, what money are you talking about? Do you really think that I will carry the treasure with me?";
+			dialog.text = DLG_TEXT_Q[4];
+			link.l1 = DLG_TEXT_Q[5];
 			link.l1.go = "zpq_sld2_2";
 		break;
 		case "zpq_sld2_2":
-			dialog.text = "Don't try to fool me. Just give me the money - " + FindRussianMoneyString(sti(pchar.questTemp.zpq.sum)) + " and you may walk your way. Or we will take it by force.";
+			dialog.text = DLG_TEXT_Q[6] + FindRussianMoneyString(sti(pchar.questTemp.zpq.sum)) + DLG_TEXT_Q[7];
 			if (pchar.questTemp.zpq == "failed")
 			{
-				link.l1 = "Don't you work for this prison rat? I have got good news for you then, I sent him to hell.";
+				link.l1 = DLG_TEXT_Q[8];
 				link.l1.go = "zpq_sld2_3_1";
 			}
 			else
 			{
-				link.l1 = "Don't you work for this prison rat? Tell him that the money was given to reliable hands, so he may forget about them.";
+				link.l1 = DLG_TEXT_Q[9];
 			link.l1.go = "zpq_sld2_3";
 			}
 			if(makeint(Pchar.money) >= sti(pchar.questTemp.zpq.sum))
 			{
-				link.l2 = "Fine, take your dirty money, bastard!";
+				link.l2 = DLG_TEXT_Q[10];
 				link.l2.go = "zpq_sld2_6";
 			}
 			else
 			{
-				link.l2 = "I don't  have them...";
+				link.l2 = DLG_TEXT_Q[11];
 				link.l2.go = "zpq_sld2_3";
 			}
 		break;
 		case "zpq_sld2_3":
-			dialog.text = "That's your fate then - to die young because of your greed. It is too dangerous to let you stay alive.";
-			link.l1 = "Such a self confidence.";
+			dialog.text = DLG_TEXT_Q[12];
+			link.l1 = DLG_TEXT_Q[13];
 			link.l1.go = "zpq_sld2_4";
 		break;
 		case "zpq_sld2_3_1":
-			dialog.text = "He-he, your fate is to die because of your greed then. It works for us, we don't want to share.";
-			link.l1 = "It's your greed which will kill you...";
+			dialog.text = DLG_TEXT_Q[14];
+			link.l1 = DLG_TEXT_Q[15];
 			link.l1.go = "zpq_sld2_4";
 		break;
 		case "zpq_sld2_4":
-			dialog.text = "Hey, guys!! Put a bag on his  head!";
-			link.l1 = "Well, it was your choice...";
+			dialog.text = DLG_TEXT_Q[16];
+			link.l1 = DLG_TEXT_Q[17];
 			link.l1.go = "zpq_sld2_5";
 		break;
 		case "zpq_sld2_5":
@@ -85,7 +86,7 @@ void ProcessDialogEvent()
 			pchar.quest.zpq_seaBattle.function = "zpq_seaBattle";
 		break;
 		case "zpq_sld2_6":
-			dialog.text = "Nice. Give them and get lost, captain!";
+			dialog.text = DLG_TEXT_Q[18];
 			link.l1 = "Ha...";
 			link.l1.go = "zpq_sld2_7";
 			AddMoneyToCharacter(Pchar, -makeint(pchar.questTemp.zpq.sum));

@@ -1,46 +1,46 @@
-// ‰Ë‡ÎÓ„ ÔÓ „ÓÓ‰‡Ï
+#include "SD\TEXT\DIALOGS\Quest_Store.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
 
 	switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat("Go ahead, what do you want?",
-                          "We were just talking about that. You must have forgotten...", "This is the third time today you're talking about some question...",
-                          "Listen, this is a store. People buy stuff here. Don't disturb me!", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("You know, " + NPChar.name + ", maybe next time.", "Right, I've forgotten for some reason...",
-                      "Yes, it really is the third time...", "Hm, I wont...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_STR[0],
+                          DLG_TEXT_STR[1], DLG_TEXT_STR[2],
+                          DLG_TEXT_STR[3], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_STR[4] + NPChar.name + DLG_TEXT_STR[5], DLG_TEXT_STR[6],
+                      DLG_TEXT_STR[7], DLG_TEXT_STR[8], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
-			// Jason Õ—Œ
+			// Jason –ù–°–û
 			if (CheckAttribute(pchar, "questTemp.Patria.Goods"))
 			{
-				link.l1 = "You have my goods stored in your warehouse. Tea, cocoa and lignum vitae. I want to take it.";
+				link.l1 = "Vous avez mes marchandises dans l'entrep√¥t. Caf√©, cacao et bakut. Je veux le prendre.";
                 link.l1.go = "patria_goods";
 			}
 			if (CheckAttribute(pchar, "questTemp.Patria.GoodsSM"))
 			{
-				link.l2 = "You have my goods from Sint Maarten stored in your warehouse. Baron Noel Forgue left them to me.";
+				link.l2 = "Vous avez mes marchandises de Sint Maarten dans l'entrep√¥t. Le baron Noel Forge l'a laiss√© pour moi.";
                 link.l2.go = "patria_goods_3";
-			}
+			}			
 		break;
-		
+			
 		case "patria_goods":
-			dialog.text = "Right, you are correct, captain, I have your goods. Are you sure that you want to take them?";
-			link.l1 = "Yes.";
+			dialog.text = "Oui, c'est vrai, capitaine, les marchandises sont avec moi, vous attendent. Prenez-le?";
+			link.l1 = "Oui";
 			link.l1.go = "patria_goods_1";
-			link.l2 = "Hang on, I need to check if there is enough space in the hold first.";
+			link.l2 = "Attends, je vais d'abord v√©rifier s'il y a de la place pour lui dans les cales.";
 			link.l2.go = "exit";
 		break;
 		
 		case "patria_goods_1":
-			dialog.text = "Perfect. I'll order the carriers to deliver it to the dock.";
-			link.l1 = "Deal!";
+			dialog.text = "Super. Je vais ordonner aux porteurs de l'emmener √† la jet√©e.";
+			link.l1 = "Avoir accept√©!";
 			link.l1.go = "patria_goods_2";
 		break;
 		
 		case "patria_goods_2":
 			DialogExit();
-			WaitDate("", 0, 0, 0, 4, 10); //ÍÛÚËÏ ‚ÂÏˇ
+			WaitDate("", 0, 0, 0, 4, 10); //–∫—Ä—É—Ç–∏–º –≤—Ä–µ–º—è
 			RecalculateJumpTable();
 			StoreDayUpdate();
 			RefreshWeather();
@@ -52,22 +52,22 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		
 		case "patria_goods_3":
-			dialog.text = "Yes, exactly. I keep it here by the baron's decree. Are you sure you want to take them?";
-			link.l1 = "Yes.";
+			dialog.text = "Oui, c'est vrai, je le garde √† l'ordre du baron. Prenez-le?";
+			link.l1 = "Oui.";
 			link.l1.go = "patria_goods_4";
-			link.l2 = "Hang on, I need to check if there is enough space in the hold first.";
+			link.l2 = "Attends, je vais d'abord v√©rifier s'il y a de la place pour lui dans les cales.";
 			link.l2.go = "exit";
 		break;
 		
 		case "patria_goods_4":
-			dialog.text = "Perfect. I'll order the carriers to deliver it to the dock.";
-			link.l1 = "Deal!";
+			dialog.text = "Super. Je vais ordonner aux porteurs de l'emmener √† la jet√©e.";
+			link.l1 = "Avoir accept√©!";
 			link.l1.go = "patria_goods_5";
 		break;
 		
 		case "patria_goods_5":
 			DialogExit();
-			WaitDate("", 0, 0, 0, 4, 10); //ÍÛÚËÏ ‚ÂÏˇ
+			WaitDate("", 0, 0, 0, 4, 10); //–∫—Ä—É—Ç–∏–º –≤—Ä–µ–º—è
 			RecalculateJumpTable();
 			StoreDayUpdate();
 			RefreshWeather();
@@ -79,8 +79,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			SetCharacterGoods(pchar, GOOD_GOLD, GetCargoGoods(pchar, GOOD_GOLD) + 200);
 			SetCharacterGoods(pchar, GOOD_SILVER, GetCargoGoods(pchar, GOOD_SILVER) + 400);
 			SetCharacterGoods(pchar, GOOD_SHIPSILK, GetCargoGoods(pchar, GOOD_SHIPSILK) + 200);
-		break;
+		break;		
 	}
 	UnloadSegment(NPChar.FileDialog2);
 }
-

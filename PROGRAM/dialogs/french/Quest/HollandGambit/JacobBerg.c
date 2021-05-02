@@ -1,4 +1,4 @@
-// Якоб ван Берг - злодей и пират, капитан Миража
+#include "SD\TEXT\DIALOGS\Quest\HollandGambit\JacobBerg.h"
 void ProcessDialogEvent()
 {
 	ref NPChar;
@@ -15,13 +15,13 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "questTemp.HWIC.Holl") && pchar.questTemp.HWIC.Holl == "JacobInRoom")
 			{
-				dialog.text = "Argh! Hic... Who the hell are you? Where is the damn Chinese? I am talkin to you, are you deaf? Hic!";
-				link.l1 = "I hear you loud and clear, so don't shout. No Chinese will come. I am here instead of him.";
+				dialog.text = DLG_TEXT_Q[0];
+				link.l1 = DLG_TEXT_Q[1];
 				link.l1.go = "HollJacob_inRoom";
 				break;
 			}
-			dialog.text = "A bug. Tell the devs.";
-			link.l1 = "If you say so...";
+			dialog.text = DLG_TEXT_Q[2];
+			link.l1 = DLG_TEXT_Q[3];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
 		break;
@@ -32,14 +32,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "HollJacob_inRoom":
-			dialog.text = "What? Who are you? What the fuck are you doing here? I asked you a question, scum!";
-			link.l1 = "You don't need to know that. I need your ship.";
+			dialog.text = DLG_TEXT_Q[4];
+			link.l1 = DLG_TEXT_Q[5];
 			link.l1.go = "HollJacob_inRoom_1";			
 		break;
 		
 		case "HollJacob_inRoom_1":
-			dialog.text = "Argh... What?! Are you fucking... wait! You are a damn English dog! Screw this! They have tracked me down after all... End of the line for you! I'm not gonna surrender!";
-			link.l1 = "Well, I don't even need you to surrender...";
+			dialog.text = DLG_TEXT_Q[6];
+			link.l1 = DLG_TEXT_Q[7];
 			link.l1.go = "HollJacob_inRoom_fight";			
 		break;
 		
@@ -58,21 +58,21 @@ void ProcessDialogEvent()
 		case "JacobBerg_abordage":
 			if (CheckAttribute(pchar, "questTemp.HWIC.Eng"))
 			{
-				dialog.text = "Argh! Fuck! Such a mess! You are not a merchant, aren't you?";
-				link.l1 = "Such a smart boy. My crew is full of selected English marines, so you were screwed from the beginning. Richard Fleetwood and I had made up this trader's story and here you are. Your adventures are ended, bastard!";
+				dialog.text = DLG_TEXT_Q[8];
+				link.l1 = DLG_TEXT_Q[9];
 				link.l1.go = "JacobBerg_abordage_1";
 			}
 			else
 			{
-				dialog.text = "At last we have met, captain. You are a clever fellow... It is been too long since I've met such a serious opponent.";
-				link.l1 = "And I am your last opponent, Jacob. You won't get away from here alive.";
+				dialog.text = DLG_TEXT_Q[10];
+				link.l1 = DLG_TEXT_Q[11];
 				link.l1.go = "JacobBerg_abordage_3";
 			}
 		break;
 		
 		case "JacobBerg_abordage_1":
-			dialog.text = "It seems like that. You crew has captured the ship and I am not counting on to be spared. But I will send you to hell before they will come to aid you! Van Berg is going to sell his life for a high price!";
-			link.l1 = "It is only your opinion. I think that your life doesn't cost a single penny. Enough of words, prepare yourself!";
+			dialog.text = DLG_TEXT_Q[12];
+			link.l1 = DLG_TEXT_Q[13];
 			link.l1.go = "JacobBerg_abordage_2";			
 		break;
 		
@@ -85,14 +85,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "JacobBerg_abordage_3":
-			dialog.text = "Oh really? You won't get away for sure. I have fired a fuse to a powder room's. So soon our vessels will be blown up.";
-			link.l1 = "I think that only you and your old tub are going to blow up. I am going to gut you, release my ship, get away from here and watch the firework.";
+			dialog.text = DLG_TEXT_Q[14];
+			link.l1 = DLG_TEXT_Q[15];
 			link.l1.go = "JacobBerg_abordage_4";			
 		break;
 		
 		case "JacobBerg_abordage_4":
-			dialog.text = "And I am going to kill you first, jump away from the window, swim to the shore and watch the firework too!";
-			link.l1 = "Stake?";
+			dialog.text = DLG_TEXT_Q[16];
+			link.l1 = DLG_TEXT_Q[17];
 			link.l1.go = "JacobBerg_abordage_5";			
 		break;
 		

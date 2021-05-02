@@ -1,5 +1,5 @@
 // брат Юлиан - священник
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -19,7 +19,7 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I have no wish to talk with you. You attack peaceful locals with no reason and provoking them to fight. Get lost, atheist!";
+				dialog.text = "I have no wish to talk with you. You attack peaceful locals with no reason and provoking them. Get lost, atheist!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
@@ -48,14 +48,14 @@ void ProcessDialogEvent()
 				link.l2.go = "potion";
 				link.l3 = "Do you have any saint items to sell?";
 				link.l3.go = "amulet";
-				link.l5 = "Just wanted to pray here and to know how you're doing. See you!";
+				link.l5 = "Just wanted to pray here and to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
 		break;
 		
 		case "meeting": // первая встреча
-			dialog.text = "I hope that you will visit our church more often. Take care of your soul, my son. I am also able to heal your body, I work here not only as a pastor, but also as a doctor.";
+			dialog.text = "I hope that you will visit our church often. Take care of your soul, my son. I am also able to heal your body, I work here not only as a pastor, but also as a doctor.";
 			link.l1 = "I want to ask you a few questions about the island.";
 			link.l1.go = "int_quests"; //информационный блок
 			link.l2 = "Can I buy some potions from you?";
@@ -178,7 +178,7 @@ void ProcessDialogEvent()
 				{
 					link.l1 = "Yes, I want buy this amulet. Here is your gold.";
 					link.l1.go = "amulet_pay";
-					link.l2 = "I have this amulet already, brother Julian. I will wait until you've got what I need.";
+					link.l2 = "I have already got this amulet, brother Julian. I will wait until you've got what I need.";
 					link.l2.go = "exit";
 					SaveCurrentNpcQuestDateParam(npchar, "amulet_date");
 				}
@@ -190,7 +190,7 @@ void ProcessDialogEvent()
 			}
 			else
 			{
-				dialog.text = "No, my son, unfortunately I have nothing else. Come and see me in the other day, perhaps, I will find anything for you.";
+				dialog.text = "No, my son, unfortunately I have got nothing else. Come and see me in the other day, perhaps, I will find anything for you.";
 				link.l1 = "Deal, brother Julian.";
 				link.l1.go = "exit";
 			}
@@ -234,7 +234,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_1":
-			dialog.text = "By the same way as many of locals, my son. My ship was sunk by a storm during my voyage from Havana to the New Spain. Thank God, I survived it and now I serve Him here, helping poor souls to find their true path.";
+			dialog.text = "By the same way as many of locals, my son. My ship was sunk by a storm during my voyage from Havana to the New Spain. Thank God, I made it and now I serve Him here, helping poor souls to find their true path.";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_1 = "true";
@@ -248,7 +248,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_3":
-			dialog.text = "Sancho Carpentero owns tavern on the Fleron, you can find there food, drinks and a warm bed. Axel Yost sells a big variety of goods on the 'Esmeralda'. Ask people on the streets, my son, a lot of them are finding interesting things at the outer ring.";
+			dialog.text = "Sancho Carpentero owns tavern on the Fleron, you can find there food, drinks and a warm bed. Axel Yost sells a big variety of goods on the Esmeralda. Ask people on the streets, my son, a lot of them are finding interesting things at the outer ring.";
 			link.l1 = "Thank you!";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_3 = "true";
@@ -266,13 +266,13 @@ void ProcessDialogEvent()
 		//обнаружение ГГ в сундуках
 		case "Man_FackYou":
 			dialog.text = LinkRandPhrase("What are you doing there, ah? Thief!", "Just look at that! As soon as I was lost in contemplation, you decided to check my chest!", "Decided to check my chests? You won't get away with it!");
-			link.l1 = "Shit!";
+			link.l1 = "Damn it!";
 			link.l1.go = "fight";
 		break;
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -293,8 +293,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -303,11 +303,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

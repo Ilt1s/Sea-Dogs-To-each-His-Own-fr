@@ -1,4 +1,4 @@
-// Бесчестный конкурент
+#include "SD\TEXT\DIALOGS\Quest\LineMiniQuests\ShadowTrader.h"
 void ProcessDialogEvent()
 {
 	ref sld, NPChar;
@@ -21,14 +21,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ShadowGuarder":
-			dialog.text = "What do you need?";
-			link.l1 = "Are you "+pchar.questTemp.Shadowtrader.Guardername+"? The local merchant has sent me here. He is waiting for you and demanding your presence.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1]+pchar.questTemp.Shadowtrader.Guardername+DLG_TEXT_Q[2];
 			link.l1.go = "ShadowGuarder_1";
 		break;
 	
 		case "ShadowGuarder_1":
-			dialog.text = "A-ah, and I've been waiting for him here. I was told that he would come to a tavern! Fine, I am on my way.";
-			link.l1 = "Very well!";
+			dialog.text = DLG_TEXT_Q[3];
+			link.l1 = DLG_TEXT_Q[4];
 			link.l1.go = "ShadowGuarder_2";
 		break;
 	
@@ -44,8 +44,8 @@ void ProcessDialogEvent()
 		break;
 	
 		case "ShadowAgent":
-			dialog.text = "Good night, captain. Want to get some cheap goods, he-he? Follow me!";
-			link.l1 = "Fine.";
+			dialog.text = DLG_TEXT_Q[5];
+			link.l1 = DLG_TEXT_Q[6];
 			link.l1.go = "ShadowAgent_1";
 		break;
 	
@@ -57,35 +57,35 @@ void ProcessDialogEvent()
 		break;
 	
 		case "ShadowTrader":
-			dialog.text = "Good night, mister. It is good to meet a new client, ha-ha. Let me introduce myself: I am " + GetFullName(npchar) + ". And I've got the cheapest goods in this town, I assure you.";
-			link.l1 = "Finally we've met..." + npchar.name + ". I suppose, I will disappoint you: I was looking for you not for trade, but to end your filthy business. You've been a great pain in the ass of one specific man. The pain was so great, that he is eager to shut your business down... by any means necessary.";
+			dialog.text = DLG_TEXT_Q[7] + GetFullName(npchar) + DLG_TEXT_Q[8];
+			link.l1 = DLG_TEXT_Q[9] + npchar.name + DLG_TEXT_Q[10];
 			link.l1.go = "ShadowTrader_1";
-			link.l2 = "Aha, finally you are busted, scum! Didn't you know that they pay taxes for operating commercial business? " + GetFullName(npchar) + ", you violated the law and your stolen goods are now forfeit! There are soldiers right behind the door, so don't even try to play stupid!";
+			link.l2 = DLG_TEXT_Q[11] + GetFullName(npchar) + DLG_TEXT_Q[12];
 			link.l2.go = "ShadowTrader_2";
 		break;
 	
 		case "ShadowTrader_1":
-			dialog.text = "Really? I didn't expect... Whom have you brought here? This is a racket! I guess I know who is responsible for this! By any means necessary... lads, finish him!";
-			link.l1 = "Let's dance, scum!";
+			dialog.text = DLG_TEXT_Q[13];
+			link.l1 = DLG_TEXT_Q[14];
 			link.l1.go = "ShadowTrader_fight";
 			NextDiag.currentnode = "ShadowTrader_6";
 		break;
 	
 	case "ShadowTrader_2":
-		dialog.text = "Oh... officer, listen! Let's make a deal. You are a wise man! I will pay you 5000 pesos and you will let us escape through the second floor. You will also take the goods, you need them, right? Why would you need me? I will leave the town today and no one will never find out a thing. And you will get your coins. Deal, officer?";
-		link.l1 = "Do you really think, scum, that I will dishonour myself for such a petty sum?";
+		dialog.text = DLG_TEXT_Q[15];
+		link.l1 = DLG_TEXT_Q[16];
 		link.l1.go = "ShadowTrader_3";
 		break;
 	
 	case "ShadowTrader_3":
-		dialog.text = "All right, all right, officer, take all I've got - 10 000 pesos. It's all I have, I swear!";
-		link.l1 = "Hm... If I arrest you, all your money will be confiscated... ah, fine! The illegal trading post is closed and all the goods are confiscated... Give me the coins and get lost. And don't show your face here again!";
+		dialog.text = DLG_TEXT_Q[17];
+		link.l1 = DLG_TEXT_Q[18];
 		link.l1.go = "ShadowTrader_4";
 		break;
 		
 	case "ShadowTrader_4":
-			dialog.text = "Thank you, thank you, officer! Here is your money, and you won't see me here again. Let's go!";
-			link.l1 = "Move on or I will have to arrest you!";
+			dialog.text = DLG_TEXT_Q[19];
+			link.l1 = DLG_TEXT_Q[20];
 			link.l1.go = "ShadowTrader_escape";
 		break;
 	
@@ -127,16 +127,16 @@ void ProcessDialogEvent()
 		break;
 	
 		case "ShadowTrader_6":
-			dialog.text = "Ah! Mercy, don't kill me! I will give you all I have!";
-			link.l1 = "All your goods will be confiscated by the authorities. Do you really think that I will take them to my ship after what just has happened here?";
+			dialog.text = DLG_TEXT_Q[21];
+			link.l1 = DLG_TEXT_Q[22];
 			link.l1.go = "ShadowTrader_7";
 		break;
 	
 		case "ShadowTrader_7":
-			dialog.text = "I... I will give you all my money and belongings! Just let me go! I will leave the town today and you won't see me here again!";
-			link.l1 = "Fine. Give me everything you've got on you and get lost. And don't ever try to do business here again - next time I won't spare your pathetic life.";
+			dialog.text = DLG_TEXT_Q[23];
+			link.l1 = DLG_TEXT_Q[24];
 			link.l1.go = "ShadowTrader_free";
-			link.l2 = "No, bastard. You won't buy me off. The only way to deal with your kind is steel and bullets!";
+			link.l2 = DLG_TEXT_Q[25];
 			link.l2.go = "ShadowTrader_killed";
 		break;
 		
@@ -146,7 +146,7 @@ void ProcessDialogEvent()
 			TakeNItems(pchar, "jewelry2", rand(20));
 			TakeNItems(pchar, "jewelry5", rand(20));
 			PlaySound("interface\important_item.wav");
-			Log_Info("You have received items");
+			Log_Info(DLG_TEXT_Q[26]);
 			LAi_SetPlayerType(pchar);
 			sld = characterFromID("ShadowTrader"); 
 			LAi_SetActorType(sld);

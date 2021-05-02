@@ -1,36 +1,36 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Store.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
 
 	switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What questions do you have?", "How can I help you?"), "You tried to ask me some question not long ago...", "Nobody's asked questions like that in a Tortuga's store for a long time...",
-                          "Questions, questions, and more questions...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "I've got nothing to talk about at the moment."), "Umph, where has my memory gone...",
-                      "All right, so it's been a long time.", "Moooore questions, yeah...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_STR[58], DLG_TEXT_STR[59]), DLG_TEXT_STR[60], DLG_TEXT_STR[61],
+                          DLG_TEXT_STR[62], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_STR[63], DLG_TEXT_STR[64]), DLG_TEXT_STR[65],
+                      DLG_TEXT_STR[66], DLG_TEXT_STR[67], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			if (CheckAttribute(pchar, "questTemp.Guardoftruth") && pchar.questTemp.Guardoftruth == "tortuga2")
 			{
-				link.l1 = "Listen, I need to find a Gaius Marchais. As I've been told, he's tied up with privateering and become a decent negotiator, scooping up an excellent galleon from the Spanish. Has he happened to purchase any kind of merchandise from you for trading?";
+				link.l1 = DLG_TEXT_STR[68];
                 link.l1.go = "guardoftruth";
 			}
 		break;
 		
 		case "guardoftruth":
-			dialog.text = "Gaius Marchais? Oh yes, of course I remember him! But he didn't purchase anything. He offered his ship for freight. I just happened to need a ship with a spacious hold - a large batch of raw skins.";
-			link.l1 = "And what was the unloading point?";
+			dialog.text = DLG_TEXT_STR[69];
+			link.l1 = DLG_TEXT_STR[70];
 			link.l1.go = "guardoftruth_1";
 		break;
 		
 		case "guardoftruth_1":
-			dialog.text = "Philipsburg, Saint Maarten.";
-			link.l1 = "Okay. Thank you, you've helped me so much!";
+			dialog.text = DLG_TEXT_STR[71];
+			link.l1 = DLG_TEXT_STR[72];
 			link.l1.go = "guardoftruth_2";
 		break;
 		
 		case "guardoftruth_2":
-			dialog.text = "Anytime, captain. Stop by my store anytime you like!";
+			dialog.text = DLG_TEXT_STR[73];
 			link.l1 = "...";
 			link.l1.go = "exit";
 			AddQuestRecord("Guardoftruth", "10");
@@ -39,4 +39,5 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	}
 	UnloadSegment(NPChar.FileDialog2);
 }
+
 

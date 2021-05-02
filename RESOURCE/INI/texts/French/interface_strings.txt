@@ -1,18 +1,129 @@
-Delete profile confirm{Are you sure you want to delete this profile and all its saves?}
-Delete savefile confirm{Are you sure you want to delete this save?}
-Overwrite savefile confirm{Are you sure you want to overwrite this save?}
+Delete profile confirm {Voulez-vous vraiment effacer ce profil et toute progression rattachée ?}
+Delete savefile confirm {Voulez-vous vraiment effacer cette partie sauvegardée ?}
+Overwrite savefile confirm {Voulez-vous vraiment écraser cette partie sauvegardée ?}
 
-Low storage and unable save create{Not enough free space to save game.}
-Load game confirm{Are you sure you want to load this save?}
-Unable to Load save game{Unable to load this save.}
+Low storage and unable save create {Espace disque insuffisant pour sauvegarder.}
+Load game confirm{Charger la sauvegarde ?}
+Unable to Load save game{Impossible de charger cette sauvegarde.}
 
-Salary info
-{Your crew demands the monthly wage.
-Will you pay?}
-Officer info {Your officers demand their monthly wage:}
-All info {Net amount: }
+Wages info
+{Votre équipage réclame son salaire.
+Payez vous ?}
+Officer info {Vos officiers réclament leur solde :}
+All info {Somme : }
 
-New game confirm{Are you sure you want to start a new game?}
+New game confirm{Êtes-vous sur de vouloir commencer une nouvelle partie ?}
 
-Insert Disk Ok {Please insert Disc 1 "Pirates Of The Caribbean"}
-save game limit {You have exceeded the limit of saved games. Delete older saves.}
+Insert Disk Ok {Veuillez insérer le disque 1.}
+save game limit {Limite du nombre de sauvegardes atteinte. Veuillez effacer d'anciens fichiers de sauvegarde.}
+SaveLimit {Il n'est possible de sauvegarder que dans une taverne dans ce mode.}
+FoodLimit {Rations sur le vaisseau pour}
+Weight {Poids }
+Weight pcs {Poids }
+Dist {Dist}
+Damage {Dégâts}
+Time {Temps}
+Ship__ {Vaisseau : '}
+Trade interface {Menu de commerce}
+Trade_interface_hint_1 {Double-cliquez ou appuyez sur [Entrée] sur les lignes du tableau pour afficher le menu d'achat et de vente. 
+ Maintenez enfoncé [Maj] et appuyez sur la flèche gauche ou droite pour afficher le formulaire avec toutes les valeurs réglées au maximum. 
+ Saisissez un nombre entier positif pour acheter, ou négatif (avec un moins) pour vendre. 
+ Appuyez sur la flèche gauche ou droite pour modifier le nombre d'unités (maintenez enfoncé [Maj] pour établir la valeur maximale). Appuyez sur [Entrée] pour soumettre ou sur [Échap] pour annuler. 
+ Sur le formulaire, ou tandis que vous parcourez le tableau, vous pouvez consulter la description des objets sous le curseur du tableau.}
+Trade_interface_hint_2 {Pour tout vendre rapidement : appuyez sur la flèche haut ou bas ; [Bas] + flèche droite puis appuyez sur [Entrée]}
+Trade_interface_hint_3 {Couleurs - rouge : contrebande ;\n bleu : import ;\n vert : export ;\n marron : très forte demande}
+__pack {, paquet}
+Sell {Vendre}
+Gold {Piastres}
+__weight {, poids}
+cwt {q}
+Buy {Acheter}
+Pack {Groupe}
+Pack weight {Poids du groupe}
+_Robbery {: Pillage}
+Robbery_interface {Interface de pillage de cité}
+Robbery_interface_hint_1 {Double-cliquez ou appuyez sur [Entrée] sur les lignes du tableau pour afficher le menu d'organisation des objets. 
+ Maintenez enfoncé [Maj] et appuyez sur la flèche gauche ou droite pour afficher le formulaire avec toutes les valeurs réglées au maximum. 
+ Saisissez un nombre entier positif pour acheter, ou négatif (avec un moins) pour vendre. 
+ Appuyez sur la flèche gauche ou droite pour modifier le nombre d'unités (maintenez enfoncé [Maj] pour établir la valeur maximale). Appuyez sur [Entrée] pour soumettre ou sur [Échap] pour annuler. 
+ Sur le formulaire, ou tandis que vous parcourez le tableau, vous pouvez consulter la description des objets sous le curseur du tableau.}
+Robbery_interface_hint_2 {Pour tout prendre rapidement : appuyez sur la flèche haut ou bas ; [Bas] + flèche droite ; [Entrée]}
+City {Cité}
+Leave {Quitter}
+Take {Prendre}
+Item name {Nom de l'objet}
+Qty {Qté}
+Items {Objets}
+Items_hint_1 {Cette interface permet de voir le héros et de l'équiper d'une épée, d'un pistolet, d'une lunette et d'une cuirasse. 
+ Vous pouvez également y consulter l'inventaire de vos officiers, compagnons et passagers. Ils choisissent leurs propres armes à la réception de nouvel équipement. 
+ À terre, vous pouvez échanger des objets avec vos officiers avec la commande Échanger.}
+Items2 {Vos objets}
+Trader items {Nombre}
+Trader_items_hint_1 {Double-cliquez ou appuyez sur [Entrée] sur les lignes du tableau pour afficher le menu d'achat et de vente. 
+ Maintenez enfoncé [Maj] et appuyez sur la flèche gauche ou droite pour afficher le formulaire avec toutes les valeurs réglées au maximum. 
+ Saisissez un nombre entier positif pour acheter, ou négatif (avec un moins) pour vendre. 
+ Appuyez sur la flèche gauche ou droite pour modifier le nombre d'unités (maintenez enfoncé [Maj] pour établir la valeur maximale). Appuyez sur [Entrée] pour soumettre ou sur [Échap] pour annuler. 
+ Sur le formulaire, ou tandis que vous parcourez le tableau, vous pouvez consulter la description des objets sous le curseur du tableau.}
+Trader_items_hint_2 {La liste de vente omet tout objet équipé par le personnage.}
+Trader {Commerçant}
+Ships {Vaisseaux}
+Stat_1 {Coulés par canons}
+Stat_2 {Coulés par abordage}
+Stat_3 {Capturés par abordage}
+Class {Classe}
+Killed {Tués}
+Stat_4 {À l'épée}
+Stat_5 {Au pistolet}
+Stat_6 {Soldats}
+Stat_7 {Citoyens}
+Stat_8 {Êtres mauvais}
+Stat_9 {Autres}
+Total {Total}
+Stat_11 {Événements}
+Stat_12 {Nbr.}
+Stat_13 {Vaisseaux vendus}
+Stat_14 {Vaisseaux achetés}
+Stat_15 {Mutineries}
+Stat_16 {Révoltes d'esclaves}
+Stat_17 {Événements}
+Stat_18 {Forts détruits}
+Stat_19 {Cités capturées}
+Stat_20 {Cités pillées}
+Stat_21 {Vaisseaux capturés}
+Stat_22 {Vaisseaux coulés}
+Stat_23 {Emprunts}
+Stat_24 {Vaisseaux relâchés}
+Stat_25 {Angleterre}
+Stat_26 {Provisions détruites par les rats}
+Stat_27 {Santé perdue}
+Stat_28 {Marin tués}
+Stat_29 {Trésors trouvés}
+Stat_30 {Dépenses}
+Stat_31 {Salaires payés}
+Stat_32 {Date dépôt}
+Stat_33 {Durée (mois)}
+Stat_35 {Une ancienne potion Indienne a été utilisée}
+Stat_36 {Une puissante potion a été utilisée}
+Stat_37 {Vous connaissez déjà cette recette}
+Summ {Somme }
+Date {Date}
+Stat_34 {Placement}
+Nation {Nation}
+Place {Ile}
+Actuality {Date}
+Type {Tp.}
+Trade_interface_hint_4 {Double-cliquez ou appuyez sur [Entrée] sur les lignes du tableau pour afficher le menu d'achat et de vente. 
+ Maintenez enfoncé [Maj] et appuyez sur la flèche gauche ou droite pour afficher le formulaire avec toutes les valeurs réglées au maximum. 
+ Saisissez un nombre entier positif pour acheter, ou négatif (avec un moins) pour vendre. 
+ Appuyez sur la flèche gauche ou droite pour modifier le nombre d'unités (maintenez enfoncé [Maj] pour établir la valeur maximale). Appuyez sur [Entrée] pour soumettre ou sur [Échap] pour annuler. 
+ Sur le formulaire, ou tandis que vous parcourez le tableau, vous pouvez consulter la description des objets sous le curseur du tableau.}
+Alchim1 {Ingrédient}
+Repair1 {% \n Limite \ n Réparer : \n }
+Repair2 { unité(s) \n Nécessaire pour \n une réparation complète : \n }
+Repair3 { unité(s) }
+Repair4 {Espace utilisé : }
+Repair5 {Environ une journée . . .}
+
+
+
+

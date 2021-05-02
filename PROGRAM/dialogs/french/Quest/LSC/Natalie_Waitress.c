@@ -1,5 +1,5 @@
 // официантка Наталия Бушелл
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -27,18 +27,18 @@ void ProcessDialogEvent()
 			if (npchar.quest.meeting == "0")
 			{
 				dialog.text = "Good day, "+GetAddress_Form(NPChar)+"! First time here? I haven't seen you before... I hope that you will visit us more often, Sancho can offer an excellent variety of drinks. Yes, and my name is Nathalie and I help Sancho with the tavern's matters.";
-				link.l1 = TimeGreeting()+". My name is "+GetFullName(pchar)+". Glad to meet you. And you couldn't see me before. I have come here recently.";
+				link.l1 = TimeGreeting()+". My name is "+GetFullName(pchar)+". Glad to meet you. And you couldn't see me before. I have just come here recently.";
 				link.l1.go = "meeting";
 				npchar.quest.meeting = "1";
 			}
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -73,7 +73,7 @@ void ProcessDialogEvent()
 			}
 			if (!CheckAttribute(npchar, "quest.answer_4"))
 			{
-				link.l4 = "Are you never surprised to see new faces here?";
+				link.l4 = "Are you ever surprised to see new faces here?";
 				link.l4.go = "ansewer_4";
 			}
 			link.l10 = "No questions. Pardon...";
@@ -88,8 +88,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "Oh, that's a sad story. Seven years ago I ran away with my suitor from my parent's home and we decided to move to Belize from Santiago. The navigator made a mistake near Main, so we sailed in a wrong diraction to North and were catched by a storm. Our ship sunk not far from the outer ring\nMy suitor died that day just like the most of the others. Me and survivors have started new lives here, on the Island.";
-			link.l1 = "Sad story...";
+			dialog.text = "Oh, that's a sad story. I ran away with my suitor from my parent's home and we decided to move to Belize from Santiago. The navigator made a mistake, so we sailed North and were catched by a storm. Our ship sunk not far from the outer ring\nMy suitor died that day just like the most of the others. Me and survivors have started new lives here, on the Island.";
+			link.l1 = "Sad...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
 		break;
@@ -119,7 +119,7 @@ void ProcessDialogEvent()
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -140,8 +140,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a ыцщкв around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -150,11 +150,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

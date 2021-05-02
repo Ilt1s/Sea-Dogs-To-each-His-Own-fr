@@ -1,25 +1,25 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Tavern.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat("All the rumors of "+ GetCityName(npchar.city) +" at your service. What would you like to find out?",
-                          "We were just talking about that. You must have forgotten...", "This is the third time today you're talking about some question...",
-                          "You're repeating all the same like a parrot...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("You know, " + NPChar.name + ", maybe next time.", "Right, I've forgotten for some reason...",
-                      "Yes, it really is the third time...", "Yup...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_STR[73]+ GetCityName(npchar.city) +DLG_TEXT_STR[74],
+                          DLG_TEXT_STR[75], DLG_TEXT_STR[76],
+                          DLG_TEXT_STR[77], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_STR[78] + NPChar.name + DLG_TEXT_STR[79], DLG_TEXT_STR[80],
+                      DLG_TEXT_STR[81], DLG_TEXT_STR[82], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			if (CheckAttribute(pchar, "questTemp.Guardoftruth") && pchar.questTemp.Guardoftruth == "utensil" && !CheckAttribute(npchar, "quest.utensil"))
 			{
-				link.l1 = "Tell me, where can I find seniora Belinda de Ribero?";
+				link.l1 = DLG_TEXT_STR[130];
                 link.l1.go = "guardoftruth";
 			}
 		break;
 		
 		case "guardoftruth":
-			dialog.text = "In the governor's palace, of course. She's a relative of Don Fernando de Villegas. You can look for her there after noon during a siesta, she usually has business to attend to in the mornings. She's into some trouble right now, so keep that in mind. But she won't mind speaking with you. Donna Belinda is a good woman.";
-			link.l1 = "Thank you!";
+			dialog.text = DLG_TEXT_STR[131];
+			link.l1 = DLG_TEXT_STR[132];
 			link.l1.go = "guardoftruth_1";
 		break;
 		

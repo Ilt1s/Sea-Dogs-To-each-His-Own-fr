@@ -1,4 +1,4 @@
-// ‘адей ћосковит
+#include "SD\TEXT\DIALOGS\Quest\Sharlie\Fadey.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -19,175 +19,1013 @@ void ProcessDialogEvent()
 			{
 				if (pchar.questTemp.Sharlie == "fadey")
 				{
-					dialog.text = "What can I do for you, monsieur? I don't speak with people I'm not acquainted with. If you've stopped by just for a chat, then I'll have to disappoint you, I don't like being bothered with nonsense.";
-					link.l1 = "Good afternoon, monsieur Fadey. You, of course, may not be acquainted with me yet, but on the other hand, you know my brother. Allow me to introduce myself - Charles de Maure, brother of Michel de Monper.";
+					dialog.text = DLG_TEXT_Q[269];
+					link.l1 = DLG_TEXT_Q[270];
 					link.l1.go = "Sharlie";
 					break;
 				}
 				if (pchar.questTemp.Sharlie == "takeknife" && !CheckAttribute(pchar, "questTemp.Persian"))
 				{
-					dialog.text = "Aha, you again, Charles! What is it this time?";
-					link.l1 = "You said that you had been robbed... Have you found the culprits?";
+					dialog.text = DLG_TEXT_Q[271];
+					link.l1 = DLG_TEXT_Q[272];
 					link.l1.go = "Sharlie_8";
 					break;
 				}
 				if (CheckAttribute(pchar, "questTemp.Sharlie.Tichingitu") && pchar.questTemp.Sharlie.Tichingitu == "fadey")
 				{
-					dialog.text = "So, Charles? Have you gone to check out that Indian dummy?";
-					link.l1 = "I have... That's why I've come back to you.";
+					dialog.text = DLG_TEXT_Q[273];
+					link.l1 = DLG_TEXT_Q[274];
 					link.l1.go = "Tichingitu";
 					break;
 				}
 				if (CheckAttribute(pchar, "questTemp.Sharlie.Tichingitu") && pchar.questTemp.Sharlie.Tichingitu == "dublon")
 				{
-					dialog.text = "Ah, it's you again, my dear friend! Well, have you brought the doubloons for the Indian?";
+					dialog.text = DLG_TEXT_Q[275];
 					if (GetCharacterItem(pchar, "gold_dublon") >= 100)
 					{
-						link.l1 = "Yes. Here are your hundred doubloons.";
+						link.l1 = DLG_TEXT_Q[276];
 						link.l1.go = "Tichingitu_7";
 					}
 					else
 					{
-						link.l1 = "No, I haven't collected the required amount yet.";
+						link.l1 = DLG_TEXT_Q[277];
 						link.l1.go = "exit";
 					}
 					break;
 				}
 				if (CheckAttribute(pchar, "questTemp.Trial") && pchar.questTemp.Trial == "begin")
 				{
-					dialog.text = "Ha, well it's monsieur de Maure himself! Come in, come in... What brought you to my home?";
-					link.l1 = TimeGreeting()+", Fadey. I have come to you on the advice of my brother. He's told me you'd definitely be able to help me find some work.";
+					dialog.text = DLG_TEXT_Q[278];
+					link.l1 = TimeGreeting()+DLG_TEXT_Q[279];
 					link.l1.go = "trial";
 					break;
 				}
 				if (pchar.questTemp.Sharlie == "trial" && !CheckAttribute(npchar, "quest.vodka"))
 				{
-					dialog.text = "Ha, my good old acquaintance. What brought you here, monsieur de Maure?";
-					link.l1 = TimeGreeting()+", Fadey. My brother insisted that I shouldn't speak to you about this, but I couldn't restrain myself... ";
+					dialog.text = DLG_TEXT_Q[280];
+					link.l1 = TimeGreeting()+DLG_TEXT_Q[281];
 					link.l1.go = "vodka";
 					break;
 				}
 				if (CheckAttribute(pchar, "questTemp.Guardoftruth.Baster_church") && pchar.questTemp.Guardoftruth.Baster_church == "seek")
 				{
-					dialog.text = "Aha, my old friend!  Come in, come in, "+pchar.name+"! How are things?";
-					link.l1 = TimeGreeting()+", Fadey. Pleased to see you. I've actually come to you on business.";
+					dialog.text = DLG_TEXT_Q[282]+pchar.name+DLG_TEXT_Q[283];
+					link.l1 = TimeGreeting()+DLG_TEXT_Q[284];
 					link.l1.go = "guardoftruth";
 					break;
 				}
 				if (CheckAttribute(pchar, "questTemp.Guardoftruth.Baster_church") && pchar.questTemp.Guardoftruth.Baster_church == "find" && !CheckAttribute(npchar, "quest.utensil"))
 				{
-					dialog.text = TimeGreeting()+", "+pchar.name+". I bet you're eager to discover the results of my soul-saving conversation with the priest?";
-					link.l1 = "Of course I am! How did it go?";
+					dialog.text = TimeGreeting()+", "+pchar.name+DLG_TEXT_Q[285];
+					link.l1 = DLG_TEXT_Q[286];
 					link.l1.go = "guardoftruth_9";
 					break;
 				}
 				if (CheckAttribute(npchar, "quest.utensil") && GetCharacterItem(pchar, "gold_dublon") >= 250)
 				{
-					dialog.text = "I keep hearing the chinks in your pockets!";
-					link.l1 = "Such attitude, monsieur Fadey! Here is your gold.";
+					dialog.text = DLG_TEXT_Q[287];
+					link.l1 = DLG_TEXT_Q[288];
 					link.l1.go = "guardoftruth_11";
 					break;
 				}
 				if(CheckAttribute(pchar, "questTemp.Guardoftruth.Archy") && pchar.questTemp.Guardoftruth.Archy == "guadeloupe")
 				{
-					dialog.text = "Aha, my old friend! Come in, come in, "+pchar.name+"! How are things?";
-					link.l1 = "Hello, Fadey. I have come to you once again for your help.";
+					dialog.text = DLG_TEXT_Q[289]+pchar.name+DLG_TEXT_Q[290];
+					link.l1 = DLG_TEXT_Q[291];
 					link.l1.go = "guardoftruth_14";
 					break;
 				}
-				dialog.text = "Is there something you need, "+pchar.name+"?";
+				if(pchar.questTemp.Ascold == "HaveRecomendation")
+				{
+					sld = characterFromId(pchar.questTemp.Ascold.TraderId);
+					dialog.text = DLG_TEXT_Q[18];
+					link.l1 = DLG_TEXT_Q[19] + GetFullName(sld) + DLG_TEXT_Q[20] + XI_ConvertString("Colony" + sld.City + "Dat") + ".";
+					link.l1.go = "Step_5";
+					break;
+				}	
+				if(pchar.questTemp.Ascold == "TakenThreeObject" && GetQuestPastDayParam("questTemp.Ascold") > 62) // торговл€ канатами
+				{		
+					dialog.text = DLG_TEXT_Q[59] + GetFullName(pchar) + ".";
+					link.l1 = DLG_TEXT_Q[60];
+					link.l1.go = "Step_14";
+					break;
+				}
+				if (pchar.questTemp.Ascold == "Mummie_begin" && GetQuestPastDayParam("questTemp.Ascold") > 40)
+				{
+					dialog.text = DLG_TEXT_Q[134]+ GetFullName(pchar) + "...";
+					link.l1 = DLG_TEXT_Q[135];
+					link.l1.go = "Step_31A";
+					break;
+				}		
+				if (pchar.questTemp.Ascold == "Ascold_FoundMummy")
+				{
+					dialog.text = DLG_TEXT_Q[189] + GetFullName(pchar) + DLG_TEXT_Q[190];
+					link.l1 = DLG_TEXT_Q[191];
+					link.l1.go = "Step_46";
+					break;
+				}	
+				if (pchar.questTemp.Ascold == "Ascold_ReturnToAscold")
+				{
+					dialog.text = DLG_TEXT_Q[205];
+					link.l1 = DLG_TEXT_Q[206];
+					link.l1.go = "Step_52";	
+					break;
+				}						
+				dialog.text = DLG_TEXT_Q[292]+pchar.name+" ?";
 				if (CheckAttribute(pchar, "questTemp.Persian") && pchar.questTemp.Persian == "start" && CheckNCountPersian() > 0)
 				{// персидские клинки
-					link.l2 = "Take a look at what I have here, Fadey. Would I be far off to say it's a Persian sword blade and possibly one of the ones that were stolen from your home?";
+					link.l2 = DLG_TEXT_Q[293];
 					link.l2.go = "persian";
 				}
 				if (CheckAttribute(pchar, "questTemp.Persian") && pchar.questTemp.Persian == "one" && CheckNCountPersian() > 0)
 				{
-					link.l2 = "I have good news for you. I have one more Persian cavalry sword for you here.";
+					link.l2 = DLG_TEXT_Q[294];
 					link.l2.go = "persian_6";
 				}
 				if (CheckAttribute(pchar, "questTemp.Persian") && pchar.questTemp.Persian == "two" && CheckNCountPersian() > 0)
 				{
-					link.l2 = "I have a third Persian cavalry sword. Just as you asked, I came back to you right away.";
+					link.l2 = DLG_TEXT_Q[295];
 					link.l2.go = "persian_9";
 				}
 				if (CheckAttribute(pchar, "questTemp.Persian") && pchar.questTemp.Persian == "cirass")
 				{
-					link.l2 = "I'm here concerning the light armour we talked about.";
+					link.l2 = DLG_TEXT_Q[296];
 					link.l2.go = "persian_13";
 				}
 				if(CheckAttribute(npchar, "quest.ropes") && GetDataDay() == 20) // торговл€ канатами
 				{
-					link.l3 = "Fadey, I would like to buy some of your ropes.";
+					link.l3 = DLG_TEXT_Q[297];
 					link.l3.go = "ropes";
 				}
-				link.l1 = "Fadey, I need your help.";
+				if(pchar.questTemp.Ascold == "SeekThreeObject") // торговл€ канатами
+				{
+					link.l4 = DLG_TEXT_Q[298];
+					link.l4.go = "ResultOfSeek";
+				}						
+				if (pchar.questTemp.Ascold.work == 1)
+				{
+					link.l4 = DLG_TEXT_Q[299];
+					link.l4.go = "AfterManowarsBattle";
+				}
+				if(pchar.questTemp.Ascold == "Mummie_begin") // торговл€ канатами
+				{
+					link.l4 = DLG_TEXT_Q[300];
+					link.l4.go = "Mummie_begin";
+				}	
+				if (pchar.questTemp.Ascold == "Ascold_SeekGrave")
+				{	
+					link.l4 = DLG_TEXT_Q[152];
+					link.l4.go = "Step_36";
+				}					
+				if (pchar.questTemp.Ascold == "Ascold_CantSeekGrave")
+				{	
+					link.l4 = DLG_TEXT_Q[154];
+					link.l4.go = "Step_37";
+				}					
+				if (pchar.questTemp.Ascold == "Ascold_NotEnterFoundGrave")
+				{
+					link.l4 = DLG_TEXT_Q[156];
+					link.l4.go = "Step_38";
+				}	
+				if (pchar.questTemp.Ascold == "Ascold_SeekRockLetter" && CheckCharacterItem(pchar, "Rock_letter"))
+				{
+					link.l4 = DLG_TEXT_Q[160];
+					link.l4.go = "Step_45";
+				}
+				if (pchar.questTemp.Azzy == "HowToKnowAzzy")
+				{
+					link.l4 = DLG_TEXT_Q[243];
+					link.l4.go = "Step_64";
+				}				
+				link.l1 = DLG_TEXT_Q[301];
 				link.l1.go = "help";
- 				link.l9 = "No, nothing at the moment.";
+ 				link.l9 = DLG_TEXT_Q[302];
 				link.l9.go = "exit";
+				NextDiag.TempNode = "First time";
 			}
 			else
 			{
-				dialog.text = "What can I do for you, monsieur? I don't speak with people I'm not acquainted with.";
-				link.l1 = "Oh, I was just dropping by to look who lives here.";
-				link.l1.go = "exit";
+				if (npchar.quest.meeting == "0")
+				{
+					dialog.text = DLG_TEXT_Q[0];
+					link.l1 = DLG_TEXT_Q[1] + GetFullName(pchar) + ".";
+					link.l1.go = "Step_1";
+					npchar.quest.meeting = "1";
+				}
+				else
+				{
+					dialog.text = DLG_TEXT_Q[2];
+					link.l1 = DLG_TEXT_Q[3];
+					link.l1.go = "exit";
+					link.l2 = DLG_TEXT_Q[4];
+					link.l2.go = "Step_3";
+					NextDiag.TempNode = "First time";
+				}
 			}
-			NextDiag.TempNode = "First time";
+		break;
+
+ 		case "Step_1":
+        	dialog.text = DLG_TEXT_Q[5];
+    		link.l1 = DLG_TEXT_Q[6];
+    		link.l1.go = "Step_2";
+		break;
+
+ 		case "Step_2":
+        	dialog.text = DLG_TEXT_Q[7];
+    		link.l1 = DLG_TEXT_Q[8];
+    		link.l1.go = "First time";
+		break;
+
+ 		case "Step_3":
+            if (npchar.quest.meeting == "1")
+            {
+            	dialog.text = DLG_TEXT_Q[9];
+        		link.l1 = "...";
+        		npchar.quest.meeting = "2";
+            }
+            else
+            {
+            	dialog.text = RandPhraseSimple(DLG_TEXT_Q[10], DLG_TEXT_Q[11]);
+        		link.l1 = RandPhraseSimple(DLG_TEXT_Q[12], DLG_TEXT_Q[13]);
+            }
+            link.l1.go = "Step_4";
+		break;
+
+ 		case "Step_4":
+            DoReloadCharacterToLocation("BasTer_town", "reload", "houseSp1");
+            NextDiag.CurrentNode = NextDiag.TempNode;
+			DialogExit();
+		break;
+		
+ 		case "Step_5":
+        	dialog.text = DLG_TEXT_Q[21];
+			link.l1 = "...";
+    		link.l1.go = "Step_5bis";
+		break;
+
+		case "Step_5bis":
+			DialogExit();
+			sld = ItemsFromID("potionrum");
+			sld.shown = true;
+			sld.startLocation = "BasTer_houseSp1";
+			sld.startLocator = "bottle";
+			sld = ItemsFromID("lcheer");
+			sld.shown = true;
+			sld.startLocation = "BasTer_houseSp1";
+			sld.startLocator = "sit2";
+			DoQuestReloadToLocation("BasTer_houseSp1", "sit", "sit2", "Sharlie_DrinkWithFadey_3");
+			NextDiag.CurrentNode = "Step_5ter";
+		break;		
+
+ 		case "Step_5ter":
+			sld = characterFromId(pchar.questTemp.Ascold.TraderId);
+        	dialog.text = DLG_TEXT_Q[22]+DLG_TEXT_Q[23];
+    		link.l1 = sld.lastname + DLG_TEXT_Q[24];
+        	link.l1.go = "Step_6";
+		break;
+		
+ 		case "Step_6":
+        	dialog.text = DLG_TEXT_Q[25];
+    		link.l1 = DLG_TEXT_Q[26];
+        	link.l1.go = "Step_7";
+        	AddMoneyToCharacter(pchar, 30000);
+			TakeItemFromCharacter(pchar, "Powder_mummie");
+		break;
+
+ 		case "Step_7":
+        	dialog.text = DLG_TEXT_Q[30];
+    		link.l1 = DLG_TEXT_Q[31];
+    		link.l1.go = "Step_8";
+		break;
+
+ 		case "Step_8":
+        	dialog.text = DLG_TEXT_Q[32]+
+                          DLG_TEXT_Q[33]+
+                          DLG_TEXT_Q[34];
+    		link.l1 = DLG_TEXT_Q[35];
+    		link.l1.go = "Step_9";
+		break;		
+
+ 		case "Step_9":
+        	dialog.text = DLG_TEXT_Q[36]+
+                          DLG_TEXT_Q[37];
+    		link.l1 = DLG_TEXT_Q[38];
+    		link.l1.go = "Step_10";
+    		link.l2 = DLG_TEXT_Q[39];
+    		link.l2.go = "No_Work_Table";			
+		break;
+		
+ 		case "No_Work_Table":
+        	dialog.text = DLG_TEXT_Q[40];
+    		link.l1 = DLG_TEXT_Q[41];
+    		link.l1.go = "vodka_14";
+    		NextDiag.TempNode = "First time";
+    		CloseQuestHeader("Ascold");
+    		pchar.questTemp.Ascold = "BreakeQuest";
+		break;		
+
+ 		case "No_Work":
+        	dialog.text = DLG_TEXT_Q[40];
+    		link.l1 = DLG_TEXT_Q[41];
+    		link.l1.go = "exit";
+    		NextDiag.TempNode = "First time";
+    		CloseQuestHeader("Ascold");
+    		pchar.questTemp.Ascold = "BreakeQuest";
+		break;	
+		
+ 		case "Step_10":
+        	dialog.text = DLG_TEXT_Q[42]+
+                          DLG_TEXT_Q[43];
+    		link.l1 = DLG_TEXT_Q[44];
+    		link.l1.go = "vodka_14";
+    	    pchar.questTemp.Ascold = "SeekThreeObject";
+            AddQuestRecord("Ascold", "3");
+		break;
+
+ 		case "ResultOfSeek":
+        	dialog.text = DLG_TEXT_Q[45];
+    		link.l1 = DLG_TEXT_Q[46];
+    		link.l1.go = "exit";
+            if (CheckCharacterItem(pchar, "indian_8") && CheckCharacterItem(pchar, "indian_9") && CheckCharacterItem(pchar, "amulet_5"))
+            {
+                link.l2 = DLG_TEXT_Q[47];
+                link.l2.go = "Step_11";
+            }
+		break;
+
+ 		case "Step_11":
+        	dialog.text = DLG_TEXT_Q[48];
+            link.l1 = DLG_TEXT_Q[49];
+            if (pchar.questTemp.Ascold == "SoughtThreeObject")
+            {
+               link.l1 = DLG_TEXT_Q[50];
+            }
+    		link.l1.go = "Step_12";
+            link.l2 = DLG_TEXT_Q[51];
+    		link.l2.go = "WantMoreMoney";
+		break;
+
+ 		case "WantMoreMoney":
+        	dialog.text = DLG_TEXT_Q[52]+
+                          DLG_TEXT_Q[53];
+        	link.l1 = DLG_TEXT_Q[54];
+    		link.l1.go = "Step_12";
+		break;
+
+ 		case "Step_12":
+        	dialog.text = DLG_TEXT_Q[55];
+        	link.l1 = DLG_TEXT_Q[56];
+    		link.l1.go = "Step_13";
+		break;	
+
+ 		case "Step_13":
+        	dialog.text = DLG_TEXT_Q[57];
+    		link.l1 = DLG_TEXT_Q[58];
+    		link.l1.go = "exit";
+    		TakeItemFromCharacter(pchar, "indian_8");
+    		TakeItemFromCharacter(pchar, "indian_9");
+    		TakeItemFromCharacter(pchar, "amulet_5");
+    		AddMoneyToCharacter(pchar, 90000);
+			pchar.questTemp.Ascold = "TakenThreeObject";
+    		SaveCurrentQuestDateParam("questTemp.Ascold");
+    		AddQuestRecord("Ascold", "4");
+		break;	
+		
+ 		case "Step_14":
+        	dialog.text = DLG_TEXT_Q[64];
+        	link.l1 = DLG_TEXT_Q[65];
+    		link.l1.go = "Step_15";
+		break;
+
+ 		case "Step_15":
+        	dialog.text = DLG_TEXT_Q[66]+
+                          DLG_TEXT_Q[67]+
+                          DLG_TEXT_Q[68]+
+                          DLG_TEXT_Q[69];
+        	link.l1 = DLG_TEXT_Q[70];
+    		link.l1.go = "Step_16";
+        	link.l2 = DLG_TEXT_Q[71];
+    		link.l2.go = "No_Work";
+		break;
+
+ 		case "Step_16":
+        	dialog.text = DLG_TEXT_Q[72];
+        	link.l1 = DLG_TEXT_Q[73];
+    		link.l1.go = "exit";
+    		SaveCurrentQuestDateParam("questTemp.Ascold");
+    		pchar.questTemp.Ascold = "ToHavanna";
+			pchar.questTemp.Ascold.work = 1;
+    		AddQuestRecord("Ascold", "5");
+		break;		
+
+ 		case "AfterManowarsBattle":
+        	dialog.text = DLG_TEXT_Q[74];
+        	link.l1 = DLG_TEXT_Q[75];
+    		link.l1.go = "exit";
+        	link.l2 = DLG_TEXT_Q[76];
+    		link.l2.go = "No_Work";
+            if (pchar.questTemp.Ascold == "SeekInformatorHavanna")
+            {
+             	link.l1 = DLG_TEXT_Q[77];
+        		link.l1.go = "Step_17";
+            }
+            if (pchar.questTemp.Ascold == "ReciveInformationManowar")
+            {
+             	link.l1 = DLG_TEXT_Q[78];
+        		link.l1.go = "Step_20";
+            }
+            if (pchar.questTemp.Ascold == "ILookedThisAss" && !CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+             	link.l1 = DLG_TEXT_Q[79];
+        		link.l1.go = "Step_24";
+            }
+            if (pchar.questTemp.Ascold == "ILookedThisAss" && CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+             	link.l1 = DLG_TEXT_Q[80];
+        		link.l1.go = "Step_25";
+            }
+            if (pchar.questTemp.Ascold == "2ILookedThisAss" && CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+             	link.l1 = DLG_TEXT_Q[81];
+        		link.l1.go = "Step_25";
+            }
+            if (pchar.questTemp.Ascold == "Ascold_ManowarsDead" && !CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+             	link.l1 = DLG_TEXT_Q[82];
+        		link.l1.go = "NoFoundList";
+            }
+    		if (CheckCharacterItem(pchar, "Powder_mummie") && pchar.questTemp.Ascold == "ILookedThisAss")
+    		{
+            	link.l1 = DLG_TEXT_Q[83];
+        		link.l1.go = "Step_26";
+    		}
+    		if (CheckCharacterItem(pchar, "Powder_mummie") && pchar.questTemp.Ascold == "2ILookedThisAss")
+    		{
+            	link.l1 = DLG_TEXT_Q[84];
+        		link.l1.go = "Step_26";
+    		}
+            if (CheckCharacterItem(pchar, "Powder_mummie") && pchar.questTemp.Ascold == "Ascold_ManowarsDead")
+            {
+             	link.l1 = DLG_TEXT_Q[85];
+        		link.l1.go = "ManowarGoodWork";
+            }
+            if (pchar.questTemp.Ascold == "Ascold_ManowarsDead" && CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+             	link.l1 = DLG_TEXT_Q[86];
+        		link.l1.go = "ManowarGoodWork";
+            }
+		break;
+
+ 		case "Step_17":
+        	dialog.text = DLG_TEXT_Q[87];
+        	link.l1 = DLG_TEXT_Q[88];
+    		link.l1.go = "Step_18";
+		break;
+
+ 		case "Step_18":
+        	dialog.text = DLG_TEXT_Q[89];
+        	link.l1 = DLG_TEXT_Q[90];
+    		link.l1.go = "Step_19";
+		break;
+
+ 		case "Step_19":
+        	dialog.text = DLG_TEXT_Q[91];
+        	link.l1 = DLG_TEXT_Q[92];
+    		link.l1.go = "exit";
+    		pchar.questTemp.Ascold = "2SeekInformatorHavanna";
+		break;
+
+ 		case "Step_20":
+        	dialog.text = DLG_TEXT_Q[93];
+        	link.l1 = DLG_TEXT_Q[94];
+    		link.l1.go = "Step_21";
+		break;
+
+ 		case "Step_21":
+        	dialog.text = DLG_TEXT_Q[95];
+        	link.l1 = DLG_TEXT_Q[96];
+    		link.l1.go = "Step_22";
+		break;
+
+ 		case "Step_22":
+        	dialog.text = DLG_TEXT_Q[97]+
+                          DLG_TEXT_Q[98];
+        	link.l1 = DLG_TEXT_Q[99];
+    		link.l1.go = "Step_23";
+        	link.l2 = DLG_TEXT_Q[100];
+    		link.l2.go = "No_Work";
+		break;
+
+ 		case "Step_23":
+        	dialog.text = DLG_TEXT_Q[101];
+        	link.l1 = DLG_TEXT_Q[102];
+    		link.l1.go = "exit";
+    		AddQuestRecord("Ascold", "8");
+    		pchar.questTemp.Ascold = "IMustKillAll";
+		break;
+
+ 		case "Step_24":
+        	dialog.text = DLG_TEXT_Q[103];
+        	link.l1 = DLG_TEXT_Q[104];
+    		link.l1.go = "Step_25";
+            link.l2 = DLG_TEXT_Q[105];
+    		link.l2.go = "No_Work";
+		break;
+
+ 		case "Step_25":
+        	dialog.text = DLG_TEXT_Q[106];
+        	link.l1 = DLG_TEXT_Q[107];
+    		link.l1.go = "exit";
+    		pchar.questTemp.Ascold = "2ILookedThisAss";
+		break;
+
+ 		case "NoFoundList":
+        	dialog.text = DLG_TEXT_Q[108];
+    		link.l1 = "...";
+    		link.l1.go = "exit";
+    		NextDiag.TempNode = "First time";
+    		CloseQuestHeader("Ascold");
+    		pchar.questTemp.Ascold = "BreakeQuest";
+		break;
+
+ 		case "Step_26":
+        	dialog.text = DLG_TEXT_Q[111];
+        	link.l1 = DLG_TEXT_Q[112];
+    		link.l1.go = "Step_27";
+            link.l2 = DLG_TEXT_Q[113];
+    		link.l2.go = "No_Work";
+            link.l3 = DLG_TEXT_Q[114];
+    		link.l3.go = "Step_27";
+            pchar.questTemp.Ascold.list = 1;
+		break;
+
+ 		case "Step_27":
+        	dialog.text = DLG_TEXT_Q[115];
+        	link.l1 = DLG_TEXT_Q[116];
+    		link.l1.go = "exit";
+            AddQuestRecord("Ascold", "10");
+		break;
+
+ 		case "ManowarGoodWork":
+        	dialog.text = DLG_TEXT_Q[117];
+        	link.l1 = DLG_TEXT_Q[118];
+    		link.l1.go = "exit";
+            link.l2 = DLG_TEXT_Q[119];
+    		link.l2.go = "Step_28";
+    		NextDiag.TempNode = "ManowarGoodWork";
+		break;
+
+ 		case "Step_28":
+        	dialog.text = DLG_TEXT_Q[120];
+        	link.l1 = DLG_TEXT_Q[121];
+    		link.l1.go = "Step_4";
+    		NextDiag.TempNode = "First time";
+    		CloseQuestHeader("Ascold");
+    		pchar.questTemp.Ascold = "BreakeQuest";
+    		pchar.quest.Ascold_FightNearTemple.over = "yes";
+		break;	
+		
+		case "vodka_14":
+			DialogExit();
+			LAi_SetPlayerType(pchar);
+			DoQuestReloadToLocation("BasTer_houseSp1", "goto", "goto1", "");			
+			sld = ItemsFromID("potionrum");
+			sld.shown = false;
+			sld = ItemsFromID("lcheer");
+			sld.shown = false;
+			pchar.questTemp.CanDrink = true; // Ўарль теперь знает секреты выпивки, это ему потом пригодитс€
+			LAi_SetSitType(npchar);
+			LAi_group_MoveCharacter(sld, "FRANCE_CITIZENS");
+			NextDiag.CurrentNode = "First time";
+		break;	
+
+ 		case "Ascold_KilledTemple":
+        	dialog.text = DLG_TEXT_Q[122];
+        	link.l1 = DLG_TEXT_Q[123];
+    		link.l1.go = "NoFoundList";
+            if (CheckCharacterItem(pchar, "Powder_mummie") || CheckAttribute(PChar, "questTemp.Ascold.List"))
+            {
+            	link.l1 = DLG_TEXT_Q[124];
+        		link.l1.go = "Step_29";
+                DeleteAttribute(PChar, "questTemp.Ascold.List");
+            }
+		break;
+
+ 		case "Step_29":
+        	dialog.text = DLG_TEXT_Q[125];
+        	link.l1 = DLG_TEXT_Q[126];
+    		link.l1.go = "Step_30";
+		break;
+
+ 		case "Step_30":
+        	dialog.text = DLG_TEXT_Q[127];
+        	link.l1 = DLG_TEXT_Q[128];
+    		link.l1.go = "Step_31";
+		break;
+
+ 		case "Step_31":
+        	dialog.text = DLG_TEXT_Q[129];
+        	link.l1 = DLG_TEXT_Q[130];
+    		link.l1.go = "exit";
+			TakeItemFromCharacter(pchar, "Powder_mummie");
+    		SaveCurrentQuestDateParam("questTemp.Ascold");
+			pchar.questTemp.Ascold = "Mummie_begin";
+    		AddQuestRecord("Ascold", "12");
+		break;	
+
+ 		case "Mummie_begin":
+        	dialog.text = DLG_TEXT_Q[131]+ GetFullName(pchar) + DLG_TEXT_Q[132];
+        	link.l1 = DLG_TEXT_Q[133];
+    		link.l1.go = "exit";
+		break;		
+		
+ 		case "Step_31A":
+        	dialog.text = DLG_TEXT_Q[136];
+        	link.l1 = DLG_TEXT_Q[137];
+    		link.l1.go = "Step_32";
+		break;
+
+ 		case "Step_32":
+        	dialog.text = DLG_TEXT_Q[138];
+        	link.l1 = DLG_TEXT_Q[139];
+    		link.l1.go = "Step_33";
+        break;
+
+        case "Step_33":
+        	dialog.text = DLG_TEXT_Q[140];
+        	link.l1 = DLG_TEXT_Q[141];
+    		link.l1.go = "Step_34";
+            link.l2 = DLG_TEXT_Q[142];
+    		link.l2.go = "No_Work";
+		break;
+
+ 		case "Step_34":
+        	dialog.text = DLG_TEXT_Q[143]+
+                          DLG_TEXT_Q[144];
+        	link.l1 = DLG_TEXT_Q[145];
+    		link.l1.go = "Step_35";
+        	link.l2 = DLG_TEXT_Q[146];
+    		link.l2.go = "No_Work";
+		break;
+		
+ 		case "Step_35":
+        	dialog.text = DLG_TEXT_Q[147];
+        	link.l1 = DLG_TEXT_Q[148];
+    		link.l1.go = "exit";
+    		AddQuestRecord("Ascold", "13");
+    		CloseQuestHeader("Ascold");
+    		pchar.questTemp.Ascold = "Ascold_SeekGrave";
+		break;	
+
+ 		case "Step_36":
+        	dialog.text = DLG_TEXT_Q[163]+
+                          DLG_TEXT_Q[164];
+        	link.l1 = DLG_TEXT_Q[165];
+    		link.l1.go = "exit";
+    		pchar.questTemp.Ascold = "Ascold_CantSeekGrave";
+		break;
+		
+ 		case "Step_37":
+        	dialog.text = DLG_TEXT_Q[166];
+        	link.l1 = DLG_TEXT_Q[167];
+    		link.l1.go = "exit";
+		break;
+
+ 		case "Step_38":
+        	dialog.text = DLG_TEXT_Q[168]+
+                          DLG_TEXT_Q[169];
+        	link.l1 = DLG_TEXT_Q[170];
+    		link.l1.go = "Step_40";
+		break;
+		
+ 		case "Step_40":
+        	dialog.text = DLG_TEXT_Q[171]+
+                          DLG_TEXT_Q[172]+
+                          DLG_TEXT_Q[173];
+        	link.l1 = DLG_TEXT_Q[174];
+    		link.l1.go = "Step_41";
+		break;
+
+ 		case "Step_41":
+        	dialog.text = DLG_TEXT_Q[175]+
+                          DLG_TEXT_Q[176]+
+                          DLG_TEXT_Q[177];
+        	link.l1 = DLG_TEXT_Q[178];
+    		link.l1.go = "Step_42";
+		break;
+
+ 		case "Step_42":
+        	dialog.text = DLG_TEXT_Q[179];
+        	link.l1 = DLG_TEXT_Q[180];
+    		link.l1.go = "Step_43";
+		break;
+		
+ 		case "Step_43":
+        	dialog.text = DLG_TEXT_Q[181]+
+                          DLG_TEXT_Q[182];
+        	link.l1 = DLG_TEXT_Q[183];
+    		link.l1.go = "Step_44";
+        	link.l2 = DLG_TEXT_Q[184];
+    		link.l2.go = "No_Work";
+		break;
+
+ 		case "Step_44":
+        	dialog.text = DLG_TEXT_Q[185];
+        	link.l1 = DLG_TEXT_Q[186];
+    		link.l1.go = "exit";
+    		pchar.questTemp.Ascold = "Ascold_SeekRockLetter";
+            // ==> ?елаем скрижали видимыми, теперь их можно найти.
+            sld = ItemsFromID("Rock_letter");
+            sld.shown = 1;
+		break;			
+		
+ 		case "Step_45":
+        	dialog.text = DLG_TEXT_Q[187];
+        	link.l1 = DLG_TEXT_Q[188];
+    		link.l1.go = "exit";
+			bDisableLandEncounters = true; //закроем энкаунтеров, лучше раньше, чем баги.
+    		pchar.questTemp.Ascold = "Ascold_EnterGrave";
+			sld = ItemsFromID("Rock_letter");
+			sld.model = "StoneMap2";
+		break;	
+
+ 		case "Step_46":
+        	dialog.text = DLG_TEXT_Q[192];
+        	link.l1 = DLG_TEXT_Q[193];
+    		link.l1.go = "Step_47";
+		break;
+		
+ 		case "Step_47":
+        	dialog.text = DLG_TEXT_Q[194];
+        	link.l1 = DLG_TEXT_Q[195];
+    		link.l1.go = "Step_48";
+		break;
+		
+ 		case "Step_48":
+        	dialog.text = DLG_TEXT_Q[196]+
+                          DLG_TEXT_Q[197];
+        	link.l1 = DLG_TEXT_Q[198];
+    		link.l1.go = "Step_49";
+		break;
+		
+ 		case "Step_49":
+        	dialog.text = DLG_TEXT_Q[199];
+        	link.l1 = DLG_TEXT_Q[200];
+    		link.l1.go = "Step_50";
+		break;
+
+ 		case "Step_50":
+        	dialog.text = DLG_TEXT_Q[201];
+        	link.l1 = DLG_TEXT_Q[202];
+    		link.l1.go = "Step_51";
+		break;
+
+ 		case "Step_51":
+        	dialog.text = DLG_TEXT_Q[203];
+           	link.l1 = DLG_TEXT_Q[204];
+    		link.l1.go = "exit";
+    		pchar.questTemp.Ascold = "Ascold_WateringMummy";
+    		GiveItem2Character(Pchar,"Ascold_rabble");
+		break;		
+
+ 		case "Step_52":
+        	dialog.text = DLG_TEXT_Q[211]+
+                          DLG_TEXT_Q[212];
+        	link.l1 = DLG_TEXT_Q[213];
+    		link.l1.go = "Step_53";
+		break;
+
+ 		case "Step_53":
+        	dialog.text = DLG_TEXT_Q[214];
+        	link.l1 = DLG_TEXT_Q[215];
+    		link.l1.go = "Step_54";
+		break;
+
+ 		case "Step_54":
+        	dialog.text = DLG_TEXT_Q[216]+
+                          DLG_TEXT_Q[217];
+        	link.l1 = DLG_TEXT_Q[218];
+    		link.l1.go = "Step_55";
+		break;
+
+ 		case "Step_55":
+        	dialog.text = DLG_TEXT_Q[219];
+        	link.l1 = DLG_TEXT_Q[220];
+    		link.l1.go = "Step_56";
+		break;
+
+ 		case "Step_56":
+        	dialog.text = DLG_TEXT_Q[221]+
+                          DLG_TEXT_Q[222];
+        	link.l1 = DLG_TEXT_Q[223];
+    		link.l1.go = "Step_57";
+		break;
+
+ 		case "Step_57":
+        	dialog.text = DLG_TEXT_Q[224];
+        	link.l1 = DLG_TEXT_Q[225];
+    		link.l1.go = "Step_58";
+		break;
+
+ 		case "Step_58":
+        	dialog.text = DLG_TEXT_Q[226]+
+                          DLG_TEXT_Q[227];
+        	link.l1 = DLG_TEXT_Q[228];
+    		link.l1.go = "Step_59";
+		break;
+
+ 		case "Step_59":
+        	dialog.text = DLG_TEXT_Q[229];
+        	link.l1 = DLG_TEXT_Q[230];
+    		link.l1.go = "exit";
+			LocatorReloadEnterDisable("Guadeloupe_Cave", "reload3_back", true);
+			LAi_LocationFightDisable(&Locations[FindLocation("Guadeloupe_Cave")], false);
+			pchar.quest.Ascold_LeifIsDead.win_condition.l1 = "NPC_Death";
+			pchar.quest.Ascold_LeifIsDead.win_condition.l1.character = "LeifEricson";
+			pchar.quest.Ascold_LeifIsDead.function = "Ascold_LeifIsDead";
+			NextDiag.TempNode = "AfterAttackMummy";
+    		pchar.questTemp.Ascold = "Ascold_SaveWorld";
+			sld = characterFromId("LeifEricson");
+            LAi_SetImmortal(sld, false);
+            LAi_SetWarriorType(sld);
+			LAi_warrior_SetStay(sld, true);
+			LAi_group_MoveCharacter(sld, LAI_GROUP_MONSTERS);
+			LAi_group_FightGroups(LAI_GROUP_MONSTERS, LAI_GROUP_PLAYER, true);
+		break;
+
+ 		case "AfterAttackMummy":
+            if (pchar.questTemp.Ascold == "Ascold_SaveWorld")
+            {
+            	dialog.text = DLG_TEXT_Q[207];
+            	link.l1 = DLG_TEXT_Q[208];
+        		link.l1.go = "exit";
+                NextDiag.TempNode = "AfterAttackMummy";
+            }
+            if (GetCharacterIndex("LeifEricson") == -1)
+            {
+            	dialog.text = DLG_TEXT_Q[209];
+            	link.l1 = DLG_TEXT_Q[210];
+        		link.l1.go = "Step_60";
+				NextDiag.TempNode = "First time";
+				SelectAscoldRendom();
+            }
+		break;
+
+ 		case "Step_60":
+			pchar.questTemp.Ascold.work = 0;
+        	dialog.text = DLG_TEXT_Q[231]+
+                          DLG_TEXT_Q[232];
+        	link.l1 = DLG_TEXT_Q[233];
+    		link.l1.go = "Step_61";
+            if (CheckCharacterItem(pchar, "Azzy_bottle"))
+            {
+            	link.l2 = DLG_TEXT_Q[234];
+        		link.l2.go = "Step_63";				
+            }
+		break;
+
+ 		case "Step_61":
+        	dialog.text = DLG_TEXT_Q[235]+
+                          DLG_TEXT_Q[236];
+        	link.l1 = DLG_TEXT_Q[237];
+    		link.l1.go = "Step_62";
+		break;
+
+ 		case "Step_62":
+        	dialog.text = DLG_TEXT_Q[238];
+        	link.l1 = DLG_TEXT_Q[239];
+    		link.l1.go = "exit";
+            pchar.questTemp.Ascold = "Ascold_OverBusiness";
+		break;
+
+ 		case "Step_63":
+        	dialog.text = DLG_TEXT_Q[244];
+        	link.l1 = DLG_TEXT_Q[245];
+    		link.l1.go = "BuyAzzy";
+        	link.l2 = DLG_TEXT_Q[246];
+    		link.l2.go = "Step_62";
+		break;
+
+ 		case "BuyAzzy":
+        	dialog.text = DLG_TEXT_Q[247];
+        	link.l1 = DLG_TEXT_Q[248];
+    		link.l1.go = "Step_62";
+            TakeItemFromCharacter(pchar, "Azzy_bottle");
+            AddMoneyToCharacter(pchar, 50000);
+		break;
+		
+ 		case "Step_64":
+        	dialog.text = DLG_TEXT_Q[249];
+        	link.l1 = DLG_TEXT_Q[250];
+    		link.l1.go = "Step_65";
+		break;
+		
+ 		case "Step_65":
+        	dialog.text = DLG_TEXT_Q[251];
+        	link.l1 = DLG_TEXT_Q[252];
+    		link.l1.go = "Step_66";
+		break;
+
+ 		case "Step_66":
+        	dialog.text = DLG_TEXT_Q[253];
+        	link.l1 = DLG_TEXT_Q[254];
+    		link.l1.go = "Step_67";
+		break;
+
+ 		case "Step_67":
+        	dialog.text = DLG_TEXT_Q[255];
+        	link.l1 = DLG_TEXT_Q[256];
+    		link.l1.go = "Step_68";
+		break;
+
+ 		case "Step_68":
+        	dialog.text = DLG_TEXT_Q[257];
+        	link.l1 = DLG_TEXT_Q[258];
+    		link.l1.go = "Step_69";
+		break;
+
+ 		case "Step_69":
+        	dialog.text = DLG_TEXT_Q[259];
+        	link.l1 = DLG_TEXT_Q[260];
+    		link.l1.go = "Step_70";
+		break;
+
+ 		case "Step_70":
+            dialog.text = DLG_TEXT_Q[263];
+            link.l1 = DLG_TEXT_Q[264];
+            link.l1.go = "Step_71";
+            pchar.questTemp.Azzy = "DestrContract";
+		break;
+		
+ 		case "Step_71":
+        	dialog.text = DLG_TEXT_Q[265];
+        	link.l1 = DLG_TEXT_Q[266];
+    		link.l1.go = "Step_72";
+            GiveItem2Character(pchar, "sculMa1");
+            GiveItem2Character(pchar, "sculMa2");
+            GiveItem2Character(pchar, "sculMa3");
+            GiveItem2Character(pchar, "talisman6");
+		break;
+
+ 		case "Step_72":
+        	dialog.text = DLG_TEXT_Q[267];
+        	link.l1 = DLG_TEXT_Q[268];
+    		link.l1.go = "exit";
 		break;
 		
 		case "Sharlie":
-			dialog.text = "Ah, so you are good old Michel's brother! That radically changes the situation! Come in, come in, monsieur, have a seat. Maybe a glass of vodka for our acquaintance? I still have a few more bottles left and it would do me great pleasure do split one of them with one of my friends' brother!";
-			link.l1 = "Forgive me, monsieur Fadey, but drinking is completely out of the cards. I would prefer to get right to business.";
+			dialog.text = DLG_TEXT_Q[303];
+			link.l1 = DLG_TEXT_Q[304];
 			link.l1.go = "Sharlie_1";
 		break;
 		
 		case "Sharlie_1":
-			dialog.text = "Eh, too bad... Rum is nothing compared to Russian vodka! You don't know what you've lost. Fine, to business then. I'm all ears, Charles.";
-			link.l1 = "Monsieur, I suspect that what I'm about to tell you will come as quite unpleasant, but alas, I am compelled!  Michel has told me that you owe him quite high gambling debt. He has also ordered that you hand the money to me, cause my brother is... not able to come see you personally at the moment.";
+			dialog.text = DLG_TEXT_Q[305];
+			link.l1 = DLG_TEXT_Q[306];
 			link.l1.go = "Sharlie_2";
 		break;
 		
 		case "Sharlie_2":
-			dialog.text = "Oh, young man! Of course, I remember everything and I unreservedly admit that I owe your brother. A gambling debt is sacred, every nobleman knows that. But I beg you to understand my position. An unpleasant story happened to me recently - I was robbed in the most impertinent way!\nDamned thieves took everything they could, everything I had earned for the last years, my money and my priceless collection! I simply can't wipe a debt right now\nBut, monsieur de Maure, I don't give up my obligations! I only ask you to meet me halfway. Since I don't have any coin in my possession now anyway, I offer you to accept this excellent rare dagger. Take a look!\nThis is a real masterpiece of arms, a pride of my stolen collection. Besides it was enchanted by Indian shamans and has very strong hidden features. Indians called it the Chief's claw\nI would have never agreed to give it away because I paid a great sum for the dagger, the sum much bigger than my debt, but considering the circumstances I am ready to give it to you. Take it, it's a very good deal for you!";
-			link.l1 = "Hm... I'd prefer the money...";
+			dialog.text = DLG_TEXT_Q[307];
+			link.l1 = DLG_TEXT_Q[308];
 			link.l1.go = "Sharlie_3";
 		break;
 		
 		case "Sharlie_3":
-			dialog.text = "But I really do not have it. Do you really think, my good man, that I would offer you this magnificent hoodoo dagger instead of some pitiful coins? You have to admit, I'm stuck in a rut here. My heart bleeds when I say it. But a gambling debt is a debt of honour, so I'm willing to part with this item, which is very dear to me.";
-			link.l1 = "Alright, I agree. Since you don't have any money anyway, I'll at least take this vaunted dagger of yours. I hope I can at least fetch a decent amount of money for it...";
+			dialog.text = DLG_TEXT_Q[309];
+			link.l1 = DLG_TEXT_Q[310];
 			link.l1.go = "Sharlie_4";
 		break;
 		
 		case "Sharlie_4":
-			dialog.text = "'At least'!? No, this is unbelievable! I'm giving away my most prized possession that I would get at least ten times more for in Europe, and you stand there saying 'at least'!? This dagger, young man, if you would like to know, saved one man's life! And he...";
-			link.l1 = "And what is its hidden power that you mentioned?";
+			dialog.text = DLG_TEXT_Q[311];
+			link.l1 = DLG_TEXT_Q[312];
 			link.l1.go = "Sharlie_5";
 		break;
 		
 		case "Sharlie_5":
-			dialog.text = "Oh, Charles! I am a Christian, you know, not an Indian shaman. And I have no way of knowing all the hidden properties of this blade. But they exist, I assure you. Put this dagger in your hand and you can feel it by yourself! Take it, take it! How about that! Do you feel anything?";
-			link.l1 = "Hm... No. Although it fits the hand very comfortably, not too bad.";
+			dialog.text = DLG_TEXT_Q[313];
+			link.l1 = DLG_TEXT_Q[314];
 			link.l1.go = "Sharlie_6";
 		break;
 		
 		case "Sharlie_6":
-			dialog.text = "There you go! But that's merely the least of its qualities. If you put this dagger to use in battle I'm sure it will display its might on all cylinders! Well then, are you taking it?";
-			link.l1 = "Do I have a choice? I'll take it since you've got such money troubles...";
+			dialog.text = DLG_TEXT_Q[315];
+			link.l1 = DLG_TEXT_Q[316];
 			link.l1.go = "Sharlie_7";
 		break;
 		
 		case "Sharlie_7":
 			GiveItem2Character(pchar, "knife_01");
 			PlaySound("interface\important_item.wav");
-			Log_Info("You've received the Chief's Claw'");
+			Log_Info(DLG_TEXT_Q[317]);
 			sld = ItemsFromID("knife_01");
 			sld.Weight = 1.5;
 			sld.price = 0;
-			dialog.text = "It's a sensible decision, Charles. You won't regret it! Here you go. And make sure to say hello to Michel from me! Tell him to drop by sometimes, of course as soon as he gets an opportunity.";
-			link.l1 = "I'll tell him, make no doubts...";
+			dialog.text = DLG_TEXT_Q[318];
+			link.l1 = DLG_TEXT_Q[319];
 			link.l1.go = "exit";
-			link.l2 = "You said that you had been robbed... Have you found the culprits?";
+			link.l2 = DLG_TEXT_Q[320];
 			link.l2.go = "Sharlie_8";
 			pchar.questTemp.Sharlie = "takeknife";
 			AddQuestRecord("Sharlie", "18-1");
@@ -196,34 +1034,34 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Sharlie_8":
-			dialog.text = "The thing is I haven't. The scumbags cleared out the whole house, ran away with all the silver, gold, my savings from years of back breaking labour, but the worst thing is they swiped my magnificent collection of Eastern swords! There wasn't a collection like that in all of the Caribbean. Very, very remarkable Persian cavalry swords...";
-			link.l1 = "Eastern swords, you say? Sounds quite curious. So you're a collector, then?";
+			dialog.text = DLG_TEXT_Q[321];
+			link.l1 = DLG_TEXT_Q[322];
 			link.l1.go = "Sharlie_9";
 		break;
 		
 		case "Sharlie_9":
-			dialog.text = "Well, I like to collect rare things... Listen, Charles, maybe you can help me in the matter of the sword blades...";
-			link.l1 = "Help? But how? You mean by catching the thieves?";
+			dialog.text = DLG_TEXT_Q[323];
+			link.l1 = DLG_TEXT_Q[324];
 			link.l1.go = "Sharlie_10";
 		break;
 		
 		case "Sharlie_10":
-			dialog.text = "Not at all. I'm not particularly interested in the thieves. I would like my Persian  cavalry swords to return back to me. If you find them, I won't just stay in debt, I promise.";
-			link.l1 = "Hm. But where should I look for them? Around the Caribbean? Or maybe all around the world?";
+			dialog.text = DLG_TEXT_Q[325];
+			link.l1 = DLG_TEXT_Q[326];
 			link.l1.go = "Sharlie_11";
 		break;
 		
 		case "Sharlie_11":
-			dialog.text = "Well, maybe you'll catch sight of them on the isles with some street merchant, the scumbags couldn't even imagine the value of these cavalry swords and they've surely sold them for peanuts. So if you see the Persian sword blades anywhere, bring them to me. Will you be able to recognize them?";
-			link.l1 = "I think I will. Okay, I'll keep my eyes peeled and if I see something that looks like them, I'll definitely bring it to you.";
+			dialog.text = DLG_TEXT_Q[327];
+			link.l1 = DLG_TEXT_Q[328];
 			link.l1.go = "Sharlie_12";
-			link.l2 = "You know, I'm not an expert in fine weaponry. I'm afraid I won't be able to help you. So it would be dishonest of me to give you false hope.";
+			link.l2 = DLG_TEXT_Q[329];
 			link.l2.go = "Sharlie_13";
 		break;
 		
 		case "Sharlie_12":
-			dialog.text = "Great! I hope you will be fortunate. And I will make it worth you while. Yes, Charles, can you imagine that I had another robbery attempt recently\nA thief tried to get inside my house just a few days ago\nThat was just too much for me! He didn't escape from me though: I managed to catch him, gave him a good beating and sent to the local prison. I guess they will hang him soon. Good riddance!";
-			link.l1 = "You think he's one of the guys that snagged your cavalry swords?";
+			dialog.text = DLG_TEXT_Q[330];
+			link.l1 = DLG_TEXT_Q[331];
 			link.l1.go = "Sharlie_14";
 			pchar.questTemp.Persian = "start";
 			// --> скимитар 021012
@@ -234,21 +1072,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Sharlie_13":
-			dialog.text = "Pity, but it's no use crying for the moon. Yes, Charles, can you imagine that I had another robbery attempt recently\nA thief tried to get inside my house just a few days ago\nThat was just too much for me! He didn't escape from me though: I managed to catch him, gave him a good beating and sent to the local prison. I guess they will hang him soon. Good riddance!";
-			link.l1 = "You think he's one of the guys that snagged your cavalry swords?";
+			dialog.text = DLG_TEXT_Q[332];
+			link.l1 = DLG_TEXT_Q[333];
 			link.l1.go = "Sharlie_14";
 			pchar.questTemp.Persian = "end";
 		break;
 		
 		case "Sharlie_14":
-			dialog.text = "Nah, I don't think so. He was interested only in money. Imagine a scarecrow in my room, picking my chests\nAn Indian from some deep jungles, that's ridiculous. Coloured and in costume... You may visit our dungeons and see that jester by yourself if you want, while he still lives.";
-			link.l1 = "Hm... Maybe I'll drop by.";
+			dialog.text = DLG_TEXT_Q[334];
+			link.l1 = DLG_TEXT_Q[335];
 			link.l1.go = "Sharlie_15";
 		break;
 		
 		case "Sharlie_15":
-			dialog.text = "Go ahead, have a gaze at the local walking wonders... All right, Charles, it was a nice talk. Are you going back to Martinique now? Happy trails.";
-			link.l1 = "All the best, Fadey.";
+			dialog.text = DLG_TEXT_Q[336];
+			link.l1 = DLG_TEXT_Q[337];
 			link.l1.go = "exit";
 			pchar.questTemp.Sharlie.Tichingitu = "true";
 			AddDialogExitQuestFunction("SetTichingituJail");
@@ -257,49 +1095,49 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Tichingitu":
-			dialog.text = "How interesting! I'm listening.";
-			link.l1 = "Fadey, I've spoken with that Indian. And I came to you to ask for help to get him out. The desolate heart just wanted something to eat...";
+			dialog.text = DLG_TEXT_Q[338];
+			link.l1 = DLG_TEXT_Q[339];
 			link.l1.go = "Tichingitu_1";
 		break;
 		
 		case "Tichingitu_1":
-			dialog.text = "Ha-ha-ha, and you believed those fairy tales? Youth...";
-			link.l1 = "Fadey, of course I may be younger than you, but even I am in a condition to differentiate when I'm being told the truth and when I'm being lied to. Besides, do you really think a hanging is an appropriate punishment for that kind of a crime?";
+			dialog.text = DLG_TEXT_Q[340];
+			link.l1 = DLG_TEXT_Q[341];
 			link.l1.go = "Tichingitu_2";
 		break;
 		
 		case "Tichingitu_2":
-			dialog.text = "Maybe it is! That scoundrel snuck into my home! What would you do in that case? I'm sure you'd just cut him with a sabre, wouldn't you?";
-			link.l1 = "No, I wouldn't. Fadey, I'm sure you're just enraged out because of your stolen cavalry sword collection. If it wasn't happened, you'd just give this redskin a leathering and kick him out with a punch in the butt. Am I wrong?";
+			dialog.text = DLG_TEXT_Q[342];
+			link.l1 = DLG_TEXT_Q[343];
 			link.l1.go = "Tichingitu_3";
 		break;
 		
 		case "Tichingitu_3":
-			dialog.text = "Eh, Charles...You're just like your brother... Fine. We'll do this like businessmen. Since you need this Indian so bad, compensate me for the moral distress for him and I will write a pardon that will, of course, be upheld. Is that fine?";
-			link.l1 = "How much?";
+			dialog.text = DLG_TEXT_Q[344];
+			link.l1 = DLG_TEXT_Q[345];
 			link.l1.go = "Tichingitu_4";
 		break;
 		
 		case "Tichingitu_4":
-			dialog.text = "Ha, you're already starting to learn life in the Caribbean, Charles. One hundred fifty gold doubloons.";
-			link.l1 = "Fadey, God have mercy...";
+			dialog.text = DLG_TEXT_Q[346];
+			link.l1 = DLG_TEXT_Q[347];
 			link.l1.go = "Tichingitu_5";
 		break;
 		
 		case "Tichingitu_5":
-			dialog.text = "Alright, alright. One hundred gold doubloons. But that's my final offer. And we're talking about doubloons not pesos. Our banker will surely be able to come up with some amount.";
+			dialog.text = DLG_TEXT_Q[348];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 100)
 			{
-				link.l1 = "I've got the amount you need right now. Here you go, here are your hundred doubloons.";
+				link.l1 = DLG_TEXT_Q[349];
 				link.l1.go = "Tichingitu_7";
 			}
-			link.l2 = "All right, I'll go get what you need.";
+			link.l2 = DLG_TEXT_Q[350];
 			link.l2.go = "Tichingitu_6";
 		break;
 		
 		case "Tichingitu_6":
-			dialog.text = "And hurry, Charles! You have ten days...";
-			link.l1 = "I'll keep that it mind. Goodbye!";
+			dialog.text = DLG_TEXT_Q[351];
+			link.l1 = DLG_TEXT_Q[352];
 			link.l1.go = "exit";
 			pchar.questTemp.Sharlie.Tichingitu = "dublon";
 		break;
@@ -307,8 +1145,8 @@ void ProcessDialogEvent()
 		case "Tichingitu_7":
 			RemoveItems(PChar, "gold_dublon", 100);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Great! Get a hold of him! I'll write a note right now and put my stamp on it, hold on a second... here you go. Give this to the commandant and you can take your Indian with you. Why exactly you need him, I can't wrap my mind around it. What are you gonna do, display him at some fair? Ha ha!";
-			link.l1 = "God sees everything, Fadey. Saving a man's life is a noble deed.";
+			dialog.text = DLG_TEXT_Q[353];
+			link.l1 = DLG_TEXT_Q[354];
 			link.l1.go = "Tichingitu_8";
 		break;
 		
@@ -316,54 +1154,54 @@ void ProcessDialogEvent()
 			GiveItem2Character(pchar, "letter_1");
 			ChangeItemDescribe("letter_1", "itmdescr_letter_1_Fadey");
 			PlaySound("interface\important_item.wav");
-			dialog.text = "That's a debatable, Charles. What if you save a killer or a rapist?  Anyway, may God be with you. Go to the commandant before your red-skinned friend gets hoisted on the scaffold...";
-			link.l1 = "I'm on my way. See you later, Fadey.";
+			dialog.text = DLG_TEXT_Q[355];
+			link.l1 = DLG_TEXT_Q[356];
 			link.l1.go = "exit";
 			pchar.questTemp.Sharlie.Tichingitu = "pay";
 		break;
 		
 		case "vodka":
-			dialog.text = "You don't say so! By your stern face, I take it you're about to bring me up to speed on some bad news?";
-			link.l1 = "Pretty much. I'll be straight: Michel said that you basically fooled me with this 'Chief's claw' thingy and that it's a piece of regular old junk, that you could buy from any street merchant for a couple hundred pesos. By the way, I asked around as far as its price from some street vendors dealing in metalware. They named me exactly that price.";
+			dialog.text = DLG_TEXT_Q[357];
+			link.l1 = DLG_TEXT_Q[358];
 			link.l1.go = "vodka_1";
 			npchar.quest.vodka = "true";
 		break;
 		
 		case "vodka_1":
-			dialog.text = "Oh, monsieur de Maure... I'm surely surprised by your brother. These half-wit hucksters can say whatever they want, but him! You tell me, Charles, if somebody brought you an old two hand knight's sword of the king Arthur days and offered you to buy it, what would you give for it?";
-			link.l1 = "A two hander? Are you mocking me? What use of it? We're in the middle of the seventeenth century! I wouldn't give anything for it. Not a peso.";
+			dialog.text = DLG_TEXT_Q[359];
+			link.l1 = DLG_TEXT_Q[360];
 			link.l1.go = "vodka_2";
 		break;
 		
 		case "vodka_2":
-			dialog.text = "See! And if you bring such sword to me, I will pay three hundred doubloons for it. Ask why? Because it is a rarity, hard to find in our seventeenth century! You don't understand, yet you judge!\nThe Chief's claw is also a great quality dagger, experts told me that Cortez himself owned it. The Cortez! The one who captured Tenochtitlan! And you are saying that it is a rubbish!\nBesides, I have already told you that it's not just a dagger, it is an enchanted dagger! You are still a newcomer here so you don't know yet what role play magic spells, rituals and curses in the Caribbean! Charles, this is the New World, the homeland of Maya and Aztecs whose knowledge of such things had reached inconceivable heights!\nThis dagger has hidden powers, alas no one just knows what kind of powers. You have a unique, incredible chance to learn it yourself and yet you call it a rubbish!\nIf only I had enough money to cover my debt to your brother, I'd immediately exchange it back for despicable metal... This is a very valuable item and its cost valued not in money...";
-			link.l1 = "Alright, alright, Fadey. I believe you. Your arguments are quite convincing and the ardour that you have just performed here is a testament to your sincerity.";
+			dialog.text = DLG_TEXT_Q[361];
+			link.l1 = DLG_TEXT_Q[362];
 			link.l1.go = "vodka_3";
 		break;
 		
 		case "vodka_3":
-			dialog.text = "Hear, hear! Well said! You've done well, Charles, for not taking offence and coming directly to me for an explanation. I hope now the incident is dismissed?";
-			link.l1 = "Yes, monsieur Fadey. Completely. Now, please, allow me to make my bow...";
+			dialog.text = DLG_TEXT_Q[363];
+			link.l1 = DLG_TEXT_Q[364];
 			link.l1.go = "vodka_4";
 		break;
 		
 		case "vodka_4":
 			PlaySound("Voice\Russian\sharlie\Fadey Moskovit-04.wav");
-			dialog.text = "Stop, Charles! I'll be honest, I really like you. Maybe you and I could become friends one day. And why not to make the first step toward that right now? I literally just cooled down two bottles of excellent Russian vodka in spring water down in the cellar. What do you say if you and I split it to your brother's health?";
-			link.l1 = "Hm. I'm sorry, monsieur Fadey, but it's already time for me to set out to sea. I'm truly in a hurry!";
+			dialog.text = DLG_TEXT_Q[365];
+			link.l1 = DLG_TEXT_Q[366];
 			link.l1.go = "vodka_no";
-			link.l2 = "You had offered last time and I refused... It would be impolite to refuse again. Fine, Fadey. I am in!";
+			link.l2 = DLG_TEXT_Q[367];
 			link.l2.go = "vodka_5";
 		break;
 		
 		case "vodka_no":
-			dialog.text = "That's too bad. Compared to vodka, rum is just a rotten, cheap wish wash. But since you're in a hurry, I don't hold you anymore. Good luck, Charles!";
-			link.l1 = "Same to you, monsieur Fadey...";
+			dialog.text = DLG_TEXT_Q[368];
+			link.l1 = DLG_TEXT_Q[369];
 			link.l1.go = "exit";
 		break;
 		
 		case "vodka_5":
-			dialog.text = "Well, get a load of you! Splendid! Let's have a sit and talk! Have a seat, monsieur, and I'll go get the vodka. Oh, it's gonna be tasty. It's nice and cold!..";
+			dialog.text = DLG_TEXT_Q[370];
 			link.l1 = "...";
 			link.l1.go = "vodka_6";
 		break;
@@ -384,37 +1222,37 @@ void ProcessDialogEvent()
 		
 		case "vodka_7":
 			dialog.text = "";
-			link.l1 = "Whoo... Sso, tell m-me, Fadey, h-how does t-that work out? Hic! We've drunk... t-two b-bottles of v-vodka... by the way, how ironic! - you look s-stone c-cold sob-ber and I'm... drunk as a hog. How's t-that, huh?";
+			link.l1 = DLG_TEXT_Q[371];
 			link.l1.go = "vodka_8";
 		break;
 		
 		case "vodka_8":
-			dialog.text = "Charles, enjoy yourself, relax. What's a hog got to do with this? I've got some excellent vodka. Get some sleep and you'll be chipper as a whistle when you wake up. Even your head will clear up. You'll see.";
-			link.l1 = "Y-yeah, vodka...it is... it's absolutely magnificent, your vodka. I've never drunk anything like it.";
+			dialog.text = DLG_TEXT_Q[372];
+			link.l1 = DLG_TEXT_Q[373];
 			link.l1.go = "vodka_9";
 		break;
 		
 		case "vodka_9":
-			dialog.text = "Ha! You've got that right! That kind of vodka is made where I'm from, in Russia, and even there not everybody knows how to make it right. I buy only the best. Like this stuff here that you and I have deigned to nip.";
-			link.l1 = "B-but tell me, Fadey: h-how c-can you drink s-so much and not get drunk? H-how ya do that, huh? Sh-share the secret with me. M-maybe it'll c-come to use later... Hic!";
+			dialog.text = DLG_TEXT_Q[374];
+			link.l1 = DLG_TEXT_Q[375];
 			link.l1.go = "vodka_10";
 		break;
 		
 		case "vodka_10":
-			dialog.text = "Ha! Well, you can't compare you and me, monsieur. Just look at yourself, skinny as a whip there. Plus, you're not used to it. But anyway, I'll share a few secrets with you about how to drink and still keep yourself together.";
-			link.l1 = "P-lease d-do...hic! Monsieur Fadey...";
+			dialog.text = DLG_TEXT_Q[376];
+			link.l1 = DLG_TEXT_Q[377];
 			link.l1.go = "vodka_11";
 		break;
 		
 		case "vodka_11":
-			dialog.text = "Well, if you want to drink and not to get drunk you should follow a few rules. Most importantly, never drink if your stomach is empty. Eat something decent before the libation starts\nSecond, don't forget to eat after every glass. Meat or fish will be the best. Third, don't wash your mouth with the drink, swallow at once\nAlso, having a small - not more than a half pint - shot prior the main libation will prepare you poor body for receiving big doses of alcohol. Don't overdo it, otherwise the effect will be quite the opposite\nFinally, training is the key, drinking moderate amounts of rum or other types of alcohol on a regular basis will make you more resistant to them.";
-			link.l1 = "Hm-mm... S-so that's how you do it! I'll d-definitely...hic!.. remember all your ins-structions, Fadey. Th-thank you. And n-now I think it'd b-be a g-good idea for me to g-get some shuteye, cuz I aint f-feelin too hot today.";
+			dialog.text = DLG_TEXT_Q[378];
+			link.l1 = DLG_TEXT_Q[379];
 			link.l1.go = "vodka_12";
 		break;
 		
 		case "vodka_12":
-			dialog.text = "Get some rest, Charles. We've had a nice evening, you and I! Good luck to you and see you later!";
-			link.l1 = "G-goodbye, Fadey!";
+			dialog.text = DLG_TEXT_Q[380];
+			link.l1 = DLG_TEXT_Q[381];
 			link.l1.go = "vodka_13";
 		break;
 		
@@ -432,20 +1270,20 @@ void ProcessDialogEvent()
 		
 		case "trial":
 			pchar.quest.Sharlie_TrialOver.over = "yes"; //сн€ть таймер
-			dialog.text = "What, did he actually say that I would definitely help you?";
-			link.l1 = "Well, pretty much. Won't you give a hand to the brother of your longtime friend? It's not like I'm asking for money from you. I'm asking you to present me an opportunity to make it.";
+			dialog.text = DLG_TEXT_Q[382];
+			link.l1 = DLG_TEXT_Q[383];
 			link.l1.go = "trial_1";
 		break;
 		
 		case "trial_1":
-			dialog.text = "Hm. No, I won't turn you over of course. If you wanna feed a man, don't give him a fish, but a fishing pole. Isn't that right, monsieur de Maure? So you need a job... Easy enough. I'll have a chat with a man I know and I'll recommend you to him. And everything else will depend only on how well you do the job.";
-			link.l1 = "Wonderful. Who do I need to speak with?";
+			dialog.text = DLG_TEXT_Q[384];
+			link.l1 = DLG_TEXT_Q[385];
 			link.l1.go = "trial_2";
 		break;
 		
 		case "trial_2":
-			dialog.text = "Come by the store tomorrow. A man by the name of Gerard LeCroix will be waiting for you there. He'll give you some work. He'll stay in our colony only until tomorrow evening. See him in time and do the job well. Don't put me in an awkward position.";
-			link.l1 = "Deal. Gratitude, Fadey!";
+			dialog.text = DLG_TEXT_Q[386];
+			link.l1 = DLG_TEXT_Q[387];
 			link.l1.go = "trial_3";
 		break;
 		
@@ -457,50 +1295,50 @@ void ProcessDialogEvent()
 		break;
 		
 		case "guardoftruth":
-			dialog.text = "Well, who'd doubt that you're here on business, my friend! I don't have any vodka to offer you at the moment, it's all gone. Tell me what kind of affliction has come upon you now.";
-			link.l1 = "A local parish was given a golden pectoral cross with lazurite by a certain privateer for the forgiveness of his sins. It's a unique and valuable item. The trouble is that this cross was stolen from another parish. Not only that, but a priest was murdered during the robbery.";
+			dialog.text = DLG_TEXT_Q[388];
+			link.l1 = DLG_TEXT_Q[389];
 			link.l1.go = "guardoftruth_1";
 		break;
 		
 		case "guardoftruth_1":
-			dialog.text = "You don't say so!";
-			link.l1 = "Yes. At the moment I am representing the interests of followers of the parish which was robbed and I am attempting to return this item to its legal place.";
+			dialog.text = DLG_TEXT_Q[390];
+			link.l1 = DLG_TEXT_Q[391];
 			link.l1.go = "guardoftruth_2";
 		break;
 		
 		case "guardoftruth_2":
-			dialog.text = "A noble deed, and very pious...";
-			link.l1 = "But the revered father refuses to return it to me despite all of my arguments that I've made to him. I don't get it. How can one calmly place a stolen item with blood of a holy man on it in a place of God? That's flat out blasphemy!";
+			dialog.text = DLG_TEXT_Q[392];
+			link.l1 = DLG_TEXT_Q[393];
 			link.l1.go = "guardoftruth_3";
 		break;
 		
 		case "guardoftruth_3":
-			dialog.text = "I take it you want me to assist you?";
-			link.l1 = "I do! You're quite an influence in Basse-Terre. You're well respected, so perhaps the revered father will listen to your admonitions?";
+			dialog.text = DLG_TEXT_Q[394];
+			link.l1 = DLG_TEXT_Q[395];
 			link.l1.go = "guardoftruth_4";
 		break;
 		
 		case "guardoftruth_4":
-			dialog.text = ""+pchar.name+", have you told the story of this cross to our priest?";
-			link.l1 = "Of course! I have called to his religious sentiments, to Christian solidarity, to his conscience for God sakes, but he still closes his ears to my pleas.";
+			dialog.text = ""+pchar.name+DLG_TEXT_Q[396];
+			link.l1 = DLG_TEXT_Q[397];
 			link.l1.go = "guardoftruth_5";
 		break;
 		
 		case "guardoftruth_5":
-			dialog.text = "Hm... Have you tried using any other methods to convince him?";
-			link.l1 = "You mean bribing him? No... If he were a banker, or a merchant, or even a governor, I would attempt to solve the issue that way, but a priest!";
+			dialog.text = DLG_TEXT_Q[398];
+			link.l1 = DLG_TEXT_Q[399];
 			link.l1.go = "guardoftruth_6";
 		break;
 		
 		case "guardoftruth_6":
-			dialog.text = "My friend, if the priest's ears really are closed to proclamations of conscience, then surely his hands will be open for gold... Or the other way around. I'll help you, I think that keeping such items here is unacceptable. However, it will require certain expenses."
-			link.l1 = "Not a big surprise. How much?";
+			dialog.text = DLG_TEXT_Q[400];
+			link.l1 = DLG_TEXT_Q[401];
 			link.l1.go = "guardoftruth_7";
 		break;
 		
 		case "guardoftruth_7":
-			dialog.text = "Come by tomorrow, "+pchar.name+", for how much I am not yet aware. But you will receive your item, rest assured.";
-			link.l1 = "Thank you, Fadey! I won't bother you any further then. See you tomorrow!";
+			dialog.text = DLG_TEXT_Q[402]+pchar.name+DLG_TEXT_Q[403];
+			link.l1 = DLG_TEXT_Q[404];
 			link.l1.go = "guardoftruth_8";
 		break;
 		
@@ -512,21 +1350,21 @@ void ProcessDialogEvent()
 		break;
 		
 		case "guardoftruth_9":
-			dialog.text = "Just as I assumed. I've got the cross, "+pchar.name+", and the details... oh forget them... all nonsense and fuss!";
-			link.l1 = "How much do I owe you?";
+			dialog.text = DLG_TEXT_Q[405]+pchar.name+DLG_TEXT_Q[406];
+			link.l1 = DLG_TEXT_Q[407];
 			link.l1.go = "guardoftruth_10";
 		break;
 		
 		case "guardoftruth_10":
-			dialog.text = "Two hundred fifty doubloons. A coverage of my expenses, and of course I'd appreciate a little for my righteous aid...";
+			dialog.text = DLG_TEXT_Q[408];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 250)
 			{
-				link.l1 = "Right this way, monsieur Fadey! Here is your gold.";
+				link.l1 = DLG_TEXT_Q[409];
 				link.l1.go = "guardoftruth_11";
 			}
 			else
 			{
-				link.l1 = "I'll will take the money from a chest in my cabin, wait a bit!";
+				link.l1 = DLG_TEXT_Q[410];
 				link.l1.go = "exit";
 				npchar.quest.utensil = "true";
 			}
@@ -534,19 +1372,19 @@ void ProcessDialogEvent()
 		
 		case "guardoftruth_11":
 			DeleteAttribute(npchar, "quest.utensil");
-			dialog.text = "Excellent. Here is your item!";
-			link.l1 = "Thank you, Fadey. You can't even imagine how much you've done for me!";
+			dialog.text = DLG_TEXT_Q[411];
+			link.l1 = DLG_TEXT_Q[412];
 			link.l1.go = "guardoftruth_12";
 		break;
 		
 		case "guardoftruth_12":
 			RemoveItems(pchar, "gold_dublon", 250);
-			Log_Info("You've given 250 doubloons");
+			Log_Info(DLG_TEXT_Q[413]);
 			GiveItem2Character(pchar, "jewelry34");
-			Log_Info("You've received a golden cross with lazurite");
+			Log_Info(DLG_TEXT_Q[414]);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "I am always glad to help a kind and more importantly generous friend. Drop by more often. Maybe we'll have some vodka when it's delivered to me from my homeland.";
-			link.l1 = "Sure!";
+			dialog.text = DLG_TEXT_Q[415];
+			link.l1 = DLG_TEXT_Q[416];
 			link.l1.go = "guardoftruth_13";
 		break;
 		
@@ -557,44 +1395,44 @@ void ProcessDialogEvent()
 		break;
 		
 		case "guardoftruth_14":
-			dialog.text = "Well the oceans have parted! Fill me in. What misfortunes have brought you to me this time?";
-			link.l1 = "I don't know whether to call them misfortunes or not, but nevertheless I'm here. Fadey, the first day we met you gave me a rare dagger, the Chief's Claw. Now I know that it previously belonged to a man named Archibald Calhoun. Please, tell me what you know about this man.";
+			dialog.text = DLG_TEXT_Q[417];
+			link.l1 = DLG_TEXT_Q[418];
 			link.l1.go = "guardoftruth_15";
 		break;
 		
 		case "guardoftruth_15":
-			dialog.text = "Nothing can be kept from you, "+pchar.name+". You see everything through, just like your brother. Yes, I won this dagger in game of dice from Archibald. Who is he? I don't even have a thought myself. We met by chance, we got to talking, drank a little, and he started telling me about some sins of his past that were weighing him down...";
-			link.l1 = "What sins?";
+			dialog.text = DLG_TEXT_Q[419]+pchar.name+DLG_TEXT_Q[420];
+			link.l1 = DLG_TEXT_Q[421];
 			link.l1.go = "guardoftruth_16";
 		break;
 		
 		case "guardoftruth_16":
-			dialog.text = "Archibald was eating himself over some man who got tortured by the Inquisition to death because of him and over other innocent souls he killed. He was constantly calling himself Judah. Said that God was punishing him for his sins - the Inquisition hunted him\nHe mentioned that Spanish inquisitor Vincento himself wants him dead and sent Spanish mercenaries to chase him everywhere. Then alcohol had won over him and we gambled for this old dagger.";
-			link.l1 = "Is that all? You never saw him again?";
+			dialog.text = DLG_TEXT_Q[422];
+			link.l1 = DLG_TEXT_Q[423];
 			link.l1.go = "guardoftruth_17";
 		break;
 		
 		case "guardoftruth_17":
-			dialog.text = "Archibald's dead! Cursed pirates sent his flute to the bottom of the sea and sent the whole crew to Mictlantecuhtli. Actually, rumours were that it wasn't pirates but Spaniards dressed up as tramps... the Inquisition, "+pchar.name+", that is a serious organization.";
-			link.l1 = "Archibald Calhoun is alive. I saw him not that long ago along with some William Patterson. He serves as his first mate.";
+			dialog.text = DLG_TEXT_Q[424]+pchar.name+DLG_TEXT_Q[425];
+			link.l1 = DLG_TEXT_Q[426];
 			link.l1.go = "guardoftruth_18";
 		break;
 		
 		case "guardoftruth_18":
-			dialog.text = "Oh, you never guess how things unfold! I had no idea! Under the wing of captain Patterson, Archibald can at least catch his breath. He's in good company. The Spanish fear Patterson worse than a plague and they won't dare be scheming any more.";
-			link.l1 = "Do you know Patterson?";
+			dialog.text = DLG_TEXT_Q[427];
+			link.l1 = DLG_TEXT_Q[428];
 			link.l1.go = "guardoftruth_19";
 		break;
 		
 		case "guardoftruth_19":
-			dialog.text = "That I do, my friend. Who doesn't know that distinguished man! He, just as you, has arrived to the archipelago recently, but has already hammered together an outstanding reputation. Mister Patterson is Colonel Fox's closest friend and well in with Lord Windsor himself, the governor general of all English settlements here. He often visits the governor's palace in Port-Royal.";
-			link.l1 = "Got it. Well, thanks for the story, Fadey!";
+			dialog.text = DLG_TEXT_Q[429];
+			link.l1 = DLG_TEXT_Q[430];
 			link.l1.go = "guardoftruth_20";
 		break;
 		
 		case "guardoftruth_20":
-			dialog.text = "Oh, don't mention it, friend. Come visit me sometime!";
-			link.l1 = "Definitely!";
+			dialog.text = DLG_TEXT_Q[431];
+			link.l1 = DLG_TEXT_Q[432];
 			link.l1.go = "guardoftruth_21";
 		break;
 		
@@ -611,14 +1449,14 @@ void ProcessDialogEvent()
 		
 		// персидские клинки
 		case "persian":
-			dialog.text = "Let's have a look, "+pchar.name+"... Oh yeah, it's one of them! Where did you find it, my friend?";
-			link.l1 = "It doesn't matter. The important thing is that it has found its way back to you.";
+			dialog.text = DLG_TEXT_Q[433]+pchar.name+DLG_TEXT_Q[434];
+			link.l1 = DLG_TEXT_Q[435];
 			link.l1.go = "persian_1";
 		break;
 		
 		case "persian_1":
-			dialog.text = "I'll be paid well for your gruelling labour. Three hundred golden doubloons is a dignified reward for your troubles...";
-			link.l1 = "Fadey, your kind disposition to me is much more valuable than these three hundred doubloons. Although, of course, I won't reject them. Here is your cavalry sword.";
+			dialog.text = DLG_TEXT_Q[436];
+			link.l1 = DLG_TEXT_Q[437];
 			link.l1.go = "persian_2";
 		break;
 		
@@ -627,53 +1465,53 @@ void ProcessDialogEvent()
 			RemoveItems(pchar, sTemp, 1);
 			PlaySound("interface\important_item.wav");
 			pchar.questTemp.Persian = "one";
-			dialog.text = "Thank you, my friend! Thank you kindly! For the sword and for you're reasonable words. You're intelligent beyond your years, "+pchar.name+", you speak the real truth, human bonds of friendship surpass the value of gold. But talking about the precious gold, of course, I will pay you in full. Here, take your doubloons.";
-			link.l1 = "Gratitude!";
+			dialog.text = DLG_TEXT_Q[438]+pchar.name+DLG_TEXT_Q[439];
+			link.l1 = DLG_TEXT_Q[440];
 			link.l1.go = "persian_3";
 		break;
 		
 		case "persian_3":
 			TakeNItems(pchar, "gold_dublon", 300);
-			Log_Info("You've received 300 doubloons");
+			Log_Info(DLG_TEXT_Q[441]);
 			PlaySound("interface\important_item.wav");
 			AddCharacterExpToSkill(pchar, "Leadership", 400);
 			AddCharacterExpToSkill(pchar, "Fortune", 200);
 			ChangeCharacterComplexReputation(pchar, "authority", 2);
 			ChangeCharacterComplexReputation(pchar, "nobility", 2);
 			ChangeCharacterNationReputation(pchar, FRANCE, 2);
-			dialog.text = "And talking about the bonds of friendship, yours and mine in particular, "+pchar.name+". I have something that you'll be quite interested in.";
-			link.l1 = "Something means vodka?";
+			dialog.text = DLG_TEXT_Q[442]+pchar.name+DLG_TEXT_Q[443];
+			link.l1 = DLG_TEXT_Q[444];
 			link.l1.go = "persian_4";
 		break;
 		
 		case "persian_4":
-			dialog.text = "Vodka is good, but it is not the only thing my country is known for. There is a ware which only Russia produces and I deliver this ware here to trade. Any captain is interested in it, because it is a part of any ship. I am talking about hemp ropes\nThey are immune to a moisture and sea salt. They say that it is the best material for a rigging\nEvery month trade ships deliver me some amount of the ropes. Normally, my storehouse has a few hundreds of coils by the middle of each month. So, "+pchar.name+", I am offering you to buy a batch of fifty coils. Ten doubloons for a coil\nI have only two terms: I will keep your ropes until 20th of every month and you can buy only a whole batch. Fifty coils for five hundred gold. Confidentially speaking, "+pchar.name+", they say that there are places where you can resell the ropes for a much better price, but that's all I know\nThough I am completely satisfied with the current state of my operation. If you find a good merchant then you will have a fine profit.";
-			link.l1 = "Got it. That's a great offer, Fadey! I think I'll take advantage of the opportunity you've presented to me. So, every twentieth day of a month, five hundred doubloons for fifty pieces?";
+			dialog.text = DLG_TEXT_Q[445]+pchar.name+DLG_TEXT_Q[446]+pchar.name+DLG_TEXT_Q[447];
+			link.l1 = DLG_TEXT_Q[448];
 			link.l1.go = "persian_5";
 		break;
 		
 		case "persian_5":
 			AddQuestRecord("Unique_Goods", "2");
-			dialog.text = "Correct. Go collect your purchase. But wait, wait, dear fellow! Besides this sword, which you returned to me out of true benevolence, there were two others. I beg you, please, if you find them, bring them back right to me and I will pay you more than a fair share.";
-			link.l1 = "Definitely, Fadey. If I find them, I'll definitely bring them back.";
+			dialog.text = DLG_TEXT_Q[449];
+			link.l1 = DLG_TEXT_Q[450];
 			link.l1.go = "exit";
 			if (CheckNCountPersian() > 0)
 			{
-				link.l2 = "Good news for you then. I've got another Persian cavalry sword here.";
+				link.l2 = DLG_TEXT_Q[451];
 				link.l2.go = "persian_6";
 			}
 			npchar.quest.ropes = "true";
 		break;
 		
 		case "persian_6":
-			dialog.text = "Oh, my good friend! You have just swabbed my tears! Let me take a look... yes, this is it, my precious cavalry sword! Here, just as I promised you, three hundred doubloons reward for it.";
-			link.l1 = "Gramercy!";
+			dialog.text = DLG_TEXT_Q[452];
+			link.l1 = DLG_TEXT_Q[453];
 			link.l1.go = "persian_7";
 		break;
 		
 		case "persian_7":
 			TakeNItems(pchar, "gold_dublon", 300);
-			Log_Info("You've received 300 doubloons");
+			Log_Info(DLG_TEXT_Q[454]);
 			sTemp = CheckNIdentifyPersian();
 			RemoveItems(pchar, sTemp, 1);
 			PlaySound("interface\important_item.wav");
@@ -683,34 +1521,34 @@ void ProcessDialogEvent()
 			ChangeCharacterComplexReputation(pchar, "authority", 2);
 			ChangeCharacterComplexReputation(pchar, "nobility", 2);
 			ChangeCharacterNationReputation(pchar, FRANCE, 2);
-			dialog.text = "Please accept my gratitudes and a modest, but a very useful gift. I don't need it, but you or your ship joiner will find it quite helpful\nHere, look at this fine ring! It's yours now. But it is not just a common ring, it is an enchanted ring. It helps in carpeting and in ship repair. A lot of craftsmen would like to have it, but I have been keeping it for a special occasion. Take it, my friend, I wish it will ease your burden!";
-			link.l1 = "I didn't expect that! Thank you very much, Fadey!";
+			dialog.text = DLG_TEXT_Q[455];
+			link.l1 = DLG_TEXT_Q[456];
 			link.l1.go = "persian_8";
 		break;
 		
 		case "persian_8":
 			GiveItem2Character(pchar, "talisman7");
-			Log_Info("You've received the Scarab amulet");
+			Log_Info(DLG_TEXT_Q[457]);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "There's only one cavalry sword of my lost cavalry sword collection left to be found. I'm counting on you, "+pchar.name+", and on your luck. If you find it, don't hesitate to hurry back to me.";
-			link.l1 = "Definitely! See you soon...";
+			dialog.text = DLG_TEXT_Q[458]+pchar.name+DLG_TEXT_Q[459];
+			link.l1 = DLG_TEXT_Q[460];
 			link.l1.go = "exit";
 			if (CheckNCountPersian() > 0)
 			{
-				link.l2 = "Why should I hurry? The sword is with me.";
+				link.l2 = DLG_TEXT_Q[461];
 				link.l2.go = "persian_9";
 			}
 		break;
 		
 		case "persian_9":
-			dialog.text = "Oh, thank God, that I asked exactly you for help, "+pchar.name+". You're a miracle man, my friend! Show me it... Ohooo! It's, it's her. My darling! Precious! Gramercy, fine fellow, I take a bow to you! Here, here's your money. Four hundred doubloons. I won't be stingy.";
-			link.l1 = "Thank you, Fadey. Pleasure to be able to help.";
+			dialog.text = DLG_TEXT_Q[462]+pchar.name+DLG_TEXT_Q[463];
+			link.l1 = DLG_TEXT_Q[464];
 			link.l1.go = "persian_10";
 		break;
 		
 		case "persian_10":
 			TakeNItems(pchar, "gold_dublon", 400);
-			Log_Info("You've received 400 doubloons");
+			Log_Info(DLG_TEXT_Q[465]);
 			sTemp = CheckNIdentifyPersian();
 			RemoveItems(pchar, sTemp, 1);
 			PlaySound("interface\important_item.wav");
@@ -719,15 +1557,14 @@ void ProcessDialogEvent()
 			ChangeCharacterComplexReputation(pchar, "authority", 2);
 			ChangeCharacterComplexReputation(pchar, "nobility", 2);
 			ChangeCharacterNationReputation(pchar, FRANCE, 3);
-			Achievment_SetStat(pchar, 65, 1); // ugeen 2016
-			dialog.text = "My collection is back to me! No one will dare to steal it from me again, I will make sure of that! And I have a very special reward for you, good man: one merchant will bring me an excellent fencing armour from Europe in two weeks. An order of one nobleman, it is a quite unique piece of armour\nSo, if you want, you can buy it for only seven hundreds golden doubloons. I will tell the nobleman that they are still making it.";
-			link.l1 = "What's so good about this armour?";
+			dialog.text = DLG_TEXT_Q[466];
+			link.l1 = DLG_TEXT_Q[467];
 			link.l1.go = "persian_11";
 		break;
 		
 		case "persian_11":
-			dialog.text = "It's very comfortable and durable, yet it still can compete with iron cuirass. You should come back in a couple of weeks and have a look at it. But don't take longer than a month or I'll sell it to the original orderer.";
-			link.l1 = "Deal. I'll drop by your house in two weeks.";
+			dialog.text = DLG_TEXT_Q[468];
+			link.l1 = DLG_TEXT_Q[469];
 			link.l1.go = "persian_12";
 		break;
 		
@@ -738,34 +1575,34 @@ void ProcessDialogEvent()
 		break;
 		
 		case "persian_13":
-			dialog.text = "Yes, It's been delivered already and it's waiting for you. Did you bring the money?";
+			dialog.text = DLG_TEXT_Q[470];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 700)
 			{
-				link.l1 = "Yes. Here's seven hundred doubloons.";
+				link.l1 = DLG_TEXT_Q[471];
 				link.l1.go = "persian_14";
 			}
 			else
 			{
-				link.l1 = "Damn it. I forgot the money on the ship. I'll bring it in a second!";
+				link.l1 = DLG_TEXT_Q[472];
 				link.l1.go = "exit";
 			}
 		break;
 		
 		case "persian_14":
 			RemoveItems(pchar, "gold_dublon", 700);
-			Log_Info("You've given 700 doubloons");
+			Log_Info(DLG_TEXT_Q[473]);
 			PlaySound("interface\important_item.wav");
 			GiveItem2Character(pchar, "cirass8"); 
-			Log_Info("You've received wicker armour");
+			Log_Info(DLG_TEXT_Q[474]);
 			AddCharacterExpToSkill(pchar, "Sneak", 300);
-			dialog.text = "Yes, my good man! Here, take it. This wicker armour will serve well, I assure you. There's nothing else like it in all of the Caribbean.";
-			link.l1 = "Yes, I can see that the armour is good. Thank you! Can't wait to try it on...";
+			dialog.text = DLG_TEXT_Q[475];
+			link.l1 = DLG_TEXT_Q[476];
 			link.l1.go = "persian_15";
 		break;
 		
 		case "persian_15":
-			dialog.text = "Why do you need to wait? Go ahead. Let's see how it fits.";
-			link.l1 = "Will do. See you later, monsieur Fadey!";
+			dialog.text = DLG_TEXT_Q[477];
+			link.l1 = DLG_TEXT_Q[478];
 			link.l1.go = "persian_16";
 		break;
 		
@@ -777,31 +1614,31 @@ void ProcessDialogEvent()
 		
 		// торговл€ канатами
 		case "ropes":
-			dialog.text = "Come in, my dear friend. The merchandise is ready for you to purchase. Five hundred doubloons for fifty pieces.";
+			dialog.text = DLG_TEXT_Q[479];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 500)
 			{
-				link.l1 = "Everything's as we've agreed on. Take the money.";
+				link.l1 = DLG_TEXT_Q[480];
 				link.l1.go = "ropes_1";
 			}
 			else
 			{
-				link.l1 = "Just let me bring the coins from my cabin.";
+				link.l1 = DLG_TEXT_Q[481];
 				link.l1.go = "exit";
 			}
 		break;
 		
 		case "ropes_1":
 			RemoveItems(pchar, "gold_dublon", 500);
-			Log_Info("You've given 500 doubloons");
+			Log_Info(DLG_TEXT_Q[482]);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Nice doing business with you, "+pchar.name+". I'll order my men to carry over the ropes onto your ship.";
-			link.l1 = "Thank you!";
+			dialog.text = DLG_TEXT_Q[483]+pchar.name+DLG_TEXT_Q[484];
+			link.l1 = DLG_TEXT_Q[485];
 			link.l1.go = "ropes_2";
 		break;
 		
 		case "ropes_2":
-			dialog.text = "If you still need my product, come back in a month.";
-			link.l1 = "Very well, Fadey. See you later!";
+			dialog.text = DLG_TEXT_Q[486];
+			link.l1 = DLG_TEXT_Q[487];
 			link.l1.go = "exit";
 			AddCharacterGoods(pchar, GOOD_ROPES, 50);
 			DeleteAttribute(npchar, "quest.ropes");
@@ -813,36 +1650,36 @@ void ProcessDialogEvent()
 		case "help":
 			if (!CheckAttribute(npchar, "quest.relation_info"))
 			{
-				dialog.text = "What can I do for you, my dear friend?";
-				link.l1 = "You are an influential person, Fadey, as far as I know. A friend of the governor, and, as rumours say, you've got connections at the palace. Would you be able to petition the authorities in case I get in trouble with the law?";
+				dialog.text = DLG_TEXT_Q[488];
+				link.l1 = DLG_TEXT_Q[489];
 				link.l1.go = "relation_info";
 				break;
 			}
-			dialog.text = "How can I help you, my friend?";
+			dialog.text = DLG_TEXT_Q[490];
 			if (ChangeCharacterNationReputation(pchar, ENGLAND, 0) < 0 && !CheckAttribute(npchar, "quest.relation"))
 			{
-				link.l1 = "I have a problem with the English authorities.";
+				link.l1 = DLG_TEXT_Q[491];
 				link.l1.go = "relation";
 				pchar.GenQuest.FadeyNation = ENGLAND;
 			}
 			if (ChangeCharacterNationReputation(pchar, FRANCE, 0) < 0 && !CheckAttribute(npchar, "quest.relation"))
 			{
-				link.l2 = "I've run into trouble with the French authorities.";
+				link.l2 = DLG_TEXT_Q[492];
 				link.l2.go = "relation";
 				pchar.GenQuest.FadeyNation = FRANCE;
 			}
 			if (ChangeContrabandRelation(pchar, 0) <= 5)
             {
-                Link.l5 = "I had a huge quarrel with the smugglers.";
+                Link.l5 = DLG_TEXT_Q[493];
 				Link.l5.go = "contraband";
             }
-			link.l9 = "Sorry, I think I'll handle things myself.";
+			link.l9 = DLG_TEXT_Q[494];
 			link.l9.go = "exit";
 		break;
 		
 		case "relation_info":
-			dialog.text = "Oh-ho, good man, who told you that? Everybody lies. But since you are a Michel's brother and a good friend of mine, I can try to fix things for you. Though my connections have limits, I can petition for you only to English and French authorities. I don't do business with the Spanish and the Dutch\nI also warn you that my influence is not enough to redeem considerable faults. I can persuade them to reconsider their attitude towards you in case of slight misconducts or to ease a bit an anger\nAnd only one nation at once, France or England, I can't tear myself apart. Of course, coins also will be required in order to make bribes. Don't hesitate to address me if you find my terms acceptable.";
-			link.l1 = "Thanks, Fadey. I'll keep that in mind.";
+			dialog.text = DLG_TEXT_Q[495];
+			link.l1 = DLG_TEXT_Q[496];
 			link.l1.go = "exit";
 			npchar.quest.relation_info = "true";
 		break;
@@ -851,40 +1688,40 @@ void ProcessDialogEvent()
 			rate = abs(ChangeCharacterNationReputation(pchar, sti(pchar.GenQuest.FadeyNation), 0));
 			if (rate <= 10)
 			{
-				dialog.text = "Of course. I sure have heard of your adventures. I'll take care of your dilemma, it's rectifiable. Three hundred golden doubloons and we'll take you out of hot water.";
+				dialog.text = DLG_TEXT_Q[497];
 				if (GetCharacterItem(pchar, "gold_dublon") >= 300)
 				{
-					link.l1 = "Great! Here's the gold.";
+					link.l1 = DLG_TEXT_Q[498];
 					link.l1.go = "agree";
 					iTotalTemp = 300;
 				}
-				link.l2 = "Then it's just the right time for me to go get the coins.";
+				link.l2 = DLG_TEXT_Q[499];
 				link.l2.go = "exit";
 			}
 			else
 			{
 				if (rate <= 20)
 				{
-					dialog.text = "Of course. I've heard about your troubles. You've tarnished your reputation. However, it is rectifiable. Six hundred gold doubloons and we'll take you out of hot water.";
+					dialog.text = DLG_TEXT_Q[500];
 					if (GetCharacterItem(pchar, "gold_dublon") >= 600)
 					{
-						link.l1 = "Great! Here's the gold.";
+						link.l1 = DLG_TEXT_Q[501];
 						link.l1.go = "agree";
 						iTotalTemp = 600;
 					}
-					link.l2 = "Then it's just the right time for me to go get the coins.";
+					link.l2 = DLG_TEXT_Q[502];
 					link.l2.go = "exit";
 				}
 				else
 				{
-					dialog.text = "Yes, you're in quite a legitimate quandary. I can't completely sort out the situation, however I can soften the burden of your scornful sins. And later at any moment, we'll present a bribe again if you have money and a desire. Seven hundred gold doubloons and we'll smooth out your troubles.";
+					dialog.text = DLG_TEXT_Q[503];
 					if (GetCharacterItem(pchar, "gold_dublon") >= 700)
 					{
-						link.l1 = "Great! Here's the gold.";
+						link.l1 = DLG_TEXT_Q[504];
 						link.l1.go = "agree";
 						iTotalTemp = 700;
 					}
-					link.l2 = "Then it's just the right time for me to go get the coins.";
+					link.l2 = DLG_TEXT_Q[505];
 					link.l2.go = "exit";
 				}
 			}
@@ -892,10 +1729,10 @@ void ProcessDialogEvent()
 		
 		case "agree":
 			RemoveItems(pchar, "gold_dublon", iTotalTemp);
-			Log_Info("You've given "+iTotalTemp+" doubloons");
+			Log_Info(DLG_TEXT_Q[506]+iTotalTemp+DLG_TEXT_Q[507]);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Okay, give me about ten-fifteen days. Meanwhile, I'll get an appointment and take care of this and that. It'll all be done in about two weeks. ";
-			link.l1 = "Thank you, Fadey! I'll be waiting...";
+			dialog.text = DLG_TEXT_Q[508];
+			link.l1 = DLG_TEXT_Q[509];
 			link.l1.go = "agree_1";
 		break;
 		
@@ -907,23 +1744,23 @@ void ProcessDialogEvent()
 		break;
 		
 		case "contraband":
-			dialog.Text = "Why, my good man? The smugglers are not the worst folk in our world and they can make you a good profit. Fine, I will help you, I know how to grease some wheels... Prepare seven hundred doubloons, no bargaining.";
+			dialog.Text = DLG_TEXT_Q[510];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 700)
 			{
-				Link.l1 = "Very well, Fadey, I agree. Take your gold.";
+				Link.l1 = DLG_TEXT_Q[511];
 				Link.l1.go = "Contraband_Agreed";
 			}
-			Link.l2 = "I don't have that much gold with me now. I will come back later!";
+			Link.l2 = DLG_TEXT_Q[512];
 			Link.l2.go = "exit";
 		break;
 		
 		case "Contraband_Agreed":
-			dialog.Text = "Good, I will patch up a quarrel, don't you worry. They will do business with you again.";
-			Link.l1 = "Thank you!";
+			dialog.Text = DLG_TEXT_Q[513];
+			Link.l1 = DLG_TEXT_Q[514];
 			Link.l1.go = "exit";
 			ChangeContrabandRelation(pchar, 25);
 			RemoveItems(pchar, "gold_dublon", 700);
-			Log_Info("You've given 700 doubloons");
+			Log_Info(DLG_TEXT_Q[515]);
 			PlaySound("interface\important_item.wav");
 		break;
 		

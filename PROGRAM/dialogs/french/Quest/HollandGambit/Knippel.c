@@ -1,4 +1,4 @@
-// Чарли Книппель - старый артиллерист
+#include "SD\TEXT\DIALOGS\Quest\HollandGambit\Knippel.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld, rItm, rItem;
@@ -26,10 +26,10 @@ void ProcessDialogEvent()
 		//ветка на взятие 2 варианта прохождения - за Англию
 		if(CheckAttribute(pchar, "questTemp.HWIC.CanTake") && !CheckAttribute(pchar, "questTemp.HWIC.CanTake.Eng") && !CheckAttribute(npchar, "quest.HWICTake") && !CheckAttribute(pchar, "questTemp.HWIC.Holl") && !CheckAttribute(pchar, "questTemp.HWIC.Self"))
 		{
-			dialog.text = "Good day, mister, chain shot to my butt! What brought you here?";
-			link.l1 = "Greetings. I have nothing special for you, just wanted to say hi.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1];
 			link.l1.go = "exit";
-			link.l2 = "Listen, Charlie, there are rumours that you have some sort of connections with the English Navy. I have a fine ship and skilled crew. I'd like to offer me and my ship to the service for England. I mean the real service worthy the experienced captain. Can you give me an advice or recommend me to someone or, perhaps, to help me anyhow in that matter?";
+			link.l2 = DLG_TEXT_Q[2];
 			link.l2.go = "Knippel_check";
 			break;
 		}
@@ -38,13 +38,13 @@ void ProcessDialogEvent()
 		{
 			if (pchar.questTemp.HWIC.Holl == "toKnippel")
 			{
-				dialog.text = "Good day, mister, chain shot to my butt! What brought you here?";
-				link.l1 = "Greetings, Charlie. There are rumors that you have connections with the English Navy, that is why I want to ask you for help...";
+				dialog.text = DLG_TEXT_Q[3];
+				link.l1 = DLG_TEXT_Q[4];
 				link.l1.go = "Dominica";
 				break;
 			}
-			dialog.text = "Chain shot to my butt! What do you want, mister?";
-			link.l1 = "No, it's nothing. I am leaving.";
+			dialog.text = DLG_TEXT_Q[5];
+			link.l1 = DLG_TEXT_Q[6];
 			link.l1.go = "exit";
 			break;
 		}
@@ -53,63 +53,63 @@ void ProcessDialogEvent()
 		{
 			if (pchar.questTemp.HWIC.Eng == "TakeHollConvoy")
 			{
-				dialog.text = "Good day, captain. I have heard some rumours about interception of the silver convoy...";
-				link.l1 = "I am ready to report about my success in your mission, Charlie.";
+				dialog.text = DLG_TEXT_Q[7];
+				link.l1 = DLG_TEXT_Q[8];
 				link.l1.go = "HollConvoy_Check";
 				break;
 			}
 			if (pchar.questTemp.HWIC.Eng == "Start_main" && GetQuestPastDayParam("questTemp.HWIC.Eng_1") > 0)
 			{
-				dialog.text = "I am glad to see you, captain! My commander, Richard Fleetwood, was going to come here to get know you himself, but an accident happened yesterday evening... There was an attempt on Richard's life right on the streets, chain shot to my butt!";
-				link.l1 = "Impossible! And what were the guards doing?";
+				dialog.text = DLG_TEXT_Q[9];
+				link.l1 = DLG_TEXT_Q[10];
 				link.l1.go = "Fleetwood_house";
 				break;
 			}
-			dialog.text = "Do you have any questions, captain?";
-			link.l1 = "No, it's nothing. I am leaving.";
+			dialog.text = DLG_TEXT_Q[11];
+			link.l1 = DLG_TEXT_Q[12];
 			link.l1.go = "exit";
 		break;
 		}
-			dialog.text = "Good day, mister, chain shot to my butt! What brought you here?";
-			link.l1 = "Greetings. I have nothing special for you, just wanted to say hi...";
+			dialog.text = DLG_TEXT_Q[13];
+			link.l1 = DLG_TEXT_Q[14];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First time";
 		break;
 
 //-------------------------------------------за Голландию--------------------------------------------------	
 		case "Dominica":
-			dialog.text = "Heh! And how can the old sailor, who was grounded long time ago, help you, mister?";
-			link.l1 = "See... I am just a common captain and I do regular voyages between Martinique and Curacao. So I have been attacked twice by the ghost ship not far from Martinique... Though she is not the ghost ship, I was able to tear her sails with simple cannonbals!";
+			dialog.text = DLG_TEXT_Q[15];
+			link.l1 = DLG_TEXT_Q[16];
 			link.l1.go = "Dominica_1";			
 		break;
 		
 		case "Dominica_1":
-			dialog.text = "Is that so? It is very interesting, chain shot to my neck...";
-			link.l1 = "I have survived only because my ship does the fine speed by the wind. Last time I had to throw away all my cargo in order to escape... can you imagine my loss?";
+			dialog.text = DLG_TEXT_Q[17];
+			link.l1 = DLG_TEXT_Q[18];
 			link.l1.go = "Dominica_2";			
 		break;
 		
 		case "Dominica_2":
-			dialog.text = "I am sorry, captain...";
-			link.l1 = "The governor of Curacao - Mathias Beck just brushed my complaints aside. He said that they are only fables. The governor of Martinique promised to send a patrol there, but his eyes told me that he ain't going to do a thing.  I can't return to Martinique while the bastard is sailing there, my ship is small so is my crew, it is likely that I won't make it in the third time...";
+			dialog.text = DLG_TEXT_Q[19];
+			link.l1 = DLG_TEXT_Q[20];
 			link.l1.go = "Dominica_3";			
 		break;
 		
 		case "Dominica_3":
-			dialog.text = "I am so sorry, mister. But how can I help you?";
-			link.l1 = "I heard from the respected sailors that there was one captain of St. John's named Richard Fleetwood who hunted for the ghost ship. I don't know him personally, that is why I told this story to you, perhaps you will tell him a story of my misfortunes? I am sure that the filthy pirate is hiding somewhere near the wild shores of Dominica and raiding between Barbados and Martinique.";
+			dialog.text = DLG_TEXT_Q[21];
+			link.l1 = DLG_TEXT_Q[22];
 			link.l1.go = "Dominica_4";			
 		break;
 		
 		case "Dominica_4":
-			dialog.text = "Between Barbados and Martinique? It sounds very much like this scum...";
-			link.l1 = "I am not rich and I don't have money to pay the naval forces for sparing these waters from the bastard. But sir Fleetwood is hunting for him already, so please tell him where to find this 'Flying Dutchman'.";
+			dialog.text = DLG_TEXT_Q[23];
+			link.l1 = DLG_TEXT_Q[24];
 			link.l1.go = "Dominica_5";			
 		break;
 		
 		case "Dominica_5":
-			dialog.text = "You have done a good thing by coming here. I will tell your story to right people, chain shot to my liver! Soon, you will be able to trade with Martinique again.";
-			link.l1 = "I hope that God will hear your words! Thank you for listening to me, Charlie. I do hope for the best. Farewell!";
+			dialog.text = DLG_TEXT_Q[25];
+			link.l1 = DLG_TEXT_Q[26];
 			link.l1.go = "Dominica_6";			
 		break;
 		
@@ -127,40 +127,40 @@ void ProcessDialogEvent()
 			if(makeint(PChar.reputation.nobility) < 41)//низкая репа
 			{
 				PlaySound("VOICE\Russian\hambit\Charlie Knippel-04.wav");
-				dialog.text = "England don't need services from rogues, chain shot to my arse! I can't give you any advice.";
-				link.l1 = "Hey, hey, pal, watch your tongue!";
+				dialog.text = DLG_TEXT_Q[27];
+				link.l1 = DLG_TEXT_Q[28];
 				link.l1.go = "exit";
 				break;
 			}
 			if(GetSummonSkillFromName(pchar, SKILL_SAILING) < 30)//низкая навигация
 			{
-				dialog.text = "Captain, our fleet needs more experienced captains. Come back when you will have more skills in navigating.";
-				link.l1 = "I see... Then I will see you later.";
+				dialog.text = DLG_TEXT_Q[29];
+				link.l1 = DLG_TEXT_Q[30];
 				link.l1.go = "exit";
 				break;
 			}
 			if(sti(Pchar.rank) > 15)//высокий ранг
 			{
 				PlaySound("VOICE\Russian\hambit\Charlie Knippel-03.wav");
-				dialog.text = "You are too famous at the archipelago, captain. I doubt that you would be interested in my missions, though I don't have any missions anyway.";
-				link.l1 = "Fine, as you wish. Goodbye.";
+				dialog.text = DLG_TEXT_Q[31];
+				link.l1 = DLG_TEXT_Q[32];
 				link.l1.go = "exit";
 				break;
 			}
-			dialog.text = "Hm... You are just in time, captain, chain shot to my butt! Richard didn't know who to assign on to do that risky business, he was even considering to decline it... So I will give you a chance. If you perform well, then I will recommend you to a very kind and important man. Now listen what is need to be done.";
-			link.l1 = "I am listening.";
+			dialog.text = DLG_TEXT_Q[33];
+			link.l1 = DLG_TEXT_Q[34];
 			link.l1.go = "Knippel_task";
 		break;
 		
 		case "Knippel_task"://первое задание
-			dialog.text = "The silver caravan of the Dutch West India Company left Willemstad of Curacao one or two days ago. It is sailing to Philipsburg. There are only a few ships in the caravan. Ost-indian with the silver in her cargo hold and one or two patrol ships. Intercept this caravan, capture the Ost-indian with the silver cargo and bring her to Antigua. You can sink the escort though, chain shot to their livers!";
-			link.l1 = "Fine, I am on my way!";
+			dialog.text = DLG_TEXT_Q[35];
+			link.l1 = DLG_TEXT_Q[36];
 			link.l1.go = "Knippel_task_1";			
 		break;
 		
 		case "Knippel_task_1":
-			dialog.text = "I will allow myself to give you some advice, captain. The way from Curacao to Sint Maarten lies not far from the shores of St. Christopher. I would make an ambush there. Prepare yourself well for the meeting, it is not a childish game... Good luck!";
-			link.l1 = "Thanks! Your words make me think that I will need it. See you!";
+			dialog.text = DLG_TEXT_Q[37];
+			link.l1 = DLG_TEXT_Q[38];
 			link.l1.go = "Knippel_task_2";			
 		break;
 		
@@ -170,7 +170,6 @@ void ProcessDialogEvent()
 			pchar.questTemp.HWIC.CanTake.Eng = "true";//признак, что английка уже бралась
 			HWICSilverConvoyInWorld();
 			AddQuestRecord("Holl_Gambit", "2-1");
-			ReOpenQuestHeader("Holl_Gambit"); // данила ,чтобы вышел из архива. 																				   
 			pchar.questTemp.HWIC.Eng = "begin";
 			SetFunctionTimerCondition("HollConvoy_Over", 0, 0, 15, false);
 		break;
@@ -192,28 +191,28 @@ void ProcessDialogEvent()
 				amount = sti(pchar.questTemp.HWIC.Eng.SlvQty) - GetSquadronGoods(pchar, GOOD_SILVER);
 				if (amount <= 0)
 				{
-					dialog.text = "Well, there is no need in report. I was informed about everything right after the custom examination of your ship... You've done really well, captain. Most excellent! It wasn't easy business, chain shot to my butt!";
-					link.l1 = "Thanks! It was nice to hear such a high valuation of my actions.";
+					dialog.text = DLG_TEXT_Q[39];
+					link.l1 = DLG_TEXT_Q[40];
 					link.l1.go = "HollConvoy_complete";
 				}
 				else
 				{
-					dialog.text = "Well, there is no need in report. I was informed about everything right after the custom examination of your ship... Captain, you brought not the whole cargo, chain shot to my butt! I surely know how much silver must have been on that galleon. This mission's purpose was not only to test your battle skills but to test your honesty. You have failed the greed test. I don't want to work with you so get out!";
-					link.l1 = "Hell with you, sissy!";
+					dialog.text = DLG_TEXT_Q[41];
+					link.l1 = DLG_TEXT_Q[42];
 					link.l1.go = "HollConvoy_fail";
 				}
 			}
 			else
 			{
-				dialog.text = "I don't see the Holland Ost-indian in your squadron. I told you to bring her here as a prize. Have you sold her?";
-				link.l1 = "Hm... did you tell me to bring the ship? I thought that we had a deal only about silver.";
+				dialog.text = DLG_TEXT_Q[43];
+				link.l1 = DLG_TEXT_Q[44];
 				link.l1.go = "HollConvoy_noShip";
 			}
 		break;
 		
 		case "HollConvoy_noShip":
-			dialog.text = "Don't ring your chain shots, mister! I clearly remember what I told you and what I didn't. You have broken the terms of our deal and I don't want to work with you any longer, there is no place for rogues here. Leave my house immediately!";
-			link.l1 = "Hell with you!";
+			dialog.text = DLG_TEXT_Q[45];
+			link.l1 = DLG_TEXT_Q[46];
 			link.l1.go = "HollConvoy_fail";
 		break;
 		
@@ -226,26 +225,26 @@ void ProcessDialogEvent()
 		break;
 		
 		case "HollConvoy_complete":
-			dialog.text = "Visit me tomorrow and I will introduce you to my patron. I think, he will offer you work worthy of you. And also you will get your reward from him. See you!";
-			link.l1 = "Fine, Charlie. I will be here tomorrow.";
+			dialog.text = DLG_TEXT_Q[47];
+			link.l1 = DLG_TEXT_Q[48];
 			link.l1.go = "exit";
 			npchar.greeting = "knippel_2";
 			AddDialogExitQuestFunction("HollConvoy_Remove");
 			pchar.questTemp.HWIC.Eng = "Start_main";
 			SaveCurrentQuestDateParam("questTemp.HWIC.Eng_1");
 			AddQuestRecord("Holl_Gambit", "2-4");
-			AddSimpleRumourCity("They say, that you have captured a Holland ship filled with silver. Well done! You are a brave and reckless sailor, captain!", "SentJons", 10, 3, "");
+			AddSimpleRumourCity(DLG_TEXT_Q[49], "SentJons", 10, 3, "");
 		break;
 		
 		case "Fleetwood_house":
-			dialog.text = "I've been asking myself the same thing... Some bastard had thrown pepper in patron's eyes and stabbed him in the chest, before Richard managed to grab his blade. Assassin was planning to end Richard with one hit, since he didn't have time for another, but he failed - commander always carry an armour under his clothes\Filthy scum, chain shot to his liver, managed to flee. It looks like he has friends in the town. The only detail we know about him - he has only one eye. It won't help us much though, there are plenty of Cyclops like him these days\nRichard has lost a lot of blood and didn't washed his eyes immediately, so he is almost blind now...";
-			link.l1 = "Well, I am sorry for your commander. Was the attacker declared to be wanted?";
+			dialog.text = DLG_TEXT_Q[50];
+			link.l1 = DLG_TEXT_Q[51];
 			link.l1.go = "Fleetwood_house_1";
 		break;
 		
 		case "Fleetwood_house_1":
-			dialog.text = "Richard's marines have searched whole town and the local bays, but they didn't find a thing, chain shots to their necks! If we have failed to find him immediately, then we definitely won't find him ever. Richard has a lot of enemies... But, captain, my patron wants to see you anyway despite the accident. He is in his house now so let's go to him. Follow me!";
-			link.l1 = "Fine, Charlie. I will follow!";
+			dialog.text = DLG_TEXT_Q[52];
+			link.l1 = DLG_TEXT_Q[53];
 			link.l1.go = "Fleetwood_house_2";
 		break;
 		
@@ -270,14 +269,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "InFleetwoodHouse":
-			dialog.text = "Richard is upstairs in his room. Go to him, he is waiting for you. I will stay here.";
-			link.l1 = "Understood, Charlie. I am on my way.";
+			dialog.text = DLG_TEXT_Q[54];
+			link.l1 = DLG_TEXT_Q[55];
 			link.l1.go = "exit";	
 		break;
 		
 		case "Knippel_ToOfficer":
-			dialog.text = "Captain, listen... Richard is under a good care now and he is safe. And I want to help you to revenge for his injury. I offer you my services as an officer. I am not good in fencing, too old for that, but I am still good in pointing and shooting cannons.";
-			link.l1 = "Welcome to aboard, Charlie!";
+			dialog.text = DLG_TEXT_Q[56];
+			link.l1 = DLG_TEXT_Q[57];
 			link.l1.go = "Knippel_ToOfficer_1";	
 		break;
 		
@@ -295,12 +294,12 @@ void ProcessDialogEvent()
 			NextDiag.CurrentNode = NextDiag.TempNode;
 			DialogExit();
 			SetFunctionTimerCondition("GotoBridgetownOver", 0, 0, 30, false);//на все дела - 1 месяц
-			AddSimpleRumourCity("They say, captain, that Richard Fleetwood himself is very interested in you. You are a very important person in our town, I can tell you.", "SentJons", 10, 3, "");
+			AddSimpleRumourCity(DLG_TEXT_Q[58], "SentJons", 10, 3, "");
 		break;
 		
 		case "hired":
-			dialog.text = "Want something, captain?";
-			link.l1 = "No, it is nothing.";
+			dialog.text = DLG_TEXT_Q[59];
+			link.l1 = DLG_TEXT_Q[60];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "hired";
 		break;
@@ -309,26 +308,26 @@ void ProcessDialogEvent()
 			PlaySound("VOICE\Russian\hambit\Charlie Knippel-07.wav");
 			if (pchar.questTemp.HWIC.Eng == "MirageFail")
 			{
-				dialog.text = "You are a complete idiot, captain, chain shot to my ass! You have failed to do an elementary task - to capture the 'Mirage' without loosing the 'Valkyrie'\nOur crew won't serve under your command any longer. We are sure that sir Fleetwood will approve our decision, he doesn't like sad sacks.";
-				link.l1 = "Fuck you and your master!";
+				dialog.text = DLG_TEXT_Q[61];
+				link.l1 = DLG_TEXT_Q[62];
 				link.l1.go = "exit";
 			}
 			if (pchar.questTemp.HWIC.Eng == "GotoBridgetown" || pchar.questTemp.HWIC.Eng == "SeekVanBerg")
 			{
-				dialog.text = "You are a complete idiot, captain, chain shot to my ass! We have wasted too much time solving your personal problems\nOur crew won't serve you any longer. We are sure that sir Fleetwood will approve our decision.";
-				link.l1 = "Fuck you and your master!";
+				dialog.text = DLG_TEXT_Q[63];
+				link.l1 = DLG_TEXT_Q[64];
 				link.l1.go = "exit";
 			}
 			if (pchar.questTemp.HWIC.Eng == "VanBergFailInWorld")
 			{
-				dialog.text = "You are a complete idiot, captain, chain shot to my ass! You were told to play a lone merchant on the 'Valkyrie', and what did you do? You scared the pirate off with this flotilla!\nOur crew won't serve you any longer. We are sure that sir Fleetwood will approve our decision.";
-				link.l1 = "Fuck you and your master!";
+				dialog.text = DLG_TEXT_Q[65];
+				link.l1 = DLG_TEXT_Q[66];
 				link.l1.go = "exit";
 			}
 			if (pchar.questTemp.HWIC.Eng == "MirageTake")
 			{
-				dialog.text = "You are a complete idiot, captain, chain shot to my ass! Did you decide to waste our time doing anything but capturing the 'Mirage' and sailing to Antigua?\nOur crew won't serve you any longer. We are sure that sir Fleetwood will approve our decision.";
-			link.l1 = "Fuck you and your master!";
+				dialog.text = DLG_TEXT_Q[67];
+			link.l1 = DLG_TEXT_Q[68];
 			link.l1.go = "exit";
 			}
 			PChar.quest.Munity = "Deads";
@@ -368,20 +367,20 @@ void ProcessDialogEvent()
 		
 		case "OnCuracao":
 			pchar.quest.HWICEng_toBarbadosOver.over = "yes";//снять прерывание
-			dialog.text = "Greetings, captain. Glad to see you!";
-			link.l1 = "Greetings, Charlie. Do you have the money? Give it to me and let's go to Willemstad for Abigail. Will you join me?";
+			dialog.text = DLG_TEXT_Q[69];
+			link.l1 = DLG_TEXT_Q[70];
 			link.l1.go = "OnCuracao_1";	
 		break;
 		
 		case "OnCuracao_1":
-			dialog.text = "Captain, listen... There is no need to go anywhere now.";
-			link.l1 = "What are talking about? This is nonsense!";
+			dialog.text = DLG_TEXT_Q[71];
+			link.l1 = DLG_TEXT_Q[72];
 			link.l1.go = "OnCuracao_2";	
 		break;
 		
 		case "OnCuracao_2":
-			dialog.text = "I have a letter from Richard for you. And the money. But this money is not for Abigail's father, but for you. Two hundred thousand pesos. Read the letter and try to don't judge him too strictly...";
-			link.l1 = "What the hell is going on these days?! Another unpleasant surprise? Give me the letter!";
+			dialog.text = DLG_TEXT_Q[73];
+			link.l1 = DLG_TEXT_Q[74];
 			link.l1.go = "OnCuracao_3";	
 		break;
 		
@@ -401,10 +400,10 @@ void ProcessDialogEvent()
 		break;
 		
 		case "OnCuracao_4":
-			dialog.text = "Did you read it, captain? I am ashamed of Richard and of what he did, chain shot to his... ah, fuck this. Rodenburg got enraged when he learnt about Abigail's romance with Richard. Patrols are scouting throughout Curacao and there are military ships cruising the local waters. Have you met them already? We should hurry.\Captain, do you need a skilful cannoneer? I don't need much - just a normal sea ration on a regular basis.";
-			link.l1 = "I agree, Charlie. Welcome to the crew!";
+			dialog.text = DLG_TEXT_Q[75];
+			link.l1 = DLG_TEXT_Q[76];
 			link.l1.go = "Knippel_hire";
-			link.l2 = "You know, I regret helping your patron. I don't know now how to get out of this mess. Walk your own road, I had enough of surprises.";
+			link.l2 = DLG_TEXT_Q[77];
 			link.l2.go = "Knippel_exit";
 		break;
 		
@@ -437,8 +436,8 @@ void ProcessDialogEvent()
 		
 //------------------------------------------------против всех-----------------------------------------------
 		case "Knippel_abordage":
-			dialog.text = "Filthy bastard! Why have you attacked this peaceful Dutch ship? I don't have any valuable goods or gold, chain shot to my butt!";
-			link.l1 = "Dutch ship? Ha-ha! Don't make me laugh, 'Dutch'. I have attacked your brigantine in order to capture you, dear Charlie. Welcome to my cargo hold. We will have a talk about where to you were sailing and why...";
+			dialog.text = DLG_TEXT_Q[78];
+			link.l1 = DLG_TEXT_Q[79];
 			link.l1.go = "Knippel_abordage_1";	
 		break;
 		
@@ -455,20 +454,20 @@ void ProcessDialogEvent()
 		
 		case "Knippel_prisoner":
 			PlaySound("VOICE\Russian\hambit\Charlie Knippel-07.wav");
-			dialog.text = "You are a devil, captain... Burn in hell for all your deeds! Scre...";
-			link.l1 = "Relax, sermonist. You'd better think for your soul now so don't read me morals here.";
+			dialog.text = DLG_TEXT_Q[80];
+			link.l1 = DLG_TEXT_Q[81];
 			link.l1.go = "Knippel_prisoner_1";
 		break;
 		
 		case "Knippel_prisoner_1":
-			dialog.text = "What are you planning, scum? What do you want from my patron and from the poor Dutch girl?";
-			link.l1 = "It is not your business now, Charlie. I don't need you anymore. Get up.";
+			dialog.text = DLG_TEXT_Q[82];
+			link.l1 = DLG_TEXT_Q[83];
 			link.l1.go = "Knippel_prisoner_2";	
 		break;
 		
 		case "Knippel_prisoner_2":
-			dialog.text = "Do you want to kill me? Worthy of such a bastard like you. Well... Fuck you!";
-			link.l1 = "Get up, Charlie. And turn your back to me.";
+			dialog.text = DLG_TEXT_Q[84];
+			link.l1 = DLG_TEXT_Q[85];
 			link.l1.go = "Knippel_prisoner_3";	
 		break;
 		
@@ -483,119 +482,24 @@ void ProcessDialogEvent()
 		
 		//--> ----------------------------------- офицерский блок ------------------------------------------
 		case "Knippel_officer":
-			dialog.text = "I am listening to you, captain, chain shot to my cave!";
+			dialog.text = DLG_TEXT_Q[86];
 			if (CheckAttribute(pchar, "questTemp.Dolly_Tieyasal") && !CheckAttribute(npchar, "quest.Tieyasal"))
 			{
-				Link.l4 = "Charlie, I am going to an ancient Indian city Tayasal. I will be clear, this is going to be a really dangerous trip and it is also a mystic one - we will get there through the teleport idol. Will you... join me?";
+				Link.l4 = DLG_TEXT_Q[87];
 				Link.l4.go = "tieyasal";
 			}
-			
-			////////////////////////казначей///////////////////////////////////////////////////////////
-           	// boal отчёт о корабле
-			if(CheckAttribute(NPChar, "treasurer") && NPChar.treasurer == 1)
-			{
-			    Link.l11 = "Charlie, give me a full ship report.";
-			    Link.l11.go = "QMASTER_1";
-				
-			    // Warship. Автозакупка товара
-				Link.l12 = "I want you to purchase certain goods every time we are docked.";
-				Link.l12.go = "QMASTER_2";
-			}
-			
-			if (CheckAttribute(NPChar, "IsCompanionClone"))//////////////////компаньон//////////////////////////////////////////////
-			{
-				//dialog.text = "Я прибыл по вашему распоряжению, капитан.";
-				Link.l2 = "I need to issue several orders to you.";
-				Link.l2.go = "Companion_Tasks";
-				NextDiag.TempNode = "Knippel_officer";// не забыть менять в зависисомости от оффа
-				break;
-			}
-			Link.l1 = "Listen to my orders!";
+			Link.l1 = DLG_TEXT_Q[88];
             Link.l1.go = "stay_follow";
-			link.l2 = "It's nothing. Dismissed!";
+			link.l2 = DLG_TEXT_Q[89];
 			link.l2.go = "exit";
 			NextDiag.TempNode = "Knippel_officer";
 		break;
 		
-		/////////////////////////// ответы для казначея ///////////////////////////////////
-		case "QMASTER_1":
-			dialog.Text = "Welp... The guns are alrighty, we replace those that explode and keep our powder safe. What kind of a report did you expect, Captain? I am an old cannoneer, not a purser. Knippel to my yard, I am the best cannoneer mind you!";
-			Link.l1 = "No arguing here, Charlie, you do know your trade. I will find a purser myself, don't you worry.";
-			Link.l1.go = "exit";
-		break;	
-
-		case "QMASTER_2":
-			dialog.text = "You want old Charlie to change his gun deck for bargaining with shopkeepers? Captain, I sink ships, not put up a fight for each peso. And I am positive they will rip me off in the very first colony we try this.";
-			link.l1 = "But of course, Charlie. I should start looking for a proper purser.";
-			link.l1.go = "exit";
-		break;
-		
-		//Указания для компаньона 19.02.08 -->/////////////////////////////////////////////////////////////////////////////////////////
-		case "Companion_Tasks":
-			dialog.Text = "I am listening to you.";
-			Link.l1 = "This is about boarding.";
-			Link.l1.go = "Companion_TaskBoarding";
-			Link.l2 = "This is about your ship.";
-			Link.l2.go = "Companion_TaskChange";
-			if (bBettaTestMode) // Только при бета-тесте
-			{
-				Link.l3 = "I want you to leave my squadron for a while and seek fortune on your own.";
-				Link.l3.go = "CompanionTravel";
-			}
-			Link.l8 = "Nothing so far.";
-			Link.l8.go = "exit";
-			break;
-
-		case "Companion_TaskBoarding":
-			dialog.Text = "So what is your wish.";
-			Link.l1 = "Don't board enemy ships. Take care of yourself and the crew.";
-			Link.l1.go = "Companion_TaskBoardingNo";
-			Link.l2 = "I want you to board enemy ships.";
-			Link.l2.go = "Companion_TaskBoardingYes";
-			break;
-
-		case "Companion_TaskChange":
-			dialog.Text = "So what is your wish.";
-			Link.l1 = "I would like you not to swap your ship for another one after boarding. It's too valuable.";
-			Link.l1.go = "Companion_TaskChangeNo";
-			Link.l2 = "When you are boarding enemy ships, you can take them for yourself, if they happen to be decent.";
-			Link.l2.go = "Companion_TaskChangeYes";
-			break;
-
-		case "Companion_TaskBoardingNo":
-			dialog.Text = "Aye-aye.";
-			Link.l1 = "At ease.";
-			Link.l1.go = "exit";
-			NPChar.Tasks.CanBoarding = false;
-			break;
-
-		case "Companion_TaskBoardingYes":
-			dialog.Text = "It will be done.";
-			Link.l1 = "At ease.";
-			Link.l1.go = "exit";
-			NPChar.Tasks.CanBoarding = true;
-			break;
-
-		case "Companion_TaskChangeNo":
-			dialog.Text = "Aye-aye.";
-			Link.l1 = "It will be done.";
-			Link.l1.go = "exit";
-			NPChar.Tasks.CanChangeShipAfterBoarding = false;
-			break;
-
-		case "Companion_TaskChangeYes":
-			dialog.Text = "It will be done.";
-			Link.l1 = "At ease.";
-			Link.l1.go = "exit";
-			NPChar.Tasks.CanChangeShipAfterBoarding = true;
-			break;
-			//	<========////////////////////////////////////////
-
 		case "stay_follow":
-            dialog.Text = "Orders?";
-            Link.l1 = "Stand here!";
+            dialog.Text = DLG_TEXT_Q[90];
+            Link.l1 = DLG_TEXT_Q[91];
             Link.l1.go = "Boal_Stay";
-            Link.l2 = "Follow me and keep up!";
+            Link.l2 = DLG_TEXT_Q[92];
             Link.l2.go = "Boal_Follow";
 			sGun = GetCharacterEquipByGroup(NPChar, GUN_ITEM_TYPE);
 			if(sGun != "")
@@ -603,14 +507,14 @@ void ProcessDialogEvent()
 				rItm = ItemsFromID(sGun);
 				if(CheckAttribute(NPChar, "chr_ai.bulletNum") && sti(NPChar.chr_ai.bulletNum) > 1)
 				{
-					Link.l3 = "Change the type of ammo for your firearms.";
+					Link.l3 = DLG_TEXT_Q[93];
 					Link.l3.go = "SetGunBullets";
 				}	
 			}		
 		break;
 		
 		case "SetGunBullets":
-			Dialog.Text = "Choosing the type of ammo:";
+			Dialog.Text = DLG_TEXT_Q[94];
 			sGun = GetCharacterEquipByGroup(NPChar, GUN_ITEM_TYPE);
 			rItm = ItemsFromID(sGun);
 			makearef(rType, rItm.type);	
@@ -641,30 +545,30 @@ void ProcessDialogEvent()
         case "Boal_Stay":
             Pchar.questTemp.HiringOfficerIDX = GetCharacterIndex(Npchar.id);
             AddDialogExitQuestFunction("LandEnc_OfficerStay");
-            dialog.Text = "There is change of disposition!";
-            Link.l1 = "Dismissed.";
+            dialog.Text = DLG_TEXT_Q[95];
+            Link.l1 = DLG_TEXT_Q[96];
             Link.l1.go = "Exit";
             Npchar.chr_ai.tmpl = LAI_TMPL_STAY;
         break;
         
         case "Boal_Follow":
             SetCharacterTask_FollowCharacter(Npchar, PChar);
-            dialog.Text = "There is change of disposition!";
-            Link.l1 = "Dismissed.";
+            dialog.Text = DLG_TEXT_Q[97];
+            Link.l1 = DLG_TEXT_Q[98];
             Link.l1.go = "Exit";
         break;
 	//<-- ----------------------------------- офицерский блок ----------------------------------------
 	
 	// на Тайясаль
 		case "tieyasal":
-			dialog.text = "I have become really attached to you during my service, "+pchar.name+", and I don't leave my captains. I am with you!";
-			link.l1 = "Thank you, Charlie! I am glad that I was right about you.";
+			dialog.text = DLG_TEXT_Q[99]+pchar.name+DLG_TEXT_Q[100];
+			link.l1 = DLG_TEXT_Q[101];
 			link.l1.go = "tieyasal_1";
 		break;
 		
 		case "tieyasal_1":
-			dialog.text = "When will we start?";
-			link.l1 = "A bit later. We have to prepare ourselves for it.";
+			dialog.text = DLG_TEXT_Q[102];
+			link.l1 = DLG_TEXT_Q[103];
 			link.l1.go = "tieyasal_2";
 		break;
 		
@@ -681,8 +585,8 @@ void ProcessDialogEvent()
 		
 		//--> блок реагирования на попытку залезть в сундук
 		case "Man_FackYou":
-			dialog.text = LinkRandPhrase("You are a "+ GetSexPhrase("thief, mister! Guards, take him","thief, girl! Guards, take her") +"!!!", "Just look at that! As soon as I was lost in contemplation, you decided to check my chest! Take the thief!!!", "Guards! Robbery! Take the thief!!!");
-			link.l1 = "Damn it!";
+			dialog.text = LinkRandPhrase(DLG_TEXT_Q[104]+ GetSexPhrase(DLG_TEXT_Q[105],DLG_TEXT_Q[106]) +"!!!", DLG_TEXT_Q[107], DLG_TEXT_Q[108]);
+			link.l1 = DLG_TEXT_Q[109];
 			link.l1.go = "exit";
 			LAi_group_Attack(NPChar, Pchar);
 		break;

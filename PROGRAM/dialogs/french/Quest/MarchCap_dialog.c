@@ -1,3 +1,4 @@
+#include "SD\TEXT\DIALOGS\Quest\MarchCap_dialog.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -22,8 +23,8 @@ void ProcessDialogEvent()
 		//разговор на палубе
 		case "MarchCap":
 			pchar.quest.MarchCapOver.over = "yes"; //снять прерывание
-			dialog.text = "Here you are, captain. Let's discuss the details of my offer. You will understand why I didn't want to talk about this in public.";
-			link.l1 = "Go on, sir. I am listening.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = DLG_TEXT_Q[1];
 			link.l1.go = "MarchCap_1";
 		break;
 		
@@ -45,10 +46,10 @@ void ProcessDialogEvent()
 						if (!isLocationFreeForQuests(pchar.GenQuest.MarchCap.Island) || !isLocationFreeForQuests(pchar.GenQuest.MarchCap.Island.Shore)) pchar.GenQuest.MarchCap.Island.Shore = "";
 					}
 					pchar.GenQuest.MarchCap.DaysQty = GetMaxDaysFromIsland2Island(pchar.GenQuest.MarchCap.Startisland, pchar.GenQuest.MarchCap.Island)+3;
-					dialog.text = "I managed to find out that in "+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+" a small trading convoy under the flag of "+NationNameGenitive(sti(pchar.GenQuest.MarchCap.Nation))+", two trade ships and one guard ship, will be sailing close to "+XI_ConvertString(pchar.GenQuest.MarchCap.Island.Shore+"Gen")+", this is not far from "+XI_ConvertString(pchar.GenQuest.MarchCap.Island+"Gen")+". The traders have a lot of "+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+" in their holds. It would be silly not to use this information, captain\nYou and I can deal with the guards easily and take the cargo for ourselves. So, are you in?";
-					link.l1 = "Sounds tempting. I'd say yes!";
+					dialog.text = DLG_TEXT_Q[2]+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+DLG_TEXT_Q[3]+NationNameGenitive(sti(pchar.GenQuest.MarchCap.Nation))+DLG_TEXT_Q[4]+XI_ConvertString(pchar.GenQuest.MarchCap.Island.Shore+"Gen")+DLG_TEXT_Q[5]+XI_ConvertString(pchar.GenQuest.MarchCap.Island+"Gen")+DLG_TEXT_Q[6]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[7];
+					link.l1 = DLG_TEXT_Q[8];
 					link.l1.go = "MarchCap_1_1";
-					link.l2 = "Some"+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+" is not enough for me to spoil my relations with "+NationNameAblative(sti(pchar.GenQuest.MarchCap.Nation))+". No, I am not going to do this! Farewell, sir, and don't even try to stop me!";
+					link.l2 = DLG_TEXT_Q[9]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[10]+NationNameAblative(sti(pchar.GenQuest.MarchCap.Nation))+DLG_TEXT_Q[11];
 					link.l2.go = "MarchCap_exit";
 				break;
 				
@@ -56,10 +57,10 @@ void ProcessDialogEvent()
 					pchar.GenQuest.MarchCap.Startcity = SelectAnyColony(pchar.GenQuest.MarchCap.basecity);
 					pchar.GenQuest.MarchCap.Finishcity = SelectAnyColony2(pchar.GenQuest.MarchCap.basecity, pchar.GenQuest.MarchCap.Startcity);
 					pchar.GenQuest.MarchCap.DaysQty = 5+drand(5);
-					dialog.text = "I managed to find out that in "+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+" a small trading convoy under the flag of "+NationNameGenitive(sti(pchar.GenQuest.MarchCap.Nation))+", two trade ship and one guard ship, will be sailing from "+XI_ConvertString("Colony"+pchar.GenQuest.MarchCap.Startcity+"Gen")+" to "+XI_ConvertString("Colony"+pchar.GenQuest.MarchCap.Finishcity+"Acc")+". The traders have a lot of "+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+" in their holds. It would be silly not to use this information, captain.\nYou and I can deal with the guards easily and take the cargo for ourselves. The hardest part is to find them in the open sea between these two settlements. So, are you in?";
-					link.l1 = "Sounds tempting. I'd say yes!";
+					dialog.text = DLG_TEXT_Q[12]+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+DLG_TEXT_Q[13]+NationNameGenitive(sti(pchar.GenQuest.MarchCap.Nation))+DLG_TEXT_Q[14]+XI_ConvertString("Colony"+pchar.GenQuest.MarchCap.Startcity+"Gen")+DLG_TEXT_Q[15]+XI_ConvertString("Colony"+pchar.GenQuest.MarchCap.Finishcity+"Acc")+DLG_TEXT_Q[16]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[17];
+					link.l1 = DLG_TEXT_Q[18];
 					link.l1.go = "MarchCap_2_1";
-					link.l2 = "Some "+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+" is not enough for me to spoil my relations with "+NationNameAblative(sti(pchar.GenQuest.MarchCap.Nation))+". No, I am not going to do this! Farewell, sir, and don't even try to stop me!";
+					link.l2 = DLG_TEXT_Q[19]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[20]+NationNameAblative(sti(pchar.GenQuest.MarchCap.Nation))+DLG_TEXT_Q[21];
 					link.l2.go = "MarchCap_exit";
 				break;
 				
@@ -83,18 +84,18 @@ void ProcessDialogEvent()
 					pchar.GenQuest.MarchCap.PirateName = "l" + rand(GetNamesCount(NAMETYPE_ORIG) - 1);//пират
 					pchar.GenQuest.MarchCap.ShipType = SelectPirateShipType();
 					pchar.GenQuest.MarchCap.Cannon = SelectLevelCannonParameter(sti(pchar.GenQuest.MarchCap.ShipType));
-					dialog.text = "I was informed about one pirate named "+GetName( NAMETYPE_ORIG, pchar.GenQuest.MarchCap.PirateName, NAME_NOM)+". This bandit has recently pinched "+RandPhraseSimple(RandPhraseSimple("English","French"), RandPhraseSimple("Spanish","Dutch"))+" and loaded his cargo with "+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+". But, what a pity, his ship "+GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.MarchCap.ShipType), "Name")+"Acc"))+" was badly damaged, so he had to take time to repair her.\nHe is currently at "+XI_ConvertString(pchar.GenQuest.MarchCap.Island.Shore+"Gen")+" of "+XI_ConvertString(pchar.GenQuest.MarchCap.Island+"Gen")+". I think that it will take around "+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+" for him to fix masts and holes in the hull. We can get there in time if we hurry and all of "+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+" will be ours\nI will not be able to deal with this pirate on my own, he is a very good sailor and fighter, but two of us can face him successfully despite of his experience. So, are you in or not?";
-					link.l1 = "Sounds tempting. I'd say yes!";
+					dialog.text = DLG_TEXT_Q[22]+GetName( NAMETYPE_ORIG, pchar.GenQuest.MarchCap.PirateName, NAME_NOM)+DLG_TEXT_Q[23]+RandPhraseSimple(RandPhraseSimple(DLG_TEXT_Q[24],DLG_TEXT_Q[25]), RandPhraseSimple(DLG_TEXT_Q[26],DLG_TEXT_Q[27]))+DLG_TEXT_Q[28]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[29]+GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.MarchCap.ShipType), "Name")+"Acc"))+DLG_TEXT_Q[30]+XI_ConvertString(pchar.GenQuest.MarchCap.Island.Shore+"Gen")+DLG_TEXT_Q[31]+XI_ConvertString(pchar.GenQuest.MarchCap.Island+"Gen")+DLG_TEXT_Q[32]+FindRussianDaysString(sti(pchar.GenQuest.MarchCap.DaysQty))+DLG_TEXT_Q[33]+GetGoodsNameAlt(sti(pchar.GenQuest.MarchCap.Goods))+DLG_TEXT_Q[34];
+					link.l1 = DLG_TEXT_Q[35];
 					link.l1.go = "MarchCap_3_1";
-					link.l2 = "Hm. It looks like this prize is unreachable not only for you but for the both of us. No, I am not going to do this, farewell, sir, and don't even try to stop me!";
+					link.l2 = DLG_TEXT_Q[36];
 					link.l2.go = "MarchCap_exit";
 				break;
 			}
 		break;
 		
 		case "MarchCap_1_1":
-			dialog.text = "I knew that I could count on you! Lets not waste a single minute. Go to your ship and take a lead. It is time to set sail!";
-			link.l1 = "Order to anchor-up, captain!";
+			dialog.text = DLG_TEXT_Q[37];
+			link.l1 = DLG_TEXT_Q[38];
 			link.l1.go = "MarchCap_1_2";
 		break;
 		
@@ -129,8 +130,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "MarchCap_TimeOver":
-			dialog.text = "And why have I got involved with you, captain? We have lost such a valuable prize because of you! I'd better sail alone next time...";
-			link.l1 = "Your fault, not mine. Bye.";
+			dialog.text = DLG_TEXT_Q[39];
+			link.l1 = DLG_TEXT_Q[40];
 			link.l1.go = "MarchCap_Talk_exit";
 			pchar.GenQuest.MarchCap = "late";
 		break;
@@ -179,44 +180,44 @@ void ProcessDialogEvent()
 			pchar.GenQuest.MarchCap.CapPart = iQty/sti(pchar.GenQuest.MarchCap.Parts);
 			if (iTemp < 50)
 			{
-				dialog.text = "You're such a loser, captain! We didn't get a piece! And this is all because of you! You are the reason of our fault, damn you!";
-				link.l1 = "Am I? Look at yourself! You haven't helped me in the battle! I have just wasted my time with you... Get out from my ship!";
+				dialog.text = DLG_TEXT_Q[41];
+				link.l1 = DLG_TEXT_Q[42];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "bad";
 				break;
 			}
 			if (iTemp > 50 && iTemp < 500)
 			{
-				dialog.text = "Well, this raid wasn't that successful as I have expected, our prize is really modest... Whatever, captain, let's share these scraps and say goodbye to each other.";
-				link.l1 = "If you had been helping me instead of counting birds in the sky, the raid would've been successful... Take your share - "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+" and get lost!";
+				dialog.text = DLG_TEXT_Q[43];
+				link.l1 = DLG_TEXT_Q[44]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+DLG_TEXT_Q[45];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "poor";
 				break;
 			}
 			if (iTemp > 500 && iTemp < 1500)
 			{
-				dialog.text = "Well done, captain! As I said - it was relatively easy to empty cargo holds of those merchants, ha-ha... The prize is "+FindRussianQtyString(iQty)+" pieces. My share is "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
-				link.l1 = "It is correct, "+npchar.name+". I have no objections. Longboats are being loaded right now. Perhaps, we will do another raid together in the future? You look like a suitable companion for me.";
+				dialog.text = DLG_TEXT_Q[46]+FindRussianQtyString(iQty)+DLG_TEXT_Q[47]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
+				link.l1 = DLG_TEXT_Q[48]+npchar.name+DLG_TEXT_Q[49];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "good";
 				break;
 			}
-			dialog.text = "Excellent, captain! As I said - it was relatively easy to empty cargo holds of those merchants, ha-ha... The prize is huge, much more than I have expected. It is "+FindRussianQtyString(iQty)+" pieces. My share is "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
-			link.l1 = "It is correct, "+npchar.name+". I have no objections. Longboats are being loaded right now. Perhaps, we will do another raid together in the future? You look like a suitable companion for me.";
+			dialog.text = DLG_TEXT_Q[50]+FindRussianQtyString(iQty)+DLG_TEXT_Q[51]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
+			link.l1 = DLG_TEXT_Q[52]+npchar.name+DLG_TEXT_Q[53];
 			link.l1.go = "MarchCap_Deck_continue";
 			pchar.GenQuest.MarchCap = "exellent";
 		break;
 		
 		//если будет время - здесь создаем еще одного клона с уникальным ИД для продолжения квеста
 		case "MarchCap_Deck_continue":
-			dialog.text = "There is a possibility, captain. I will find you if I would get another profitable lead which I won't be able to do on my own. You look like a reliable battle companion for me as well.";
-			link.l1 = "Nice! Farewell, captain. Good luck!";
+			dialog.text = DLG_TEXT_Q[54];
+			link.l1 = DLG_TEXT_Q[55];
 			link.l1.go = "MarchCap_Talk_exit";
 		break;
 		
 		case "MarchCap_2_1":
-			dialog.text = "I knew that I could count on you! Lets not waste a single minute. Go to your ship and take a lead. It is time to set sail!";
-			link.l1 = "Order to achor-up, captain.";
+			dialog.text = DLG_TEXT_Q[56];
+			link.l1 = DLG_TEXT_Q[57];
 			link.l1.go = "MarchCap_2_2";
 		break;
 		
@@ -249,8 +250,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "MarchCap_3_1":
-			dialog.text = "I knew that I could count on you! Lets not waste a single minute. Go to your ship and lead me. It is time to set sail!";
-			link.l1 = "Order to anchor-up, captain.";
+			dialog.text = DLG_TEXT_Q[58];
+			link.l1 = DLG_TEXT_Q[59];
 			link.l1.go = "MarchCap_3_2";
 		break;
 		
@@ -282,14 +283,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "MarchCap_DieHard":
-			dialog.text = "You are a coward, damn you! You have just run away from the battlefield!";
-			link.l1 = "And what do you think I was supposed to do? To let that pirate to sink my ship? No way, I'd better be a living coward than a dead idiot!";
+			dialog.text = DLG_TEXT_Q[60];
+			link.l1 = DLG_TEXT_Q[61];
 			link.l1.go = "MarchCap_DieHard_1";
 		break;
 		
 		case "MarchCap_DieHard_1":
-			dialog.text = "And why have I got involved with you, captain? I should have found a man who didn't fear boarding sabers!";
-			link.l1 = " Now, I ask you to leave my ship - I need to repair her.";
+			dialog.text = DLG_TEXT_Q[62];
+			link.l1 = DLG_TEXT_Q[63];
 			link.l1.go = "MarchCap_Talk_exit";
 		break;
 		
@@ -299,30 +300,30 @@ void ProcessDialogEvent()
 			pchar.GenQuest.MarchCap.CapPart = iQty/sti(pchar.GenQuest.MarchCap.Parts);
 			if (iTemp < 10)
 			{
-				dialog.text = "You such a loser, captain! We didn't get a piece! And this is all because of you! You are the reason of our fault, damn you!";
-				link.l1 = "Am I? Look at yourself! You haven't helped me in the battle! I have just wasted my time with you... Get out from my ship!";
+				dialog.text = DLG_TEXT_Q[64];
+				link.l1 = DLG_TEXT_Q[65];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "bad";
 				break;
 			}
 			if (iTemp > 10 && iTemp < 100)
 			{
-				dialog.text = "Well, this raid wasn't that successful as I have expected, our prize is really modest... Whatever, captain, let's share these scraps and say goodbye to each other.";
-				link.l1 = "If you were helping me instead of counting birds in the sky, the raid would've been successful... Take your share - "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+" and get lost!";
+				dialog.text = DLG_TEXT_Q[66];
+				link.l1 = DLG_TEXT_Q[67]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+DLG_TEXT_Q[68];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "poor";
 				break;
 			}
 			if (iTemp > 100 && iTemp < 500)
 			{
-				dialog.text = "Well done, captain! The prize is "+FindRussianQtyString(iQty)+" pieces. My share is "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
-				link.l1 = "It is correct, "+npchar.name+". I have no objections. Longboats are being loaded right now. Perhaps we will meet again...";
+				dialog.text = DLG_TEXT_Q[69]+FindRussianQtyString(iQty)+DLG_TEXT_Q[70]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
+				link.l1 = DLG_TEXT_Q[71]+npchar.name+DLG_TEXT_Q[72];
 				link.l1.go = "MarchCap_Talk_exit";
 				pchar.GenQuest.MarchCap = "good";
 				break;
 			}
-			dialog.text = "Splendid, captain! As I said - it was easy relatively, ha-ha... The prize is huge, much more than I have expected. It is "+FindRussianQtyString(iQty)+" pieces. My share is "+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
-			link.l1 = "It is correct, "+npchar.name+". I have no objections. Longboats are being loaded right now. Perhaps, we will do another raid together in the future? You look like a suitable companion for me.";
+			dialog.text = DLG_TEXT_Q[73]+FindRussianQtyString(iQty)+DLG_TEXT_Q[74]+FindRussianQtyString(sti(pchar.GenQuest.MarchCap.CapPart))+".";
+			link.l1 = DLG_TEXT_Q[75]+npchar.name+DLG_TEXT_Q[76];
 			link.l1.go = "MarchCap_Deck_continue";
 			pchar.GenQuest.MarchCap = "exellent";
 		break;
@@ -334,15 +335,15 @@ void ProcessDialogEvent()
 		break;
 		
 		case "MarchCap_repeat":
-			dialog.text = ""+GetAddress_Form(NPChar)+", go to your ship. We don't have time to chat. Let's set sail!";
-			link.l1 = "Yes, yes, of course, you are right.";
+			dialog.text = ""+GetAddress_Form(NPChar)+DLG_TEXT_Q[77];
+			link.l1 = DLG_TEXT_Q[78];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "MarchCap_repeat";
 		break;
 		
 		case "MarchCap_exit":
-			dialog.text = "Hm... I ain't going to. Get lost! I will do it by myself!";
-			link.l1 = "Well, well, happy journey...";
+			dialog.text = DLG_TEXT_Q[79];
+			link.l1 = DLG_TEXT_Q[80];
 			link.l1.go = "MarchCap_DeckExit";
 		break;
 		

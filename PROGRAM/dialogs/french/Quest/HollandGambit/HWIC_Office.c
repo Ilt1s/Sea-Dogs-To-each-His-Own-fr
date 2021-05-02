@@ -1,4 +1,4 @@
-// НПС офиса ГВИК
+#include "SD\TEXT\DIALOGS\Quest\HollandGambit\HWIC_Office.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -14,8 +14,8 @@ void ProcessDialogEvent()
 	switch(Dialog.CurrentNode)
 	{
 		case "First time":
-			dialog.text = "Want something?";
-			link.l1 = "No.";
+			dialog.text = DLG_TEXT_Q[0];
+			link.l1 = "Non.";
 			link.l1.go = "exit";			
 			NextDiag.TempNode = "First time";
 		break;
@@ -24,60 +24,60 @@ void ProcessDialogEvent()
 		case "HWIC_officer":
 			if (LAi_grp_playeralarm > 0)
 			{
-				dialog.text = "Alarm! Enemy is here! To arms!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[1];
+				link.l1 = DLG_TEXT_Q[2];
 				link.l1.go = "fight";
 				break;
 			}
 			if (ChangeCharacterHunterScore(Pchar, "holhunter", 0) > 12)
 			{
-				dialog.text = "Aha! I think, I know who you are... Sure! You are wanted for your crimes! Lads, seize him!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[3];
+				link.l1 = DLG_TEXT_Q[4];
 				link.l1.go = "fight";
 				break;
 			}
 			chrDisableReloadToLocation = true;
 			if (CheckAttribute(pchar, "questTemp.HWIC.CanTake") && !CheckAttribute(pchar, "questTemp.HWIC.CanTake.Holl") && !CheckAttribute(pchar, "questTemp.HWIC.Eng") && !CheckAttribute(pchar, "questTemp.HWIC.Self"))
 			{
-				dialog.text = "Good day. What do you want?";
-				link.l1 = "I am here for trading matters. Licenses, navigation instruments and so on...";
+				dialog.text = DLG_TEXT_Q[5];
+				link.l1 = DLG_TEXT_Q[6];
 				link.l1.go = "HWIC_officer_3";
-				link.l2 = "I want to offer my services to the Company. In exchange for gold of course. Are you hiring?";
+				link.l2 = DLG_TEXT_Q[7];
 				link.l2.go = "HWIC_officer_1";
 				break;
 			}
 			if (CheckAttribute(pchar, "questTemp.HWIC.Eng"))
 			{
-				dialog.text = "Good day. What do you want?";
-				link.l1 = "I am sorry, it seems, that I was mistaken. I am leaving.";
+				dialog.text = DLG_TEXT_Q[8];
+				link.l1 = DLG_TEXT_Q[9];
 				link.l1.go = "HWIC_officer_exit";
-				link.l2 = "I am here for trading matters. Licenses, navigation instruments and so on...";
+				link.l2 = DLG_TEXT_Q[10];
 				link.l2.go = "HWIC_officer_3";
 				break;
 			}
-			dialog.text = "Good day. What do you want?";
-			link.l1 = "I am here for trading matters. Licenses, navigation instruments and so on...";
+			dialog.text = DLG_TEXT_Q[11];
+			link.l1 = DLG_TEXT_Q[12];
 			link.l1.go = "HWIC_officer_3";
-			link.l2 = "I want to offer my services to the Company. In exchange for gold of course. Are you hiring?";
+			link.l2 = DLG_TEXT_Q[13];
 			link.l2.go = "HWIC_officer_2";
 		break;
 		
 		case "HWIC_officer_1":
-			dialog.text = "Then go upstairs to mynheer Rodenburg's office.";
-			link.l1 = "Thanks, I am on my way.";
+			dialog.text = DLG_TEXT_Q[14];
+			link.l1 = DLG_TEXT_Q[15];
 			link.l1.go = "HWIC_officer_exit";
 			LocatorReloadEnterDisable("Villemstad_houseS3", "reload2", false);//кабинет откроем
 		break;
 		
 		case "HWIC_officer_2":
-			dialog.text = "The Company is not hiring at the moment.";
-			link.l1 = "Too bad. Sorry for bothering you.";
+			dialog.text = DLG_TEXT_Q[16];
+			link.l1 = DLG_TEXT_Q[17];
 			link.l1.go = "HWIC_officer_exit";
 		break;
 		
 		case "HWIC_officer_3":
-			dialog.text = "Talk to mynheer Gerritz. His table is to the right of you. He does business with captains.";
-			link.l1 = "Thank you, officer...";
+			dialog.text = DLG_TEXT_Q[18];
+			link.l1 = DLG_TEXT_Q[19];
 			link.l1.go = "HWIC_officer_exit";
 		break;
 		
@@ -92,20 +92,20 @@ void ProcessDialogEvent()
 		case "HWIC_soldier":
 			if (LAi_grp_playeralarm > 0)
 			{
-				dialog.text = "Alarm! Enemy is here! To arms!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[20];
+				link.l1 = DLG_TEXT_Q[21];
 				link.l1.go = "fight";
 				break;
 			}
 			if (ChangeCharacterHunterScore(Pchar, "holhunter", 0) > 12)
 			{
-				dialog.text = "Aha! I think, I know who you are... Sure! You are wanted for your crimes! Lads, take him!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[22];
+				link.l1 = DLG_TEXT_Q[23];
 				link.l1.go = "fight";
 				break;
 			}
-			dialog.text = "Speak with our officers or with mynheer Gerritz. I have nothing to say to you. I am on duty.";
-			link.l1 = "Fine, I got it.";
+			dialog.text = DLG_TEXT_Q[24];
+			link.l1 = DLG_TEXT_Q[25];
 			link.l1.go = "exit";			
 			NextDiag.TempNode = "HWIC_soldier";
 		break;
@@ -114,13 +114,13 @@ void ProcessDialogEvent()
 		case "HWIC_clerk":
 			if (LAi_grp_playeralarm > 0)
 			{
-				dialog.text = "Alarm! Enemy is here! Soldiers!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[26];
+				link.l1 = DLG_TEXT_Q[27];
 				link.l1.go = "fight";
 				break;
 			}
-			dialog.text = "Talk with mynheer Gerritz.";
-			link.l1 = "Fine, I got it.";
+			dialog.text = DLG_TEXT_Q[28];
+			link.l1 = DLG_TEXT_Q[29];
 			link.l1.go = "exit";			
 			NextDiag.TempNode = "HWIC_clerk";
 		break;
@@ -129,46 +129,46 @@ void ProcessDialogEvent()
 		case "HWIC_headclerk":
 			if (LAi_grp_playeralarm > 0)
 			{
-				dialog.text = "Alarm! Enemy is here! Soldiers, take him!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[30];
+				link.l1 = DLG_TEXT_Q[31];
 				link.l1.go = "fight";
 				break;
 			}
 			if (ChangeCharacterHunterScore(Pchar, "holhunter", 0) > 12)
 			{
-				dialog.text = "Hm. I think that there is something wrong about you... Sure! You are wanted for numerous crimes against Holland! Soldiers, take him!";
-				link.l1 = "Damn!";
+				dialog.text = DLG_TEXT_Q[32];
+				link.l1 = DLG_TEXT_Q[33];
 				link.l1.go = "fight";
 				break;
 			}
-			dialog.text = "Want something, mynheer?";
+			dialog.text = DLG_TEXT_Q[34];
 			if (!CheckCharacterItem(pchar, "HolTradeLicence"))
 			{
-				link.l1 = "I want to buy a trading license of your Company.";
+				link.l1 = DLG_TEXT_Q[35];
 				link.l1.go = "licence";	
 			}
 			if (!CheckAttribute(npchar, "quest.trade"))
 			{
-				link.l2 = "I heard that it is possible to buy here navigation instruments and other useful items. Is that so?";
+				link.l2 = DLG_TEXT_Q[36];
 				link.l2.go = "trade";	
 			}
 			else
 			{
-				link.l2 = "What are you selling today? Show me.";
+				link.l2 = DLG_TEXT_Q[37];
 				link.l2.go = "trade_1";	
 			}
 			if (CheckCharacterItem(pchar, "Cromvel_depeshe"))
 			{
-				link.l3 = "I have an interesting document for you, mynheer. Read its beginning. It concerns the security of Holland. I will give it to you in case you are interested. There are coordinates of meeting. Not for free of course.";
+				link.l3 = DLG_TEXT_Q[38];
 				link.l3.go = "depeshe";	
 			}
 			// калеуче
 			if (CheckAttribute(pchar, "questTemp.Caleuche.Garpiya") && pchar.questTemp.Caleuche.Garpiya == "gwik")
 			{
-				link.l4 = "A captain by the name of Reginald Jackson must be working for you. He sails on a xebec called 'Harpy'. Could you tell me how can I meet him? I have important business with him.";
+				link.l4 = DLG_TEXT_Q[39];
 				link.l4.go = "caleuche";	
 			}
-			link.l9 = "No, it's nothing.";
+			link.l9 = DLG_TEXT_Q[40];
 			link.l9.go = "exit";			
 			NextDiag.TempNode = "HWIC_headclerk";
 		break;
@@ -177,14 +177,14 @@ void ProcessDialogEvent()
 		case "licence":
 			if (!CheckAttribute(npchar, "quest.licence"))
 			{
-				dialog.text = "Well, you are free to buy it. But I must warn you that the Company values its reputation, therefore it is forbidden to attack any trade ships of any nation for every owner of the license\nIf we find out that such act was committed - we will annul your license. Also, if you come into conflict with Holland no matter what reason, you will lose your document too. Are we clear?";
-				link.l1 = "Absolutely. I will remember that.";
+				dialog.text = DLG_TEXT_Q[41];
+				link.l1 = DLG_TEXT_Q[42];
 				link.l1.go = "licence_0";
 				npchar.quest.licence = true;
 			}
 			else
 			{
-				dialog.text = "Well, you are welcome to buy it. For what term?";
+				dialog.text = DLG_TEXT_Q[43];
 				link.l1.edit = 6;
 				link.l1 = "";	
 				link.l1.go = "licence_1";
@@ -192,11 +192,11 @@ void ProcessDialogEvent()
 		break;
 		
 		case "licence_0":
-			dialog.text = "The license grants a free passage to any port of any nation, it shows your peaceful intentions and explains your purpose - to trade. But it won't help if you have any problems with the law. They will simply take it from you in that case. Remember that\nDon't forget to raise a friendly flag before you sail into any port, patrols and forts' cannoneers prefer to shoot first and ask later\Right, almost forgot, according to our traditions, all deals involving licenses are paid in doubloons... This is it. Let's discuss terms. For how long are you willing to use the license?";
+			dialog.text = DLG_TEXT_Q[44];
 			link.l1.edit = 6;
 			link.l1 = "";	
 			link.l1.go = "licence_1";
-			link.l2 = "I am sorry, but I have to think a bit more about it. See you later.";	
+			link.l2 = DLG_TEXT_Q[45];	
 			link.l2.go = "exit";
 		break;
 		
@@ -205,32 +205,32 @@ void ProcessDialogEvent()
 			npchar.quest.lcc_summ = makeint(sqrt(fQty)*10)*7;
 			if (fQty < 1)
 			{
-				dialog.text = "Mynheer, please, speak loud and clear. I didn't hear you properly. So for how long?";
-				link.l1 = "Let me think...";
+				dialog.text = DLG_TEXT_Q[46];
+				link.l1 = DLG_TEXT_Q[47];
 				link.l1.go = "licence_r";
 				break;
 			}
 			if (fQty > 0 && fQty < 20)
 			{
-				dialog.text = "The minimum term for the license is twenty days. So? Twenty days or more?";
-				link.l1 = "Let me think...";
+				dialog.text = DLG_TEXT_Q[48];
+				link.l1 = DLG_TEXT_Q[49];
 				link.l1.go = "licence_r";
 				break;
 			}
 			if (fQty > 180)
 			{
-				dialog.text = "The maximum term for the license is half a year. One hundred and eighty days or less?";
-				link.l1 = "Let me think...";
+				dialog.text = DLG_TEXT_Q[50];
+				link.l1 = DLG_TEXT_Q[51];
 				link.l1.go = "licence_r";
 				break;
 			}
-			dialog.text = "For "+FindRussianDaysString(sti(fQty))+"? Fine. It will cost you "+FindRussianDublonString(sti(npchar.quest.lcc_summ))+". Are you fine with that?";
+			dialog.text = DLG_TEXT_Q[52]+FindRussianDaysString(sti(fQty))+DLG_TEXT_Q[53]+FindRussianDublonString(sti(npchar.quest.lcc_summ))+DLG_TEXT_Q[54];
 			if (GetCharacterItem(pchar, "gold_dublon") >= sti(npchar.quest.lcc_summ))
 			{
-				link.l1 = "Sure, I am.";
+				link.l1 = DLG_TEXT_Q[55];
 				link.l1.go = "licence_2";
 			}
-			link.l2 = "Unfortunately, I don't have that much money with me now. I will be back for the license later.";
+			link.l2 = DLG_TEXT_Q[56];
 			link.l2.go = "exit";
 		break;
 		
@@ -239,7 +239,7 @@ void ProcessDialogEvent()
 			link.l1.edit = 6;
 			link.l1 = "";	
 			link.l1.go = "licence_1";
-			link.l2 = "I am sorry, but I still need to think about it. I will see you later.";	
+			link.l2 = DLG_TEXT_Q[57];	
 			link.l2.go = "exit";
 		break;
 		
@@ -247,14 +247,14 @@ void ProcessDialogEvent()
 			int iQty = sti(dialogEditStrings[6]);
 			RemoveItems(pchar, "gold_dublon", sti(npchar.quest.lcc_summ));
 			GiveNationLicence(HOLLAND, iQty);
-			dialog.text = "So, wait a minute... Let us put a sign and a stamp here... Done. Take your document.";
-			link.l1 = "Thanks! Goodbye, mynheer.";
+			dialog.text = DLG_TEXT_Q[58];
+			link.l1 = DLG_TEXT_Q[59];
 			link.l1.go = "exit";
 		break;
 		
 		case "trade":
-			dialog.text = "We sell such things. You can buy navigation tools here, such as: compasses, astrolabes, chronometers and sand glasses. But we don't always have a full stock ready to buy. Except sand glasses, perhaps. They buy out other tools really quickly. So if you failed to find what you need - see us again in a week\nWe also sell maps and spyglasses. Want to see what we have to offer now?";
-			link.l1 = "Yes, please.";
+			dialog.text = DLG_TEXT_Q[60];
+			link.l1 = DLG_TEXT_Q[61];
 			link.l1.go = "trade_1";
 			npchar.quest.trade = "true";
 		break;
@@ -271,32 +271,32 @@ void ProcessDialogEvent()
 		
 		// депеша Кромвеля
 		case "depeshe":
-			dialog.text = "Hm, show me...(reading) Well, well... Cromwell's appetites in his best. Bastards! Isn't it enough for them what they did in England!? Where did you get this dispatch?";
-			link.l1 = "I took it from one English courier. So would you like to buy it?";
+			dialog.text = DLG_TEXT_Q[62];
+			link.l1 = DLG_TEXT_Q[63];
 			link.l1.go = "depeshe_1";
 		break;
 		
 		case "depeshe_1":
-			dialog.text = "Yes. Peter Stuyvesant will be really glad to read it, I am sure. And he will take effective measures... I can pay for it with gold or I can make you our license for a half a year term. What will you choose?";
-			link.l1 = "I choose gold.";
+			dialog.text = DLG_TEXT_Q[64];
+			link.l1 = DLG_TEXT_Q[65];
 			link.l1.go = "depeshe_dublon";
-			link.l2 = "I want the license.";
+			link.l2 = DLG_TEXT_Q[66];
 			link.l2.go = "depeshe_licence";
 		break;
 		
 		case "depeshe_dublon":
 			TakeNItems(pchar, "gold_dublon", 700);
-			Log_Info("You have received 700 doubloons");
-			dialog.text = "Fine. Here are your seven hundred doubloons. I can't pay you more anyway.";
-			link.l1 = "Here is your dispatch.";
+			Log_Info(DLG_TEXT_Q[67]);
+			dialog.text = DLG_TEXT_Q[68];
+			link.l1 = DLG_TEXT_Q[69];
 			link.l1.go = "depeshe_exit";
 		break;
 		
 		case "depeshe_licence":
 			if (CheckCharacterItem(pchar, "HolTradeLicence")) TakeNationLicence(HOLLAND);
 			GiveNationLicence(HOLLAND, 180);
-			dialog.text = "Good. Here is your license for a half a year term.";
-			link.l1 = "Thanks! And here is your dispatch.";
+			dialog.text = DLG_TEXT_Q[70];
+			link.l1 = DLG_TEXT_Q[71];
 			link.l1.go = "depeshe_exit";
 		break;
 		
@@ -306,21 +306,21 @@ void ProcessDialogEvent()
 			ChangeCharacterNationReputation(pchar, HOLLAND, 15);
 			ChangeCharacterComplexReputation(pchar, "authority", 3);
 			ChangeCharacterComplexReputation(pchar, "nobility", 2);
-			dialog.text = "Gratitude. It is good that you have shown your consciousness and loyalty to Holland. I will tell Matthias Beck and Peter Stuyvesant about your good deed.";
-			link.l1 = "Good to know. Goodbye!";
+			dialog.text = DLG_TEXT_Q[72];
+			link.l1 = DLG_TEXT_Q[73];
 			link.l1.go = "exit";
 		break;
 		
 		// калеуче
 		case "caleuche":
-			dialog.text = "Mynheer Reginald Jackson is performing regular shipping operations between Port Royal and Philipsburg. Look for him on that route. But I must warn you in advance - if you're brewing trouble, you'd better not, because that captain is under our protection. I hope we have understood each other, mynheer?";
-			link.l1 = "I just have business with him. A common trade. I don't mean to hurt him in absolutely any way.";
+			dialog.text = DLG_TEXT_Q[74];
+			link.l1 = DLG_TEXT_Q[75];
 			link.l1.go = "caleuche_1";
 		break;
 		
 		case "caleuche_1":
-			dialog.text = "Excellent. Mynheer Jackson usually doesn't stay for long neither in Port Royal, nor in Philipsburg. After his ship is unloaded and loaded again, he usually sets sail at once. So I guess you'd have better luck meeting him at the sea.";
-			link.l1 = "Thank you!";
+			dialog.text = DLG_TEXT_Q[76];
+			link.l1 = DLG_TEXT_Q[77];
 			link.l1.go = "caleuche_2";
 		break;
 		
@@ -336,40 +336,40 @@ void ProcessDialogEvent()
 		case "HWIC_Boss":
 			if (!CheckAttribute(npchar, "quest.silk_info") && sti(pchar.reputation.nobility) > 60)
 			{
-				dialog.text = "Aha, captain " + GetFullName(pchar) + "! It is good that you came here. I have a business proposal for you.";
-				link.l1 = "Interesting! I am listening to you, mynheer.";
+				dialog.text = DLG_TEXT_Q[78] + GetFullName(pchar) + DLG_TEXT_Q[79];
+				link.l1 = DLG_TEXT_Q[80];
 				link.l1.go = "silk_info";
 				break;
 			}
-			dialog.text = "Good day, captain " + GetFullName(pchar) + "! How can I be of service?";
+			dialog.text = DLG_TEXT_Q[81] + GetFullName(pchar) + DLG_TEXT_Q[82];
 			if(CheckAttribute(npchar, "quest.silk")) // торговля шелком
 			{
 				if (GetDataDay() == 1 || GetDataDay() == 15)
 				{
-					link.l1 = "About that ship silk...";
+					link.l1 = DLG_TEXT_Q[83];
 					link.l1.go = "trade_silk";
 				}
 			}
-			link.l2 = "Good day. No, I don't need anything, just wanted to greet you.";
+			link.l2 = DLG_TEXT_Q[84];
 			link.l2.go = "exit";			
 			NextDiag.TempNode = "HWIC_Boss";
 		break;
 		
 		case "silk_info":
-			dialog.text = "I have recently established trading connections with one merchant from Lyons and had a deal with him about supplying to the Caribbean with ship silk. Do you know about it? The very best sails in the world are made from this silk, so you must be interested.";
-			link.l1 = "Agreed, that is an interesting proposal. What are your terms?";
+			dialog.text = DLG_TEXT_Q[85];
+			link.l1 = DLG_TEXT_Q[86];
 			link.l1.go = "silk_info_1";
 		break;
 		
 		case "silk_info_1":
-			dialog.text = "Small but regular supplies. I can save thirty rolls for you every two weeks. The cost of one roll is twenty doubloons. Let's make it this way: I will save thirty rolls for you every first and fifteenth day of month. If you don't come for them then, I sell rolls to another customer.";
-			link.l1 = "No obligations then?";
+			dialog.text = DLG_TEXT_Q[87];
+			link.l1 = DLG_TEXT_Q[88];
 			link.l1.go = "silk_info_2";
 		break;
 		
 		case "silk_info_2":
-			dialog.text = "Exactly! Buy the silk if you want. You pay for the whole batch - six hundred doubloons. I hope that you will be my regular customer.";
-			link.l1 = "Thanks for your proposal, mynheer. Deal.";
+			dialog.text = DLG_TEXT_Q[89];
+			link.l1 = DLG_TEXT_Q[90];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "HWIC_Boss";
 			npchar.quest.silk_info = "true";
@@ -379,15 +379,15 @@ void ProcessDialogEvent()
 		
 		// торговля шелком
 		case "trade_silk":
-			dialog.text = "Sure, captain. Your silk is waiting for you. Are you ready to pay for it?";
+			dialog.text = DLG_TEXT_Q[91];
 			if (GetCharacterItem(pchar, "gold_dublon") >= 600)
 			{
-				link.l1 = "Sure! Here, take six hundred of doubloons.";
+				link.l1 = DLG_TEXT_Q[92];
 				link.l1.go = "trade_silk_1";
 			}
 			else
 			{
-				link.l1 = "Such a bad luck, I have forgotten money on my ship. I will bring it in a second!";
+				link.l1 = DLG_TEXT_Q[93];
 				link.l1.go = "exit";
 			}
 			NextDiag.TempNode = "HWIC_Boss";
@@ -395,16 +395,16 @@ void ProcessDialogEvent()
 		
 		case "trade_silk_1":
 			RemoveItems(pchar, "gold_dublon", 600);
-			Log_Info("You have given 600 doubloons");
+			Log_Info(DLG_TEXT_Q[94]);
 			PlaySound("interface\important_item.wav");
-			dialog.text = "Pleasure doing business with you, captain. Your silk will be delivered to your ship on barque.";
-			link.l1 = "Thanks!";
+			dialog.text = DLG_TEXT_Q[95];
+			link.l1 = DLG_TEXT_Q[96];
 			link.l1.go = "trade_silk_2";
 		break;
 		
 		case "trade_silk_2":
-			dialog.text = "I hope to see you soon. Come back again.";
-			link.l1 = "Sure. See you!";
+			dialog.text = DLG_TEXT_Q[97];
+			link.l1 = DLG_TEXT_Q[98];
 			link.l1.go = "exit";
 			AddCharacterGoods(pchar, GOOD_SHIPSILK, 30);
 			DeleteAttribute(npchar, "quest.silk");

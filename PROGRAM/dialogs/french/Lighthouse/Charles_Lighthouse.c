@@ -1,15 +1,16 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_lighthouse.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What do you want?", "What would you like to know?"), "Tell me, what are you interested in, " + GetAddress_Form(NPChar) + "?", "It's the third time you try to ask...", "I had enough of you. Get out!", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I have changed my mind...", "I have got nothing to say now."), "It seems I've forgotten, sorry...",
-                      "You're right, it's the third time already. Pardon me.", "I am sorry...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_LI[0], DLG_TEXT_LI[1]), DLG_TEXT_LI[2] + GetAddress_Form(NPChar) + " ?", DLG_TEXT_LI[3], DLG_TEXT_LI[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_LI[5], DLG_TEXT_LI[6]), DLG_TEXT_LI[7],
+                      DLG_TEXT_LI[8], DLG_TEXT_LI[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 		break;
 	}
 	UnloadSegment(NPChar.FileDialog2); 
 }
+
 

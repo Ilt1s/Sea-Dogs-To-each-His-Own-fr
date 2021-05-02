@@ -1,5 +1,5 @@
 // Дональд Гринспи - лидер нарвалов
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -34,7 +34,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting": // первая встреча
-			dialog.text = "Now you know me. My name is Donald Greenspen and don't make me or my men angry. And don't try to visit the 'San Gabriel' until you have got a password. Shop is free to visit, everyone need to trade. Any questions?";
+			dialog.text = "Now you know me. My name is Donald Greenspen and don't make me or my men angry. And don't try to visit the San Gabriel until you have got a password. Shop is free to visit, everyone need to trade. Any questions?";
 			link.l2 = "No, I got it. See you.";
 			link.l2.go = "exit";
 			NextDiag.TempNode = "First time";
@@ -61,25 +61,25 @@ void ProcessDialogEvent()
 		
 		case "shark_3":
 			dialog.text = "I hope that admiral understands what he is going to do. Does he doubt that my men can shoot too?";
-			link.l1 = "I think he does. He is ready to turn the 'San Augustine' into a fortress and fight until you all starve. Besides, Dodson is going to talk with Rivados and offer them a cooperation. You won't stand a chance against admiral and Rivados together.";
+			link.l1 = "I think he does. He is ready to turn the San Augustine into a fortress and fight until you all starve. Besides, Dodson is going to talk with Rivados and offer them a cooperation. You won't stand a chance against admiral and Rivados together.";
 			link.l1.go = "shark_4";
 		break;
 		
 		case "shark_4":
-			dialog.text = "Fuck! But we are not a part of this attempt! Why the whole clan must pay for actions of that stupid girl Mary and a bunch of scums from my crew?\nBesides, let's talk logic, by killing Marlow Dodson himself provoked Mary and my soldiers. That's exactly what happens when you commit such meanness.";
+			dialog.text = "Damn it! But we are not a part of this attempt! Why the whole clan must pay for actions of that idiot Mary and a bunch of scums from my crew?\nBesides, let's talk logic, by killing Marlow Dodson himself provoked Mary and my soldiers. That's exactly what happens when you commit such meanness.";
 			link.l1 = "You don't understand a thing. You were fooled. Why are you so sure that Dodson has killed Alan? Actually he thinks that you have done that to take his position...";
 			link.l1.go = "shark_5";
 		break;
 		
 		case "shark_5":
-			dialog.text = "I don't give a shit what he thinks. All evidences are against him. Only he and his men had an access to the prison. Alan was in his hands. Red Mary told me a lot. Before Alan was murdered, Dodson personally visited the prison and he doesn't do it often.";
+			dialog.text = "I don't care what he is thinking. All evidences are against him. Only he and his men had an access to the prison. Alan was in his hands. Red Mary told me a lot. Dodson personally visited the prison not long before Alan was murdered and he don't do it often.";
 			link.l1 = "Have you seen his death?";
 			link.l1.go = "shark_6";
 		break;
 		
 		case "shark_6":
 			dialog.text = "Rubbish! Of course I haven't.";
-			link.l1 = "And Chimiset have. Yes-yes, Rivados wizard who had been sitting next to Alan. He was also murdered there recently. I was in the prison a day before his death and had a talk with him. Milrow was killed by Chad Kapper, the boatswain of Shark.";
+			link.l1 = "And Chimiset have. Yes-yes, Rivados wizard who had been sitting next to Alan. He was also murdered there recently. I have been in the prison a day before his death and had a talk with him. Milrow was killed by Chad Kapper, the boatswain of Shark.";
 			link.l1.go = "shark_7";
 		break;
 		
@@ -109,7 +109,7 @@ void ProcessDialogEvent()
 		
 		case "shark_11":
 			dialog.text = "Hm. You have got all aces, what are doing here then? You want something from me, right?";
-			link.l1 = "I do. Because I believe that it was all Chad's plan and you are not involved. Chad has cheated on Mary, she called her friends from your clan to help her, that's a whole story. At least, I haven't found any evidences against you or any other Narwhal...";
+			link.l1 = "I do. Because I believe that it was all Chad's plan and you are not involved. Chad has cheated on Mary, she called her pals from your clan to help her and that is it. Anyway, I haven't found any evidences against you or any other Narwhal..";
 			link.l1.go = "shark_12";
 		break;
 		
@@ -120,14 +120,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "shark_13":
-			dialog.text = "I have already told you that no one else of my men was part of it. After Marlow's death Mary basically left the clan and locked herself in her cabin. Actually, I have no idea how she managed to persuade others to take part in it, but it seems that she had succeeded. I swear that neither me nor anyone else from my clan are acting against admiral.\nWe have lost too many men recently, so we don't want to step into a messy business now. I am not afraid of admiral's attack, even joined with Rivados. Narwhals are true warriors and we will prove that in our last battle. But this would be pointless\nWe have already decided to keep peace with admiral. Rivados are the different matter, we don't negotiate with Negros. I am ready to apologize personally to admiral, to ask forgiveness for my suspicions caused by Milrow's death and for the attack on his life. I will swear on Bible to prove my sincerity. Are you and Dodson fine with that?";
+			dialog.text = "I have already told you that no one else of my men was part of it. After Marlow's death Mary basically left the clan and locked herself in her cabin. Actually, I have no idea how she managed to persuade others to take part in it, but it seems that she had succeeded.  I swear that neither me nor anyone else from my clan are acting against admiral.\nWe had lost too many men recently, so we don't want to step into a messy business now. I am not afraid of admiral's attack, even joined with Rivados. Narwhals are true warriors and we will prove that in our last battle. But this would be pointless\nWe have already decided to keep peace with admiral. Rivados are the different matter, we don't negotiate with Negros. I am ready to apologize personally to admiral, to ask forgiveness for my suspicions and for the attack on his life. I will swear on Bible to prove my sincerity. Are you and Dodson fine with that?";
 			link.l1 = "I am. Are you sure that there are no tricks from your men should be expected?";
 			link.l1.go = "shark_14";
 		break;
 		
 		case "shark_14":
 			dialog.text = "Absolutely. I will inform my clan about the real killer of Alan Milrow. My men's relation to the admiral will be changed immediately, I assure you. Tell me, will a slaughter be needed after that?";
-			link.l1 = "No, it won't. I am here to prevent it. I trust you, Donald, and I will try to persuade Shark. I have a few arguments left... See you, Donald!";
+			link.l1 = "No, it won't. I am here to prevent it. I trust you, Donald, and I will try to persuade Shark. I have got a few arguments left... See you, Donald!";
 			link.l1.go = "shark_15";
 		break;
 		
@@ -160,7 +160,7 @@ void ProcessDialogEvent()
 		
 		case "shark_18":
 			dialog.text = "Yes, of course. You have done a great service to Narwhal clan by preventing the pointless bloodshed and perhaps even the total annihilation of my men. Take this tower musket as a token of my gratitude, you won't find another weapon of this kind\nBesides, you are allowed to visit our restricted areas just like any of clan members.";
-			link.l1 = "Thanks! Farewell now, I have a lot of things to do.";
+			link.l1 = "Thanks! Farewell now, I have got a lot of things to do.";
 			link.l1.go = "shark_19";
 		break;
 		
@@ -203,13 +203,13 @@ void ProcessDialogEvent()
 		
 		case "negotiations_1":
 			dialog.text = "I don't know about that. Why do you think that my men were involved?";
-			link.l1 = "Because I personally killed few of them along with Chad Kapper, the admiral's boatswain who is responsible for all of this mess. He wasn't able to do it on his own, so your men were helping him a lot. Admiral knows that and he is very, very angry.";
+			link.l1 = "Because I personally killed few of them along with Chad Kapper, the admiral's boatswain who is responsible for all of this mess. He wasn't able to do it on his own, so your men had been helping him a lot. Admiral knows that and he is very, very angry.";
 			link.l1.go = "negotiations_2";
 		break;
 		
 		case "negotiations_2":
 			dialog.text = "My men? Who exactly, can you name them?";
-			link.l1 = "They didn't introduce themselves. They were just shooting and fencing. Your people are reckless. They can attack even one of their own. Hell with me or with the admiral, but attempting to kill the girl?";
+			link.l1 = "They didn't introduce theirselves. They were just shooting and fencing. Your people are reckless. They can attack even one of their own. Hell with me or with the admiral, but attempting to kill the girl?";
 			link.l1.go = "negotiations_3";
 		break;
 		
@@ -217,7 +217,7 @@ void ProcessDialogEvent()
 			dialog.text = "Hm. Who are you talking about?";
 			if (pchar.questTemp.LSC.Mary == "alive")
 			{
-				link.l1 = "Who am I talking about? I am talking about the attack on Red Mary. Two Narwhals tried to kill her. I got to her cabin in a critical moment by a pure accident. They would have killed her if I came later. I didn't ask their names, I am sorry, I had no time to talk with them, but Mary said that they were Narwhals.";
+				link.l1 = "Who am I talking about? I am talking about the attack on Red Mary. Two Narwhals tried to kill her. I got to her cabin in a critical moment by a pure accident. They would have killed her, if it wasn't me. I didn't ask their names, I am sorry, I had no time, but Mary said that they were Narwhals.";
 				link.l1.go = "negotiations_4";
 			}
 			else
@@ -259,20 +259,20 @@ void ProcessDialogEvent()
 		
 		case "negotiations_9":
 			dialog.text = "I hope that admiral understands his actions. Does he doubt that my men can shoot back?";
-			link.l1 = "He does. He thinks your clan is a bandit cluster and it must be destroyed before you start to kill everyone. Besides, we have got strong connections with Rivados. I can simply talk to Black Eddie and offer him an alliance. You won't stand against us all.";
+			link.l1 = "He doesn't. He thinks your clan is a bandit cluster and it must be destroyed before you start to kill everyone. Besides, we have got strong connections with Rivados. I can simply talk to Black Eddie and offer him something. You won't stand against our alliance.";
 			link.l1.go = "negotiations_10";
 		break;
 		
 		case "negotiations_10":
 			if (pchar.questTemp.LSC.Mary == "alive") sTemp = "Call Red Mary if you don't believe me and ask her! She will confirm.";
-			else sTemp = "I have a letter from Chad to Mary which proves everything.";
-			dialog.text = "Fuck! Why does the whole clan have to pay for the actions of a few idiots? Don't think that I am scared. We are warriors and we will prove that even in our last battle. But I want justice. Actually, admiral is responsible for killing Alan Milrow in the prison.";
+			else sTemp = "I have got a letter from Chad to Mary which proves everything.";
+			dialog.text = "Damn it! Why does the whole clan have to pay for the actions of a few idiots? Don't you think that I am scared. We are warriors and we will prove that even in our last battle. But I want justice. Actually, admiral is responsible for killing Alan Milrow in the prison.";
 			link.l1 = "How can you be the leader, Donald... You don't know neither about Mary nor about Alan. Chad Kapper killed him. "+sTemp+" He did that to make Narwhals hostile towards the admiral and drag some of them to his side.";
 			link.l1.go = "negotiations_11";
 		break;
 		
 		case "negotiations_11":
-			dialog.text = "I see. Fine. Let's have a talk in other way. You are here for some purpose, right? What do you want?";
+			dialog.text = "I see. Fine. Now let's have a talk. You are here for some purpose, right? What do you want?";
 			link.l1 = "I don't want a bloody mess on the Island. I don't want people to die. I don't like the idea of eliminating all Narwhals, though I assure you that Rivados and us are able to do that. I also think that the whole clan must not answer for actions of some bastards...";
 			link.l1.go = "negotiations_12";
 		break;
@@ -284,14 +284,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "negotiations_13":
-			dialog.text = "What can I do? I am ready to apologize for the attempt and for my suspicions about Marlow's death. I can assure him that Narwhals are not planning anything against him and I will swear on the holy Bible. Will you and Dodson find it sufficient?";
-			link.l1 = "I will. I am sure that it will also work for Dodson if you visit him personally. But first, I will tell him about your intentions and then I will visit you again with results.";
+			dialog.text = "What can I do? I am ready to apologize for the attempt and for my suspicions. I can assure him that Narwhals are not planning anything against him and I will swear on the holy Bible. Will you and Dodson find it sufficient?";
+			link.l1 = "I will. I am sure that it will also work for Dodson if you will visit him personally. But first, I will tell him about your intentions and then I will visit you again with results.";
 			link.l1.go = "negotiations_14";
 		break;
 		
 		case "negotiations_14":
 			dialog.text = "Fine. I will wait.";
-			link.l1 = "I'll be back soon...";
+			link.l1 = "I will be back soon...";
 			link.l1.go = "negotiations_15";
 		break;
 		
@@ -323,7 +323,7 @@ void ProcessDialogEvent()
 			dialog.text = "You have done a great service to Narwhal clan by preventing a meaningless massacre and, perhaps, even the total extermination of my people. I grant you this tower musket - you won't find another weapon like it. You are also allowed to visit our ships without any limitations.";
 			if (pchar.questTemp.LSC.Mary == "alive") 
 			{
-				link.l1 = "Thanks. A very valuable gift. Yes, Donald, one more thing: make peace with Red Mary. She is hot-tempered, but she is also sincere and honest. Arguing with you made her part off from the clan and it almost cost her life.";
+				link.l1 = "Thanks. A very valuable gift. Yes, Donald, one more thing: make peace with Red Mary. She is hot-tempered, but she is also sincere and honest. Arguing with you made her part off from the clan and it almost costed her life.";
 				link.l1.go = "negotiations_20";
 			}
 			else
@@ -334,7 +334,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "negotiations_20":
-			dialog.text = "Tell her that I ask her to forgive me for hurting her and for those two scums who dared to attack her. You both are... friends, am I right?";
+			dialog.text = "Tell her that I ask her to forgive me for hurting her and for those two scums who dared to attack her. You both are... the friends, am I right?";
 			link.l1 = "You are right, Donald. I will tell her. And I am really glad that it all has ended that well.";
 			link.l1.go = "negotiations_21";
 		break;
@@ -370,13 +370,13 @@ void ProcessDialogEvent()
 		//обнаружение ГГ в сундуках
 		case "Man_FackYou":
 			dialog.text = LinkRandPhrase("What are you doing there, ah? Thief!", "Just look at that! As soon as I was lost in contemplation, you decided to check my chest!", "Decided to check my chests? You won't get away with it!");
-			link.l1 = "Shit!";
+			link.l1 = "Damn it!";
 			link.l1.go = "fight";
 		break;
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -397,8 +397,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Sure.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -407,11 +407,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Sure.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";

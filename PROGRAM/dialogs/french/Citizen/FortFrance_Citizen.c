@@ -1,41 +1,41 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Citizen.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-            dialog.text = RandPhraseSimple("What kind of questions?", "What would you like?");
-			link.l1 = RandPhraseSimple("I have changed my mind...", "I have got nothing to say now.");
+            dialog.text = RandPhraseSimple(DLG_TEXT_CZ[0], DLG_TEXT_CZ[1]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_CZ[2], DLG_TEXT_CZ[3]);
 		    link.l1.go = "exit";
 			//Бремя гасконца
 			if (CheckAttribute(pchar, "questTemp.Sharlie.Citcount") && !CheckAttribute(npchar, "quest.Sharlie"))
 			{
-				link.l1 = "Excuse me, "+GetAddress_FormToNPC(NPChar)+" could you tell me where I can find Michel de Monper? He has to be somewhere in your town.";
+				link.l1 = DLG_TEXT_CZ[35]+GetAddress_FormToNPC(NPChar)+DLG_TEXT_CZ[36];
                 link.l1.go = "Sharlie";
 			}	
 			if (CheckAttribute(pchar, "questTemp.Sharlie") && pchar.questTemp.Sharlie == "findskiper" && !CheckAttribute(npchar, "quest.Sharlie1"))
 			{
-				link.l1 = "Listen, "+GetAddress_FormToNPC(NPChar)+", I want to ask something... I am looking for a navigator to serve on my ship, do you know anyone in your town?";
+				link.l1 = DLG_TEXT_CZ[37]+GetAddress_FormToNPC(NPChar)+DLG_TEXT_CZ[38];
                 link.l1.go = "Sharlie_1";
 			}
 			//Бремя гасконца
 		break;
 		
 		case "info":
-        // заменить на описание неких НПС, по квестам
-			dialog.text = "Do you think I work for the secret service of "+NationNameGenitive(sti(NPChar.nation))+"?";
-			link.l1 = "Well... farewell then.";
+        // заменить на описание неких ЌЏ‘, по квестам
+			dialog.text = DLG_TEXT_CZ[4]+NationNameGenitive(sti(NPChar.nation))+"?";
+			link.l1 = DLG_TEXT_CZ[5];
 			link.l1.go = "exit";
-			link.l2 = "Another question then";
+			link.l2 = DLG_TEXT_CZ[6];
 			link.l2.go = "new question";
 		break;
 		
 		case "town":
         // заменить на описание как пройти, по квестам
-			dialog.text = "Am I the information bureau for you? Don't know. Don't know a thing.";
-            link.l1 = "You're such a muddle-headed! Bye.";
+			dialog.text = DLG_TEXT_CZ[7];
+            link.l1 = DLG_TEXT_CZ[8];
 			link.l1.go = "exit";
-			link.l2 = "Another question then";
+			link.l2 = DLG_TEXT_CZ[9];
 			link.l2.go = "new question";
 		break;
 		
@@ -43,15 +43,15 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		case "Sharlie":
 			if (sti(pchar.questTemp.Sharlie.Citcount) == 3)
 			{
-				dialog.text = "Hmm... I see that you've arrived here recently if you fearlessly ask such questions... I advice you to stop it or you'll get troubles otherwise. And about your question... Talk to the Abbot. You can find him at the church.";
-				link.l1 = "Gratitude!";
+				dialog.text = DLG_TEXT_CZ[39];
+				link.l1 = DLG_TEXT_CZ[40];
 				link.l1.go = "exit";
 				AddDialogExitQuest("Sharlie_SetBenua");
 			}
 			else
 			{
-				dialog.text = LinkRandPhrase("No, I don't know this name.","Can't help you. I have to go, bye.","Sorry, I have never heard that name before. So..");
-				link.l1 = "I see... Sorry for troubling you. ";
+				dialog.text = LinkRandPhrase(DLG_TEXT_CZ[41],DLG_TEXT_CZ[42],DLG_TEXT_CZ[43]);
+				link.l1 = DLG_TEXT_CZ[44];
 				link.l1.go = "exit";
 				pchar.questTemp.Sharlie.Citcount = sti(pchar.questTemp.Sharlie.Citcount)+1;
 				npchar.quest.Sharlie = "true";
@@ -59,8 +59,8 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		
 		case "Sharlie_1":
-			dialog.text = LinkRandPhrase("No, I don't know any navigators, so...","I have no idea. I have to go, bye.","Unfortunately, I can't help you, sorry...");
-			link.l1 = "I see. Pardon me...";
+			dialog.text = LinkRandPhrase(DLG_TEXT_CZ[45],DLG_TEXT_CZ[46],DLG_TEXT_CZ[47]);
+			link.l1 = DLG_TEXT_CZ[48];
 			link.l1.go = "exit";
 			npchar.quest.Sharlie1 = "true";
 			npchar.dialog.currentnode = "first time";

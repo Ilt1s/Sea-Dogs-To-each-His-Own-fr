@@ -1,43 +1,43 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_church.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What kind of questions, "+ GetSexPhrase("my son","my daughter") +"?", "Ask, I am listening to you..."), "I am listening, speak, "+ GetSexPhrase("my son","my daughter") +"...", "And it's the third time I tell you, "+ GetSexPhrase("my son","my daughter") +", ask your question.",
-                          "A clergyman has a lot of work... and you are bothering me, "+ GetSexPhrase("my son","my daughter") +"...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "Not now, padre..."), "Have nothing to say, sorry...",
-                      "I'll ask, I'll ask... but a bit later...", "Pardon me, holy father...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_CHR[0], DLG_TEXT_CHR[1]), DLG_TEXT_CHR[2], DLG_TEXT_CHR[3],
+                          DLG_TEXT_CHR[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_CHR[5], DLG_TEXT_CHR[6]), DLG_TEXT_CHR[7],
+                      DLG_TEXT_CHR[8], DLG_TEXT_CHR[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			// калеуче
 			if (CheckAttribute(pchar, "questTemp.Caleuche") && pchar.questTemp.Caleuche == "havana")
 			{
 				ref sld = characterFromId("Villemstad_Priest");
-				link.l1 = "Father superior "+sld.name+" from the church of Willemstad sent me. You told him that in a cave on Cuba, strange things have been seen...";
+				link.l1 = DLG_TEXT_CHR[56]+sld.name+DLG_TEXT_CHR[57];
 				link.l1.go = "caleuche";
 			}
 			if (CheckAttribute(pchar, "questTemp.Caleuche") && pchar.questTemp.Caleuche == "havana1")
 			{
-				link.l1 = "I have visited the cave in the jungle, Father.";
+				link.l1 = DLG_TEXT_CHR[58];
 				link.l1.go = "caleuche_4";
 			}
 		break;
 		
 		case "caleuche":
-			dialog.text = "Thank God he paid heed to it! Once the gossips about the living dead had reached my ears, I immediately notified His Reference father Vincento, the inquisitor of Santiago. He promised to look into it, but so far no action was undertaken! I am afraid, His Reverence has more important things to do...";
-			link.l1 = "I'll look into it by myself. Perhaps, all these gossips are nothing but the ramblings of drunken hunters - therefore the Inquisition hasn't taken them seriously. I'll head into the jungle to see it all with my own eyes.";
+			dialog.text = DLG_TEXT_CHR[59];
+			link.l1 = DLG_TEXT_CHR[60];
 			link.l1.go = "caleuche_1";
 		break;
 		
 		case "caleuche_1":
-			dialog.text = "I assure you, my son, it's very serious. The man who told me about the walking dead, deserves my full trust.";
-			link.l1 = "Alright. I'll be ready for battle, and if the unholy creatures have indeed taken root in the cavern, I'll purge it of them.";
+			dialog.text = DLG_TEXT_CHR[61];
+			link.l1 = DLG_TEXT_CHR[62];
 			link.l1.go = "caleuche_2";
 		break;
 		
 		case "caleuche_2":
-			dialog.text = "May our Lord be with you! Here, take this sanctified amulet. It will help you in your battle. Destroy the spawns of the devil!";
-			link.l1 = "See you soon, Father "+npchar.name+". Once I am done with that, I'll return to you immediately.";
+			dialog.text = DLG_TEXT_CHR[63];
+			link.l1 = DLG_TEXT_CHR[64]+npchar.name+DLG_TEXT_CHR[65];
 			link.l1.go = "caleuche_3";
 		break;
 		
@@ -45,7 +45,7 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 			DialogExit();
 			AddQuestRecord("Caleuche", "27");
 			pchar.questTemp.Caleuche = "cave";
-			Log_Info("You have received a church amulet");
+			Log_Info(DLG_TEXT_CHR[66]);
 			PlaySound("interface\important_item.wav");
 			GiveItem2Character(pchar, "amulet_7"); 
 			if (GetCharacterIndex("cavehunter") != -1)
@@ -63,57 +63,57 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 		break;
 		
 		case "caleuche_4":
-			dialog.text = "What have you found there, my son? Perhaps, our fears were unfounded?";
-			link.l1 = "Unfortunately, not. The cave was crawling with undead. With God's help I destroyed all the living dead there. They will not bother anyone anymore.";
+			dialog.text = DLG_TEXT_CHR[67];
+			link.l1 = DLG_TEXT_CHR[68];
 			link.l1.go = "caleuche_5";
 		break;
 		
 		case "caleuche_5":
-			dialog.text = "Praise the Lord! You're indeed His chastising sword, my son! Please allow me to express my deepest gratitude on behalf of the entire parish of Havana. Please accept these sanctified amulets as your reward. Surely, you will find them useful in your perilous journeys.";
-			link.l1 = "Thank you, Father "+npchar.name+".";
+			dialog.text = DLG_TEXT_CHR[69];
+			link.l1 = DLG_TEXT_CHR[70]+npchar.name+".";
 			link.l1.go = "caleuche_6";
 		break;
 		
 		case "caleuche_6":
-			Log_Info("You have received church amulets");
+			Log_Info(DLG_TEXT_CHR[71]);
 			PlaySound("interface\important_item.wav");
 			GiveItem2Character(pchar, "amulet_3"); 
 			GiveItem2Character(pchar, "amulet_9"); 
 			GiveItem2Character(pchar, "obereg_7"); 
 			GiveItem2Character(pchar, "obereg_11"); 
-			dialog.text = "Also I'll make sure that both common people and those in power will know about your heroic deed. And I will pray tirelessly for you day and night.";
-			link.l1 = "Thank you, Father. I have one more question for you.";
+			dialog.text = DLG_TEXT_CHR[72];
+			link.l1 = DLG_TEXT_CHR[73];
 			link.l1.go = "caleuche_7";
 		break;
 		
 		case "caleuche_7":
-			dialog.text = "Ask, my son.";
-			link.l1 = "Tell me, Father "+npchar.name+", has a man by the name of Joachim Merriman recently arrived at your town? A middle-aged senor, Portuguese, with moustache, imperial beard and piercing eyes?";
+			dialog.text = DLG_TEXT_CHR[74];
+			link.l1 = DLG_TEXT_CHR[75]+npchar.name+DLG_TEXT_CHR[76];
 			link.l1.go = "caleuche_8";
 		break;
 		
 		case "caleuche_8":
 			sld = characterFromId("Villemstad_Priest");
-			dialog.text = "That name or description didn't ring a bell, I am sorry. Who is this man?";
-			link.l1 = "Merriman is a warlock. The Inquisition has been hunting him for a very long time already. Me and Father "+sld.name+" suspect that the emergence of the living dead on Cuba is his work. Not long ago he had been living in Willemstad, then he suddenly disappeared, and the woman who had rented him a room was turned into the walking skeleton shortly thereafter.";
+			dialog.text = DLG_TEXT_CHR[77];
+			link.l1 = DLG_TEXT_CHR[78]+sld.name+DLG_TEXT_CHR[79];
 			link.l1.go = "caleuche_9";
 		break;
 		
 		case "caleuche_9":
-			dialog.text = "What a nightmare! I will immediately tell that to the inquisitors, to Father Vincento himself! He must know what's happening here! Tell me, son, you think that people who were gone missing in the jungle...";
-			link.l1 = "Yes, I'm almost certain that those living dead in the cavern were your former missing citizens. And I want to look for that Portuguese on Cuba and find him! That scoundrel managed to get a hold of an old heathen relic - a jade skull of Yum Cimil. I am afraid, with that artifact and Indian witchery Merriman will cause even more troubles if nobody stops him anytime soon.";
+			dialog.text = DLG_TEXT_CHR[80];
+			link.l1 = DLG_TEXT_CHR[81];
 			link.l1.go = "caleuche_10";
 		break;
 		
 		case "caleuche_10":
-			dialog.text = "You think that the story with the undead in the cave can repeat once more?";
-			link.l1 = "Almost certainly. I am not sure what drives him, but surely his aspirations are far from being virtuous.";
+			dialog.text = DLG_TEXT_CHR[82];
+			link.l1 = DLG_TEXT_CHR[83];
 			link.l1.go = "caleuche_11";
 		break;
 		
 		case "caleuche_11":
-			dialog.text = "May the Almighty show mercy on us! Seek him out, my son! I allow you to take any measures against him in the name of our Holy Church! And I will immediately dispatch a messenger to Santiago with a report for Father Vincento.";
-			link.l1 = "Good idea! Farewell, Father "+npchar.name+".";
+			dialog.text = DLG_TEXT_CHR[84];
+			link.l1 = DLG_TEXT_CHR[85]+npchar.name+".";
 			link.l1.go = "caleuche_12";
 		break;
 		

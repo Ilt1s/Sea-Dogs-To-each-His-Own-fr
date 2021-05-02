@@ -1,4 +1,4 @@
-// городские тюрьмы
+#include "SD\TEXT\DIALOGS\Common_prison.h"
 void ProcessDialogEvent()
 {
 	int amount, iGunQty, iGunGoods, iGunPrice, iTemp;
@@ -18,7 +18,7 @@ void ProcessDialogEvent()
 	makearef(NextDiag, NPChar.Dialog);
 
     // вызов диалога по городам -->
-    NPChar.FileDialog2 = "DIALOGS\" + LanguageGetLanguage() + "\Prison\" + NPChar.City + "_Prison.c";
+    NPChar.FileDialog2 = "SD\DIALOGS\" + LanguageGetLanguage() + "\Prison\" + NPChar.City + "_Prison.c";
     if (LoadSegment(NPChar.FileDialog2))
 	{
         ProcessCommonDialog(NPChar, Link, NextDiag);
@@ -47,10 +47,10 @@ void ProcessDialogEvent()
 		break;
 		//---------------- Начальник тюрьмы ------------------
 		case "First_officer":
-			dialog.text = RandPhraseSimple("I am the prison warden. What do you need here?", "What do you need? Why have you come to the prison?");
-			link.l1 = "Oh, nothing special, you know, just looking around the city so wandered here on occasion.";
+			dialog.text = RandPhraseSimple(DLG_TEXT_BASE[0], DLG_TEXT_BASE[1]);
+			link.l1 = DLG_TEXT_BASE[2];
 			link.l1.go = "exit";
-			link.l2 = "I wanted to talk about some business.";
+			link.l2 = DLG_TEXT_BASE[3];
 			if (CheckCharacterItem(pchar, "CaptainBook") && !CheckAttribute(pchar, "questTemp.different.GiveShipLetters.speakFort"))
 			{
 				if((pchar.questTemp.different.GiveShipLetters.city == npchar.city) && CheckAttribute(pchar, "questTemp.different.GiveShipLetters"))
@@ -75,12 +75,12 @@ void ProcessDialogEvent()
 			}
 			if (!sti(pchar.questTemp.jailCanMove))
 			{
-				link.l4 = "I want to come inside the prison.";
+				link.l4 = DLG_TEXT_BASE[4];
 				link.l4.go = "ForGoodMove";		
 			}
 			if (CheckAttribute(pchar, "questTemp.jailCanMove.City") && npchar.city == pchar.questTemp.jailCanMove.City)
 			{
-				link.l5 = "Hey, could you tell me, for what crime is serving his time a convict by the name of " + GetFullName(characterFromId(pchar.questTemp.jailCanMove.prisonerId)) + "?";
+				link.l5 = DLG_TEXT_BASE[5] + GetFullName(characterFromId(pchar.questTemp.jailCanMove.prisonerId)) + "?";
 				link.l5.go = "KnowAboutPrisoner";	
 			}
 			
@@ -91,12 +91,12 @@ void ProcessDialogEvent()
 					bool zMsm = (CheckAttribute(pchar,"GenQuest.CaptainComission.GetRumour")) && (!CheckAttribute(pchar,"GenQuest.CaptainComission.SpeakMayor"));
 					if(pchar.GenQuest.CaptainComission == "MayorTalkBad" || zMsm) //говорил с губером и отказался или узнал слухи, но не говорил с губером
 					{
-						link.l6 = "I've heard that former captain of a patrol " + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + " is contained there in custody. Can I talk to him?";
+						link.l6 = DLG_TEXT_BASE[154] + GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.CaptainComission.ShipType),"Name") + "Acc")) + " " + pchar.GenQuest.CaptainComission.Name + DLG_TEXT_BASE[155];
 						link.l6.go = "CapComission_PrisonBad1";
 					}
 					if(pchar.GenQuest.CaptainComission == "MayorTalkGood")
 					{
-						link.l6 = "I " + GetFullName(pchar) + ", acting on behalf and on order of governor " + XI_ConvertString("Colony" + pchar.GenQuest.CaptainComission.City + "Gen") + ". I need to speak with former captain " + pchar.GenQuest.CaptainComission.Name + ".";
+						link.l6 = DLG_TEXT_BASE[156] + GetFullName(pchar) + DLG_TEXT_BASE[157] + XI_ConvertString("Colony" + pchar.GenQuest.CaptainComission.City + "Gen") + DLG_TEXT_BASE[158] + pchar.GenQuest.CaptainComission.Name + ".";
 						link.l6.go = "CapComission_PrisonGood1";
 					}
 				}	
@@ -107,7 +107,7 @@ void ProcessDialogEvent()
 				{
 					if(pchar.GenQuest.EncGirl.Father == "fort_keeper"  && npchar.city == pchar.GenQuest.EncGirl.city)
 					{
-						link.l9 = "This is about your daughter...";
+						link.l9 = DLG_TEXT_BASE[159];
 						link.l9.go = "EncGirl_1";
 					}
 				}
@@ -115,27 +115,27 @@ void ProcessDialogEvent()
 			//Jason --> Бесчестный конкурент
 			if (CheckAttribute(pchar, "questTemp.Shadowtrader.Fort") && NPChar.location == pchar.questTemp.Shadowtrader.City + "_prison")
 			{
-				link.l10 = "I have come to you on request of the local store owner, his name is "+pchar.questTemp.Shadowtrader.Tradername+". He asked me to give you this letter.";
+				link.l10 = DLG_TEXT_BASE[160]+pchar.questTemp.Shadowtrader.Tradername+DLG_TEXT_BASE[161];
 				link.l10.go = "Shadowtrader_prison";
 			}
 			
 			if (CheckAttribute(pchar, "questTemp.Shadowtrader.SeekTrader") && NPChar.location == pchar.questTemp.Shadowtrader.City + "_prison")
 			{
-				link.l10 = "That's me again. I have substantional evidence that "+pchar.questTemp.Shadowtrader.Tradername+" is right.";
+				link.l10 = DLG_TEXT_BASE[162]+pchar.questTemp.Shadowtrader.Tradername+DLG_TEXT_BASE[163];
 				link.l10.go = "Shadowtrader_prison2";
 			}
 			//Jason <-- Бесчестный конкурент
 			
 			if (CheckAttribute(pchar, "GenQuest.Marginpassenger") && pchar.GenQuest.Marginpassenger == "begin" && NPChar.location == pchar.GenQuest.Marginpassenger.City + "_prison")
 			{
-				link.l12 = "I have business with you, officer. I think it would be interesting to you since it's connected to your duties.";
+				link.l12 = DLG_TEXT_BASE[164];
 				link.l12.go = "Marginpassenger";
 			}
 			
 			// Warship, 16.05.11. Генер "Justice for sale".
 			if(CheckAttribute(PChar, "GenQuest.JusticeOnSale.PrisonWait") && CheckAttribute(PChar, "GenQuest.JusticeOnSale.CityId") && NPChar.location == PChar.GenQuest.JusticeOnSale.CityId + "_prison")
 			{
-				link.l13 = "I want to talk to you about one certain man - " + PChar.GenQuest.JusticeOnSale.SmugglerName + ". He is your prisoner, if I am not mistaken.";
+				link.l13 = DLG_TEXT_BASE[165] + PChar.GenQuest.JusticeOnSale.SmugglerName + DLG_TEXT_BASE[166];
 				link.l13.go = "JusticeOnSale_1";
 			}
 			
@@ -144,7 +144,7 @@ void ProcessDialogEvent()
 
 		//Jason --> мини-квест Бесчестный конкурент
 		case "Shadowtrader_prison":
-			dialog.text = "Again that "+pchar.questTemp.Shadowtrader.Tradername+" with his complaints! Alright, let's see what it is this time... (reads through)";
+			dialog.text = DLG_TEXT_BASE[167]+pchar.questTemp.Shadowtrader.Tradername+DLG_TEXT_BASE[168];
 			link.l1 = "...";
 			link.l1.go = "Shadowtrader_prison_1";
 			RemoveItems(PChar, "letter_1", 1);
@@ -152,22 +152,22 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Shadowtrader_prison_1":
-			dialog.text = "Once again, absurd guessworks and not a single strong evidence! Alright. Tell him that this is simply not enough for me to alert the guards and order them to scour the town.";
-			link.l1 = "You want me to tell him that?";
+			dialog.text = DLG_TEXT_BASE[169];
+			link.l1 = DLG_TEXT_BASE[170];
 			link.l1.go = "Shadowtrader_prison_2";
 		break;
 		
 		case "Shadowtrader_prison_2":
-			dialog.text = "Exactly - and, preferrably, word-for-word. He will understand what I mean. I will not waste paper to write a reply to this annoying one.";
-			link.l1 = "I see. Farewell, then.";
+			dialog.text = DLG_TEXT_BASE[171];
+			link.l1 =DLG_TEXT_BASE[172];
 			link.l1.go = "exit";
 			pchar.questTemp.Shadowtrader.Trouble = "true";
 			NextDiag.TempNode = "First_officer";
 		break;
 		
 		case "Shadowtrader_prison2":
-			dialog.text = "And what is this 'substantial' evidence that you claim to have gathered?";
-			link.l1 = "I struck a deal with the smugglers regarding the purchase of goods through their unofficial store. Their agent will come today at night to the port authority office to take me to their so-called 'store'.";
+			dialog.text = DLG_TEXT_BASE[173];
+			link.l1 = DLG_TEXT_BASE[174];
 			link.l1.go = "Shadowtrader_prison2_1";
 			DeleteAttribute(pchar, "questTemp.Shadowtrader.SeekTrader");
 			pchar.quest.ShadowtraderTimeSmugglers_Over.over = "yes";
@@ -177,8 +177,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Shadowtrader_prison2_1":
-			dialog.text = "Hhm... Well, excellent work, captain! Then we will act further. We'll send our man to their meeting, locate their hideout and arrest all of them. Thanks for your initiative!";
-			link.l1 = "Always glad to help. I am sure that your operation will be successful.";
+			dialog.text = DLG_TEXT_BASE[175];
+			link.l1 = DLG_TEXT_BASE[176];
 			link.l1.go = "exit";
 			pchar.questTemp.Shadowtrader.End.Fort = "true";
 			AddQuestRecord("Shadowtrader", "7");
@@ -192,32 +192,32 @@ void ProcessDialogEvent()
 		
 		// --> Jason Похититель
 		case "Marginpassenger":
-			dialog.text = "Yes? What is it that you're willing to tell me?";
-			link.l1 = "Recently I've been stopped on the street by "+pchar.GenQuest.Marginpassenger.Name+" who offered me to arrange a dirty deed: capturing and then ransoming a person by the name of "+pchar.GenQuest.Marginpassenger.q1Name+". It's "+pchar.GenQuest.Marginpassenger.Text+"...";
+			dialog.text = DLG_TEXT_BASE[177];
+			link.l1 = DLG_TEXT_BASE[178]+pchar.GenQuest.Marginpassenger.Name+DLG_TEXT_BASE[179]+pchar.GenQuest.Marginpassenger.q1Name+DLG_TEXT_BASE[180]+pchar.GenQuest.Marginpassenger.Text+"...";
 			link.l1.go = "Marginpassenger_1";
 		break;
 		
 		case "Marginpassenger_1":
-			dialog.text = "Hmm... That's very intriguing - please go on!";
-			link.l1 = "He knew the name of the ship, on which "+pchar.GenQuest.Marginpassenger.q1Name+" was planning to sail. It's "+GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Marginpassenger.ShipType), "Name")))+" called '"+pchar.GenQuest.Marginpassenger.ShipName+"'. Also, he told me the time when that ship was supposed to set sail.";
+			dialog.text = DLG_TEXT_BASE[181];
+			link.l1 = DLG_TEXT_BASE[182]+pchar.GenQuest.Marginpassenger.q1Name+DLG_TEXT_BASE[183]+GetStrSmallRegister(XI_ConvertString(GetBaseShipParamFromType(sti(pchar.GenQuest.Marginpassenger.ShipType), "Name")))+DLG_TEXT_BASE[184]+pchar.GenQuest.Marginpassenger.ShipName+DLG_TEXT_BASE[185];
 			link.l1.go = "Marginpassenger_2";
 		break;
 	
 		case "Marginpassenger_2":
-			dialog.text = "And he suggested you capturing the passenger and then demanding ransom for him?";
-			link.l1 = "Exactly. To collect ransom, I would go to "+XI_ConvertString("Colony"+pchar.GenQuest.Marginpassenger.Targetcity)+", to a certain person by the name of "+pchar.GenQuest.Marginpassenger.q2Name+". I paid him for this information, but of course, I wasn't going to kidnap that person.";
+			dialog.text = DLG_TEXT_BASE[186];
+			link.l1 = DLG_TEXT_BASE[187]+XI_ConvertString("Colony"+pchar.GenQuest.Marginpassenger.Targetcity)+DLG_TEXT_BASE[188]+pchar.GenQuest.Marginpassenger.q2Name+DLG_TEXT_BASE[189];
 			link.l1.go = "Marginpassenger_3";
 		break;
 		
 		case "Marginpassenger_3":
-			dialog.text = "So you decided to come see me and let me know?";
-			link.l1 = "Exactly. I am certain that the actions of that scoundrel are threatening the citizens of your town, and I hope that you would take adequate measures.";
+			dialog.text = DLG_TEXT_BASE[190];
+			link.l1 = DLG_TEXT_BASE[191];
 			link.l1.go = "Marginpassenger_4";
 		break;
 		
 		case "Marginpassenger_4":
-			dialog.text = "You were quite right when came to me, "+GetAddress_Form(NPChar)+"! This rascal, "+pchar.GenQuest.Marginpassenger.Name+", has long been under our tracking. I'll investigate, and if all that you said is confirmed, we'll throw this bastard behind bars for half a year. That'll teach him not to build all sorts of machinations against respected citizens\nWell, for your honesty and willingness to serve a good cause, I certainly will report our governor, which, of course, will affect his attitude towards you... as you know, in a positive way. Thanks for your help, captain!";
-			link.l1 = "Hmm... You're welcome, it was a pleasure to help. Goodbye!";
+			dialog.text = DLG_TEXT_BASE[192]+GetAddress_Form(NPChar)+DLG_TEXT_BASE[193]+pchar.GenQuest.Marginpassenger.Name+DLG_TEXT_BASE[194]+DLG_TEXT_BASE[195];
+			link.l1 = DLG_TEXT_BASE[196];
 			link.l1.go = "Marginpassenger_5";
 		break;
 		
@@ -244,20 +244,20 @@ void ProcessDialogEvent()
 		//<-- Похититель
 
 		case "EncGirl_1":
-			dialog.text = "I am all ears.";
-			link.l1 = "I've brought your fugitive.";
+			dialog.text = DLG_TEXT_BASE[197];
+			link.l1 = DLG_TEXT_BASE[198];
 			link.l1.go = "EncGirl_2";
 		break;
 		
 		case "EncGirl_2":
-			dialog.text = "Oh, captain, thank you so much! How is she? Is she hurt? Why did she run away? Why?\nDoesn't she understand? The groom is a wealthy and important man! Youth is naive and foolish... cruel even. Remember that!";
-			link.l1 = "Well, you are her father and the final decision is yours, but I would not hurry with the wedding...";
+			dialog.text = DLG_TEXT_BASE[199]+DLG_TEXT_BASE[200];
+			link.l1 = DLG_TEXT_BASE[201];
 			link.l1.go = "EncGirl_3";
 		break;
 		
 		case "EncGirl_3":
-			dialog.text = "What do you know? Do you have your own children? No? When you've got one, come to see me and we will talk\nI promised a reward to anyone who'd take her back to her family.";
-			link.l1 = "Thanks. You should keep an eye on her. I have a hunch that she won't stop at that.";
+			dialog.text = DLG_TEXT_BASE[202]+DLG_TEXT_BASE[203];
+			link.l1 = DLG_TEXT_BASE[204];
 			link.l1.go = "exit";
 			AddDialogExitQuestFunction("EncGirl_ToLoverParentsExit");
 		break;
@@ -265,8 +265,8 @@ void ProcessDialogEvent()
 		// ------------------------- Повод для спешки -----------------------------
 		case "ReasonToFast_Prison1":
 			pchar.questTemp.ReasonToFast.SpeakOther = true;
-			dialog.text = "I am all ears, captain.";
-			link.l1 = "I want to tell you about a criminal collusion between an officer of your garrison and pirates (explains the matter).";
+			dialog.text = DLG_TEXT_BASE[205];
+			link.l1 = DLG_TEXT_BASE[206];
 			if(makeint(pchar.reputation.nobility) < 41)
 			{
 				link.l1.go = "ReasonToFast_Prison_BadRep";			
@@ -280,8 +280,8 @@ void ProcessDialogEvent()
 			if(pchar.questTemp.ReasonToFast == "PatrolSuccess_1") 
 			{ 
 				// вилка_А
-				dialog.text = "Thank you,"+ GetSexPhrase("mister","miss") +"! I will immediately give the order to arrest the villain.\nHowever, you have incurred costs and municipal coffers, alas, are empty...";
-				link.l1 = "Your Highness! I did it not for the money...";
+				dialog.text = DLG_TEXT_BASE[207]+ GetSexPhrase(DLG_TEXT_BASE[208],DLG_TEXT_BASE[209]) +DLG_TEXT_BASE[210]+DLG_TEXT_BASE[211];
+				link.l1 = DLG_TEXT_BASE[212];
 				link.l1.go = "ReasonToFast_Prison_GoodRep_11";
 				
 				if(pchar.questTemp.ReasonToFast.chain == "A0") ReasonToFast_RemoveVictim();
@@ -290,15 +290,15 @@ void ProcessDialogEvent()
 			if(pchar.questTemp.ReasonToFast == "PatrolSuccess_2") 
 			{ 
 				// получена карта
-				dialog.text = "Thank you, "+ GetSexPhrase("mister","miss") +"! I will immediately give the order to arrest the villain.\nThink of it! We wanted to reward him with personal weapon for the excellent service. How nice that all cleared up, and I got nothing to shame!";
-				link.l1 = "Always glad to serve justice.";
+				dialog.text = DLG_TEXT_BASE[213]+ GetSexPhrase(DLG_TEXT_BASE[214],DLG_TEXT_BASE[215]) +DLG_TEXT_BASE[216]+DLG_TEXT_BASE[217];
+				link.l1 = DLG_TEXT_BASE[218];
 				link.l1.go = "ReasonToFast_Prison_GoodRep_21";			
 			}
 			if(pchar.questTemp.ReasonToFast == "PatrolDied") 
 			{ 
 				// патруль перебит
-				dialog.text = "Mi"+ GetSexPhrase("ster","ss") +"! We had been suspecting that officer and his scum-lads for quite some time in dirty deeds, but I think that you made a rash move when dealt with them without witnesses.";
-				link.l1 = "Your Highness! But I had to defend myself...";
+				dialog.text = GetSexPhrase(DLG_TEXT_BASE[219],DLG_TEXT_BASE[220]) +DLG_TEXT_BASE[221];
+				link.l1 = DLG_TEXT_BASE[222];
 				link.l1.go = "ReasonToFast_Prison_GoodRep_31";	
 				pchar.questTemp.ReasonToFast.speakAfterPatrolDied = true;	
 				pchar.quest.ReasonToFast_SpeakMayor.over = "yes";	
@@ -309,8 +309,8 @@ void ProcessDialogEvent()
 			if(pchar.questTemp.ReasonToFast == "PatrolSuccess_1") 
 			{ 
 				// вилка_А
-				dialog.text = "Captain, do you realize what you've done?!! We've been attempting to set up this trap for over a month! And now, just for your entertainment, you've wrecked the meeting of our patrol with messenger " + GetName( NAMETYPE_MAIN, pchar.questTemp.ReasonToFast.p3, NAME_GEN) + " and now you're coming here to boast?!! Perhaps, you can tell me now, how should I explain all expenses and costs of this operation?!";
-				link.l1 = "Your Grace! You're just refusing to see the point...";
+				dialog.text = DLG_TEXT_BASE[223] + GetName( NAMETYPE_MAIN, pchar.questTemp.ReasonToFast.p3, NAME_GEN) + DLG_TEXT_BASE[224];
+				link.l1 = DLG_TEXT_BASE[225];
 				link.l1.go = "ReasonToFast_Prison_BadRep1";
 				pchar.questTemp.ReasonToFast = "speakSuccess_chain_A";
 				
@@ -320,8 +320,8 @@ void ProcessDialogEvent()
 			if(pchar.questTemp.ReasonToFast == "PatrolSuccess_2") 
 			{ 
 				// получена карта
-				dialog.text = "Let me look at this map\nAre you kidding me? This tattered piece of parchment is a proof?";
-				link.l1 = "Your Grace! You're just refusing to see the point...";
+				dialog.text = DLG_TEXT_BASE[226]+DLG_TEXT_BASE[227];
+				link.l1 = DLG_TEXT_BASE[228];
 				link.l1.go = "ReasonToFast_Prison_BadRep1";
 				TakeItemFromCharacter(pchar, "mapQuest");	
 				pchar.questTemp.ReasonToFast = "speakSuccess_chain_B";	
@@ -329,8 +329,8 @@ void ProcessDialogEvent()
 			if(pchar.questTemp.ReasonToFast == "PatrolDied") 
 			{ 
 				// патруль перебит
-				dialog.text = "Now that's an original justification of the destruction of the entire patrolling group. Well, at least by coming here you spared us the need to look for the murderer.";
-				link.l1 = "Your Grace! You're just refusing to see the point...";
+				dialog.text = DLG_TEXT_BASE[229];
+				link.l1 = DLG_TEXT_BASE[230];
 				link.l1.go = "ReasonToFast_Prison_BadRep1";			
 				pchar.questTemp.ReasonToFast = "speakSuccess_chain_A";
 				pchar.quest.ReasonToFast_SpeakMayor.over = "yes";
@@ -338,8 +338,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ReasonToFast_Prison_GoodRep_11":
-			dialog.text = "Nonetheless I think that your efforts should still be rewarded. Here - take this map; it was found in the belongings of one pirate, who have recently gone to the gallows. God willing, perhaps you will actually find that treasure, although I find it quite unlikely...";
-			link.l1 = "Thank you, that's very generous of you!";
+			dialog.text = DLG_TEXT_BASE[231];
+			link.l1 = DLG_TEXT_BASE[232];
 			link.l1.go = "exit";
 			AddQuestRecord("ReasonToFast", "15");
 			ChangeCharacterComplexReputation(pchar,"nobility", 1); 
@@ -351,8 +351,8 @@ void ProcessDialogEvent()
 			ReasonToFast_SetHunterCoastal();
 		break;
 		case "ReasonToFast_Prison_GoodRep_21":
-			dialog.text = "Your zeal is commendable. Please, accept this blade as a reward - it's the least I can do for you. Oh, and you can keep this map for yourself. I am certain that there's a lot of such fakes on the Archipelago.";
-			link.l1 = "Thank you, that's very generous of you!";
+			dialog.text = DLG_TEXT_BASE[233];
+			link.l1 = DLG_TEXT_BASE[234];
 			link.l1.go = "exit";
 			AddQuestRecord("ReasonToFast", "14");
 			ChangeCharacterComplexReputation(pchar,"nobility", 1); 
@@ -362,8 +362,8 @@ void ProcessDialogEvent()
 			ReasonToFast_SetHunterCoastal();
 		break;
 		case "ReasonToFast_Prison_GoodRep_31":
-			dialog.text = "Might be, might be... Well, let's just say that this deal was decided by divine justice and by our Lord's will.";
-			link.l1 = "Thank you, that's very generous of you!";
+			dialog.text = DLG_TEXT_BASE[235];
+			link.l1 = DLG_TEXT_BASE[236];
 			link.l1.go = "exit";
 			ChangeCharacterComplexReputation(pchar,"nobility", 1); 
 			AddQuestRecord("ReasonToFast", "16");
@@ -372,8 +372,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ReasonToFast_Prison_BadRep1":
-			dialog.text = "Don't dare lecturing me! To me, it is obvious that you are in collaboration with these scoundrels! Guards, seize "+ GetSexPhrase("this 'well-wisher'","this 'well-wisher'") +"!";
-			link.l1 = "No way!";
+			dialog.text = DLG_TEXT_BASE[237]+ GetSexPhrase(DLG_TEXT_BASE[238],DLG_TEXT_BASE[239]) +"!";
+			link.l1 = DLG_TEXT_BASE[240];
 			link.l1.go = "fight";
 			
 			pchar.quest.ReasonToFast_ExitFromTown.win_condition.l1			= "EnterToSea";           	
@@ -386,60 +386,47 @@ void ProcessDialogEvent()
 		
 		// -------------------------- Операция 'Галеон' ----------------------------
 		case "CapComission_PrisonBad1":
-			dialog.text = "And what business do you have with him?";
-			link.l1 = "I have several private affairs to discuss with him.";
+			dialog.text = DLG_TEXT_BASE[241];
+			link.l1 = DLG_TEXT_BASE[242];
 			link.l1.go = "CapComission_PrisonBad2";
 		break;
 		
 		case "CapComission_PrisonBad2":
-			dialog.text = "Captain, I have a direct order to detain and send to the residence for further interrogation anyone asking about " + pchar.GenQuest.CaptainComission.Name + ".";
-			link.l1 = "Nice setup have you here! Having prisoners themselves come to you to be arrested!";
+			dialog.text = DLG_TEXT_BASE[243] + pchar.GenQuest.CaptainComission.Name + ".";
+			link.l1 = DLG_TEXT_BASE[244];
 			link.l1.go = "CapComission_PrisonBad3";
 		break;
 		
 		case "CapComission_PrisonBad3":
-			dialog.text = "And nevertheless I would request that you surrender your weapons!";
-			link.l1 = "Screw you! Take it away from me by force, then!";
+			dialog.text = DLG_TEXT_BASE[245];
+			link.l1 = DLG_TEXT_BASE[246];
 			link.l1.go = "fight";
-			CaptainComission_GenerateCaptainInPrison(); // данила . на всякий случай ,чтобы сгенерился нормально.
 			AddDialogExitQuest("CaptainComission_GenerateCapJail");
 		break;
 		
 		case "CapComission_PrisonGood1":
-			dialog.text = "Yes, of course. I have orders from the governor to render you assistance in this affair. You can now visit the prisoner.";
-			link.l1 = "Thank you...";
+			dialog.text = DLG_TEXT_BASE[247];
+			link.l1 = DLG_TEXT_BASE[248];
 			link.l1.go = "exit";
 			pchar.questTemp.jailCanMove = true;
 			AddDialogExitQuest("CaptainComission_GenerateCapJail");
 		break;
 		
 		case "CapComission_PrisonFree1":
-		if(CheckAttribute(pchar,"GenQuest.CaptainComission"))// лесник . разделение диалога если кеп убит или нет
-		{
-			dialog.text = "Ehm, captain, I don't have direction to discharge this prisoner from custody. You must request a permission from the governor.";
-			link.l1 = "Officer, I am acting for the good of the inquest. The prisoner agreed to cooperate with the authorities and reveal the cache. Time is on the essence - the smugglers can find the precious cargo, and then it will be lost for the populace.";
+			dialog.text = DLG_TEXT_BASE[249];
+			link.l1 = DLG_TEXT_BASE[250];
 			link.l1.go = "CapComission_PrisonFree2";
-		}
-         else
-		 {
-         	dialog.text = "You shouldn't have killed him, captain.. It doesn't matter to me though. We'll have to execute you instead of him. Guards! Seize him!";
-            link.l2 = "You picked the wrong guy to fuck with!...";
-             link.l2.go = "fight";
-			 NextDiag.TempNode = "First_officer";
-			NextDiag.CurrentNode = NextDiag.TempNode; 
-			AddDialogExitQuest("OpenTheDoors");
-		 }			 
 		break;
 		
 		case "CapComission_PrisonFree2":
-			dialog.text = "But I could assign escort to him.";
-			link.l1 = "There's no need to - I have enough guards. Besides, I wouldn't want the location of the cache to be made public.";
+			dialog.text = DLG_TEXT_BASE[251];
+			link.l1 = DLG_TEXT_BASE[252];
 			link.l1.go = "CapComission_PrisonFree3";
 		break;
 		
 		case "CapComission_PrisonFree3":
-			dialog.text = "Hmm... oh, well. But you'll be answering for him with your head.";
-			link.l1 = "Of course.";
+			dialog.text = DLG_TEXT_BASE[253];
+			link.l1 = DLG_TEXT_BASE[254];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First_officer";
 			NextDiag.CurrentNode = NextDiag.TempNode; 
@@ -448,8 +435,8 @@ void ProcessDialogEvent()
 		// -------------------------- Операция 'Галеон' ----------------------------
 		
 		case "F_ShipLetters_1":
-			dialog.text = "Speak now, I'm listening.";
-			link.l1 = "I have some ship documentation with me. Its owner must have lost it, and I believe it might be of some interest to you.";
+			dialog.text = DLG_TEXT_BASE[255];
+			link.l1 = DLG_TEXT_BASE[256];
 			link.l1.go = "F_ShipLetters_2";
 			pchar.questTemp.different.GiveShipLetters.speakFort = true;
 		break;
@@ -457,36 +444,36 @@ void ProcessDialogEvent()
 		case "F_ShipLetters_2":			
 			if(sti(pchar.questTemp.different.GiveShipLetters.variant) == 0)
 			{
-				dialog.text = "Bullshit! Don't distract me from my work! Go to the port authorities, if you care!";
-				link.l1 = "Well, thanks, I guess...";
+				dialog.text = DLG_TEXT_BASE[257];
+				link.l1 = DLG_TEXT_BASE[258];
 				link.l1.go = "exit";
 			}
 			else
 			{
 				if(!CheckAttribute(pchar, "questTemp.different.GiveShipLetters.speakUsurer_1"))
 				{
-					dialog.text = "Yes, it's the local owner. Perhaps, a prize of " + sti(pchar.questTemp.different.GiveShipLetters.price2) + " pesos will serve as a deserving reward for your vigilance, captain.";
-					link.l1 = "Perhaps not.";
+					dialog.text = DLG_TEXT_BASE[229] + sti(pchar.questTemp.different.GiveShipLetters.price2) + DLG_TEXT_BASE[260];
+					link.l1 = DLG_TEXT_BASE[261];
 					link.l1.go = "F_ShipLetters_3";	
-					link.l2 = "A generous offer. The documents are yours, then!";
+					link.l2 = DLG_TEXT_BASE[262];
 					link.l2.go = "F_ShipLetters_4";
 				}
 				else
 				{
 					if(sti(pchar.questTemp.different.GiveShipLetters.variant) == 1)
 					{
-						dialog.text = "Oh, now that's really interesting! I believe the city treasury will gladly pay you "+ sti(pchar.questTemp.different.GiveShipLetters.price4) +" pesos for your contribution in fighting illegal trade.";
-						link.l1 = "Perhaps not.";
+						dialog.text = DLG_TEXT_BASE[263]+ sti(pchar.questTemp.different.GiveShipLetters.price4) +DLG_TEXT_BASE[264];
+						link.l1 = DLG_TEXT_BASE[265];
 						link.l1.go = "F_ShipLetters_3";
-						link.l2 = "A generous offer. The documents are yours, then!";
+						link.l2 = DLG_TEXT_BASE[266];
 						link.l2.go = "F_ShipLetters_4";
 					}
 					if(sti(pchar.questTemp.different.GiveShipLetters.variant) == 2)
 					{
-						dialog.text = "Oh Lord! What a good chance that you've come to me. I guess my ill-starred colleague will gladly pay you " + sti(pchar.questTemp.different.GiveShipLetters.price3) + " pesos in order to avoid publicity of this affair.";
-						link.l1 = "Perhaps not.";
+						dialog.text = DLG_TEXT_BASE[267] + sti(pchar.questTemp.different.GiveShipLetters.price3) + DLG_TEXT_BASE[268];
+						link.l1 = DLG_TEXT_BASE[269];
 						link.l1.go = "F_ShipLetters_3";
-						link.l2 = "A generous offer. The documents are yours, then!";
+						link.l2 = DLG_TEXT_BASE[270];
 						link.l2.go = "F_ShipLetters_4";
 					}
 				}
@@ -494,8 +481,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "F_ShipLetters_3":
-			dialog.text = "This is my city, captain.";
-			link.l1 = "I'll remember that.";
+			dialog.text = DLG_TEXT_BASE[271];
+			link.l1 = DLG_TEXT_BASE[272];
 			link.l1.go = "exit";
 		break;
 		
@@ -540,10 +527,10 @@ void ProcessDialogEvent()
 
 		
         case "ForGoodMove":
-			dialog.text = NPCStringReactionRepeat("But why do you need it? Trust me, there is nothing worth any interest, save for thieves and bandits.", "We had already discussed that wish of yours.", 
-				"Again? We had already talked about it twice!", "Hmm, again...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Nevertheless, I would like to spend your tour of the casemates. I'm very interested!", "Yes, exactly. But I wanted to talk about it.", 
-				"Well, maybe the third time...", "Hope to see your prisoners doesn't leave me.", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_BASE[6], DLG_TEXT_BASE[7], 
+				DLG_TEXT_BASE[8], DLG_TEXT_BASE[9], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_BASE[10], DLG_TEXT_BASE[11], 
+				DLG_TEXT_BASE[12], DLG_TEXT_BASE[13], npchar, Dialog.CurrentNode);
 			link.l1.go = "ForGoodMove_1";
 		break;
 		
@@ -551,107 +538,107 @@ void ProcessDialogEvent()
 			pchar.questTemp.jailCanMove.money = 20+drand(3)*10;
 			if (sti(colonies[FindColony(npchar.city)].jail) && GetCharacterItem(pchar, "gold_dublon") >= sti(pchar.questTemp.jailCanMove.money))
 			{
-				dialog.text = "Well, I see no reason to refuse. " + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.money)) + " - and until you leave the prison, you can freely walk along the corridors and even converse with the inmates.";
-				link.l1 = "I agree, here are your coins!";
+				dialog.text = DLG_TEXT_BASE[14] + FindRussianMoneyString(sti(pchar.questTemp.jailCanMove.money)) + DLG_TEXT_BASE[15];
+				link.l1 = DLG_TEXT_BASE[16];
 				link.l1.go = "ForGoodMove_agree";
-				link.l2 = "That won't work. It's too much for aimless wandering along the corridors.";
+				link.l2 = DLG_TEXT_BASE[17];
 				link.l2.go = "exit";
 			}
 			else
 			{
-				dialog.text = RandPhraseSimple("No, this is strictly prohibited by the regulations. What? Do you think we have there a circus? Get lost and don't distract me from my duties.", "I cannot allow strange people to walk around in my prison. Please, stop bothering me!");
-				link.l1 = "Alright, as you say...";
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[18], DLG_TEXT_BASE[19]);
+				link.l1 = DLG_TEXT_BASE[20];
 				link.l1.go = "exit";
 			}
 		break;
 		
         case "ForGoodMove_agree":
-            dialog.text = "All right, you can start your excursion now...";
-			link.l1 = "Thank you, officer.";
+            dialog.text = DLG_TEXT_BASE[21];
+			link.l1 = DLG_TEXT_BASE[22];
 			link.l1.go = "exit";
 			pchar.questTemp.jailCanMove = true;
 			RemoveItems(pchar, "gold_dublon", sti(pchar.questTemp.jailCanMove.money));
-			Log_Info("You have given " + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.money)) + "");
+			Log_Info(DLG_TEXT_BASE[273] + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.money)) + "");
 		break;
 		
         case "KnowAboutPrisoner":
 			switch (pchar.questTemp.jailCanMove.ownerPrison)
 			{
-				case "0": sTemp = "For murder."; break;
-				case "1": sTemp = "He is accused of piracy."; break;
-				case "2": sTemp = "For banditry and robbery."; break;
-				case "3": sTemp = "For thievery."; break;
-				case "4": sTemp = "For petty thieving."; break;
-				case "5": sTemp = "For sharp practice."; break;
-				case "6": sTemp = "For vagrancy and begging."; break;
+				case "0": sTemp = DLG_TEXT_BASE[274]; break;
+				case "1": sTemp = DLG_TEXT_BASE[275]; break;
+				case "2": sTemp = DLG_TEXT_BASE[276]; break;
+				case "3": sTemp = DLG_TEXT_BASE[277]; break;
+				case "4": sTemp = DLG_TEXT_BASE[278]; break;
+				case "5": sTemp = DLG_TEXT_BASE[279]; break;
+				case "6": sTemp = DLG_TEXT_BASE[280]; break;
 			}
 			dialog.text = sTemp;
-			link.l1 = "I see... And is there a possibility of a buyout, bail... or releasing him in some other way?";
+			link.l1 = DLG_TEXT_BASE[28];
 			link.l1.go = "KnowAboutPrisoner_" + pchar.questTemp.jailCanMove.ownerPrison;
 			DeleteAttribute(pchar, "questTemp.jailCanMove.City");
 		break;
 		
         case "KnowAboutPrisoner_0":
-			dialog.text = "Of course, not. That gallows-bird will go straight to hell. Governor has his cause on a special control!";
-			link.l1 = "Heh, I see...";
+			dialog.text = DLG_TEXT_BASE[281];
+			link.l1 = DLG_TEXT_BASE[282];
 			link.l1.go = "notFree_exit";
 		break;	
 		
 		case "KnowAboutPrisoner_1":
-			dialog.text = "Are you joking? He must have gone to the gallows long ago! He will surely wed a rope soon. Just forget it.";
-			link.l1 = "Got it. And already forgotten...";
+			dialog.text = DLG_TEXT_BASE[283];
+			link.l1 = DLG_TEXT_BASE[284];
 			link.l1.go = "notFree_exit";
 		break;
 		
         case "KnowAboutPrisoner_2":
-			dialog.text = "I don't think so. He's caused a lot of trouble to our townsfolk. So don't ask for it.";
-			link.l1 = "Hmm, I see.";
+			dialog.text = DLG_TEXT_BASE[285];
+			link.l1 = DLG_TEXT_BASE[286];
 			link.l1.go = "notFree_exit";
 		break;
 		
         case "KnowAboutPrisoner_3":
-			dialog.text = "Probably not. He's a thief, and a thief must stay in a jail.";
-			link.l1 = "Oh! Well said, lieutenant!";
+			dialog.text = DLG_TEXT_BASE[287];
+			link.l1 = DLG_TEXT_BASE[288];
 			link.l1.go = "notFree_exit";
 		break;
 		
         case "KnowAboutPrisoner_4":
-			dialog.text = "I don't know, really. He's stolen just a petty thing. I cannot set him free, but leaving him rotting in jail certainly isn't right.";
-			link.l1 = "Well, then give him to me, lieutenant. I will pay bail for him - a reasonable amount, of course.";
+			dialog.text = DLG_TEXT_BASE[289];
+			link.l1 = DLG_TEXT_BASE[290];
 			link.l1.go = "KnowAboutPrisoner_free";
 		break;
 		
         case "KnowAboutPrisoner_5":
-			dialog.text = "Releasing? That seems probable. In my opinion, there is no point in detaining that petty crook here.";
-			link.l1 = "Well, then give him to me, lieutenant. I will pay bail for him - a reasonable amount, of course.";
+			dialog.text = DLG_TEXT_BASE[291];
+			link.l1 = DLG_TEXT_BASE[292];
 			link.l1.go = "KnowAboutPrisoner_free";
 		break;
 		
 		case "KnowAboutPrisoner_6":
-			dialog.text = "Hmm... There 's reason in your words. This tramp doesn't belong here - he only spreading filth and flees...";
-			link.l1 = "Well, then give him to me, lieutenant. I will pay bail for him - a reasonable amount, of course.";
+			dialog.text = DLG_TEXT_BASE[293];
+			link.l1 = DLG_TEXT_BASE[294];
 			link.l1.go = "KnowAboutPrisoner_free";
 		break;
 		
         case "KnowAboutPrisoner_free":
 			pchar.questTemp.jailCanMove.ownerPrison.money = 50+drand(10)*10;
-			dialog.text = "Alright, we have a deal. " + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.ownerPrison.money)) + " on the nail, and you can take him away right now.";
+			dialog.text = DLG_TEXT_BASE[295] + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.ownerPrison.money)) + DLG_TEXT_BASE[296];
 			if (GetCharacterItem(pchar, "gold_dublon") >= sti(pchar.questTemp.jailCanMove.ownerPrison.money))
 			{
-				link.l1 = LinkRandPhrase("Excellent! I agree!","You have a bargain, officer!","Excellent. I am ready to pay that contribution.");
+				link.l1 = LinkRandPhrase(DLG_TEXT_BASE[297],DLG_TEXT_BASE[298],DLG_TEXT_BASE[299]);
 				link.l1.go = "KnowAboutPrisoner_agree";
 			}
-			link.l2 = "No, that's too expensive. I think I'll pass.";
+			link.l2 = DLG_TEXT_BASE[300];
 			link.l2.go = "KnowAboutPrisoner_exit";
 		break;
 		
         case "KnowAboutPrisoner_agree":
-			dialog.text = "Fine, you can proceed to his cell and take that ragamuffin with you.";
-			link.l1 = "Thanks.";
+			dialog.text = DLG_TEXT_BASE[45];
+			link.l1 = DLG_TEXT_BASE[46];
 			link.l1.go = "exit";
 			pchar.questTemp.jailCanMove = true;
 			RemoveItems(pchar, "gold_dublon", sti(pchar.questTemp.jailCanMove.ownerPrison.money));
-			Log_Info("You have given " + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.ownerPrison.money)) + "");
+			Log_Info("Vous remettez " + FindRussianDublonString(sti(pchar.questTemp.jailCanMove.ownerPrison.money)) + "");
 			DeleteAttribute(pchar, "questTemp.jailCanMove.ownerPrison");
 			sld = characterFromId(pchar.questTemp.jailCanMove.prisonerId)
 			LAi_CharacterEnableDialog(sld);
@@ -659,8 +646,8 @@ void ProcessDialogEvent()
 		break;
 		
         case "KnowAboutPrisoner_exit":
-			dialog.text = "Well, it's your choice. I am not giving you another chance...";
-			link.l1 = "No need to.";
+			dialog.text = DLG_TEXT_BASE[47];
+			link.l1 = DLG_TEXT_BASE[48];
 			link.l1.go = "exit";
 			DeleteAttribute(pchar, "questTemp.jailCanMove.ownerPrison");
 			sld = characterFromId(pchar.questTemp.jailCanMove.prisonerId);
@@ -680,23 +667,23 @@ void ProcessDialogEvent()
         case "First_protector":
 			if (sti(pchar.questTemp.jailCanMove))
 			{
-				dialog.text = RandPhraseSimple("You can pass, the warden gave his permission.", "I've received an order from the prison warden. You may pass freely.");
-				link.l1 = "Very good.";
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[49], DLG_TEXT_BASE[50]);
+				link.l1 = DLG_TEXT_BASE[51];
 				link.l1.go = "exit";
 				DeleteAttribute(pchar, "questTemp.jailCanMove.ownerPrison.money");
 			}
 			else
 			{
-				dialog.text = RandPhraseSimple("You may go no further without specific permission from the prison warden!", "I answer to the prison warden only! If you attempt to go further without his permission, you're done for!");
-				link.l1 = RandPhraseSimple("I see", "Alright") + ", soldier.";
+				dialog.text = RandPhraseSimple(DLG_TEXT_BASE[52], DLG_TEXT_BASE[53]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[54], DLG_TEXT_BASE[55]) + DLG_TEXT_BASE[56];
 				link.l1.go = "exit";
 			}
 			NextDiag.TempNode = "First_protector";
 		break;
 		//---------------- Солдаты ------------------
         case "First_soldier":
-            dialog.text = RandPhraseSimple("I am on duty, don't bother me.", "Come along, I am not allowed to talk to you.");
-			link.l1 = "Fine, soldier.";
+            dialog.text = RandPhraseSimple(DLG_TEXT_BASE[57], DLG_TEXT_BASE[58]);
+			link.l1 = DLG_TEXT_BASE[59];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First_soldier";
 		break;
@@ -704,25 +691,25 @@ void ProcessDialogEvent()
         case "First_prisoner": 
 			if (GetNationRelation2MainCharacter(sti(npchar.nation)) == RELATION_ENEMY)
 			{
-				dialog.text = LinkRandPhrase("Ho-ho, isn't that a great time!", "Cut them, "+ GetSexPhrase("buddy","lass") +", cut!!!", "Oh, hell! I have lost all hope to see the corpse of my jailer!");
-				link.l1 = RandPhraseSimple("Heh!", "Arrgh!");
+				dialog.text = LinkRandPhrase(DLG_TEXT_BASE[60], DLG_TEXT_BASE[61], DLG_TEXT_BASE[62]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[63], DLG_TEXT_BASE[64]);
 				link.l1.go = "NoMoreTalkExit";
 				if (rand(10) > 6 && !CheckAttribute(pchar, "questTemp.Sharlie.Lock") && !CheckAttribute(pchar, "GenQuest.PrisonQuestLock") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.DeliverToBander")) // Addon 2016-1 Jason пиратская линейка
 				{
-					dialog.text = RandPhraseSimple("Hold on, "+ GetSexPhrase("buddy","lass") +"!! Release me!", "Listen, "+ GetSexPhrase("buddy","lass") +", kindly open the cell.");
-					link.l1 = "For what reason?";
+					dialog.text = RandPhraseSimple(DLG_TEXT_BASE[65], DLG_TEXT_BASE[66]);
+					link.l1 = DLG_TEXT_BASE[67];
 					link.l1.go = "Prisoner_1"; // на квест освобождения заключенного
 				}
 			}
 			else
 			{
-				dialog.text = LinkRandPhrase("I am accused of robbery, but I'm not guilty!", "Arrgh, you well-groomed scum... Would you like to sit in my cell a bit?! Kheh-heh-heh...", "I am not guilty!");
-				link.l1 = RandPhraseSimple("Shut up!", "I don't give a shit about you...");
+				dialog.text = LinkRandPhrase(DLG_TEXT_BASE[68], DLG_TEXT_BASE[69], DLG_TEXT_BASE[70]);
+				link.l1 = RandPhraseSimple(DLG_TEXT_BASE[71], DLG_TEXT_BASE[72]);
 				link.l1.go = "NoMoreTalkExit";
-				if (rand(10) > 6 && !CheckAttribute(pchar, "questTemp.Sharlie.Lock") && !CheckAttribute(pchar, "GenQuest.PrisonQuestLock") && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.DeliverToBander") && !sti(colonies[FindColony(npchar.city)].HeroOwn)) // Addon 2016-1 Jason пиратская линейка
+				if (rand(10) > 6 && !CheckAttribute(pchar, "questTemp.Sharlie.Lock") && !CheckAttribute(pchar, "quest.GivePrisonFree_Over") && !CheckAttribute(pchar, "quest.GivePrisonFree") && !CheckAttribute(pchar, "quest.DeliverToBander") && !sti(colonies[FindColony(npchar.city)].HeroOwn))
 				{
-					dialog.text = RandPhraseSimple("Hold on, "+ GetSexPhrase("buddy","lass") +", don't come by so fast!", "Don't hurry, "+ GetSexPhrase("buddy","lass") +", let's talk.");
-					link.l1 = "For what reason?";
+					dialog.text = RandPhraseSimple(DLG_TEXT_BASE[73], DLG_TEXT_BASE[74]);
+					link.l1 = DLG_TEXT_BASE[75];
 					if (rand(1))
 					{
 						link.l1.go = "Prisoner_1"; // на квест освобождения заключенного
@@ -736,8 +723,8 @@ void ProcessDialogEvent()
 		break;
 		// -------------------- освобождение заключенного --------------------
         case "Prisoner_1":
-            dialog.text = "Listen to me, buddy. Don't think that I'm not looking good and stuff. I just need to get out of here...";
-			link.l1 = "What?!";
+            dialog.text = DLG_TEXT_BASE[76];
+			link.l1 = DLG_TEXT_BASE[77];
 			link.l1.go = "Prisoner_2";
 			GetChestPlaceName();
 			pchar.questTemp.jailCanMove.prisonerId = npchar.id; //запомним Id
@@ -747,45 +734,45 @@ void ProcessDialogEvent()
 			pchar.questTemp.jailCanMove.Name = GetFullName(npchar); //имя перца
 		break;
         case "Prisoner_2":
-            dialog.text = "What you heard! Help me out, and I'll be able to repay...";
-			link.l1 = "Now that's interesting. Who are you and what can you offer me?";
+            dialog.text = DLG_TEXT_BASE[78];
+			link.l1 = DLG_TEXT_BASE[79];
 			link.l1.go = "Prisoner_3";
 		break;
         case "Prisoner_3":
-            dialog.text = "My name is " + GetFullName(npchar) + ". I have some stuff stashed at a safe place. Just get me out of here and take me to " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Acc") + ". There, in a grotto, I have the treasure. We'll get it and share!";
-			link.l1 = "And what do you have in your stash? And how can I know that you're telling the truth?";
+            dialog.text = DLG_TEXT_BASE[80] + GetFullName(npchar) + DLG_TEXT_BASE[81] + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Acc") + DLG_TEXT_BASE[82];
+			link.l1 = DLG_TEXT_BASE[83];
 			link.l1.go = "Prisoner_4";
 		break;
         case "Prisoner_4":
-            dialog.text = "I swear I am telling the truth! As for the stash -there is treasure and money...";
-			link.l1 = "No, buddy. I am not risking my hide for a questionable stash. I am sorry...";
+            dialog.text = DLG_TEXT_BASE[84];
+			link.l1 = DLG_TEXT_BASE[85];
 			link.l1.go = "Prisoner_5";
 			if (GetNationRelation2MainCharacter(sti(npchar.nation)) != RELATION_ENEMY)
 			{			
-				link.l2 = "Well, it might be worth taking a risk... I suggest the following: I can eliminate the guards in the prison and take you to my ship. If everything works out, I want you to stay at my side all the time until we get to the grotto on  " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Deal?";
+				link.l2 = DLG_TEXT_BASE[86] + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + DLG_TEXT_BASE[87];
 				link.l2.go = "Prisoner_agree"; //силовой способ вызволения
-				link.l3 = "Alright, I'll try to help you. I'll speak to the prison warden. Perhaps, I'll be able to bail you out.";
+				link.l3 = DLG_TEXT_BASE[88];
 				link.l3.go = "ToPrisonHead_agree"; //мирный способ вызволения
 			}
 			else
 			{
-				link.l2 = "Okay, I'll believe you and open your cell. I want you to stay at my side all the time until we get to the grotto on " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ". Deal?";
+				link.l2 = DLG_TEXT_BASE[89] + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + DLG_TEXT_BASE[90];
 				link.l2.go = "Prisoner_agree_3"; //силовой способ вызволения, когда тюремщики убиты
 			}
 		break;
         case "Prisoner_5":
-            dialog.text = RandPhraseSimple("Damn you, you rascal!", "Damn you ripped, scum...");
-			link.l1 = RandPhraseSimple("And all the best to you, too. Farewell...", "The moon doesn't need the barking of dogs...");
+            dialog.text = RandPhraseSimple(DLG_TEXT_BASE[91], DLG_TEXT_BASE[92]);
+			link.l1 = RandPhraseSimple(DLG_TEXT_BASE[93], DLG_TEXT_BASE[94]);
 			link.l1.go = "NoMoreTalkExit";
 		break;
         case "Prisoner_agree":
-            dialog.text = "Fine. I am not in a position to be picky.";
-			link.l1 = "Alright. I will break your lock now to get you out, and we will break through. Are you ready?";
+            dialog.text = DLG_TEXT_BASE[95];
+			link.l1 = DLG_TEXT_BASE[96];
 			link.l1.go = "Prisoner_agree_1";
 		break;
         case "Prisoner_agree_1":
-            dialog.text = "Yes, "+ GetSexPhrase("buddy","lass") +", I am ready!";
-			link.l1 = "Then let's get to it!";
+            dialog.text = DLG_TEXT_BASE[97];
+			link.l1 = DLG_TEXT_BASE[98];
 			link.l1.go = "Prisoner_agree_2";
 		break;
         case "Prisoner_agree_2":
@@ -819,8 +806,8 @@ void ProcessDialogEvent()
 		break;
 
         case "Prisoner_agree_3":
-            dialog.text = "Fine. I am not in a position to be picky.";
-			link.l1 = "Alright. Follow me as quickly as you can - we still need to get to my ship. Don't delay!";
+            dialog.text = DLG_TEXT_BASE[99];
+			link.l1 = DLG_TEXT_BASE[100];
 			link.l1.go = "Prisoner_agree_4";
 		break;
         case "Prisoner_agree_4":
@@ -850,8 +837,8 @@ void ProcessDialogEvent()
 		break;
 
         case "ToPrisonHead_agree":
-            dialog.text = "Well, you can try. Hope we'll pull it through! But don't waste time - in a couple of days I will be out of here...";
-			link.l1 = "Wait here, I'll arrange everything.";
+            dialog.text = DLG_TEXT_BASE[101];
+			link.l1 = DLG_TEXT_BASE[102];
 			link.l1.go = "NoMoreTalkExit";
 			pchar.questTemp.jailCanMove.City = npchar.City; //город
 			pchar.questTemp.jailCanMove.ownerPrison = rand(6); //характер преступления
@@ -863,18 +850,18 @@ void ProcessDialogEvent()
 		break;
 
         case "ToPrisonHead_canMove":
-            dialog.text = "Well, what do you say, "+ GetSexPhrase("buddy","lass") +"?";
-			link.l1 = "Everything has been arranged, and I can take you from here.";
+            dialog.text = DLG_TEXT_BASE[103];
+			link.l1 = DLG_TEXT_BASE[104];
 			link.l1.go = "ToPrisonHead_canMove_1";
 		break;
         case "ToPrisonHead_canMove_1":
-            dialog.text = "Then let's get out of here! Oh, Lord, how happy I am!";
-			link.l1 = "Let's sum it up. I want you to stay at my side all the time until we get to the grotto on " + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + ", you won't leave me farther a single step. Just in case. Do you agree?";
+            dialog.text = DLG_TEXT_BASE[105];
+			link.l1 = DLG_TEXT_BASE[106] + XI_ConvertString(pchar.questTemp.jailCanMove.islandId + "Dat") + DLG_TEXT_BASE[107];
 			link.l1.go = "ToPrisonHead_canMove_2";
 		break;
         case "ToPrisonHead_canMove_2":
-            dialog.text = "Of course, I agree! All the more that I am not in a position to choose.";
-			link.l1 = "Then you are free.";
+            dialog.text = DLG_TEXT_BASE[108];
+			link.l1 = DLG_TEXT_BASE[109];
 			link.l1.go = "ToPrisonHead_canMove_exit";
 		break;
         case "ToPrisonHead_canMove_exit":
@@ -907,29 +894,29 @@ void ProcessDialogEvent()
         case "ToPrisonHead_notFree":
 			switch (pchar.questTemp.jailCanMove.ownerPrison)
 			{
-				case "0": sTemp = "murder"; break;
-				case "1": sTemp = "piracy"; break;
-				case "2": sTemp = "brigandry"; break;
-				case "3": sTemp = "thievery"; break;
+				case "0": sTemp = DLG_TEXT_BASE[301]; break;
+				case "1": sTemp = DLG_TEXT_BASE[302]; break;
+				case "2": sTemp = DLG_TEXT_BASE[303]; break;
+				case "3": sTemp = DLG_TEXT_BASE[304]; break;
 			}
-            dialog.text = "Well, what do you say, "+ GetSexPhrase("buddy","lass") +"?";
-			link.l1 = "I couldn't arrange your release. You are accused of " + sTemp + ", so you cannot be bailed out.";
+            dialog.text = DLG_TEXT_BASE[113];
+			link.l1 = DLG_TEXT_BASE[114] + sTemp + DLG_TEXT_BASE[115];
 			link.l1.go = "ToPrisonHead_notFree_1";
 			DeleteAttribute(pchar, "questTemp.jailCanMove.ownerPrison");
 		break;
 		
         case "ToPrisonHead_notFree_1":
-            dialog.text = "But I was slandered! Oh devil! And what will I do now? I'll rot there alive!";
-			link.l1 = "I am sorry, buddy, but there is nothing I can do for you.";
+            dialog.text = DLG_TEXT_BASE[116];
+			link.l1 = DLG_TEXT_BASE[117];
 			link.l1.go = "ToPrisonHead_notFree_2";
-			link.l2 = "There is only one chance left - to free you with force. I will break your lock now to get you out, and we will break through. Are you ready?";
+			link.l2 = DLG_TEXT_BASE[118];
 			link.l2.go = "Prisoner_agree_1";
 			pchar.quest.GivePrisonFree_Over.over = "yes";
 		break;
 		
         case "ToPrisonHead_notFree_2":
-            dialog.text = RandPhraseSimple("Curse you!", "Damn you ripped, bitch...");
-			link.l1 = "And all the best to you, too. Farewell...";
+            dialog.text = RandPhraseSimple(DLG_TEXT_BASE[119], DLG_TEXT_BASE[120]);
+			link.l1 = DLG_TEXT_BASE[121];
 			link.l1.go = "NoMoreTalkExit";
 			AddQuestRecord("GivePrisonFree", "7");
             AddQuestUserData("GivePrisonFree", "sName", pchar.questTemp.jailCanMove.Name);
@@ -942,8 +929,8 @@ void ProcessDialogEvent()
 		break;
 
         case "ToPrisonHead_expansive":
-			dialog.text = "So, any good news, "+ GetSexPhrase("buddy","lass") +"?";
-			link.l1 = "The bail for your release is too high, I don't have such money. I have to stop helping you.";
+			dialog.text = DLG_TEXT_BASE[122];
+			link.l1 = DLG_TEXT_BASE[123];
 			link.l1.go = "ToPrisonHead_notFree_2";
 			pchar.quest.GivePrisonFree_Over.over = "yes";
 		break;
@@ -952,38 +939,38 @@ void ProcessDialogEvent()
 			switch (sti(pchar.questTemp.jailCanMove.IsTrue))
 			{
 				case 0:
-					dialog.text = "Listen, I've checked everything, but found no treasure. A pity it turned out this way. Someone must have dug it out before us.";
-					link.l1 = "And how can that be?!";
+					dialog.text = DLG_TEXT_BASE[305];
+					link.l1 = DLG_TEXT_BASE[306];
 					link.l1.go = "PrisonerInPlace_1";
 				break;
 				case 1:
-					dialog.text = "I have found it! The treasure is still where I had left it.";
-					link.l1 = "Excellent. Well, let's split, then?";
+					dialog.text = DLG_TEXT_BASE[307];
+					link.l1 = DLG_TEXT_BASE[308];
 					link.l1.go = "Node_1";
 				break;
 				case 2:
-					dialog.text = "Well, here it is, my stash. Nothing much, but this is everything I have. As we agreed, a half is yours.";
-					link.l1 = "Yeah, the treasure is modest, indeed. Well, still better than nothing.";
+					dialog.text = DLG_TEXT_BASE[309];
+					link.l1 = DLG_TEXT_BASE[310];
 					link.l1.go = "Node_2";
 				break;
 				case 3:
-					dialog.text = "Captain, I am sorry, but... There is no treasure.";
-					link.l1 = "What?! You've tricked me, you scoundrel! I got you out to that island - and what for? You will not get away with this!";
+					dialog.text = DLG_TEXT_BASE[311];
+					link.l1 = DLG_TEXT_BASE[312];
 					link.l1.go = "Node_3";
 				break;
 				case 4:
-					dialog.text = "Goddammit... How could that be? It cannot be!";
-					link.l1 = "What's up, buddy? Where is the treasure? Don't tell me that there is none!";
+					dialog.text = DLG_TEXT_BASE[313];
+					link.l1 = DLG_TEXT_BASE[314];
 					link.l1.go = "Node_4";
 				break;
 			}
 		break;
 			
 		case "Node_1":
-			dialog.text = "Of course, as was agreed. Half of the treasure is yours.";
-			link.l1 = "Holy Lord, now there's surely a lot of precious stuff!";
+			dialog.text = DLG_TEXT_BASE[315];
+			link.l1 = DLG_TEXT_BASE[316];
 			link.l1.go = "PrisonerInPlace_3";
-			Log_Info("You have received your share of the treasure");
+			Log_Info(DLG_TEXT_BASE[317]);
 			PlaySound("interface\important_item.wav");
 			TakeNItems(pchar, "icollection", 1+drand(1));
 			TakeNItems(pchar, "chest", 4+drand(4));
@@ -1003,10 +990,10 @@ void ProcessDialogEvent()
 		break;
 			
 		case "Node_2":
-			dialog.text = "Captain, there's also that Indian item among other things. You can have it in addition to your share.";
-			link.l1 = "Well, at least something valuable for your release! Give it to me.";
+			dialog.text = DLG_TEXT_BASE[318];
+			link.l1 = DLG_TEXT_BASE[319];
 			link.l1.go = "PrisonerInPlace_3";
-			Log_Info("You have received your share of the treasure");
+			Log_Info(DLG_TEXT_BASE[320]);
 			PlaySound("interface\important_item.wav");
 			sTemp = pchar.questTemp.jailCanMove.Item1;
 			TakeNItems(pchar, sTemp, 1);
@@ -1025,10 +1012,10 @@ void ProcessDialogEvent()
 		break;
 			
 		case "Node_3":
-			dialog.text = "Wait, Captain, don't get excited, let me say. I am also a sailor, just like you. I was thrown in jail by mistake, I swear. You were my only chance to escape, and I had to lie to you about the treasure\nNo treasure, but I hid there one good thing. Take it, and let me go in peace. Perhaps, in a battle one day, it will help you to survive.";
-			link.l1 = "Alright, I didn't expect much from you anyway. Thank the God that I am not bearing grudges.";
+			dialog.text = DLG_TEXT_BASE[321];
+			link.l1 = DLG_TEXT_BASE[322];
 			link.l1.go = "PrisonerInPlace_3";
-			Log_Info("You have received equipment");
+			Log_Info(DLG_TEXT_BASE[323]);
 			PlaySound("interface\important_item.wav");
 			sTemp = pchar.questTemp.jailCanMove.Item2;
 			TakeNItems(pchar, sTemp, 1);
@@ -1040,14 +1027,14 @@ void ProcessDialogEvent()
 		break;
 			
 		case "Node_4":
-			dialog.text = "No!!! It's not there! Damned scrap... Captain, I was absolutely sure I'd find it here! But, apparently, I was mistaken! What on that scrap of paper is really unclear...";
-			link.l1 = "Oh well... You're in some serious trouble, buddy. But I'd still like to listen to your explanation.";
+			dialog.text = DLG_TEXT_BASE[324];
+			link.l1 = DLG_TEXT_BASE[325];
 			link.l1.go = "Node_4_1";
 		break;
 			
 		case "Node_4_1":
-			dialog.text = "I had a scrap of the map. That was a real map, I swear! But it's very difficult to tell, what island was shown on it... I thought it was here... But, as you see now, I was wrong.";
-			link.l1 = "What scrap of paper? Give it to me right now!";
+			dialog.text = DLG_TEXT_BASE[326];
+			link.l1 = DLG_TEXT_BASE[327];
 			link.l1.go = "Node_4_2";
 		break;
 			
@@ -1060,14 +1047,14 @@ void ProcessDialogEvent()
 			{
 				GiveItem2Character(pchar, "map_part1");
 			}
-			dialog.text = "Of course, take it. Captain, release me... please? I really thought that the treasure was there. Perhaps, you'll figure out, where it is, and take it for yourself. I beg you.";
-			link.l1 = "I see... Indeed, it's hard to figure anything out by that scrap. A second half of the map is needed. Alright, get lost. I can see now it was not your fault.";
+			dialog.text = DLG_TEXT_BASE[328];
+			link.l1 = DLG_TEXT_BASE[329];
 			link.l1.go = "PrisonerInPlace_4";
 		break;
 			
 		case "PrisonerInPlace_1":
-			dialog.text = "Very simple, "+ GetSexPhrase("buddy","lass") +". Everything in life happens\nWell, you're here, if you want, stay, look for more. Well, I have to go!\nFarewell, "+ GetSexPhrase("my friend","lass") +", thank you for saving my life. I will always remember you!";
-			link.l1 = "Scoundrel! You think I'll let you get a way with that?! Hey! Hold on, coward!";
+			dialog.text = DLG_TEXT_BASE[128];
+			link.l1 = DLG_TEXT_BASE[129];
 			link.l1.go = "PrisonerInPlace_2";
 			AddQuestRecord("GivePrisonFree", "4");
 			AddQuestUserData("GivePrisonFree", "sName", pchar.questTemp.jailCanMove.Name);
@@ -1098,14 +1085,14 @@ void ProcessDialogEvent()
 		break;
 		
         case "PrisonerInPlace_3":
-			dialog.text = "Here you go. Thank you!";
-			link.l1 = "Farewell...";
+			dialog.text = DLG_TEXT_BASE[330];
+			link.l1 = DLG_TEXT_BASE[331];
 			link.l1.go = "PrisonerInPlace_2";
 		break;
 		
         case "PrisonerInPlace_4":
-			dialog.text = "Thank you, captain! I will be praying for you till the rest of my days!";
-			link.l1 = "Oh, shut up! Go in peace...";
+			dialog.text = DLG_TEXT_BASE[332];
+			link.l1 = DLG_TEXT_BASE[333];
 			link.l1.go = "PrisonerInPlace_2";
 			AddQuestRecord("GivePrisonFree", "3_4");
             AddQuestUserData("GivePrisonFree", "sName", pchar.questTemp.jailCanMove.Name);
@@ -1118,45 +1105,45 @@ void ProcessDialogEvent()
 		// -------------------- освобождение заключенного --------------------
 		// ------------------------ передать маляву --------------------------
         case "Deliver_1":
-			dialog.text = "I am called " + GetFullName(npchar) + ". I have a request to you, he-he...";
-			link.l1 = "What's up?";
+			dialog.text = DLG_TEXT_BASE[138] + GetFullName(npchar) + DLG_TEXT_BASE[139];
+			link.l1 = DLG_TEXT_BASE[140];
 			link.l1.go = "Deliver_2";
 		break;
         case "Deliver_2":
-			dialog.text = "I need a missive to be sent out of prison. Will you do it?";
-			link.l1 = "And what's in it for me?";
+			dialog.text = DLG_TEXT_BASE[141];
+			link.l1 = DLG_TEXT_BASE[142];
 			link.l1.go = "Deliver_3";
 		break;
         case "Deliver_3":
-			dialog.text = "The pals will not disappoint you, promise... So? Are you in?";
-			link.l1 = "No, I am not interested.";
+			dialog.text = DLG_TEXT_BASE[143];
+			link.l1 = DLG_TEXT_BASE[144];
 			link.l1.go = "Prisoner_5";
-			link.l2 = "Well, if it doesn't require too much effort from me, I can do it.";
+			link.l2 = DLG_TEXT_BASE[145];
 			link.l2.go = "Deliver_agree";
 		break;
         case "Deliver_agree":
-			dialog.text = "Fine. Now listen to me carefully. Two pals are waiting for my missive in a house, so that they won't get seized during a raid. But I have no clue, which house exactly it is. You'll need to search.";
-			link.l1 = "What do you mean - search?";
+			dialog.text = DLG_TEXT_BASE[146];
+			link.l1 = DLG_TEXT_BASE[147];
 			link.l1.go = "Deliver_4";
 		break;
         case "Deliver_4":
-			dialog.text = "Search as in search. You'll run around the town, peer into the houses. When you get to the right place, they will not let you out without a talk. But keep in mind that I would stay there for two more days at most. So don't delay.";
-			link.l1 = "I see. Well, hand your missive, then.";
+			dialog.text = DLG_TEXT_BASE[148];
+			link.l1 = DLG_TEXT_BASE[149];
 			link.l1.go = "Deliver_5";
 		break;
         case "Deliver_5":
 			pchar.questTemp.jailCanMove.Deliver.locationId = GetBanderLocation(npchar); //Id коммона
 			if (pchar.questTemp.jailCanMove.Deliver.locationId == "none")
 			{
-				dialog.text = "Hmm, you know, I just don't like you. I crossed my mind. Come along, don't stand there!";
-				link.l1 = "Look at you! Well, as you wish...";
+				dialog.text = DLG_TEXT_BASE[150];
+				link.l1 = DLG_TEXT_BASE[151];
 				link.l1.go = "NoMoreTalkExit";
 				DeleteAttribute(pchar, "questTemp.jailCanMove.Deliver");
 			}
 			else
 			{
-				dialog.text = "Here. Thank you, "+ GetSexPhrase("buddy","lass") +"!";
-				link.l1 = "Not at all.";
+				dialog.text = DLG_TEXT_BASE[152];
+				link.l1 = DLG_TEXT_BASE[153];
 				link.l1.go = "NoMoreTalkExit";
 				GiveItem2Character(Pchar, "Malyava");
 				pchar.questTemp.jailCanMove.Deliver.Id = npchar.id; //Id зэка
@@ -1179,36 +1166,36 @@ void ProcessDialogEvent()
 		
 		// Warship, 16.05.11. Генер "Justice for sale".
 		case "JusticeOnSale_1":
-			dialog.text = "Yes, he was arrested on a charge of smuggling. But why do you care about that gallows-bird, " + GetAddress_Form(NPChar) + "?";
-			link.l1 = "His gang is planning to arrange his escape and continue their dirty deeds.";
+			dialog.text = DLG_TEXT_BASE[334] + GetAddress_Form(NPChar) + "?";
+			link.l1 = DLG_TEXT_BASE[335];
 			link.l1.go = "JusticeOnSale_2";
-			link.l2 = "I've heard that he was not guilty.";
+			link.l2 = DLG_TEXT_BASE[336];
 			link.l2.go = "JusticeOnSale_3";
 			
 			DeleteAttribute(PChar, "GenQuest.JusticeOnSale.PrisonWait");
 		break;
 		
 		case "JusticeOnSale_2":
-			dialog.text = "You must notify the governor, " + GetAddress_Form(NPChar) + ", these scoundrels must be all caught!";
-			link.l1 = "I'll do just that.";
+			dialog.text = DLG_TEXT_BASE[337] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[338];
+			link.l1 = DLG_TEXT_BASE[339];
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First_officer";
 		break;
 		
 		case "JusticeOnSale_3":
-			dialog.text = "Listen, " + GetFullName(PChar) + ", that type was seized while attempting to sell forbidden goods, right in the town! How can you claim that he is not guilty?";
-			link.l1 = "I heard that the accusation was unfounded and you have no evidence, isn't that correct? You just can't detain a man who was wronged.";
+			dialog.text = DLG_TEXT_BASE[340] + GetFullName(PChar) + DLG_TEXT_BASE[341];
+			link.l1 = DLG_TEXT_BASE[342];
 			link.l1.go = "JusticeOnSale_4";
 		break;
 		
 		case "JusticeOnSale_4":
-			dialog.text = "We have neither witnesses nor the goods, but that doesn't change anything, captain " + GetFullName(PChar) + "! That person is definitely guilty - and perhaps not only of illegal trade. Either way - why would you care about the prisoner?";
-			link.l1 = "Perhaps, my word can be the bail for that unfortunate prisoner?";
+			dialog.text = DLG_TEXT_BASE[343] + GetFullName(PChar) + DLG_TEXT_BASE[344];
+			link.l1 = DLG_TEXT_BASE[345];
 			link.l1.go = "JusticeOnSale_5_WithoutMoney";
 			
 			if(sti(PChar.money) >= 5000)
 			{
-				link.l2 = "Perhaps, these 5000 pesos can be the bail for that unfortunate prisoner?";
+				link.l2 = DLG_TEXT_BASE[346];
 				link.l2.go = "JusticeOnSale_5";
 			}
 		break;
@@ -1216,21 +1203,21 @@ void ProcessDialogEvent()
 		case "JusticeOnSale_5_WithoutMoney":
 			if(GetCharacterSkill(PChar, SKILL_LEADERSHIP) > dRand(100) || sti(PChar.money) < 5000)
 			{
-				dialog.text = "Alright, " + GetAddress_Form(NPChar) + ", take that rascal and leave, before I change my mind.";
-				link.l1 = "It's great to see the triumph of justice, don't you think?";
+				dialog.text = DLG_TEXT_BASE[347] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[348];
+				link.l1 = DLG_TEXT_BASE[349];
 				link.l1.go = "JusticeOnSale_6";
 			}
 			else
 			{
-				dialog.text = "No, " + GetAddress_Form(NPChar) + ", that won't do.";
-				link.l1 = "Then, perhaps, these 5000 pesos can be are the more weighty argument?";
+				dialog.text = "Non, " + GetAddress_Form(NPChar) + DLG_TEXT_BASE[350];
+				link.l1 = DLG_TEXT_BASE[351];
 				link.l1.go = "JusticeOnSale_5";
 			}
 		break;
 		
 		case "JusticeOnSale_5":
-			dialog.text = "Alright, " + GetAddress_Form(NPChar) + ", take that rascal and leave, before I change my mind.";
-			link.l1 = "It's great to see the triumph of justice, don't you think?";
+			dialog.text = DLG_TEXT_BASE[352] + GetAddress_Form(NPChar) + DLG_TEXT_BASE[353];
+			link.l1 = DLG_TEXT_BASE[354];
 			link.l1.go = "JusticeOnSale_6";
 			AddMoneyToCharacter(PChar, -5000);
 			PChar.GenQuest.JusticeOnSale.PrisonMoney = true;
@@ -1254,10 +1241,10 @@ void ProcessDialogEvent()
 			PChar.Quest.JusticeOnSale_ShoreEnterWithSmuggler.win_condition.l1  = "location";
 			PChar.Quest.JusticeOnSale_ShoreEnterWithSmuggler.win_condition.l1.location = PChar.GenQuest.JusticeOnSale.ShoreId;
 			PChar.Quest.JusticeOnSale_ShoreEnterWithSmuggler.function = "JusticeOnSale_ShoreEnterWithSmuggler";
-			Log_Info("Smuggler's captain on a board");
+			Log_Info(DLG_TEXT_BASE[355]);
 			PlaySound("interface\notebook.wav");
 			LAi_Fade("", "");
-			WaitDate("",0,0,0,0,60); // 280313 // лесник. прокрутка времени было так WaitDate("",0,0,0,2,5);
+			WaitDate("",0,0,0,2,5); // 280313
 		break;
 	}
 }

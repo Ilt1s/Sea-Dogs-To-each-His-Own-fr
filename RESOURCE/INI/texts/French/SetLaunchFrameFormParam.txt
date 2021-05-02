@@ -1,0 +1,24 @@
+Monk_1 {Deux heures plus tard, }
+Monk_2 {les esclaves sont des hommes libres.}
+Monk_3 {Quelques heures plus tard, }
+Monk_4 {le moine a procédé à la consécration.}
+Shipyard_1 {Cinq jours plus tard...}
+Shipyard_2 {Maître Alexis a terminé le travail}
+Shipyard_3 {Deux jours plus tard...}
+Shipyard_4 {Maître Alexis a terminé le travail}
+Smuggler_1 {Ça fait }
+Smuggler_2 { jours d'écoulés.}
+Smuggler_3 {Vaisseau des contrebandiers - Pont}
+SelectChara_1 {Une agilité et une dextérité plus développées permettent d'utiliser les armes légères avec plus d'efficacité. Les dommages effectués avec une arme légère augmentent de 20%.}
+SelectChara_2 {De plus, la connaissance de l'escrime et de ses mouvements permet de réduire la perte d'énergie lorsque vous recevez un coup. }
+SelectChara_3 {La compréhension des principes du commerce, de la comptabilité et du fret vous permet d'obtenir des réductions et des prix de vente plus important de 15%. Vous savez aussi lutter contre les rats, ils endommagent deux fois moins votre cargaison.}
+SelectChara_4 {Votre éloquence et votre charisme vous aident à duper vos adversaires et à garder profil bas avec plus de succès. Votre tuteur vous a également fait participer à des combats au sabre afin d'améliorer votre vivacité d'esprit. Ces deux compétences vous seront utiles dans le futur.}
+SelectChara_5 {Votre entrainement physique régulier a enseigné à votre corps à endurer plus. Votre énergie se régénère 15% plus rapidement.}
+SelectChara_6 {Vous avez les capacités pour porter une armure lourde et pour bloquer les coups. Tout dommage est réduit de 15% si vous portez une cuirasse. De plus, les haches et les épées lourdes sont devenues vos meilleures amies.}
+SelectChara_7 {Votre entrainement quotidien a finalement fini par payer, vous rechargez vos armes 40% plus rapidement.}
+SelectChara_8 {Vos expériences avec la poudre et toutes autres sortes de projectiles ont aussi laissé leur marque. Tout canon et arme à feu en votre possession n'explosent que très rarement. Vos balles choquent vos victimes, leur faisant perdre une énergie considérable. }
+SelectChara_9 {Un fils de grande famille Française, oisif et bourreau des cœurs. Il est arrivé aux Caraïbes avec pour objectif de retrouver son frère disparu. }
+SelectChara_10 {C'est un endroit où il va se trouver, où il va faire face au mensonge et au danger, où il va rechercher la connaissance et l'amour. Il devra se débarrasser de n'importe quels obstacles barrant sa route afin d'atteindre son but suprême. }
+SelectChara_11 {La morale, la société, les titres et les privilèges n'ont que peu de valeur aux yeux de Charles. Il ne connaît pas encore le vice, et n'a jamais éprouvé le goût amer de la défaite ou d'un combat à mort. Et comment pourrait-il gagner une telle expérience dans les salons somptueux de Paris ? }
+SelectChara_12 {Charles est assez sage pour comprendre que son éducation ne l'a pas préparé à ce qu'il va devoir affronter ici, mais il ne sait pas encore à quel point. }
+SelectChara_13 {Comment va-t-il s'en sortir ? }

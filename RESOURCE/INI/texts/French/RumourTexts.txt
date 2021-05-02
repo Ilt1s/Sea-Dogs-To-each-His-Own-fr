@@ -1,66 +1,65 @@
 
 
-Start_GoldFleet_t0 {They say that the flotilla, which is transporting gold and silver to the treasury of Spain, has recently left the harbor of Portobello and sailed to Havana.}
-Start_GoldFleet_t1 {A Spanish flotilla with a priceless load of Inca and Aztec silver and gold has recently sailed out of Portobello. The convoy is heading to Havana, and from there the treasures will be transported to Spain.}
-Start_GoldFleet_t2 {They say that a Spanish gold convoy sailed from Portobello to Havana with a load of silver and gold. The flotilla is escorted by frigates with two gun decks each; there are also other military ships.}
+Start_GoldFleet_t0 {On raconte que la flotte dorée du trésor espagnol, remplie d'or et d'argent, vient de partir de Portobelo pour se rendre à La Havane, comme c'est la tradition chaque année.}
+Start_GoldFleet_t1 {Récemment, une flotte espagnole transportant une cargaison sans prix d'or et d'argent des Amériques a quitté Portobelo, en route vers La Havane. Elle partira ensuite pour l'Espagne.}
+Start_GoldFleet_t2 {Des rumeurs racontent qu'un convoi espagnol a quitté Portobelo pour La Havane avec une cargaison d'or et d'argent. La flotte est protégée par des frégates à deux canons par pont et par d'autres navires de guerre pour les appuyer.}
 
-End_GoldFleet_t0 {The Spanish gold convoy has successfully arrived in Cuba. Now all collected silver and gold will be safely transported to Spain.}
-End_GoldFleet_t1 {All ships of a Spanish gold convoy have successfully arrived to Havana. All silver and gold of Peru and Mexico will soon be delivered to Europe.}
-End_GoldFleet_t2 {A Spanish flotilla has arrived to Havana. The load of silver and gold is safe and soon will be delivered to Spain.}
+End_GoldFleet_t0 {Le convoi doré espagnol a réussi à atteindre Cuba. Tout l'or et tout l'argent transportés vont partir pour l'Espagne sous bonne escorte.}
+End_GoldFleet_t1 {Tous les vaisseaux de la flotte dorée espagnole sont arrivés à La Havane sans encombre. Les trésors du Mexique et du Pérou vont bientôt partir pour l'Espagne.}
+End_GoldFleet_t2 {La flotte dorée espagnole est arrivée à La Havane. Tout son or et tout son argent sont saufs et vont bientôt être remis à l'Espagne.}
 
-Defeat_GoldFleet_t0 {They say that the Spanish gold convoy sailing from Portobello to Havana never arrived at its destination. God only knows what could happen to it - terrible storms or pirates, perhaps.}
-Defeat_GoldFleet_t1 {The Spanish gold flotilla, transporting a cargo of silver and gold from Portobello, disappeared without a trace. No one knows for sure, but they say that it had fallen prey to the pirates!}
-Defeat_GoldFleet_t2 {A gold fleet transporting treasures from Portobello never arrived to Havana, although it should have long ago. What could possibly happen to it? Who knows - there are fierce storms this time of a year.}
+Defeat_GoldFleet_t0 {On raconte que la flotte dorée espagnole faisant route de Portobelo à La Havane n'a pas encore atteint sa destination. J'en ignore la raison... les pirates ? Le temps ?}
+Defeat_GoldFleet_t1 {La flotte dorée espagnole, en route de Portobelo avec sa cargaison d'or et d'argent, a disparu sans laisser de traces. Personne ne sait ce qui s'est passé, mais je parie un doublon que ce sont les pirates qui sont derrière tout ça !}
+Defeat_GoldFleet_t2 {La flotte dorée, qui transportait des trésors inimaginables depuis Portobelo n'est pas encore arrivée à La Havane même si la date de son arrivée est depuis longtemps écoulée. Qui sait, il y a beaucoup d'importants orages à cette période de l'année.}
 
-Attak_GoldFleet_t0 {They say that the Spanish gold fleet, transporting silver, gold and other treasures of the New World, was attacked, and several ships were lost as a result.}
-Attak_GoldFleet_t1 {The seas are unsafe! A Spanish gold fleet sailing from Portobello to Havana, was attacked either by the pirates or by English privateers - I don't know for sure! Really, what a daring! I would love to see them all hanged!}
-Attak_GoldFleet_t2 {It's getting worse with every coming day! A Spanish gold fleet, transporting silver, gold and other treasures of the New World from Portobello to Havana, was attacked by daring pirates! Oh, Holy Virgin! The end of days is surely coming!}
+Attak_GoldFleet_t0 {On raconte que la flotte dorée qui transportait de l'or, de l'argent et d'autres trésors de Portobelo à La Havane a été attaquée. Ils ont perdu quelques vaisseaux lors de la bataille.}
+Attak_GoldFleet_t1 {La mer est devenue dangereuse. La flotte dorée, en route depuis Portobelo vers La Havane, a été attaquée par des pirates. Ou peut-être par des corsaires anglais. Je ne sais pas exactement. Mais quelles vermines, j'aimerais les voir pendues !}
+Attak_GoldFleet_t2 {Les choses s'empirent de jour en jour. La flotte dorée espagnole, qui transportait de l'or, de l'argent et d'autres richesses du Nouveau Monde depuis Portobelo vers La Havane a été sauvagement attaquée. La fin du monde est proche ! Oh mon Dieu !}
 
-Init_GoldFleet_t0 {They say that a Spanish gold fleet is preparing to sail out of Portobello. The exact day of departure is kept secret, but they say that the convoy will head to Cuba in the beginning of #sgold_month#.}
-Init_GoldFleet_t1 {They say that gold and silver is being loaded on the ships of the gold fleet. The convoy will set sail to Cuba in the first half of #sgold_month#.}
-Init_GoldFleet_t2 {The departure of a gold convoy from Portobello to Cuba is scheduled for the first half of #sgold_month#. By that time all acquired gold and silver will be loaded into the holds.}
+Init_GoldFleet_t0 {Les rumeurs racontent qu'une flotte espagnole se prépare à Portobelo. La date exacte du départ reste un secret, mais on dit que le convoi se dirigera sur Cuba en #sgold_month#, au début du mois.}
+Init_GoldFleet_t1 {On dit qu'à Portobelo, les hommes chargent les vaisseaux de la flotte dorée en ce moment même. L'or et l'argent partiront ensuite pour Cuba en #sgold_month#, au début du mois.}
+Init_GoldFleet_t2 {La flotte dorée va partir de Portobelo pour Cuba en #sgold_month#, au début du mois. Tout l'or et tout l'argent rassemblés seront alors chargés dans ses cales.}
 
+MerchantOnMapTo_t0 {On raconte qu'un vaisseau de la colonie #ssColony#, transportant des #sQuestGoodsIdx# se dirige par ici. Son nom est '#sShipName#' et il arbore le pavillon de #snation#.}
+MerchantOnMapTo_t1 {Un commerçant local attend le vaisseau '#sShipName#'. Il est parti de la colonie #ssColony#, arborant le pavillon de #snation# et transporte des  #sQuestGoodsIdx#.}
+MerchantOnMapTo_t2 {J'au entendu dire qu'un vaisseau de commerce portant le nom '#sShipName#' transporte des #sQuestGoodsIdx# de la colonie #ssColony# sous le pavillon de #snation#.}
 
-MerchantOnMapTo_t0 {They say that ship "#sShipName#" under the flag of #snation#  is heading our way from the colony of #ssColony# fully loaded with #sQuestGoodsIdx#.}
-MerchantOnMapTo_t1 {The local merchant is awaiting the arrival of ship "#sShipName#" under the flag of #snation#  from the colony of #ssColony# with the load of #sQuestGoodsIdx#.}
-MerchantOnMapTo_t2 {I heard that one merchant on the ship "#sShipName#" under the flag of #snation# is transporting a load of #sQuestGoodsIdx# from the colony of #ssColony#.}
+MerchantOnMap_t0 {On raconte qu'un vaisseau de commerce arborant le pavillon de #snation#, portant le nom '#sShipName#', attend ici la marée haute pour partir transporter ses  #sQuestGoodsIdx# vers #ssNextColony#.}
+MerchantOnMap_t1 {Les rumeurs racontent qu'un riche marchand, commerçant sous le patronage de #snation# a chargé son vaisseau nommé '#sShipName#' avec des #sQuestGoodsIdx#. Il partira bientôt pour #ssNextColony#...}
+MerchantOnMap_t2 {Un gouverneur local a rempli son vaisseau nommé '#sShipName#' avec des #sQuestGoodsIdx#, au nom de #snation#. Il prendra bientôt la mer pour #ssNextColony#.}
 
-MerchantOnMap_t0 {They say that a merchant ship "#sShipName#" under the flag of #snation# is waiting for the tide to come in order to set sail to #ssNextColony# with the load of #sQuestGoodsIdx#.}
-MerchantOnMap_t1 {They say that a rich negotiant working under the patronage of #snation#, chartered the ship "#sShipName#". Soon enough it will set sail to #ssNextColony# with a cargo of #sQuestGoodsIdx#.}
-MerchantOnMap_t2 {The local merchant equipped the ship "#sShipName#" with a load of #sQuestGoodsIdx# for #snation#, and soon enough it shall depart for #ssNextColony#.}
+MerchantRumour_t0 {Une petite souris m'a dit que le vaisseau nommé '#sShipName#', en route depuis la colonie #ssColony# vers #ssNextColony#, a été rayé de la carte maritime. Je me demande ce que #snation# va dire à ce propos. Si l'on considère ses #sQuestGoodsIdx#, il est possible que des pirates soient impliqués.}
+MerchantRumour_t1 {On raconte qu'un vaisseau de #snation#, portant le nom '#sShipName#', ayant quitté #ssColony# pour #ssNextColony# avec des #sQuestGoodsIdx# a disparu avec sa cargaison et son équipage.}
+MerchantRumour_t2 {Des rumeurs terribles racontent qu'un pirate a récemment abordé un vaisseau de commerce de #snation#, en provenance de la colonie #ssColony#. Ayant éliminé l'équipage, il s'est emparé des #sQuestGoodsIdx# de ses cales. Vous n'avez rien à voir dans cette affaire, n'est-ce pas capitaine ?}
 
-MerchantRumour_t0 {I heard rumors that the ship "#sShipName#" under the flag of #snation#, which sailed from #ssColony# to #ssNextColony# with a cargo of #sQuestGoodsIdx#, was sunk by an unknown pirate!}
-MerchantRumour_t1 {I heard rumors that the ship "#sShipName#" under the flag of #snation#, which sailed from #ssColony# with the load of #sQuestGoodsIdx# to #ssNextColony#, was lost with the cargo and the crew altogether!}
-MerchantRumour_t2 {There are terrible rumors that some pirate has recently boarded a merchant ship of #snation# sailing from the colony of #ssColony#. He had slaughtered the entire crew and taken the load of #sQuestGoodsIdx# for himself. Wasn't it you, by chance, captain?}
+GetColonyPrices_t0 {En échange d'une cruche de bière fraîche, l'intendant d'un vaisseau de la compagnie des Indes occidentales a divulgué les prix sur #sColony#. (Liste des prix reçue).}
+GetColonyPrices_t0 {Le capitaine d'un vaisseau de commerce arrivant de la colonie #sColony# m'a informé des prix à un de ses magasins. (Liste des prix reçue).}
+GetColonyPrices_t0 {J'ai entendu, à la taverne, deux capitaines discutant des prix à un magasin sur #sColony#. (Liste des prix reçue).}
 
-GetColonyPrices_t0 {The quartermaster of a West India Company ship told me over a mug of rum about the prices in the store of #sColony#. (list of prices obtained)}
-GetColonyPrices_t0 {The captain of the merchant ship which had recently arrived from the town of #sColony#, told me about the prices in the local store. (list of prices obtained)}
-GetColonyPrices_t0 {Recently I have overheard in the tavern two captains discussing the prices in the store of the town of #sColony#. (list of prices obtained)}
+WaitInTavern_t0 {#sPsHero_Name#, je crois savoir, a perdu son vaisseau et il sombre à présent dans le chagrin dans une taverne sur #sTown_Name#.}
+WaitInTavern_t1 {L'autre jour, j'ai entendu un marin ivre qui s'était fait prendre pour un larcin. Il disait à ses compagnons que quelqu'un, #sPsHero_Name# je crois me rappeler, avait perdu son vaisseau aux cartes. Il reste maintenant à la taverne sur #sTown_Name# à attendre des vents meilleurs.}
+WaitInTavern_t2 {#sPsHero_Name#, selon les marins de la taverne, traverse des moments difficiles. Des gardes frontaliers ont coulé son vaisseau et il a presque fini par croupir dans la prison sur #sTown_Name#.}
 
-WaitInTavern_t0 {They say that #sPsHero_Name# had lost his ship and now is drowning his sorrows in rum in the tavern of #sTown_Name#.}
-WaitInTavern_t1 {I heard a drunken sailor, who was arrested yesterday for thievery, telling his drinking companions that #sPsHero_Name# has lost his ship in a game of cards and now is waiting for tail wing in the tavern of #sTown_Name#.}
-WaitInTavern_t2 {The sailord in the tavern are saying that #sPsHero_Name# had a stroke of a really bad luck recently. The customs officials have sunk his ship, and he barely escaped gallows in the town of #sTown_Name#.}
+WorkOnMayor_t0 {Aujourd'hui, j'ai vu #sPsHero_Name# avec notre gouverneur. Il faut croire qu'il a une nouvelle mission 'intéressante'.}
+WorkOnMayor_t1 {Les rumeurs de la cité disent que notre gouverneur a un nouveau protégé. On voit souvent le capitaine #sPsHero_Name# à sa résidence. Il prend soin de missions délicates et sort même avec la propre fille de son excellence.}
+WorkOnMayor_t2 {Hé, j'ai entendu d'un aide cuisinier que la serveuse de son excellence parlait de la manière dont #sPsHero_Name# devenait très proche avec le gouverneur. Il lui fait vraiment confiance. Tôt, ce matin même, on raconte qu'on l'a vu se hâter vers la résidence pour ce qui pourrait bien être une importante mission.}
 
-WorkOnMayor_t0 {Today I have seen #sPsHero_Name# with our governor. It seems his Excellence gave him another "interesting" mission.}
-WorkOnMayor_t1 {They say that our governor has a new protege. Captain #sPsHero_Name# is a frequent visitor in the residence, undertakes delicate missions for him and apparently has a love affair with the daughter of His Excellence.}
-WorkOnMayor_t2 {The cook told me that she had heard from the housemaid of His Excellence that  #sPsHero_Name# is a good friend of his. Today early in the morning he was hurrying to the residence - certainly he had important business there.}
+SailToIsland_t0 {#sPsHero_Name# a dit qu'il se rendait #sTo# #sTown_Name# pour y faire des achats. }
+SailToIsland_t1 {#sPsHero_Name# s'en va #sTo# #sTown_Name# pour y faire des affaires. Il devrait dire à son équipage de savoir se tenir, vu la manière dont ils attirent l'attention à la taverne...}
+SailToIsland_t2 {#sPsHero_Name# s'est saoulé au-delà du possible hier à une taverne locale, a fait des avances à toutes les filles aperçues puis a beuglé qu'il allait #sTo# #sTown_Name# pour des affaires. Il sait vraiment comment prendre du bon temps.}
 
-SailToIsland_t0 {#sPsHero_Name# said that he was going to #sTo# #sTown_Name#. Perhaps there is something to buy.}
-SailToIsland_t1 {#sPsHero_Name# is sailing #sTo# #sTown_Name# on trade business - that's what I heard from one of his sailors in the tavern.}
-SailToIsland_t2 {Yesterday #sPsHero_Name# was drunk as a pig at the local tavern and he cried out loud that he was going #sTo# #sTown_Name#, where he had business.}
+WorkOnStore_t0 {#sPsHero_Name#, selon les dires d'un marin loquace, a pris des #sGood# et se prépare à les amener sur #sTown_Name#.}
+WorkOnStore_t1 {#sPsHero_Name#, selon l'assistant du propriétaire du magasin, a acheté des #sGood# pour partir sur #sTown_Name#.}
+WorkOnStore_t2 {#sPsHero_Name#, selon notre barman, rassemblait des marins à la taverne pour partir sur #sTown_Name# avec des #sGood# du magasin local.}
 
-WorkOnStore_t0 {One of the sailors at the tavern mentioned that #sPsHero_Name# undertook to deliver the cargo of #sGood# to #sTown_Name#.}
-WorkOnStore_t1 {Our trader's assistant told me that #sPsHero_Name# undertook to deliver the cargo of #sGood# from his boss' shop to the town of #sTown_Name#.}
-WorkOnStore_t2 {Our bartender said that  #sPsHero_Name# was hiring sailors at the tavern to sail to #sTown_Name# with the cargo of #sGood# from the local store.}
+WorkWithContra_t0 {J'ai vu #sPsHero_Name# discuter avec un type louche. Je crois savoir qu'il est un contrebandier.}
+WorkWithContra_t1 {#sPsHero_Name#, à ce que l'on raconte, a rapporté une pleine cargaison de contrebande. Je ne serais pas étonné s'il l'avait déjà vendue. Mais peut-être qu'il l'a toujours...}
+WorkWithContra_t2 {Je suis parvenu à espionner #sPsHero_Name# et sa conversation avec les contrebandiers. Ils se sont mis d'accord pour se rencontrer à un endroit appelé... C'était quoi déjà ? Quelque chose comme #sContraPlace#.}
 
-WorkWithContra_t0 {I've seen #sPsHero_Name# talking with one shady person. They say he was a smuggler.}
-WorkWithContra_t1 {They say that #sPsHero_Name# has brought a full hold of smuggled goods. He might have already sold it by now - or maybe not...}
-WorkWithContra_t2 {I overheard #sPsHero_Name# speaking with our smuggler. They agreed to meet in a place by the name of #sContraPlace#.}
+DuelCoward_t0 {Quelle honte ! #sName# ne s'est pas présenté à un duel. Tout le monde dit maintenant que c'est un couard.}
+DuelCoward_t1 {Ha ha, #sName# avait un duel mais il ne s'est même pas présenté. Je lui souhaite bonne chance avec les femmes à partir de maintenant...}
+DuelCoward_t2 {Avez-vous entendu ? #sName# ne s'est pas présenté à un duel ! Il parait qu'il était tellement ivre la nuit d'avant que personne n'est parvenu à le réveiller...}
 
-DuelCoward_t0 {What a shame! #sName# has not shown up for a duel. Now everybody is saying that he is a coward!}
-DuelCoward_t1 {Ha-ha, #sName# has not shown up for a duel! I don't think he'll have the same success with women as he had before now.
-DuelCoward_t2 {Have you heard it? #sName# has not shown up for a duel! They say he was deadly drunk and simply could not stand on his two.
-
-DuelHero_t0 {Do you know that #sName# is a first-rate duellist? He has already killed #sKill# men. I wouldn't want to stand on his path.}
-DuelHero_t1 {They say that #sName# has sold his soul to the devil, and that's why he cannot be beaten in a duel! And the souls of those he kills, and he has already killed #sKill# men, are going straight to the Hell! They also say that if he ends his killing spree, the devil will claim his own soul.}
-DuelHero_t2 {That upstart #sName# is incredibly lucky! He has already killed #sKill# men in a duel and never got a scratch! Really, can you believe it?}
+DuelHero_t0 {#sName# est un grand duelliste, le réalisez-vous ? Il a déjà tué #sKill# personnes. Je n'aimerais pas croiser son chemin...}
+DuelHero_t1 {#sName#, comme le disent les rumeurs, a vendu son âme au diable, c'est pourquoi il est si démoniaque au combat. Ils disent que les esprits de ceux qu'il a tués, c'est-à-dire #sKill# personnes déjà, vont directement en Enfer. Ils disent que s'il cesse de tuer, le diable s'emparera de son âme. Ce doit être vrai, mais je ne sais pas d'où ils tiennent leurs renseignements...}
+DuelHero_t1 {Ce batard de #sName# est incroyablement chanceux ! Il a tué #sKill# dans un duel sans même avoir une égratignure ! Est-ce que nous pouvons vraiment le croire ?}

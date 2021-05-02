@@ -24,14 +24,14 @@ void ProcessDialogEvent()
 		// вариант R
 		case "KillChad":
 			dialog.text = "Wait! Stop... I beg you to listen to me before you'd make a mistake.";
-			link.l1 = "I am listening... I hope that you have a really weighty arguments to stop me from...";
+			link.l1 = "I am listening... I hope that you have got a really weighty arguments to stop me from...";
 			link.l1.go = "KillChad_1";
 			LAi_RemoveCheckMinHP(npchar); //убираем проверяльщик, если еще есть
 		break;
 		
 		case "KillChad_1":
 			dialog.text = "From killing me, right? I have heard you talking with Chad upstairs and I don't blame you - anyone would likely do the same. But you are wrong to think that Chad will let you go after killing me.";
-			link.l1 = "Hm... Interesting, and why won't he? The only thing I know is that my future is going to become very sad and dire, if I don't kill you.";
+			link.l1 = "Hm... Interesting - and why won't he? The only thing I know is that my future is going to be dire, if I don't kill you.";
 			link.l1.go = "KillChad_2";
 		break;
 		
@@ -91,12 +91,12 @@ void ProcessDialogEvent()
 		
 		case "Chad_die_1":
 			dialog.text = "My name is Chimiset, I am a Rivados shaman and advisor of our chief - Black Eddie. He will be glad to know that you had set me free and saved my life. You are a friend of Chimiset, Black Eddie and all Rivados. From now on you will always be a welcome guest on our Protector...";
-			link.l1 = "Wait... Chimiset, in case you still didn't understand, it has been only a few hours since I got here. Can you explain me where am I, who are Rivados and where I can find Shark Dodson?";
+			link.l1 = "Wait... Chimiset, in case you still don't understand, it has been only a few hours since I got here. Can you explain me where am I, who are Rivados and where I can find Shark Dodson?";
 			link.l1.go = "Chad_die_2";
 		break;
 		
 		case "Chad_die_2":
-			dialog.text = "This place is called the Island of Justice. Or Justice Island. Though it sounds more like a mockery. You won't find justice here. This place is made of hundreds of dead ships. The central part is suitable for constant living. The Island is inhabited by people who survived shipwrecks\nRivados is a clan, a group of people who have been living together for a long time. There are also three other groups living here: Narwhal clan, they are enemies of ours, pirates of Shark Dodson and common people. Shark is basically a head of the island, he calls himself an admiral\nHe have arrived quite recently here and seized power in quite a violent manner. He captured the 'San Augustine' where we were storing our food supplies. Now we have to buy provisions at prices Shark says. It seems, that you have already been in that warehouse\nChad Kapper was Shark's boatswain and a head of the prison here. Layton Dexter used to be Shark's first mate, he has some influence too. These three and their pirates are a dominating force across the island facing both Rivados and Narwhals.";
+			dialog.text = "This place is called the Island of Justice. Or Justice Island. Though it sounds more like a mockery. You won't find justice here. This place is made of hundreds of dead ships. The central part is suitable for constant living. The Island is inhabited by people who survived shipwrecks\nRivados is a clan, a group of people who have been living together for a long time. There are also three other groups living here: Narwhal clan, they are enemies of ours, pirates of Shark Dodson and common people. Shark is basically a head of the island, he calls himself an admiral\nHe had arrived quite recently here and seized power in quite a violent manner. He captured the San Augustine where we were storing our food supplies. Now we have to buy provisions at prices Shark names. It seems, that you have already been at this warehouse\nChad Kapper was Shark's boatswain and a head of the prison here. Layton Dexter used to be Shark's first mate, he has some influence too. These three and their pirates are a dominating force across the island facing both Rivados and Narwhals.";
 			link.l1 = "Why that Chad Kapper ordered me to kill you?";
 			link.l1.go = "Chad_die_3";
 		break;
@@ -108,14 +108,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Chad_die_4":
-			dialog.text = ""+pchar.name+", my friend, let's talk later. We have to hurry, before Shark's pirates will show up. Search Chad's body and take his keys. But first, check his desk, he might have interesting papers there\nGo to Shark Dodson, you will find him in the 'San Augustine', a large ship, standing in a distance from the others, there is a bridge leading to her from the ship named 'Pluto'. Tell him that Chad was plotting a betrayal, and say that Narwhals are behind all this, and we, Rivados, have nothing to do with it.\nI will gladly give you any information you need about Island, about my clan and others, once you arrive to our residence in the Protector. Let's get out of here!";
-			link.l1 = "Fine, Chimiset. I will find you later at that... 'Protector'. Let's get out of here!";
+			dialog.text = ""+pchar.name+", my friend, let's talk later. We have to hurry, before Shark's pirates will show up. Search Chad's body and take his keys. But first, check his desk, he might have papers of interest there\nGo to Shark Dodson, you will find him in the San Augustine, a large ship, standing in a distance from the others, there is a bridge leading to it. Tell him everything\nI will gladly give you any information you need, once you arrive to our residence in the Protector. Let's get out of here!";
+			link.l1 = "Fine, Chimiset. I will find you later at that... Protector. Let's get out of here!";
 			link.l1.go = "Chad_die_5";
 		break;
 		
 		case "Chad_die_5":
-			dialog.text = "One more thing. Our ships, including the 'Protector', are forbidden to visit for any stranger. You must be Rivados or know a password in order to enter. I would tell you it, but it changes every week and I've been here for too long and don't know a current password\nSo you should visit the 'San Augustine' first. I will tell our people who you are, while you are talking to Shark, and you will become our friend. But don't go to the 'Protector' now, first, have a talk with Shark, and let me meet my people first, in other case all Rivados will consider you as an enemy";
-			link.l1 = "I see. I am heading to the 'San Augustine'. See you!";
+			dialog.text = "One more thing. Our ships, including the Protector, are forbidden to visit for any stranger. You must know a password in order to enter. I would tell you it, but it changes every week and I've been here for too long\nSo you should to the San Augustine first. I will tell our people who you are, while you are talking to Shark.";
+			link.l1 = "I see. I am heading to the San Augustine. See you!";
 			link.l1.go = "Chad_die_6";
 		break;
 		
@@ -147,55 +147,55 @@ void ProcessDialogEvent()
 		break;
 		
 		case "prisoner_1":
-			dialog.text = "Yes, it's me. Do you have a business with me or you just want to talk?";
-			link.l1 = "I have some business for you. I came here from the Admiral, Shark Dodson. I have brought an order to set you free, but on one condition: you will answer several of my questions.";
+			dialog.text = "Yes, it's me. Do you have a business with me or you just want to chat?";
+			link.l1 = "I have got some business for you. I came here from the Admiral, Shark Dodson. I have brought an order to set you free, but on one condition: you will answer several of my questions.";
 			link.l1.go = "prisoner_2";
 		break;
 		
 		case "prisoner_2":
-			dialog.text = "Has Dodson decided to release me? I am glad to hear that. Ask your questions. I hope that there is no trickery in it, for otherwise my excitement has been premature.";
-			link.l1 = "No tricks, I only need your help. Tell me, Chimiset, is there any strange stone idol on this Island? It turns into gold in the midnight. Don't think that I am crazy...";
+			dialog.text = "Has Dodson decided to release me? I am glad to hear that. Ask your questions. I hope that there is no trickery in it, for otherwise my excitement would have been premature.";
+			link.l1 = "No tricks - I only need your help. Tell me, Chimiset, is there any strange stone idol on this Island? It turns gold in the midnight. Don't think that I am crazy...";
 			link.l1.go = "Friend_2";
 		break;
 		
 		case "prisoner_3":
 			dialog.text = "Any more questions?";
-			link.l1 = "Yes. Do you know a man called the White Boy?";
+			link.l1 = "Yes. Do you know a man they call the White Boy?";
 			link.l1.go = "prisoner_4";
 		break;
 		
 		case "prisoner_4":
-			dialog.text = "White boy? Sure, I know him. This is the nickname of Olle Christiansen, our local idiot. He is an adult now and he doesn't look like a boy anymore, though his mind is still a childish.";
-			link.l1 = "Is that so? Tell me, where can I find him?";
+			dialog.text = "White boy? Sure, I know him. This is the nickname of Olle Christiansen, our local idiot. He is an adult now and he doesn't look like a boy anymore, though his mind is still that of a child.";
+			link.l1 = "Is that so? Tell me - where can I find him?";
 			link.l1.go = "prisoner_5";
 		break;
 		
 		case "prisoner_5":
-			dialog.text = "Anywhere in our city. He often could be found in the shop, tavern or walking on the streets. He has white hair, you will know him instantly.";
+			dialog.text = "Anywhere in our city. He often could be found in the shop, tavern or walking on the streets. He has white hair - you will know him instantly.";
 			link.l1 = "Excellent! One more question: have you met here a man by the name of Nathaniel Hawk? He must have shown up here some time ago, and he might be seriously ill.";
 			link.l1.go = "prisoner_6";
 		break;
 		
 		case "prisoner_6":
-			dialog.text = "I can't help you with that, stranger. I don't know a man with such a name. I can assure you that he is not on Rivados' ships, neither should he be in the neutral area. I can't say the same about Narwhals' territories, though we, Rivados, don't visit them.";
+			dialog.text = "I can't help you with that, stranger. I don't know a man with such a name. I can assure you that he is not on Rivados ships, neither should he be in the neutral area. I can't say the same about Narwhal territories, though - we, Rivados, don't visit them.";
 			link.l1 = "Well, thanks anyway... You have helped me a lot, Chimiset!";
 			link.l1.go = "prisoner_7";
 		break;
 		
 		case "prisoner_7":
 			dialog.text = "That's it? Will Shark set me free now?";
-			link.l1 = "Yes. I have nothing else to ask you. Chad Kapper will free you. Well, I have to go...";
+			link.l1 = "Yes. I have got nothing else to ask you. Chad Kapper will free you. Well, I have to go...";
 			link.l1.go = "prisoner_8";
 		break;
 		
 		case "prisoner_8":
 			dialog.text = "Stop! Wait... Come back.";
-			link.l1 = "Got anything more to tell me?";
+			link.l1 = "Got something more to tell me?";
 			link.l1.go = "prisoner_9";
 		break;
 		
 		case "prisoner_9":
-			dialog.text = "Not exactly... (lowering voice) I see that you are not one of Kapper's men. Do not trust him. He is a filthy scum. Not long ago, he dispassionately killed unarmed Alan Milrow with a broadsword. He was a leader of Narwhal clan. I didn't see it coming, Chad just came close to his cell and slaughtered him\Also, I have heard some talkings that Admiral's own men plan to assassinate him. Tell Shark about it. And tell him that I will say more when we talk face to face.";
+			dialog.text = "Not exactly... (lowering voice) I see that you are not one of Kapper's men. Do not trust him. He is a filthy scum. Not long ago, he killed unarmed Alan Milrow with a broadsword. He was a leader of Narwhal clan. I didn't see it coming, Chad just came close to his cell and cut the man\Plus, I have heard some talkings that admiral's own men plan to assassinate him. Tell Shark about it. And tell him that I will say more when we talk face to face.";
 			link.l1 = "Hm. Fine, I will tell Dodson about it. See you!";
 			link.l1.go = "prisoner_10";
 		break;
@@ -239,25 +239,25 @@ void ProcessDialogEvent()
 		
 		// нода пересечения
 		case "Friend_2":
-			dialog.text = "I see what you mean, my friend. I have seen this statue of Indian gods with my own eyes. Though it turns gold only under the beams of morning sun, and not the moon... many times we had sacrificed the wicked Narwhals and the god devoured all of them. But it isn't on the Island anymore.";
-			link.l1 = "How it isn't?! You wanna say it suddenly disappeared?!";
+			dialog.text = "I see what you mean, my friend. I have seen this statue of Indian gods with my own eyes. Though it turns gold only under the beams of morning sun, and not the moon... many times we had sacrificed the wicked Narwhals and the god devoured all of them. But it is not on the Island anymore.";
+			link.l1 = "How come?! Did it suddenly disappear?!";
 			link.l1.go = "Friend_3";
 		break;
 		
 		case "Friend_3":
-			dialog.text = "Not exactly like that. This statue was inside the 'San Geronimo'. This ship sunk with the statue several years ago.";
-			link.l1 = "Such a bad luck! It looks like it is impossible to leave the Island now... And where was that ship?";
+			dialog.text = "Not exactly like that. This statue was inside the San Geronimo. This ship sunk with the statue several years ago.";
+			link.l1 = "Such a bad luck! It looks like it is impossible to leave the island now... And where was that ship?";
 			link.l1.go = "Friend_4";
 		break;
 		
 		case "Friend_4":
-			dialog.text = "Not far from the Narwhal territories, near the wrecks of the ship named 'Phoenix'. You can see the ship rests on the seabed on a sunny day.";
+			dialog.text = "Not far from the Narwhal territories, near the wrecks of the ship named Phoenix. You can see the ship on the seabed on a sunny day.";
 			link.l1 = "Ha! So is it lying at the shoal? I can swim to it, then...";
 			link.l1.go = "Friend_5";
 		break;
 		
 		case "Friend_5":
-			dialog.text = "You can't, my friend. First, it's too deep down there; second, there are many giant crabs. They will tear you apart before you get to the 'San Geronimo'.";
+			dialog.text = "You can't, my friend. First, it's too deep down there; second, there are many giant crabs. They will tear you apart before you get to the San Geronimo.";
 			link.l1 = "Hm. Fine, I'll think about it. At least, I know that the statue exists, and that is the most important thing.";
 			if (CheckAttribute(npchar, "quest.chimiset_die")) link.l1.go = "prisoner_3";
 			else
@@ -276,7 +276,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Friend_7":
-			dialog.text = "Hm. They are going to shoot the admiral? I need to think... Thing is that the admiral almost never leaves his residence, and when he does, he is protected by half a dozen of pirates. But he has one habit, he likes to walk around stern during late evenings\nThere are two positions for a sniper to shoot Admiral's residence - a bow of the 'Santa Florentina' and a mast pad of the 'Fury'. But a sniper still won't be able to kill the Admiral from those positions, he must be an eagle-eyed marksman at least. Also, he would need an excellent rifle. You should ask around the island about people who has access to such firearms.";
+			dialog.text = "Hm. They are going to shoot the admiral? I need to think... Thing is that the admiral almost never leaves his residence, and when he does, he is protected by half a dozen of pirates. But he has one habit, he likes to walk around stern's gallery during late evenings\nThere are two positions for a sniper - a bow of the Santa Florentina and a mast pad of the Fury. But a sniper must be a crack shot. Plus, he would need an excellent weapon. You should ask around the island about people who has access to such firearms.";
 			link.l1 = "Heh, it looks like you are right, there is something about some gun in the letter... Have you seen anyone with such a gun?";
 			link.l1.go = "Friend_8";
 		break;
@@ -288,7 +288,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Friend_9":
-			dialog.text = "White boy? Sure, I know him. This is the nickname of Olle Christiansen, our local idiot. He is an adult now and he doesn't look like a boy anymore, though his mind is still a childish.";
+			dialog.text = "White boy? Sure, I know him. This is the nickname of Olle Christiansen, our local idiot. He is an adult now and he doesn't look like a boy anymore, though his mind is still that of a child.";
 			link.l1 = "Is that so? Tell me where can I find him?";
 			link.l1.go = "Friend_10";
 		break;
@@ -337,7 +337,7 @@ void ProcessDialogEvent()
 			if (pchar.questTemp.LSC == "return" && !CheckAttribute(npchar, "quest.return_isl"))
 			{
 				dialog.text = "Oh! My white friend "+pchar.name+"! Didn't you drown? The spirits saved you, I know that...";
-				link.l1 = "I am fine and alive, Chimiset. Spirits? Perhaps you are right, it all has happened because of Kukulcan...";
+				link.l1 = "I am fine and alive, Chimiset. Spirits? Perhaps you are right - it all has happened because of Kukulcan...";
 				link.l1.go = "exit";
 				npchar.quest.return_isl = "true";
 				break;
@@ -350,7 +350,7 @@ void ProcessDialogEvent()
 			}*/
 			if (!CheckAttribute(npchar, "quest.crab"))
 			{
-				link.l2 = "You have mentioned the crabs at the bottom near the 'San Geronimo'. Can you describe me those monsters?";
+				link.l2 = "You have mentioned the crabs at the bottom near the San Geronimo. Can you describe me those monsters?";
 				link.l2.go = "crab";
 			}
 			link.l9 = "Nothing special, Chimiset. Just wanted to see you.";
@@ -360,14 +360,14 @@ void ProcessDialogEvent()
 		
 		case "story":
 			dialog.text = "A story of the death of Alan Milrow will be written here.";
-			link.l1 = "Okay!";
+			link.l1 = "ОК!";
 			link.l1.go = "exit";
 			npchar.quest.story = "true";
 			NextDiag.TempNode = "Chimiset_wait";
 		break;
 		
 		case "crab":
-			dialog.text = "No one knows from where they came from, and why they have reached such a gigantic size. Actually, we don't know much about these beasts. They exist, a lot of people saw them. The gatherings of them can be found among ships' wrecks and at shallow water. They stalk at the bottom of the sea, hunting fish and eating all garbage we dump\nThey are a real threat. Their pincers can inflict serious wounds, also their jaws contain a fairly dangerous poison, similar to the poison of marine fish. Poisoned, left untreated, can meet the fatal consequences. Fortunately, the toxin can be neutralized by the antidote made of local herbs\nThere was a crab hunter among us. He used to bring their meat, helluva delicious dish. But the most important thing: he often brought the claws of these monsters and jaws with poison. I used them as ingredients for some potions. Pity, it's been a long since someone brought me that claws and jaws...";
+			dialog.text = "We don't know much about these beasts. They do exist, a lot of people saw them. The gatherings of them can be found among ships' wrecks and at shallow water. They stalk at the bottom of the sea, hunting fish and eating all garbage we dump\nThey are a real threat. Their pincers can inflict serious wounds, plus their jaws contain dangerous poison\nThere was a crab hunter among us. He used to bring their meat and pincers. Hell of a dish. Pity, that he died...";
 			link.l1 = "And where is that hunter now?";
 			link.l1.go = "crab_1";
 		break;

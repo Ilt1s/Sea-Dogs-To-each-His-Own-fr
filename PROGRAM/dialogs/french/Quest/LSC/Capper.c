@@ -34,12 +34,12 @@ void ProcessDialogEvent()
 		
 		case "Chimiset_2":
 			dialog.text = "Statue? Ha-ha! You are a funny lad, aren't you... Fine, I will explain it all to you myself: you swam through the hole in the ship and wanted to sneak into our storehouse. I don't recognize your face and I thought that I know all Rivados...";
-			link.l1 = "What Rivados? I don't know any Rivados! And I haven't ever known them! Listen, I came here just an hour ago...";
+			link.l1 = "What Rivados? I don't know any Rivados! And I haven't known them never ever! Listen, I came here just an hour ago...";
 			link.l1.go = "Chimiset_3";
 		break;
 		
 		case "Chimiset_3":
-			dialog.text = "Don't shout at me, I am not an idiot. Yes, I have already heard your bullshit about your coming here through some statue and I find it quite funny. I find it fucking hilarious. How about we laugh on it together? Ha-ha-ha!... Why aren't you laughing? It was a nice joke... Rivados. But all jokes are over now. I will leave you to rot in jail, I promise.";
+			dialog.text = "Don't shout at me, I am not an idiot. Yes, I have already heard your bullshit about your coming here through some statue and I find it quite funny. I find it fucking hilarious. How about we laugh on it together? Ha-ha-ha!... Why aren't you laughing? It was nice joke... Rivados. But all jokes are over now. I will leave you to rot in jail, I promise.";
 			link.l1 = "I am not Rivados! It's the first time I even hear that word!";
 			link.l1.go = "Chimiset_4";
 		break;
@@ -81,7 +81,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Chimiset_9":
-			dialog.text = "You are trying my patience, bastard! And I am going to loose it soon...";
+			dialog.text = "You are trying my patience, bastard! And I am going to loose it soon..";
 			link.l1 = "Fine, fine, relax.";
 			link.l1.go = "exit";
 			NextDiag.TempNode = "Chimiset_9";
@@ -130,13 +130,13 @@ void ProcessDialogEvent()
 		break;
 		
 		case "prisoner_4":
-			dialog.text = "A-ah, I see now. Fine, I will send a man to Rivados. They will come here and take their jester.";
+			dialog.text = "A-ah, I see now. Fine, I will send a man to Rivados. They will come here and take their clown.";
 			link.l1 = "And why can't you just let him go?";
 			link.l1.go = "prisoner_5";
 		break;
 		
 		case "prisoner_5":
-			dialog.text = "I could, but this would be too dangerous for him. Chimiset is a famous figure here, his life will cost not a single penny once he steps on the 'Esmeralda' - a territory of his enemies, Narwhals. There is no other way from the Tartarus, we can not let the old man swim around the island!\nAnd if someone kills him, Rivados will blame us, me to be more specific! See, I don't want extra problems. So I will let him out only under protection of his clan's fighters. Perhaps, you want to talk with Chimiset first? He is a funny type...";
+			dialog.text = "I could, but this would be too dangerous for him. Chimiset is a famous figure here, his life will cost not a single penny once he steps on the Esmeralda - a territory of his enemies, Narvals. There is no other way from the Tartarus, we can not let the old man swim around the island!\nAnd if someone kills him, Rivados will blame us, me to be more specific! See, I don't want extra problems. So I will let him out only under protection of his clan's fighters. Perhaps, you want to talk with Chimiset first? He is a funny type...";
 			if (CheckAttribute(npchar, "quest.chimiset_talk")) link.l1 = "I've spoken with him already, he is really a strange man. Whatever, I have to go. See you, Chad!";
 			else link.l1 = "That is what I intended. I'll go and talk with him.";
 			link.l1.go = "prisoner_6";
@@ -189,7 +189,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "Aeva_attack_2":
-			dialog.text = "... this is going to be a hell of a drink. Damn Irish has been dreaming of this whiskey for a long time, so he will guzzle it all in a second. Where is an arsenic? Put more of it, just to be sure... And then our friend Fazio will deliver this barrel to the admiral as a present from Narwhals, ha-ha! Am I right, dear Giuseppe? Do you want to live?\nArgh! Look, we have guests! What do you want, jackass? Get lost before we nail you!";
+			dialog.text = "... this is going to be a hell of a drink. Damn Irish has been dreaming of this whiskey for a long time, so he guzzle it all in a second. Where is an arsenic? Put more of it, just to be sure... And then our friend Fazio will deliver this barrel to the admiral as a present from Narwhals, ha-ha! Am I right, dear Giuseppe? Do you want to live?\nArgh! Look, we have guests! What do you want, jackass? Get lost before we nail you!";
 			link.l1 = "Your plan failed, Kapper. I was following in the tracks of yours and I know what you and your pal Cyclops are going to do. Throw away the arsenic! You will not poison Shark!";
 			link.l1.go = "Aeva_attack_3";
 		break;

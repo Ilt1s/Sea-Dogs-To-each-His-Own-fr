@@ -4,282 +4,272 @@ new_string	{
 
 Tartane
 {
-A longboat is surely not the ship of choice for a captain of the high life. Still, if the fate took his favourite ship, this modest boat will be just fine for fast travelling between the islands. Just keep telling yourself that it's only a temporary measure!
+ La tartane est un petit vaisseau de pêche à la voile triangulaire tout d'abord apparue dans les eaux méditerranéennes. Les excellentes capacités de navigation de la tartane la rendirent bientôt très populaire et elle fut utilisée pour la navigation côtière et le transport entre les colonies proches. Pas exactement le rêve d'un capitaine aspirant à une haute destinée. Il faut juste se dire que c'est temporaire !  
 }
 
 WarTartane
 {
-Initially tartanes were used for fishing and trading; later on, they were equipped with light cannons to patrol coastal waters.
+ Une tartane de guerre est une grande tartane pourvue de canons. Elle ne sera jamais considérée comme un véritable vaisseau mais elle est largement utilisée dans le monde de la piraterie et de la contrebande.
 }
 
 Barque
 {
-A barque is ideally suited for long voyages. Having a spacious hold and formidable firepower, the barque is considered one of the best vessels in its class. Still, its hull shape doesn't allow it to speed up and maneuver quickly, and therefore the barque loses to the lighter ship in terms of sailing performance.
+ La barque est un vaisseau construit pour les longs voyages. Avec ses grandes cales et sa formidable puissance de feu, la barque est considérée comme l'un des meilleurs vaisseaux de sa classe. Sa grande taille, cependant, ne permet ni grande vitesse, ni bonne manœuvrabilité, aussi est-elle moins performante en navigation que des vaisseaux plus légers de sa classe. 
 }
 
 Schooner
 {
-A good performance together with low displacement and a spacious hold make a schooner one of the most attractive merchant vessels for average negotioants, who cannot affor a fleut yet.
+ Les excellentes capacités de navigation de la goélette et ses amples cales lui permettent d'être l'un des vaisseaux de commerce de classe moyenne les plus attirants. Elle est parfaite pour ceux qui ne peuvent pas s'offrir de flûte.
 }
 
 Barkentine
 {
-The emergence of barkentine was caused by the desire to simplify the controlling of the trading vessel by the inexperienced crew. As a result, square sails on the mainmast of the barque were substituted with triangular once. Thanks to both square and fore-and-aft rigging, the barkentine sails confidently on any course.
+Les trois-mâts goélette sont nées de la volonté de généraliser le commerce avec des équipages peu expérimentes. Ainsi les traditionnelles voiles carrées du grand mat ont été remplacées par des voiles triangulaires. Avec son gréement particulier, le trois-mâts goélette est à l'aise dans quasiment toutes les situations.
 }
 
 Shnyava
 {
-A snow, together with a caravel, is the predecessor of the brig. Having comparable speed ad sturdiness, snows perform very similarly to a military brig and are highly valued by merchants and smugglers. These vessels are so popular that you’re very likely to see them in any lively port of the Northern Europe or in the Archipelago.
+Le senau, au même titre que la caravelle, est un prédécesseur du brick. Très proche de celui-ci en termes de vitesse et de résistance, le senau est très populaire chez les marchands et les contrebandiers. Ces navires sont si populaires qu'il est quasi impossible de ne pas en croiser un lors de l'arrivée au port.
 }
 
 Fleut
 {
-A fleut is one of the best choices as a trading ship, since when it comes to hold space and hull integrity, it is unrivaled in its class. Still, it cannot carry many cannons since most of the ship space is devoted to the cargo, and therefore its usage for military purposes would be unwise. 
+Bien que la flûte soit suffisamment grande et robuste pour de longs voyages en mer, il n'est pas conseillé de la faire combattre. C'est un très bon vaisseau de commerce cependant, la taille de ses cales rencontrant peu d'égales. 
 }
 
 Caravel
 {
-Distinctive rigging of a caravel allows to identify them at great ranges. The design of a caravel is obsolete nowadays, and its sailing performance is quite mediocre. This doesn't allow it to compete equally with modern vessels, despite the sufficient number of cannons.
+Ses ponts distinctifs à la forme si particulière rendent l'identité de la caravelle facile à reconnaître même depuis une longue distance. Maintenant obsolètes, les caravelles se comportant assez mal au combat, elles sont souvent cantonnées au rôle de transport. Elles sont d'ailleurs capables de transporter un poids et un volume de marchandises importants. 
 }
 
 Pinnace
 {
-Like a fleut, a pinnace was widely used as a merchant vessel. It'l large and sturdy enough for long journeys, and the capacity of the hold allows to carry a lot of cargo. Due to sharp contours of the bow a pinnace can develop decent speed even with heavy load.
+Une pinasse est un vaisseau suffisamment grand et robuste pour pouvoir supporter de longs voyages en mer, ses cales peuvent transporter des quantités de marchandises énormes et elle est assez bien armée. Cependant, elle manque de manœuvrabilité au combat et est plus lente qu'un véritable navire de guerre. 
 }
 
 Caracca
 {
-Heavy tower-like superstructures on the bow and aft of the carrack significantly worsen its sailing capabilities. A sturdy hull and a capacious hold are the only advantages of this vessel.
+Les structures en forme de tours à l'avant et à l’arrière du Carraque limitent grandement ses capacités de navigation. La solidité de la coque et une grande soute sont ses seuls avantages.
 }
 
 Navio
 {
-Only a wealthy merchant can afford such a ship. A large and sturdy hull, capacious hold and good rigging allow the navio to nake very long voyages, and about three dozen cannons provide decent protection against pirates and privateers.
+Seuls les commerçants les plus fortunés peuvent se porter acquéreurs de ce genre de vaisseau. Grande coque solide, grande soute et bon gréement permettent au Navio d'effectuer de très longues traversées. De plus, ses trois douzaines de canons offrent une excellente protection contre pirates et autres corsaires.
 }
 
 EastIndiaMan
 {
-East Indian trading vessels embodied the best properties of fleuts and pinnaces. They are mostly used for long voyages as part of guarded convoys, but some of them are so large and well-armed that they can sail alone.
+Le East Indian incarne le meilleur de la flute et de la pinasse. Ils sont principalement utilisés pour les longs voyages en mer, dans le cadre de caravanes armées, mais certains sont si bien armés qu’ils peuvent faire voiles seuls.
 }
 
 LuggerQuest
 {
-A courier lugger was designed specifically for messenger service. Excellent sailing performance, sturdy hull and decent armament warrant the safe delivery of urgent dispatches and small packages of important cargo.
+Les lougres messagers sont spécialement dédiés aux services de courrier. D’excellente capacités de navigation, une coque robuste et un armement suffisant permettent la livraison en toute sécurité d’informations urgentes et de petites quantités de marchandises.
 }
 
 Lugger
 {
-A lugger is a small fast sailer, highly valued by the sailors and especially smugglers for its speed and maneuverability. Despite its small size, a lugger has good seaworthiness and can perform long voyages.
+ Le lougre est un petit vaisseau conçu pour le transport de marchandises et pour la protection de petits convois. Bien que le lougre n'ait qu'un équipage et un armement limités, il est excellent pour le commerce et le combat. Beaucoup de capitaines apprécient le lougre pour sa vitesse et sa manœuvrabilité. Sa petite taille l'empêche d'effectuer de longs voyages en mer. 
 }
 
 Sloop
 {
-A sloop has good speed and maneuverability and carries decent armament for its size. It is a highly effective patrolling vessel, also good for scouting.
+ Avec sa petite coque et son excellente capacité à naviguer, le sloop est un vaisseau de reconnaissance très efficace ainsi qu'un bon vaisseau de patrouille côtière et de commerce. 
 }
 
 Brigantine
 {
-A legendary sailing craft. Fast and maneuverable, like a swallow, it is especially valued by pirates and adventurers of all sorts.
+Navire légendaire. Rapide et agile comme une hirondelle. Le navire de prédilection des pirates, et des aventuriers de tout horizon.
 }
 
 Brig
 {
-Brig is widely used in the Navy for scouting purposes. It's high speed and maneuverability make it one of the most well-rounded vessels, although, being square-rigged, it is somewhat limited in sailing by the wind.
+Les bricks sont souvent utilisés comme vaisseaux de commerce mais également de combat. Leur grande vitesse et leur excellente manœuvrabilité en font l'un des vaisseaux les plus équilibrés. Les armes affectent cependant la manœuvrabilité. 
 }
 
 Schooner_W
 {
-The sailors of the New World were the first to appreciate the schooners and to begin using them for military purposes. A well-armed, fast and agile schooner is a serious threat for any trading vessel.
+Les marins du nouveau monde ont été les premiers à voir la supériorité des goélettes et à les équiper pour les opérations militaires. Une bonne goélette bien armée est une menace sérieuse pour tout navire commercial.
 }
 
 Galeon_l
 {
-A galleon was first built in early 16th century based on the carrack's design, and it was meant to be a military ship right from the start. By the middle of the 17th century, a galleon reached the peak of its evolution, passing the baton to modern vessels, but it didn't become obsolete anyway, continuing to serve the sailors faithfully.
+Le galion est sans aucun doute la classe de vaisseaux la plus répandue de l'histoire. Cousin proche de la caravelle, le galion est un vaisseau assez dur à diriger mais cependant très fiable. Il a servi les marins pendant presque deux siècles. C'est une proie facile pour un véritable pirate. 
 }
 
 Corvette
 {
-Corvettes are meant for scouting, courier service and cruiser operations. Possessing good speed and maneuverability, a corvette can catch up with lighter ships and successfully avoid combat with heavier ones.
+La corvette a été conçue comme vaisseau très armé mais léger et rapide. La contrepartie est que la corvette ne dispose que d'une faible coque. Elle est tout de même capable de rester à la hauteur de vaisseaux plus légers et de constituer une menace pour ceux plus lourds. Le rôle de la corvette reste les patrouilles et les missions d'escorte. 
 }
 
 XebekVML
 {
-A xebec is a very well-known type of mediterranean ships. Thanks to the narrow hull and large Latin sails on all masts, a xebec develops great speed by the wind, but demonstrates worse performance with tail wind. For their speed and good maneuverability, the xebecs are quite appreciated by the corsairs, always willing to take inevitable risks.
+Le chebec est un navire méditerranéen célèbre. Avec sa coque fine et ses voiles latines sur tous ses mâts, il se montre très rapide dans le sens vent, mais ses performances sont médiocres en vent arrière. Grâce à leur manœuvrabilité et leur vitesse, les chebecs sont très populaires chez les corsaires, qui cherchent à minimiser les risques à tout prix.
 }
 
 Polacre
 {
-A polacre is the closest relative to the xebec. Unlike the latter, it carries square sails on the mainmast, which allows it to sail more confidently with tail wind. Still, such a change somewhat lowers its maneuverability, worsens the sailing capabilities by the wind and significantly raises the demands for the skill and coherence of the crew.
+La polacre ressemble au chebec. A la différence de ce dernier, elle a de grandes voiles carrées sur le mat principal, ce qui lui permet de naviguer aussi par vent arrière. Ses caractéristiques la rendent toutefois moins performante en plein vent, et requiert un équipage expérimenté.
 }
 
 Galeon_h
 {
-A heavy galleon is a strong military ship, intended for escorting the caravans and transporting especially valuable cargo on its own. It has mediocre sailing capabilities, but its large cannons, sturdy hull and numerous crew provide great protection for any cargo.
+ Le galion lourd est un navire de guerre imposant. Des canons d'important calibre, une coque robuste et un grand équipage en font une excellente défense pour toute cargaison. 
 }
 
 Frigate
 {
-Frigates, which have good sailing capabilities and heavy firepower, are intended for long-range scouting, escorting transports, combat action with the support of other vessels and also for cruising the enemy routes to capture or destroy enemy trading ships.
+ La frégate, rapide et manœuvrable, est appréciée de beaucoup pour ses bonnes capacités de navigation et pour sa puissance de feu. Une escadrille de frégates peut facilement détruire un fort ou piller une cité. 
 }
 
 Frigate_h
 {
-Heavy frigates were designed spaecifically for guarding large convoys. While being slightly inferior to 4th class ships in terms of firepower and hull integrity, they still outperform them in terms of sailing capabilities, which makes them a menacing weapon when commanded by an experienced captain.
+Les frégates lourdes ont été conçues pour escorter les convois de grande taille. Etant légèrement inferieures aux navires de classe 4 en termes de puissance de feu et de coque, elles n'en restent pas moins supérieures en terme de navigation, faisant d'elles des armes redoutables aux mains des capitaines expérimentés.
 }
 
 LineShip
 {
-The 4th class ships cannot compete with their larger cousins in terms in terms of firepower, therefore there is no reason placing them in a battle line. They are best at escorting convoys, since due to their speed and maneuverability they can accomplish this task with great effectiveness.
+ Les navires de ligne constituent une force phénoménale. Armés des canons les plus puissants et disposant de la plus longue portée pour protéger leur coque, ils peuvent faire face à tout vaisseau en mer et facilement détruire des fortifications côtières. 
 }
 
 
 Warship
 {
-The ships of this type were built back in the times of cardinal Richelieu, and by now they are out of date in terms of construction. Still, they possess nice sailing capabilities and may carry the most heavy cannons, so they can still pose a serious threat.
+ Un navire de guerre, ayant plus de canons qu'une frégate, perdra par rapport à elle vitesse et manœuvrabilité. Cependant, de par leur coque et leur charpente renforcées, certains navires de guerre peuvent transporter les plus puissants des canons. 
 }
 
 Battleship
 {
-The 3rd class ships are quite numerous and well-rounded ships, intended for line combat. They have sufficient firepower to challenge even the 100-cannon leviathans, herewith they significantly outperform the latter in terms of maneuverability and speed.
+ Le cuirassé est un navire de guerre amélioré ; il est plus grand et encore plus renforcé. Gigantesque et lourd, il transporte plusieurs groupes de canons lourds et est dirigé par un équipage immense.
 }
 
 Manowar
 {
-The 2nd class ships are the basis of the naval power of any state. Together with the 3rd class ships they make up a fleet combining power and maneuverability. If there are no 1st class ships present, they can also serve as flagships.
+ Un navire de ligne royal, de toute première classe à la puissance de feu horrifiante, à une excellente coque et à des capacités de navigations idoines. Un vaisseau pour la postérité. 
 }
 
 Manowar_e
 {
-A 1st class ship is a real floating fortress. Thanks to the terrifying firepower, it can sink almost any enemy with several precise salvos. But even the great naval powers do not have many ships of this type. They are mostly used as flagships in royal naval battles.
+Les navires de classe 1 sont de véritables forteresses flottantes. Avec leur puissance de feu ils sont capables de couler n'importe quel navire avec seulement une salve bien placée. Mais même les grandes puissances navales ne possèdent qu'une poignée de ces navires. Ils sont essentiellement utilisés comme vaisseau amiral lors des batailles royales.
 }
 
 MayFang
 {
-This xebec has a lighter hull to the detriment of its integrity, but she is an unsurpassed sailer - hardly any ship in the entire Caribbean can compete with her in speed!
-Besides, twenty mid-caliber cannons are a serious argument in any naval confrontation.
+Ce chebec a une coque plus légère, mais il possède des caractéristiques de navigation exceptionnelles. Rares sont les navires des Caraïbes qui possèdent une telle vitesse ! De plus, ses canons de calibre moyen font de lui un ennemi de choix.
 }
 
 Mirage
 {
-Unlike bombarding ketches, privateer ketches don't carry huge mortars intended for bombardment of the fortresses, but instead they have lighter streamlined hull, which positively affects their sailing capabilities. Even the yachts of princes can envy the speed of this privateer ketch.
+A la différence des ketchs d'artillerie, les ketchs corsaires ne possèdent pas de canons permettant le bombardement de forteresses. Mais ils ont une coque fine, qui leur octroient des caractéristiques de navigation accrues.
 }
 
 Valciria
 {
-An excellent English brig. High speed and maneuverability, good by the wind performance and twenty cannons on the deck make this sailer everyone's dream.
+Très bon brick anglais. Vitesse, manœuvrabilité, bonne performance en plein-vent et vingt canons sur le pont font de ce bateau le rêve de tout marin.
 }
 
 CORVETTE_QUEST
 {
-Truly a masterpiece of French shipwrights. Thanks to trapezoid bends, this frigate has higher stability and can support greater sail area. Therfore it is very fast, and few ships may outrun it with tail wind.
+Chef-d’œuvre des chantiers navals français. Grâce à ses formes trapézoïdales, cette frégate a une plus grande stabilité et peut supporter une plus grande surface de voilure, faisant d'elle un navire très rapide et quasiment impossible à rattraper par vent arrière.
 }
 
 Polacre_q
 {
-A successful mix of a xebec and a frigate, her shipbuilder created a polacre of unusual hull with low sea gauge yet high boards. Three masts and a bowsprit, a great number of sails makes her fast and agile. She also carries extremely powerful guns. This is a versatile and unique ship which can play any role in the high seas: military, pirate or trade.
+Un mélange réussi entre la frégate et le chébec. Son constructeur a créé une polacre avec une épaisseur de coque peu commune, des écoutilles hautes et un pont bas. Trois mâts et un beaupré, ainsi qu’un grand nombre de voiles rendent ce navire rapide et agile. Elle porte également des armes extrêmement puissantes. C'est un navire polyvalent et unique qui peut jouer n'importe quel rôle en haute mer : du navire militaire, au navire pirate ou de commerce.
 }
 
 ArabellaShip
 {
-Thanks to the last breakthroughs in the ship design, the speed of this frigate is slightly higher compared to those built several years before. Moreover, it has a more sturdy and lighter hull.
+Grâce aux dernières avancées technologiques, la vitesse de cette corvette est plus élevée. Sa coque est également plus légère et plus solide.
 }
 
 Flyingdutchman
 {
-Caleuche. The nightmare of all sailors...
+Le Caleuche, connu également sous le nom de hollandais volant. Le cauchemar de tout marin…
 }
 
 Flyingdutchman_l
 {
-Copy of "Caleuche". 
+Copie du Caleuche. 
 }
 
 Santisima
 {
-This ship came off the stocks of the famous shipyard of Havana. It's hull is slightly lighter and weaker, compared to other 1st class ships, but this was certainly compensated with improved sailing capabilities.
+Construit dans les chantiers navals réputés de La Havane. La coque de ce navire est un peu plus légère et moins résistante que celles des autres navires du même type, cependant ses capacités de navigation sont supérieures.
 }
+
 
 NoneBoat
 {
-No ship. A hero is now a landlubber and may not call himself captain until he acquires a ship.
+Aucun bateau. Le heros n'est plus qu'un marin d'eau douce. Il ne peut plus se considérer comme étant capitaine avant de trouver un nouveau vaisseau. 
 }
 
-Hull
-{
-Hull - shows the current and maximum damage the ship's hull can withstand.
+Hull {
+ Coque - Le montant de dégâts que la coque d'un vaisseau peut supporter. Une coque résistante vous aidera à survivre à une armada et à détruire un fort. Consultez régulièrement l'état de votre coque et réparez-la si nécessaire. Si vous disposez d'assez de planches et d'assez de temps, vous ne devriez pas rencontrer de difficultés. 
 }
-
-Sails
-{
-Sails - shows the current and maximum damage the ship's sails can withstand.
+Sails {
+ Voiles - Le montant de dégâts que les voiles du vaisseau peuvent supporter. C'est toujours une bonne chose de disposer d'un stock suffisant de toile à bord au cas où vous en auriez besoin. 
 }
-
-Speed
-{
-Speed - shows the maximum speed of the ship under current conditions accounting for all relevant factors (cargo, captain's skills, ship's damage) and maximum achievable speed of the ship.
+Speed {
+ Vitesse - Pour certaines tâches, une vitesse de vaisseau décente est essentielle ; certaines manœuvres tactiques et rattraper les marchands (l'un des jeux favoris des pirates) nécessitent une bonne vitesse. La vitesse est affectée par la marchandise des cales, par les compétences du capitaine et par les dégâts du vaisseau. 
 }
-
-Maneuver
-{
-Maneuverability - shows the maximum maneuverability of the ship under current conditions accounting for all relevant factors (cargo, captain's skills, ship's damage) and maximum achievable maneuverability of the ship.
+Maneuver {
+ Manœuvrabilité - En cours de bataille, un virage rapide peut sauver votre vaisseau et tous ceux s'y trouvant, ou vous permettre de tirer deux bordées au lieu d'une seule dans un même temps donné. La manœuvrabilité d'un vaisseau est affectée par la marchandise des cales, par les caractéristiques du capitaine et par les dégâts du vaisseau. 
 }
 
 AgainstWind
 {
-The best course of the ship relative to the wind, at which the ship can develop maximum speed. This value is represented in degrees.
-The second value indicates the difference between the current wind direction and the best course angle for this vessel.
+Allure - Affiche la capacité du vaisseau à naviguer sous l'angle de vent minimal. Plus haut est le taux et plus il est facile pour le vaisseau de naviguer. Les vaisseaux aux voiles penchées conviennent mieux à la navigation dans des vents contraires. La seconde valeur représente la différence entre l'angle de course actuel et l'angle optimal.
 }
 
 Capacity
 {
-Deadweight - the current and maximum cargo capacity of the ship. The heavier the ship is loaded, that more clumsy and slow it becomes.
-The cannons installed on the ship are also accounted for when calculating deadweight. They can be taken off the ship, thus freeing up space for more cargo. To do this, choose on the "Ship" interface the line with the current cannons in the ship's parameters list.
+ Cales - Affiche les volumes actuel et maximum des cales. Moins il y a d'espace libre et plus le vaisseau devient lent et difficile à manœuvrer. 
+ Toute arme installée a également un impact sur la place réservée aux marchandises. Vous pouvez les enlever du vaisseau s'il vous faut plus de place. Pour ce faire, vous devez aller au bas de l'interface et double-cliquer sur 'Canons'. 
 }
 
 Crew
 {
-Crew - the current number of sailors is shown, as well as the minimum and maximum number of sailors to operate this ship.
+ Équipage - Affiche le nombre actuel de marins avec l'équipage minimum requis et maximum possible pour le vaisseau sélectionné. Vous pouvez aller au-delà du maximum indiqué, mais cela augmente les risques de mutinerie. 
 }
 
 CannonType
 {
-Cannon type indicates the type of cannons (cannons or couleuvrines), current caliber and the number of installed cannons.
+ Type d'armes - Affiche la classe (canon ou couleuvrine), le calibre et le nombres de canons installés. 
 }
 
 sCannons
 {
-Maximum caliber and maximum number of cannons on this ship are shown here.
+ Armes - Affiche le calibre maximum et le nombre de canons maximum qu'un vaisseau peut soutenir. 
 }
 
-Crew_Exp {Crew experience}
+Crew_Exp {Expérience de l'équipage}
 
 Crew_Exp_hint
 {
-The crew's experience has three categories: naval - affects ship's management; cannoneering - affects reloading speed and firing accuracy; and boarding - affects the effectiveness of the crew during boardings.
-An experienced crew can have fewer sailors and still be more effective than a large crew of greenhorns.
-The experience in all three categories is acquired, when the crew performs the corresponding action (maneuvering, shooting, boarding). The experience decays, if a particular skill had not been practiced over a long time.
+ L'expérience de l'équipage est divisée en trois catégories : les marins (affectant le contrôle du vaisseau), les canonniers (affectant la vitesse de rechargement et la précision) et les soldats (l'efficacité de l'équipage en combat de mêlée). 
+ Un petit équipage expérimenté peut être plus efficace qu'un régiment de marins d'eau douce. 
+ L'équipage gagne de l'expérience dans les trois catégories tout en effectuant leur travail respectif (manœuvrabilité, tir et abordage). Cette expérience se perd cependant si l'équipage n'a pas eu l'occasion d'exercer ses compétences pendant un certain temps.}
 }
 
 TakeAllGoods_hint
 {
-Button "reload all goods" reloads the goods to the player's ship based on their average specific value. First, the most valuable goods are reloaded, then go the less valuable and so on, until the hold is filled completely.
+ Le bouton 'Transférer marchandises' s'occupe du passage des marchandises sur le vaisseau du personnage selon leur prix. Les marchandises les plus chères sont chargées en premier puis celles moins chères, graduellement, jusqu'à ce qu'il n'y ait plus de place dans les cales. 
 }
 
 GoodsKeys_hint
 {
-Arrow keys "Left" and "Right" are moving the goods in the selected line by one unit per time. Using arrow keys while holding down the Shift key will move the entire cargo.
-Right clock on the arrows in the line of the merchandise will move ten units of this merchandize.
+ À l'aide des touches droite et gauche du clavier, vous pouvez mettre les marchandises par plusieurs. Si vous appuyez sur les flèches tout en maintenant la touche [Maj] enfoncée, vous sélectionnerez les quantités maximales possibles. Cliquez sur le bouton droit de la souris sur une marchandise pour en sélectionner dix à la fois.
 }
 
 Shipyard_hint
 {
-You can buy, repair and sell ships at the shipyard.
-A hero cannot sell his ship, if he has companions. Neither can he purchase a ship for his companion, if he himself doesn't own a ship yet.
-In order to change the ship or the companion while preserving the contents of the hold and the crew, select in the squadron list (in the left part of the interface) the ship to be substituted with a new one, and in the shipyard list (ships  offered for sale at the shipyard in the right part of the interface) the desired ship, and then press the "Buy" button.
-In order to purchase a new ship or to assign a new companion, select an empty slot in the left list before purchasing.
+ Vous pouvez acheter, réparer ou vendre des vaisseaux au chantier naval. 
+ Le héros ne peut pas vendre son vaisseau s'il a des compagnons. Vous ne pouvez pas non plus acheter de vaisseau pour un compagnon si le héros ne dispose pas de son propre vaisseau. 
+ Pour changer le vaisseau du héros ou du compagnon tout en conservant les marchandises des cales et l'équipage, vous devez vous rendre à la liste des vaisseaux dans l'escadrille du héros (passez la souris à gauche de l'écran) et sélectionner le vaisseau qui sera échangé contre le nouveau. Passez la souris à droite de l'écran à présent et choisissez le nouveau vaisseau désiré. Appuyez enfin sur le bouton 'Acheter'. Pour acheter un nouveau vaisseau (et nommer un compagnon), vous devriez d'abord acheter un emplacement libre pour la liste de gauche.
 }
 
 NoneBoat2
 {
-No ship.
+ Pas de vaisseau. 
 }

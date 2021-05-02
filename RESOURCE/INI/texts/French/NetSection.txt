@@ -13,5 +13,5 @@ NetFG_NeedUserPassword 			{The entered password doesn't match with the password 
 NetFG_NeedServerPassword 		{You have entered invalid password to connect to the server, please try again.}
 NetFG_RejectedUnknown 			{Connection to the server failed due to unknown reasons.}
 NetFG_Banned 				{You were prohibited from accessing this server.}
-NetEG_DeathMatch 			{Battle's finished.\n \n%1 won!}
-NetEG_Team 				{Battle's finished.\n \nTeam "%1" won!}
+NetEG_DeathMatch 			{Battle finished.\n \n%1 won!}
+NetEG_Team 				{Battle finished.\n \nTeam "%1" won!}

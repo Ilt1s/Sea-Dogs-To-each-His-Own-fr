@@ -1,25 +1,26 @@
 // диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Shipyard.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat(RandPhraseSimple("What questions do you have?", "How can I help you?"), "You tried to ask me a question a little while ago...", "I have never met people with such one-sided curiosity in my shipyard or anywhere else in this town.",
-                          "What's with all the questions? My job is to build ships. Let's take care about that.", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat(RandPhraseSimple("I've changed my mind...", "I've got nothing to talk about at the moment."), "Umph, where has my memory gone...",
-                      "Hm, well...", "Go ahead...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[0], DLG_TEXT_SHY[1]), DLG_TEXT_SHY[2], DLG_TEXT_SHY[3],
+                          DLG_TEXT_SHY[4], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(RandPhraseSimple(DLG_TEXT_SHY[5], DLG_TEXT_SHY[6]), DLG_TEXT_SHY[7],
+                      DLG_TEXT_SHY[8], DLG_TEXT_SHY[9], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			//Голландский гамбит
 			if (CheckAttribute(pchar, "questTemp.HWIC.Eng") && pchar.questTemp.HWIC.Eng == "GotoBridgetown" && !CheckAttribute(npchar, "quest.HWICTalked"))
             {
-                link.l1 = "I'm on my way here to Blueweld with a load of coffee and I'd like to buy some more merchandise, but here's the problem: on this brig, which I've bought off a war dog, is an abominable amount of heavy cannons, a total of 24. I'm not on my way to a war, you know. I'd like to sell them all to you and buy 12 six-pounders, more than enough to frighten some pirates. And the rest of the space I have I'll fill with merchandise.";
+                link.l1 = DLG_TEXT_SHY[10];
                 link.l1.go = "ShipyardDone";
 			}
 		break;
 		
 		case "ShipyardDone":
-			dialog.text = "Yes, go ahead and sell them. I've always got enough six-pounders, but I've always got a problem with heavy cannons, so I'll pay you a decent price if of course they are still in working condition.";
-			link.l1 = "Wow, great! I'm going to give orders.";
+			dialog.text = DLG_TEXT_SHY[11];
+			link.l1 = DLG_TEXT_SHY[12];
 			link.l1.go = "exit";	
 			npchar.quest.HWICTalked = "true";
 			pchar.questTemp.HWIC.Eng.BridgeCounter = sti(pchar.questTemp.HWIC.Eng.BridgeCounter)+1;
@@ -38,4 +39,3 @@ void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод
 }
-

@@ -1,3 +1,5 @@
+#include "SD\TEXT\DIALOGS\Common_Store.h"
+#include "SD\TEXT\DIALOGS\Quest_Store.h"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -15,44 +17,44 @@ void ProcessDialogEvent()
 		case "First time":
 			if (LAi_grp_playeralarm > 0)
 			{
-       			dialog.text = NPCharRepPhrase(pchar,
-					LinkRandPhrase("There's been an alarm raised in the town. Everyone's looking for you! I wouldn't wait around here for too long if I were you.", "The whole town guard is scouring the town trying to find you. I'm not an idiot and I'm not gonna to talk to you!", "Run, buddy, before the soldiers make mince meat out of you..."),
-					LinkRandPhrase("What do you need, scoundrel?! The town guard is on your tail right now. You won't make it far, dirty pirate!", "Get out of my house, killer! Guards!!", "I'm not afraid of you, scamp! Soon they'll hang you, you won't get away..."));
+       			dialog.text = NPCharRepPhrase(pchar, 
+					LinkRandPhrase(DLG_TEXT_BASE[0], DLG_TEXT_BASE[1], DLG_TEXT_BASE[2]), 
+					LinkRandPhrase(DLG_TEXT_BASE[3], DLG_TEXT_BASE[4], DLG_TEXT_BASE[5]));
 				link.l1 = NPCharRepPhrase(pchar,
-					RandPhraseSimple("Heh, I'm not too worried about the alarm...", "They have no chance of catching me."),
-					RandPhraseSimple("Shut your pie hole, " + GetWorkTypeOfMan(npchar, "") + ", or I will cut off your bloody tongue!", "Heh, " + GetWorkTypeOfMan(npchar, "") + ", you too want to hunt a pirate! Listen, pal, keep calm and you'll live..."));
-				link.l1.go = "exit";
+					RandPhraseSimple(DLG_TEXT_BASE[6], DLG_TEXT_BASE[7]), 
+					RandPhraseSimple(DLG_TEXT_BASE[8] + GetWorkTypeOfMan(npchar, "") + DLG_TEXT_BASE[72], DLG_TEXT_BASE[10] + GetWorkTypeOfMan(npchar, "") + DLG_TEXT_BASE[11]));
+				link.l1.go = "fight";
 				break;
 			}
 			if (npchar.quest.meeting == "0")
 			{
-				dialog.text = TimeGreeting() + "! I've never seen you before, senior. Dare I assume, you're a captain... Did I guess right? My name is "+GetFullName(npchar)+", and my store is at your service. Gold, silver, and much more to peak the interest of a curious man.";
-				Link.l1 = "I see. I'm " + GetFullName(pchar) + ". Pleased to meet you, "+npchar.name+".";
+				dialog.text = TimeGreeting() + DLG_TEXT_STR[19] +GetFullName(npchar)+ DLG_TEXT_STR[20];
+				Link.l1 = DLG_TEXT_STR[21] + GetFullName(pchar) + DLG_TEXT_STR[22] +npchar.name+".";
 				Link.l1.go = "meeting";
 				npchar.quest.meeting = "1";
 			}
 			else
 			{
-				dialog.text = TimeGreeting() + ", senior! I'm glad to see you again in my store. Would you like to acquire some gold nuggets? Or possibly you'd be interested in minerals today?";
-				link.l1 = "Show me your merchandise, "+npchar.name+".";
+				dialog.text = TimeGreeting() + DLG_TEXT_STR[23];
+				link.l1 = LinkRandPhrase(DLG_TEXT_BASE[325], DLG_TEXT_BASE[326], DLG_TEXT_BASE[327]);
 				link.l1.go = "trade";
-				link.l4 = "No, I don't need anything, "+npchar.name+". I've just stopped by to say hello to you.";
+				link.l4 = DLG_TEXT_STR[24]+npchar.name+DLG_TEXT_STR[25];
 				link.l4.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
 		break;
 		
 		case "meeting":
-			dialog.text = "As am I, senior. Will you have a look at my merchandise? I'm sure I have something that'll be of interest to you.";
-			link.l1 = "This is my first time here and I'd like to find out a little bit more about this settlement.";
+			dialog.text = DLG_TEXT_STR[26];
+			link.l1 = DLG_TEXT_STR[27];
 			link.l1.go = "info";
-			link.l2 = "Then show me what you have for sale.";
+			link.l2 = DLG_TEXT_STR[28];
 			link.l2.go = "trade";
 		break;
 		
 		case "info":
-			dialog.text = "Our small town was built thanks to the golden mine. They mine there golden ore, silver and golden nuggets. Sometimes even gems. We used to have here only a garrison until friendly Indians and some white settlers joined us\nIgnacio Ortega has built a tavern and made our life a bit cheerier. All kinds of adventurers visit this place with a stupid intention to rob us. We don't have a court here, so their numbers went low after we had hanged several idiots right in the middle of the town\nGolden ore is being sent to the ships under protection of soldiers and friendly Indians, nuggets, however, you can buy right here, in this store\nBesides, I sometimes have very interesting minerals to offer, so visit me when you've got time, I always resupply my stock.";
-			link.l1 = "Thank you for the interesting story! I'll keep it in mind.";			
+			dialog.text = DLG_TEXT_STR[29]+DLG_TEXT_STR[30]+DLG_TEXT_STR[31]+DLG_TEXT_STR[32];
+			link.l1 = DLG_TEXT_STR[33];			
 			link.l1.go = "exit";
 		break;
 		
@@ -73,8 +75,8 @@ void ProcessDialogEvent()
 
 		// ============== Грабеж среди бела дня, попытка залезть в сундуки =========================
 		case "Man_FackYou":
-			dialog.text = LinkRandPhrase("Robbery in broad daylight!!! What's going on here?! Wait, hold on, pal...", "Hey, what are doing there?! Trying to rob me? Now you are screwed...", "Wait, what the hell are you doing? Turns out that you are a thief! Consider this the end of the line, bastard...");
-			link.l1 = LinkRandPhrase("Devil!!", "Caramba!!", "Ah, shit!");
+			dialog.text = LinkRandPhrase(DLG_TEXT_BASE[18], DLG_TEXT_BASE[20], DLG_TEXT_BASE[70]);
+			link.l1 = LinkRandPhrase(DLG_TEXT_BASE[85], DLG_TEXT_BASE[86], DLG_TEXT_BASE[87]);
 			link.l1.go = "PL_Q3_fight";
 		break;
 		

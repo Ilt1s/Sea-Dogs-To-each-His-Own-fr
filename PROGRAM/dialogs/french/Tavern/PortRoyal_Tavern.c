@@ -1,40 +1,39 @@
-// диалог по городам
+#include "SD\TEXT\DIALOGS\Quest_Tavern.h"
 void ProcessCommonDialogEvent(ref NPChar, aref Link, aref NextDiag)
 {
     switch (Dialog.CurrentNode)
 	{
 		case "quests":
-			dialog.text = NPCStringReactionRepeat("All the rumors of "+ GetCityName(npchar.city) +" at your service. What would you like to find out?",
-                          "We were just talking about that. You must have forgotten...", "This is the third time today you're talking about some question...",
-                          "You're repeating all the same like a parrot...", "block", 1, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("You know, " + NPChar.name + ", maybe next time.", "Right, I've forgotten for some reason...",
-                      "Yes, it really is the third time...", "Yup...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_STR[73]+ GetCityName(npchar.city) +DLG_TEXT_STR[74],
+                          DLG_TEXT_STR[75], DLG_TEXT_STR[76],
+                          DLG_TEXT_STR[77], "block", 1, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_STR[78] + NPChar.name + DLG_TEXT_STR[79], DLG_TEXT_STR[80],
+                      DLG_TEXT_STR[81], DLG_TEXT_STR[82], npchar, Dialog.CurrentNode);
 			link.l1.go = "exit";
 			if (pchar.questTemp.Slavetrader == "FindRatJamaica")
             {
-                link.l1 = "Do you know where I can find Francois Gontier by any chance?";
+                link.l1 = DLG_TEXT_STR[165];
                 link.l1.go = "Jamaica_ratP_1";
             }
 			// Страж Истины
 			if (CheckAttribute(pchar, "questTemp.Guardoftruth") && pchar.questTemp.Guardoftruth == "merdok" && !CheckAttribute(npchar, "quest.jino"))
 			{
-				link.l1 = "Listen, has there been an alchemist that arrived here in this town, a physician? He's Italian, about thirty years old, his name is Gino Gvineili. Have you heard anything about that?";
+				link.l1 = DLG_TEXT_STR[166];
 				link.l1.go = "guardoftruth";
 			}
 		break;
 
 		case "Jamaica_ratP_1":
-			dialog.text = NPCStringReactionRepeat("I haven't the slightest clue. I've never even heard that name before.", "You've already asked about that and I've answered you.", "I told you, you've already asked about that Gontier.", "Listen, walk away and stop bothering me! Have you completely lost your noggin?", "block", 0, npchar, Dialog.CurrentNode);
-			link.l1 = HeroStringReactionRepeat("Well then, I'll keep looking.", "Hm, I guess so...", "Yes, right, I've asked that...", "Sorry, " + npchar.name + "...", npchar, Dialog.CurrentNode);
+			dialog.text = NPCStringReactionRepeat(DLG_TEXT_STR[167], DLG_TEXT_STR[168], DLG_TEXT_STR[169], DLG_TEXT_STR[170], "block", 0, npchar, Dialog.CurrentNode);
+			link.l1 = HeroStringReactionRepeat(DLG_TEXT_STR[171], DLG_TEXT_STR[172], DLG_TEXT_STR[173], DLG_TEXT_STR[174] + npchar.name + "...", npchar, Dialog.CurrentNode);
 		break;
 		
 		case "guardoftruth":
-			dialog.text = LinkRandPhrase("No, I haven't. We've got herbalists and physicians, but none with a name like that.","This is the first time I've heard such a weird name. No, we've never had a visit from the man you speak of.","We don't even have any alchemists here at all. We've got physicians, but none with a weird name like that.");
-			link.l1 = "I see. That's too bad. I'll continue searching!";
+			dialog.text = LinkRandPhrase(DLG_TEXT_STR[175],DLG_TEXT_STR[176],DLG_TEXT_STR[177]);
+			link.l1 = DLG_TEXT_STR[178];
 			link.l1.go = "exit";
 			npchar.quest.jino = "true";
 		break;
 	}
 	UnloadSegment(NPChar.FileDialog2);  // если где-то выход внутри switch  по return не забыть сделать анлод
 }
-

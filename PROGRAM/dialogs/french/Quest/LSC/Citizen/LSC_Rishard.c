@@ -1,5 +1,5 @@
 // Ришард Шамбон - контрабандист
-#include "DIALOGS\russian\Rumours\Common_rumours.c"
+#include "SD\DIALOGS\russian\Rumours\Common_rumours.c"
 void ProcessDialogEvent()
 {
 	ref NPChar, sld;
@@ -19,7 +19,7 @@ void ProcessDialogEvent()
 		case "First time":
 			if (CheckAttribute(pchar, "GenQuest.CitizenConflict") && sti(pchar.GenQuest.CitizenConflict) > 3)
 			{
-				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them to fight. Get lost!";
+				dialog.text = "I don't want to talk with you. You attack peaceful civilians with no reasons and provoke them. Get lost!";
 				link.l1 = "Hm...";
 				link.l1.go = "exit";
 				break;
@@ -27,7 +27,7 @@ void ProcessDialogEvent()
 			// --> кольцо
 			if (CheckAttribute(pchar, "questTemp.Saga.SharkHunt") && pchar.questTemp.Saga.SharkHunt == "find" && CheckAttribute(npchar, "quest.answer_2") && GetNpcQuestPastDayParam(npchar, "quest_date") >= 3 && !CheckAttribute(npchar, "quest.ring"))
 			{
-				dialog.text = "Oh! Here you are, pal. And I was thinking about finding you by myself. I need you, friend.";
+				dialog.text = "Oh! Here you are, pal. And I was thinking about finding you myself. I need you, friend.";
 				link.l1 = "You are suspiciously friendly today, Richard. Well, I am listening.";
 				link.l1.go = "ring";
 				break;
@@ -43,11 +43,11 @@ void ProcessDialogEvent()
 			else
 			{
 				dialog.text = "Аh, "+GetFullName(pchar)+"! "+TimeGreeting()+"! Want something?";
-				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+				link.l1 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 				link.l1.go = "rumours_LSC";
 				link.l2 = "I want to ask you a few questions about the island.";
 				link.l2.go = "int_quests"; //информационный блок
-				link.l5 = "Just wanted to know how you're doing. See you!";
+				link.l5 = "Just wanted to know how are you doing. See you!";
 				link.l5.go = "exit";
 			}
 			NextDiag.TempNode = "First time";
@@ -60,7 +60,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "meeting_1":
-			dialog.text = "Really? Fine then. I am Richard Shambon. A long time ago I traded some valuable goods and some of them were illegal, but I have been scavenging ship's wrecks, searching for scraps and exchanging them for food and gold for the last nine years.";
+			dialog.text = "Really? Fine then. I am Richard Shambon. A long time ago I traded some valuable good and some of them were illegal, but I have been scavenging ship's wrecks, searching for scraps and exchanging them for food and gold for the last nine years.";
 			link.l1 = "And I am "+GetFullName(pchar)+", a captain...";
 			link.l1.go = "meeting_2";
 		break;
@@ -81,7 +81,7 @@ void ProcessDialogEvent()
 			dialog.text = "A-ah... And I thought... Whatever, pal, I'd better drink some rum...";
 			link.l1 = "Good luck with that. It was nice to talk with you. See you!";
 			link.l1.go = "exit";
-			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has anything new happened on the island?", "Will you tell me the last gossips?");
+			link.l2 = LinkRandPhrase("Got anything interesting to say?", "Has something new happened on the island?", "Will you tell me the last gossips?");
 			link.l2.go = "rumours_LSC";
 			link.l3 = "I want to ask you a few questions about the island.";
 			link.l3.go = "int_quests"; //информационный блок
@@ -90,7 +90,7 @@ void ProcessDialogEvent()
 		
 		// Кольцо
 		case "ring":
-			dialog.text = "And was I different before? Come on, I had bad days, everybody sometimes has them! Tell me, there are gossips among the Island that you are an excellent fighter. Is it true?";
+			dialog.text = "And was I different before? Come on, I had bad days, everybody sometimes have them! Tell me, there are gossips among the Island that you are an excellent fighter. Is it true?";
 			link.l1 = "I don't know what they say, but I know how to handle a sword if that is what you are asking.";
 			link.l1.go = "ring_1";
 			npchar.quest.ring = "true";
@@ -103,7 +103,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_2":
-			dialog.text = "What else can be said, ha-ha! Fine. I'll get to the point. (lowering his voice) I have found an untouched ship at the outer ring, she is in good condition, which is quite rare\nThe ship is large, a pinnace. She was driven here not long ago, around two months or even less. Others have not found her yet, so there is a chance to make some good money by looting her holds and cabins.";
+			dialog.text = "And else can be said, ha-ha! Fine. I'll get to the point. (lowering his voice) I have found an untouched ship at the outer ring, she is in good condition, which is quite rare\nThe ship is large, a pinnace. She was driven here not long ago, two months, not earlier. Others have not found her yet, so there is a chance to make some good money by looting her holds and cabins.";
 			link.l1 = "Nice, I am glad for you. But how does it concern me? Do you want to ask me to go there with you?";
 			link.l1.go = "ring_3";
 		break;
@@ -116,21 +116,21 @@ void ProcessDialogEvent()
 		
 		case "ring_4":
 			dialog.text = "Yes. We will have a deal. I will show they way to the ship and you will eliminate crabs. We will share all loot we find there. It's a fair deal - I have found the ship and you will clear it.";
-			link.l1 = "No, pal, I am not interested. It's not my style to fight crabs inside a half-sunk ship for some doubtful trophies. Find yourself another risky lad who will pull chestnuts out of the fire for you.";
+			link.l1 = "No, pal, I am not interested. It not my style to fight crabs inside a half sunken ship for some doubtful trophies. Find yourself another risky lad who will pull chestnuts out of the fire for you.";
 			link.l1.go = "ring_exit";
 			link.l2 = "Interesting... I have been thinking to check the outer ring for a long time. Deal! I will kill crabs.";
 			link.l2.go = "ring_5";
 		break;
 		
 		case "ring_exit":
-			dialog.text = "Too bad... You've made a mistake. There are a lot of juicy stuff in ships of the outer ring... And no one have been at that ship before. Fine, it's your wish. Farewell...";
+			dialog.text = "Too bad... There are a lot of juicy stuff in ships of the outer ring... And no one have been at that ship before. Fine, it's you call. Farewell...";
 			link.l1 = "Bye, pal...";
 			link.l1.go = "exit";
 		break;
 		
 		case "ring_5":
 			dialog.text = "I am glad that I was right about you, friend. I have got a feeling that we will find a lot of interesting things inside her...";
-			link.l1 = "We will see. Do you know how many crabs are there?";
+			link.l1 = "We will see. Do you know how many crabs there?";
 			link.l1.go = "ring_6";
 		break;
 		
@@ -147,7 +147,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_8":
-			dialog.text = "There is a wreck of an old ship behind the 'San Augustine'. Her bow is underwater and her rear is lifted up high. That is why she is called the 'oblique deck'. You can get there only by swimming. Just start swimming from the place under the bridge and turn around from any side of the 'San Augustine'. We will swim together from there.";
+			dialog.text = "There is a wreck of an old ship behind the San Augustine. Her bow is underwater and her rear is lifted up high. That is why she is called the 'oblique deck'. You can get there only by swimming. Just start swimming from the place under the bridge and turn around from any side of the San Augustine. We will swim together from there.";
 			link.l1 = "Fine. See you tomorrow!";
 			link.l1.go = "ring_9";
 		break;
@@ -178,7 +178,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_10":
-			dialog.text = "Aha, here you are, pal. Ready to make some crab salad?";
+			dialog.text = "Aha, there you are, pal. Ready to make some crab salad?";
 			link.l1 = "Sure!";
 			link.l1.go = "ring_11";
 		break;
@@ -209,8 +209,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_13a":
-			dialog.text = "It is our target. Swim straight and don't turn. I will show you the way back when we will reach the outer ring. The entrance to the cargo hold is the hole in ship's bow. Know that I won't enter there until you kill all the crabs.";
-			link.l1 = " Yup, we had a deal yesterday, I remember. You will show the ship and I will kill crabs. Let's swim?";
+			dialog.text = "It is our target. Swim straight and don't turn. I will show you the way back when we will reach the outer ring. The entrance to the cargo hold is the hole in ship's bow. Know that I won't enter there until won't deal with crabs.";
+			link.l1 = "We had a deal yesterday, I remember. You will show the ship and I will kill crabs. Let's swim?";
 			link.l1.go = "ring_14";
 		break;
 		
@@ -313,7 +313,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_24":
-			dialog.text = "Huh! So the tales of your skill in fencing were true! If I was here alone, I'd jump overboard...";
+			dialog.text = "Huh! So the tales of your skill in fencing were true! If I would be here alone, I'd jump overboard...";
 			link.l1 = "Listen, and how did you become a smuggler in past, huh? Or were you running away from everybody?";
 			link.l1.go = "ring_25";
 		break;
@@ -343,7 +343,7 @@ void ProcessDialogEvent()
 		
 		case "ring_28":
 			dialog.text = "Nothing valuable again... I have found a few interesting little things and that's all. But it is alright, there are usually no valuable goodies on the decks. The very best must be in cabins. There is an entrance to captain's quarters over there. Let's check it out.";
-			link.l1 = "Be careful, who knows what is waiting for us there. Perhaps, I'd better enter there first?";
+			link.l1 = "Be careful, who knows what can be waiting for us there. Perhaps, I'd better enter there first?";
 			link.l1.go = "ring_29";
 		break;
 		
@@ -369,7 +369,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_31":
-			dialog.text = "It looks like I got lucky - neither crabs nor other filth here. And now we will topsy-turvy this cabin, fuck, I swear that I am starting to get angry. I have found only two fucking dozens of doubloons and a few sundries!";
+			dialog.text = "It looks like I got lucky - neither crabs nor other filth here. And now we will topsy-turvy this cabin, god damn it, I swear that I am starting to get angry. I have found only two dozens of doubloons and a few sundries!";
 			link.l1 = "Calm down. You were right, all valuables are always stashed in captain's cabin. Let's see what we've got!";
 			link.l1.go = "ring_32";
 		break;
@@ -391,7 +391,7 @@ void ProcessDialogEvent()
 		
 		case "ring_34":
 			dialog.text = "Forty thousand pesos, two chests filled with doubloons, packet of emerald and a bunch of jewels! The owner was quite rich... Fine, at least it will repay our effort, though I was counting to get more stuff. Lets share it fairly.";
-			link.l1 = "Excellent, Richard. At least we have made some money!";
+			link.l1 = "Excellent, Richard. At least we have made some coins!";
 			link.l1.go = "ring_35";
 		break;
 		
@@ -461,7 +461,7 @@ void ProcessDialogEvent()
 			dialog.text = "Did you read it? What is there?";
 			if (CheckAttribute(pchar, "questTemp.LSC.Ring.ReadCapBook")) // прочел журнал
 			{
-				link.l1 = "Well, listen then... The story is very sad... but it concerns us now in some way. Your treasure hunting skills might be able to help us. There is a hidden box filled with gold in the cargo hold! Read it!";
+				link.l1 = "Well, listen then... The story is very sad... but it concerns us now in a some way. Your treasure hunting skills might be able to help us. There is a hidden box filled with gold in the cargo hold! Read it!";
 				link.l1.go = "ring_41";
 			}
 			else
@@ -497,7 +497,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_45":
-			dialog.text = "Hm. It is really a sad story. But aren't you kidding me? Is there a box with gold in the cargo hold? I don't believe my ears! Which one? Let's go there! I will check every bale, every barrel!";
+			dialog.text = "Hm. It is really a sad story. But aren't you joking at me? Is there a box with gold in the cargo hold? I don't believe my ears! Which one? Let's go there! I will check every bale, every  barrel!";
 			link.l1 = "Let's go. I am eager to start searching too.";
 			link.l1.go = "ring_seek_gold";
 		break;
@@ -543,7 +543,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_48":
-			dialog.text = "Ha! Surely, I will hide the gold in my stashes and no one will ever find them. Hiding is the thing I know well! Let's move a half of the gold in this barrel, that would be my share. I will take it away before the sunset.\nYou may do whatever you want with you share. But you'd better move it to your own stashes too. Don't blame me if you'll find your gold missing. I am an honest man, in my way of honesty and I won't dare to take your cut. But others, those who will come here later... they might find it.";
+			dialog.text = "Ha! Surely, I will hide the gold in my stashes and no one will ever find them. Hiding is the thing I know well! Let's move a half of the gold in this barrel, that would be my share. I will take it away before the sunset.\nYou may do whatever you want with you share. But you'd better move it to your own stashes too. Don't blame me if you'll find your gold missing. I am an honest man, in my way of honesty and I won't dare to take you cut. But others, those who will come here later... they might find it.";
 			link.l1 = "Fine. I will decide what to do with my gold. Let's put your share in a barrel...";
 			link.l1.go = "ring_49";
 		break;
@@ -560,8 +560,8 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ring_50":
-			dialog.text = "Done... Thank you, "+pchar.name+", for coming with me. I couldn't do this without you. Now I should consider building a tartan... to sail away from here... Ah, whatever. I'll think about it later\nI have a work to do - moving the gold to safe places. Farewell, friend, I wish you use your cut wisely!";
-			link.l1 = "Bye, Richard. It was a glorious day today. See you!";
+			dialog.text = "Done... Thank you, "+pchar.name+", for coming with me. I couldn't do this without you. Now I should consider building a tartan... ah, whatever. I'll think about it later\nI have got a work to do - moving the gold to safe places. Farewell, friend, I wish you use your cut wisely!";
+			link.l1 = "Bye, Richard. It was a very nice day today. See you!";
 			link.l1.go = "ring_51";
 		break;
 		
@@ -601,14 +601,14 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_1":
-			dialog.text = "For ten years me and my comrades had been sailing from Cuba to the Island on a well equipped tartane. We kept the location of the Island in secret - we were transporting bull carcasses and selling fresh meat for goods and gold from the local ship's holds\nGood times! Provision was always a problem here, bread and salted beef mostly, so they paid us for juicy meat with spicery, which costs a fortune back in Europe! Every single voyage I was making enough money to buy every whore of Tortuga\nBut everything has an end, so had our satisfied life. The weather gone bad - storms got stronger, so sailing to the Island became much more dangerous. Some of my companions have left the business, but not me and a dozen of brave men\nFinally, we were thrown on a reef two miles away from the Island. I still don't get how I managed to swim through the storming sea. That's how I became one of those who I was trading with in past.";
+			dialog.text = "For ten years me and my comrades had been sailing from Cuba to the Island on a well equipped tartane. We kept the location of the Island in secret - we were transporting bull carcasses and selling fresh meat for goods and gold from the local ship's holds\nGood times! Provision was always a problem here, biscuits and salted beef mostly, so they paid us for juicy meat with spicery, which costs a fortune back in Europe! Every single voyage I was making enough money to buy every whore of Tortuga\nBut everything has an end, so had our satisfied life. The weather gone bad - storms got stronger, so sailing to the Island became much more dangerous. Some of my companions have left the business, but not me and a dozen of brave men\nFinally, we were thrown on a reef two miles away from the Island. I still don't get how I managed to swim through the storming sea. That's how I became one of those who I was trading with in past.";
 			link.l1 = "Interesting story...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_1 = "true";
 		break;
 		
 		case "ansewer_2":
-			dialog.text = "Ha! I will get out of here, damn it! But later. What would I do on Cuba? I have got no friends left and my pocket is empty. I will start to build a boat right after I will find a ship with a valuable cargo at the outer ring or a pile of doubloons.";
+			dialog.text = "Ha! I will get out of here, damn it! But later. What would I do at Cuba? I have got no friends left and my pocket is empty. I will start to build a boat right after I will find a ship with a valuable cargo at the outer ring or a pile of doubloons.";
 			link.l1 = "I see...";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_2 = "true";
@@ -623,7 +623,7 @@ void ProcessDialogEvent()
 		break;
 		
 		case "ansewer_4":
-			dialog.text = "Sure! That is what makes the Island and the locals still living. Do you know when parties happen here? When a new ship arrives. But anyway, there are a lot of untouched ships filled with gold and goods at the outer ring\nProblem is that the outer ring is almost impossible to explore, things are messy out there, if you get entangled, slip or fell down badly - you may find yourself in the hole you can't leave on your own. Then you are done. A lot of people died that way.";
+			dialog.text = "Sure! That is what makes the Island and the locals still living. Do you know when parties happen here? When a new ship arrives. But anyways, there are a lot of untouched ships filled with gold and goods at the outer ring\nProblem is that the outer ring is almost impossible to explore, things are messy out there, if you get entangled, slip or fell down badly - you may find yourself in the hole you can't not leave on your own. Then you are finished. A lot of people died that way.";
 			link.l1 = "Hm... Interesting.";
 			link.l1.go = "int_quests";
 			npchar.quest.answer_4 = "true";
@@ -640,7 +640,7 @@ void ProcessDialogEvent()
 		
 		case "Woman_FackYou":
 			dialog.text = "What?! Decided to check my chests? You won't get away with it!";
-			link.l1 = "Foolish girl!";
+			link.l1 = "Foolish girl!...";
 			link.l1.go = "exit_setOwner";
 			LAi_group_Attack(NPChar, Pchar);
 		break;
@@ -661,8 +661,8 @@ void ProcessDialogEvent()
 		
 		//замечание по обнаженному оружию
 		case "LSCNotBlade":
-			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a medieval knight running with a sword around. Take it away, it doesn't suit you...");
-			link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+			dialog.text = LinkRandPhrase("Listen, you'd better take your weapon away. It makes me nervous.", "You know, running with blade is not tolerated here. Take it away.", "Listen, don't play a kid running with a rapier around. Take it away it doesn't suit you...");
+			link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			link.l1.go = "exit";
 			NextDiag.TempNode = "First Time";
 		break;	
@@ -671,11 +671,11 @@ void ProcessDialogEvent()
 			if (loadedLocation.type == "town")
 			{
 				dialog.text = NPCharSexPhrase(NPChar, "Listen, I am the citizen of the city and I'd ask you to hold down your blade.", "Listen, I am the citizen of the city and I'd ask you to hold down your blade.");
-				link.l1 = LinkRandPhrase("Fine.", "Alright.", "As you say...");
+				link.l1 = LinkRandPhrase("Fine.", "Whatever then.", "As you say...");
 			}
 			else
 			{
-				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men are walking in front of me with their weapon ready. It scares me...");
+				dialog.text = NPCharSexPhrase(NPChar, "Be careful, pal, while running with a weapon. I can get nervous...", "I don't like when men walking in front of me with their weapon ready. It scares me...");
 				link.l1 = RandPhraseSimple("Got it.", "I am taking it away.");
 			}
 			link.l1.go = "exit";
